@@ -16,15 +16,15 @@ const MuiGradientBackground = () => {
     };
 
     const animate = () => {
-      currentX += (targetX - currentX) * 0.06;
-      currentY += (targetY - currentY) * 0.06;
+      currentX += (targetX - currentX) * 1;
+      currentY += (targetY - currentY) * 1;
 
       if (bgRef.current) {
         bgRef.current.style.background = `
           radial-gradient(
             900px at ${currentX}% ${currentY}%,
             rgba(25, 204, 153, 1) 0%,
-            rgba(60, 186, 224, 1) 35%,
+            rgba(135, 209, 248, 1) 35%,
             rgba(240,248,255,1) 70%
           )
         `;

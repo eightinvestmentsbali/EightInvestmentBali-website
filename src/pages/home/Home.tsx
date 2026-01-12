@@ -1,42 +1,43 @@
 import React from "react";
 import { Box, Container, Grid } from "@mui/material";
 import Navbar from "../../components/navbar/Navbar";
-// import { useTheme } from "@mui/material/styles";
+import { useTheme } from "@mui/material/styles";
 import ArchitectingProsperity from "./components/ArchitectingProsperity/ArchitectingProsperity";
 import UnifyYourVision from "./components/UnifyYourVision/UnifyYourVision";
 import WhyDoInvestorschoose from "./components/WhyDoInvestorschoose/WhyDoInvestorschoose";
-import BackgroundParticles from "../../components/background/BackgroundParticles";
-import MuiGradientBackground from "../../components/background/MuiGradientBackground";
-import AnimatedGradientBlob from "../../components/background/AnimatedGradientBlob";
+import BestInvestmentOpportunity from "./components/BestInvestmentOpportunity/BestInvestmentOpportunity";
+import Projects from "./components/Projects/Projects";
+import OurProcess from "./components/OurProcess/OurProcess";
+import OurServices from "./components/OurServices/OurServices";
+// import GLSLBackground from "../../components/background/GLSLBackground";
+// import { Canvas } from "@react-three/fiber";
+// import { ShaderPlane } from "../../components/background/ShaderPlane";
+// import ShaderBackground from "../../components/background/ShaderBackground";
+// import MeshBackground from "../../components/background/MeshBackground";
+// import BackgroundParticles from "../../components/background/BackgroundParticles";
+// import MuiGradientBackground from "../../components/background/MuiGradientBackground";
+// import AnimatedGradientBlob from "../../components/background/AnimatedGradientBlob";
 
 const Home: React.FC = () => {
-  // const theme = useTheme();
+  const theme = useTheme();
   return (
     <Box
       component="section"
       sx={{
         position: "relative",
-        minHeight: "100vh",
         width: "100%",
-        overflow: "hidden",
-        background: `
-      linear-gradient(
-        135deg,
-        #f0f8ff 0%,
-        #e6f7f2 35%,
-        #d6eef7 65%,
-        #ffffff 100%
-      )
-    `,
+        bgcolor: theme.palette.background.paper,
       }}
     >
       {/* <MuiGradientBackground /> */}
       {/* <BackgroundParticles /> */}
-        <AnimatedGradientBlob />
+      {/* <AnimatedGradientBlob /> */}
 
-
+      {/* <GLSLBackground /> */}
+      {/* <ShaderBackground /> */}
+      {/* <MeshBackground /> */}
       <Box sx={{ position: "relative", zIndex: 1 }}>
-        <Container maxWidth="xl">
+        <Container maxWidth="xl" sx={{ overflow: "visible" }}>
           <Navbar />
           <Grid container justifyContent="center" alignItems="center">
             <ArchitectingProsperity />
@@ -44,6 +45,10 @@ const Home: React.FC = () => {
             <WhyDoInvestorschoose />
           </Grid>
         </Container>
+        <BestInvestmentOpportunity />
+        <Projects />
+        <OurProcess />
+        <OurServices />
       </Box>
     </Box>
   );
