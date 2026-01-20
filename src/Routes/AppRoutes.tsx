@@ -6,6 +6,7 @@ import AboutUs from '../pages/aboutUs/AboutUs'
 import Projects from '../pages/projects/Projects'
 import Services from '../pages/services/Services'
 import Team from '../pages/team/Team'
+import CardSectionExample from '../pages/home/components/CardSectionExample/CardSectionExample'
 
 const AppRoutes: React.FC = () => {
   return (
@@ -16,6 +17,7 @@ const AppRoutes: React.FC = () => {
         <Route path="projects" element={<Projects />} />
         <Route path="services" element={<Services />} />
         <Route path="team" element={<Team />} />
+        <Route path="card-section-example" element={<CardSectionExample />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Route>
     </Routes>

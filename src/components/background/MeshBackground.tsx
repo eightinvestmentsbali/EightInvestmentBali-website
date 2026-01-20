@@ -19,11 +19,11 @@ const MeshBackground: React.FC = () => {
 
         // Mesh colors
         // These are CSS variables required by whatamesh
-        ["--gradient-color-1" as any]: "#8de7f7ff",
-        ["--gradient-color-2" as any]: "#b5b5ffff",
-        ["--gradient-color-3" as any]: "#e29bbcff",
-        ["--gradient-color-4" as any]: "#fcd49dff",
-      }}
+        "--gradient-color-1": "#8de7f7ff",
+        "--gradient-color-2": "#b5b5ffff",
+        "--gradient-color-3": "#e29bbcff",
+        "--gradient-color-4": "#fcd49dff",
+      } as React.CSSProperties}
     />
   );
 };

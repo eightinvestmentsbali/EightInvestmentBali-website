@@ -9,6 +9,8 @@ import BestInvestmentOpportunity from "./components/BestInvestmentOpportunity/Be
 import Projects from "./components/Projects/Projects";
 import OurProcess from "./components/OurProcess/OurProcess";
 import OurServices from "./components/OurServices/OurServices";
+import DiamondTeamSection from "./components/DiamondTeamSection/DiamondTeamSection";
+import ContactFooter from "./components/ContactFooter/ContactFooter";
 // import GLSLBackground from "../../components/background/GLSLBackground";
 // import { Canvas } from "@react-three/fiber";
 // import { ShaderPlane } from "../../components/background/ShaderPlane";
@@ -49,6 +51,8 @@ const Home: React.FC = () => {
         <Projects />
         <OurProcess />
         <OurServices />
+        <DiamondTeamSection />
+        <ContactFooter />
       </Box>
     </Box>
   );

@@ -1,7 +1,7 @@
 import { Box, Typography } from "@mui/material";
 import { Swiper, SwiperSlide } from "swiper/react";
+import type { Swiper as SwiperType } from "swiper";
 import { Navigation } from "swiper/modules";
-import "swiper/css";
 import { useRef, useState } from "react";
 import { typographyTokens } from "../../theme/MuiTheme";
 import { useTheme } from "@mui/material/styles";
@@ -47,7 +47,7 @@ const slides = [
 
 export default function CuratedSwiper() {
   const theme = useTheme();
-  const swiperRef = useRef<any>(null);
+  const swiperRef = useRef<SwiperType | null>(null);
   const [activeIndex, setActiveIndex] = useState(0);
 
   return (
@@ -104,7 +104,7 @@ export default function CuratedSwiper() {
                     {slides.map((_, index) => (
                       <Box
                         key={index}
-                        onClick={() => swiperRef.current.slideTo(index)}
+                        onClick={() => swiperRef.current?.slideTo(index)}
                         sx={{
                           ...dot,
                           ...(activeIndex === index && activeDot),
@@ -115,10 +115,10 @@ export default function CuratedSwiper() {
 
                   {/* arrows */}
                   <Box sx={arrowWrapper}>
-                    <Arrow onClick={() => swiperRef.current.slideNext()}>
+                    <Arrow onClick={() => swiperRef.current?.slideNext()}>
                       ‹
                     </Arrow>
-                    <Arrow onClick={() => swiperRef.current.slidePrev()}>
+                    <Arrow onClick={() => swiperRef.current?.slidePrev()}>
                       ›
                     </Arrow>
                   </Box>
@@ -134,7 +134,7 @@ export default function CuratedSwiper() {
         {slides.map((s, i) => (
           <Box
             key={i}
-            onClick={() => swiperRef.current.slideTo(i)}
+            onClick={() => swiperRef.current?.slideTo(i)}
             sx={{
               ...thumb,
               borderColor: activeIndex === i ? "#4b6b2f" : "transparent",
@@ -267,7 +267,12 @@ const arrowWrapper = {
   gap: 1,
 };
 
-const Arrow = ({ children, onClick }: any) => (
+interface ArrowProps {
+  children: React.ReactNode;
+  onClick: () => void;
+}
+
+const Arrow = ({ children, onClick }: ArrowProps) => (
   <Box
     onClick={onClick}
     sx={{

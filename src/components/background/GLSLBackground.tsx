@@ -10,8 +10,8 @@ const GLSLBackground = () => {
     if (!mountRef.current) return;
 
     const container = mountRef.current;
-    let width = container.clientWidth;
-    let height = container.clientHeight;
+    const width = container.clientWidth;
+    const height = container.clientHeight;
 
     /* ---------------- SCENE ---------------- */
     const scene = new THREE.Scene();
