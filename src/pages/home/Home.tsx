@@ -11,6 +11,7 @@ import OurProcess from "./components/OurProcess/OurProcess";
 import OurServices from "./components/OurServices/OurServices";
 import DiamondTeamSection from "./components/DiamondTeamSection/DiamondTeamSection";
 import ContactFooter from "./components/ContactFooter/ContactFooter";
+import OurCoreValues from "./components/OurCoreValues/OurCoreValues";
 // import GLSLBackground from "../../components/background/GLSLBackground";
 // import { Canvas } from "@react-three/fiber";
 // import { ShaderPlane } from "../../components/background/ShaderPlane";
@@ -51,6 +52,7 @@ const Home: React.FC = () => {
         <Projects />
         <OurProcess />
         <OurServices />
+        <OurCoreValues />
         <DiamondTeamSection />
         <ContactFooter />
       </Box>

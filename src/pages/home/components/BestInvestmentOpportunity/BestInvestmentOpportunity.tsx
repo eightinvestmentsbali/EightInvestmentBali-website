@@ -53,8 +53,8 @@ const BestInvestmentOpportunity = () => {
     <Box
       sx={{
         bgcolor: "#232323",
-        px: { xs: 3, md: 6 },
-        pt: { xs: 3, md: 6 },
+        px: { xs: 2, md: 4, lg: 6 },
+        pt: { xs: 2, md: 4, lg: 6 },
       }}
     >
       <Box
@@ -72,15 +72,11 @@ const BestInvestmentOpportunity = () => {
             mb={{ xs: 6, md: 10 }}
           >
             <Typography
-              // variant="h1"
-              // fontWeight={typographyTokens.fontWeights.regular}
+              variant="heroTitle"
+              component="h1"
               color={theme.palette.primary.contrastText}
-              maxWidth="60%"
               sx={{
-                fontWeight: typographyTokens.fontWeights.medium,
-                fontSize: { xs: "2.5rem", md: "5rem", lg: "6.5rem" },
-                lineHeight: 1.1,
-                letterSpacing: "-0.02em",
+                maxWidth: "60%",
               }}
             >
               Best investment opportunity
@@ -108,53 +104,55 @@ const BestInvestmentOpportunity = () => {
           </Stack>
           <Divider
             sx={{
-              //   height: "1px",
-              backgroundColor: "#cfd8dc",
-              my: 2,
+            backgroundColor: theme.palette.divider,
+              mt: 4,
+              mb: { xs: 6, md: 10 },
             }}
           />
-          {/* FEATURED CARD */}
           <FeaturedProjectCard />
-          <Box mt={5} display="flex" gap={3}>
-            {items.map((item, index) => (
-              <Box
-                key={item}
-                onClick={() => setActiveIndex(index)}
-                sx={{
-                  width: "25%",
-                  borderRadius: 3,
-                  p: 1.5,
-                  cursor: "pointer",
-                  border: index === activeIndex ? "2px solid #5CFF9D" : "",
-                  transition: "all .3s ease",
+          <Box mt={{ xs: 2, md: 4, lg: 6 }} display="flex" gap={3}>
+            <Grid container spacing={2}>
+              {items.map((item, index) => (
+                <Grid size={{ xs: 12, md: 6, lg: 3 }}>
+                  <Box
+                    key={item}
+                    onClick={() => setActiveIndex(index)}
+                    sx={{
+                      borderRadius: 3,
+                      p: 1.5,
+                      cursor: "pointer",
+                      border: index === activeIndex ? "2px solid #5CFF9D" : "",
+                      transition: "all .3s ease",
 
-                  "&:hover": {
-                    transform: "translateY(-4px)",
-                  },
-                }}
-              >
-                <Box
-                  component="img"
-                  src="https://images.unsplash.com/photo-1503387762-592deb58ef4e"
-                  sx={{
-                    width: "100%",
-                    height: 350,
-                    objectFit: "cover",
-                    borderRadius: 2,
-                  }}
-                />
+                      "&:hover": {
+                        transform: "translateY(-4px)",
+                      },
+                    }}
+                  >
+                    <Box
+                      component="img"
+                      src="https://images.unsplash.com/photo-1503387762-592deb58ef4e"
+                      sx={{
+                        width: "100%",
+                        height: 350,
+                        objectFit: "cover",
+                        borderRadius: 2,
+                      }}
+                    />
 
-                <Typography
-                  mt={2}
-                  fontSize={16}
-                  fontWeight={500}
-                  color="white"
-                  textAlign="center"
-                >
-                  {item}
-                </Typography>
-              </Box>
-            ))}
+                    <Typography
+                      mt={2}
+                      fontSize={16}
+                      fontWeight={500}
+                      color="white"
+                      textAlign="center"
+                    >
+                      {item}
+                    </Typography>
+                  </Box>
+                </Grid>
+              ))}
+            </Grid>
           </Box>
           {/* DOTS + NAVIGATION */}
           <Box
@@ -188,7 +186,7 @@ const BestInvestmentOpportunity = () => {
               <Box
                 onClick={() =>
                   setActiveIndex((prev) =>
-                    prev === 0 ? items.length - 1 : prev - 1
+                    prev === 0 ? items.length - 1 : prev - 1,
                   )
                 }
                 sx={{
@@ -217,7 +215,7 @@ const BestInvestmentOpportunity = () => {
               <Box
                 onClick={() =>
                   setActiveIndex((prev) =>
-                    prev === items.length - 1 ? 0 : prev + 1
+                    prev === items.length - 1 ? 0 : prev + 1,
                   )
                 }
                 sx={{
@@ -246,10 +244,11 @@ const BestInvestmentOpportunity = () => {
           {/* PROJECT DESCRIPTION */}
           <Box mt={8}>
             <Typography
+              variant="heroSubTitle"
+              component="h1"
               sx={{
-                fontSize: { xs: "1rem", md: "3rem" },
                 color: theme.palette.text.secondary,
-                mb: { xs: 3, md: 6 },
+                mb: { xs: 2, md: 4, lg: 6 },
                 lineHeight: 1.6,
               }}
             >
@@ -281,10 +280,16 @@ const BestInvestmentOpportunity = () => {
             </Button>
           </Box>
 
-          <Grid container spacing={6} mt={6} maxWidth="80%" mx="auto">
+          <Grid
+            container
+            spacing={6}
+            mt={{ xs: 2, md: 4, lg: 6 }}
+            maxWidth={{ xs: "100%", md: "80%" }}
+            mx="auto"
+          >
             {features.map((item, index) => (
               <Grid size={{ xs: 12, md: 6 }} key={index}>
-                <Stack spacing={2} p={8}>
+                <Stack spacing={2} p={{ xs: 2, md: 4, lg: 8 }}>
                   {/* ICON */}
                   <Box
                     sx={{
@@ -297,10 +302,10 @@ const BestInvestmentOpportunity = () => {
 
                   {/* TITLE */}
                   <Typography
+                    variant="h2"
                     sx={{
                       color: theme.palette.primary.contrastText,
                       fontWeight: typographyTokens.fontWeights.medium,
-                      fontSize: typographyTokens.fontSizes["3xl"],
                     }}
                   >
                     {item.title}
@@ -308,10 +313,10 @@ const BestInvestmentOpportunity = () => {
 
                   {/* DESCRIPTION */}
                   <Typography
+                    variant="h4"
                     sx={{
-                      color: "rgba(255,255,255,0.6)",
-                      fontSize: "1.95rem",
-                      lineHeight: 1.7,
+                      fontWeight: typographyTokens.fontWeights.regular,
+                      color: theme.palette.text.secondary,
                     }}
                   >
                     {item.desc}

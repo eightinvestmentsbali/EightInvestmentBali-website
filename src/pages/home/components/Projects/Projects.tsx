@@ -44,9 +44,7 @@ const Projects: React.FC = () => {
   };
 
   return (
-    <Box sx={{ bgcolor: "#232323", px: { xs: 3, md: 6 } }}>
-      {/* <Container maxWidth="xl"> */}
-      {/* MAIN IMAGE */}
+    <Box sx={{ bgcolor: "#232323", px: { xs: 2, md: 4, lg: 6 } }}>
       <Box
         sx={{
           position: "relative",
@@ -64,7 +62,6 @@ const Projects: React.FC = () => {
           }}
         />
 
-        {/* LEFT ARROW */}
         <IconButton
           onClick={handlePrev}
           sx={{
@@ -80,7 +77,6 @@ const Projects: React.FC = () => {
           <ArrowBackIosNewIcon />
         </IconButton>
 
-        {/* RIGHT ARROW */}
         <IconButton
           onClick={handleNext}
           sx={{
@@ -97,7 +93,6 @@ const Projects: React.FC = () => {
         </IconButton>
       </Box>
 
-      {/* THUMBNAILS */}
       <Box
         sx={{
           display: "flex",
@@ -111,7 +106,7 @@ const Projects: React.FC = () => {
             key={index}
             onClick={() => setActiveIndex(index)}
             sx={{
-              width: "20%",
+              width: { xs: "100%", md: "50%", lg: "20%" },
               height: 180,
               overflow: "hidden",
               cursor: "pointer",
@@ -141,64 +136,61 @@ const Projects: React.FC = () => {
           py: { xs: 6, md: 10 },
         }}
       >
-          {/* PAGE TITLE */}
-          <Typography
-            sx={{
-              color: theme.palette.primary.contrastText,
-              fontSize: { xs: "2.5rem", md: "4rem" },
-              fontWeight: 500,
-              mb: { xs: 4, md: 8 },
-            }}
-          >
-            Projects
-          </Typography>
+        <Typography
+          sx={{
+            color: theme.palette.primary.contrastText,
+            fontSize: { xs: "2.5rem", md: "4rem" },
+            fontWeight: 500,
+            mb: { xs: 4, md: 8 },
+          }}
+        >
+          Projects
+        </Typography>
 
-          {/* PROJECT GRID */}
-          <Grid container spacing={4}>
-            {projects.map((project) => (
-              <Grid size={{ xs: 12, md: 6 }} key={project.title}>
+        <Grid container spacing={4}>
+          {projects.map((project) => (
+            <Grid size={{ xs: 12, md: 6 }} key={project.title}>
+              <Box
+                sx={{
+                  borderRadius: 3,
+                  overflow: "hidden",
+                  bgcolor: "#1E1E1E",
+                  cursor: "pointer",
+                  transition: "all .35s ease",
+
+                  "&:hover img": {
+                    transform: "scale(1.05)",
+                  },
+                }}
+              >
                 <Box
+                  component="img"
+                  src={project.image}
                   sx={{
-                    borderRadius: 3,
-                    overflow: "hidden",
-                    bgcolor: "#1E1E1E",
-                    cursor: "pointer",
-                    transition: "all .35s ease",
-
-                    "&:hover img": {
-                      transform: "scale(1.05)",
-                    },
+                    width: "100%",
+                    height: { xs: 220, md: 360 },
+                    objectFit: "cover",
+                    transition: "transform .5s ease",
                   }}
-                >
-                  {/* IMAGE */}
-                  <Box
-                    component="img"
-                    src={project.image}
-                    sx={{
-                      width: "100%",
-                      height: { xs: 220, md: 360 },
-                      objectFit: "cover",
-                      transition: "transform .5s ease",
-                    }}
-                  />
+                />
 
-                  {/* TITLE */}
-                  <Box sx={{ py: 2 }}>
-                    <Typography
-                      align="center"
-                      sx={{
-                        color: "#ffffff",
-                        fontSize: "1.1rem",
-                        fontWeight: 500,
-                      }}
-                    >
-                      {project.title}
-                    </Typography>
-                  </Box>
+                {/* TITLE */}
+                <Box sx={{ py: 2 }}>
+                  <Typography
+                    align="center"
+                    sx={{
+                      color: "#ffffff",
+                      fontSize: "1.1rem",
+                      fontWeight: 500,
+                    }}
+                  >
+                    {project.title}
+                  </Typography>
                 </Box>
-              </Grid>
-            ))}
-          </Grid>
+              </Box>
+            </Grid>
+          ))}
+        </Grid>
       </Box>
     </Box>
   );

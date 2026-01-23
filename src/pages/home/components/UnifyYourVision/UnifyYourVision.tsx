@@ -7,15 +7,13 @@ const UnifyYourVision: React.FC = () => {
   const theme = useTheme();
   return (
     <Grid size={{ xs: 12 }}>
-      <Box sx={{ mt: { xs: 8, md: 16 } }}>
+      <Box sx={{ mt: { xs: 2, md: 6, lg: 10 } }}>
         <Typography
+          variant="heroTitle"
+          component="h1"
           sx={{
-            fontWeight: typographyTokens.fontWeights.medium,
-            fontSize: { xs: "2.5rem", md: "5rem", lg: "6.5rem" },
-            lineHeight: 1.1,
             color: theme.palette.text.primary,
-            mb: { xs: 6, md: 10 },
-            letterSpacing: "-0.02em",
+            mb: { xs: 2, md: 6, lg: 10 },
           }}
         >
           Unify your vision with limitless possibilities
@@ -25,15 +23,15 @@ const UnifyYourVision: React.FC = () => {
           sx={{
             height: "2px",
             backgroundColor: theme.palette.divider,
-            mb: { xs: 6, md: 10 },
+            mb: { xs: 2, md: 6, lg: 10 },
           }}
         />
         <Typography
+          variant="heroSubTitle"
+          component="h1"
           sx={{
-            fontSize: { xs: "1rem", md: "3.1875rem" },
-            color: theme.palette.text.secondary,
-            mb: { xs: 6, md: 10 },
-            lineHeight: 1.6,
+            color: "#484848",
+            mb: { xs: 2, md: 6, lg: 10 },
           }}
         >
           We connect global investors with a haven of exclusive investment
@@ -63,8 +61,9 @@ const UnifyYourVision: React.FC = () => {
                   }}
                 >
                   <Typography
+                    variant="heroSubTitle"
+                    component="h1"
                     sx={{
-                      fontSize: "3.5rem",
                       fontWeight: typographyTokens.fontWeights.medium,
                       color: theme.palette.text.primary,
                     }}
@@ -72,15 +71,12 @@ const UnifyYourVision: React.FC = () => {
                     {item.value}
                   </Typography>
                   <Typography
+                    variant="heroSubTitle"
+                    component="h1"
                     sx={{
-                      fontSize: {
-                        xs: "1rem",
-                        sm: "2rem",
-                        md: "2.4rem",
-                        lg: "2.8rem",
-                      },
-                      color: theme.palette.text.secondary,
+                      color: "#484848",
                       mt: 1,
+                      lineHeight: 1.5,
                     }}
                   >
                     {item.label}

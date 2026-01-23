@@ -51,7 +51,7 @@ export default function CuratedSwiper() {
   const [activeIndex, setActiveIndex] = useState(0);
 
   return (
-    <Box sx={{ mt: 12 }}>
+    <Box sx={{ mt: { xs: 2, md: 6, lg: 12} }}>
       <Box sx={{ position: "relative", mx: "auto" }}>
         <Box sx={bgCard(50, theme.palette.background.paper)} />
         <Box sx={bgCard(25, theme.palette.background.paper)} />

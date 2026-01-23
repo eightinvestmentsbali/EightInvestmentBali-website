@@ -8,12 +8,15 @@ import {
   Grid,
   Stack,
   IconButton,
+  Divider,
 } from "@mui/material";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import EmailIcon from "@mui/icons-material/Email";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import { NavLink } from "react-router-dom";
+import { useTheme } from "@mui/material/styles";
+import { typographyTokens } from "../../../../theme/MuiTheme";
 
 interface FormData {
   name: string;
@@ -24,6 +27,7 @@ interface FormData {
 }
 
 const ContactFooter = () => {
+  const theme = useTheme();
   const [formData, setFormData] = useState<FormData>({
     name: "",
     email: "",
@@ -33,7 +37,7 @@ const ContactFooter = () => {
   });
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
@@ -60,41 +64,42 @@ const ContactFooter = () => {
       sx={{
         bgcolor: "#000000",
         color: "#FFFFFF",
-        py: { xs: 8, md: 12 },
+        pt: { xs: 8, md: 12 },
       }}
     >
-      <Container maxWidth="lg">
+      <Container maxWidth="xl">
         {/* Header Section */}
-        <Box sx={{ textAlign: "center", mb: { xs: 6, md: 8 } }}>
+        <Stack
+          spacing={{ xs: 2, md: 4, lg: 6 }}
+          sx={{ textAlign: "center", mb: { xs: 6, md: 8 } }}
+        >
           <Typography
+            variant="heroSubTitle"
+            component="h1"
             sx={{
-              fontFamily: "Poppins, sans-serif",
-              fontWeight: 600,
-              fontSize: { xs: "2rem", md: "3rem" },
-              lineHeight: { xs: "2.5rem", md: "3.5rem" },
-              mb: 3,
-              color: "#FFFFFF",
+              color: theme.palette.primary.contrastText,
+              fontWeight: typographyTokens.fontWeights.medium,
             }}
           >
             Discover how Eight Investments Bali can transform your vision into
             reality
           </Typography>
+          <Divider sx={{ width: "100%", height: "2px", bgcolor: "#67697C" }} />
           <Typography
+            variant="h6"
             sx={{
-              fontFamily: "Poppins, sans-serif",
-              fontWeight: 400,
-              fontSize: { xs: "1rem", md: "1.125rem" },
-              lineHeight: { xs: "1.5rem", md: "1.75rem" },
-              color: "#FFFFFF",
-              maxWidth: "800px",
+              fontWeight: typographyTokens.fontWeights.regular,
+              color: theme.palette.primary.contrastText,
+              maxWidth: "900px",
               mx: "auto",
+              alignSelf: "center",
             }}
           >
             Our core values shape every project we undertake. They drive our
             commitment to excellence and Innovation in the hospitality and
             leisure industry.
           </Typography>
-        </Box>
+        </Stack>
 
         {/* Contact Form */}
         <Box
@@ -145,7 +150,7 @@ const ContactFooter = () => {
 
             {/* Email and Mobile Number Row */}
             <Grid container spacing={2}>
-              <Grid item xs={12} sm={6}>
+              <Grid size={{ xs: 12, sm: 6 }}>
                 <TextField
                   required
                   fullWidth
@@ -182,7 +187,7 @@ const ContactFooter = () => {
                   }}
                 />
               </Grid>
-              <Grid item xs={12} sm={6}>
+              <Grid size={{ xs: 12, sm: 6 }}>
                 <TextField
                   required
                   fullWidth
@@ -302,6 +307,8 @@ const ContactFooter = () => {
                 bgcolor: "#4E9E70",
                 color: "#FFFFFF",
                 py: 1.5,
+                alignSelf: "center",
+                width: { xs: "100%", sm: "50%" },
                 fontSize: "1rem",
                 fontWeight: 600,
                 textTransform: "none",
@@ -324,7 +331,7 @@ const ContactFooter = () => {
         >
           <Grid container spacing={{ xs: 4, md: 6 }}>
             {/* Head Office Column */}
-            <Grid item xs={12} md={4}>
+            <Grid size={{ xs: 12, md: 4 }}>
               <Typography
                 sx={{
                   fontFamily: "Poppins, sans-serif",
@@ -340,9 +347,9 @@ const ContactFooter = () => {
               <Stack spacing={2.5}>
                 <Stack direction="row" spacing={1.5} alignItems="flex-start">
                   <LocationOnIcon
-                    sx={{ 
-                      color: "#FFFFFF", 
-                      mt: 0.5, 
+                    sx={{
+                      color: "#FFFFFF",
+                      mt: 0.5,
                       fontSize: "1.25rem",
                       flexShrink: 0,
                     }}
@@ -363,8 +370,8 @@ const ContactFooter = () => {
                 </Stack>
                 <Stack direction="row" spacing={1.5} alignItems="center">
                   <EmailIcon
-                    sx={{ 
-                      color: "#FFFFFF", 
+                    sx={{
+                      color: "#FFFFFF",
                       fontSize: "1.25rem",
                       flexShrink: 0,
                     }}
@@ -384,7 +391,7 @@ const ContactFooter = () => {
             </Grid>
 
             {/* Visit Column */}
-            <Grid item xs={12} md={4}>
+            <Grid size={{ xs: 12, md: 4 }}>
               <Typography
                 sx={{
                   fontFamily: "Poppins, sans-serif",
@@ -422,7 +429,7 @@ const ContactFooter = () => {
             </Grid>
 
             {/* Follow Us Column */}
-            <Grid item xs={12} md={4}>
+            <Grid size={{ xs: 12, md: 4 }}>
               <Typography
                 sx={{
                   fontFamily: "Poppins, sans-serif",
@@ -471,32 +478,32 @@ const ContactFooter = () => {
               </Stack>
             </Grid>
           </Grid>
-
-          {/* Copyright */}
-          <Box
-            sx={{
-              textAlign: "center",
-              mt: { xs: 6, md: 8 },
-              pt: { xs: 4, md: 6 },
-              borderTop: "1px solid #333333",
-            }}
-          >
-            <Typography
-              sx={{
-                fontFamily: "Poppins, sans-serif",
-                fontWeight: 400,
-                fontSize: "0.875rem",
-                color: "#FFFFFF",
-              }}
-            >
-              2026 © PT Eight Investements Bali All Right Reserved
-            </Typography>
-          </Box>
         </Box>
       </Container>
+      {/* Copyright */}
+      <Box
+        sx={{
+          textAlign: "center",
+          mt: { xs: 6, md: 8 },
+          p: { xs: 1, md: 2 },
+          alignItems: "center",
+          justifyContent: "center",
+          borderTop: "1px solid #333333",
+          bgcolor: "#1D1D1D",
+        }}
+      >
+        <Typography
+          variant="body1"
+          sx={{
+            color: theme.palette.primary.contrastText,
+            fontWeight: typographyTokens.fontWeights.regular,
+          }}
+        >
+          2026 © PT Eight Investements Bali All Right Reserved
+        </Typography>
+      </Box>
     </Box>
   );
 };
 
 export default ContactFooter;
-

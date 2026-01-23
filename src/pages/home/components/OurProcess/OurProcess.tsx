@@ -26,29 +26,32 @@ const steps = [
 const OurProcess: React.FC = () => {
   const theme = useTheme();
   return (
-    <Box sx={{ bgcolor: "#F6F8FA", py: { xs: 4, md: 8 } }}>
+    <Box
+      sx={{
+        bgcolor: theme.palette.background.paper,
+        py: { xs: 2, md: 5, lg: 10 },
+      }}
+    >
       <Container maxWidth="xl">
-        {/* HEADER */}
         <Stack spacing={3}>
           <Typography
+            variant="heroTitle"
+            component="h1"
             sx={{
+              color: theme.palette.text.primary,
               fontWeight: typographyTokens.fontWeights.medium,
-              fontSize: { xs: "1.5rem", md: "3rem", lg: "4.5rem" },
-              lineHeight: 1.1,
-              letterSpacing: "-0.02em",
             }}
           >
             Our Process
           </Typography>
 
-          <Divider sx={{ width: "100%", bgcolor: "#BFC5CC" }} />
+          <Divider sx={{ width: "100%", height: "2px",bgcolor: "#67697C" }} />
 
           <Typography
+            variant="heroSubTitle"
+            component="h1"
             sx={{
-              fontSize: { xs: "1rem", md: "3rem" },
-              color: theme.palette.text.secondary,
-              mb: { xs: 3, md: 6 },
-              lineHeight: 1.6,
+              color: "#484848",
             }}
           >
             Our thought process is deeply rooted in our core values. These
@@ -59,7 +62,7 @@ const OurProcess: React.FC = () => {
         </Stack>
 
         {/* CONTENT */}
-        <Grid container spacing={8} mt={6} alignItems="center">
+        <Grid container spacing={8} mt={{ xs: 2, md: 6, lg: 10 }} alignItems="center">
           {/* LEFT CARD */}
           <Grid size={{ xs: 12, md: 6 }}>
             <Box
@@ -146,7 +149,7 @@ const OurProcess: React.FC = () => {
 
           {/* RIGHT STEPS */}
           <Grid size={{ xs: 12, md: 6 }}>
-            <Stack spacing={4}>
+            <Stack spacing={5}>
               {steps.map((step) => (
                 <Stack
                   key={step.id}
@@ -158,10 +161,11 @@ const OurProcess: React.FC = () => {
                   }}
                 >
                   <Typography
+                    variant={step.active ? "heroTitle" : "heroSubTitle"}
+                    component="h1"
                     sx={{
-                      fontSize: step.active ? "10rem" : "5rem",
                       fontWeight: 500,
-                      color: "#DADDE1",
+                      color: "#2929291C",
                       minWidth: 64,
                     }}
                   >
@@ -169,12 +173,13 @@ const OurProcess: React.FC = () => {
                   </Typography>
 
                   <Typography
+                    variant={step.active ? "heroTitle" : "heroSubTitle"}
+                    component="h1"
                     sx={{
-                      fontSize: step.active ? "7rem" : "4rem",
                       fontWeight: step.active ? 600 : 500,
                       color: step.active
                         ? theme.palette.text.primary
-                        : theme.palette.text.secondary,
+                        : "#727272",
                     }}
                   >
                     {step.title}

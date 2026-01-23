@@ -1,4 +1,6 @@
 import { Box, Typography, Container, Grid, Stack } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
+import { typographyTokens } from "../../../../theme/MuiTheme";
 
 interface TeamMember {
   name: string;
@@ -28,33 +30,31 @@ const teamMembers: TeamMember[] = [
 ];
 
 const DiamondTeamSection = () => {
+  const theme = useTheme();
   return (
     <Box
       sx={{
-        minHeight: "100vh",
-        bgcolor: "#ffffff",
+        bgcolor: theme.palette.background.paper,
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        px: { xs: 2, md: 4 },
         pt: { xs: 8, md: 16 },
-        pb: { xs: 16, md: 32 },
+        pb: { xs: 16, md: 32, lg: 50},
         position: "relative",
       }}
     >
       <Container maxWidth="xl" sx={{ position: "relative", zIndex: 10 }}>
-        <Box sx={{ position: "relative", minHeight: { xs: 500, md: 660 } }}>
-          {/* Background Diamond */}
+        <Box sx={{ position: "relative"}}>
           <Box
             sx={{
               position: "absolute",
-              top: "60%",
+              top: "70%",
               left: "50%",
               transform: "translate(-50%, -50%) rotate(45deg)",
-              width: { xs: 0, md: 700 },
-              height: { xs: 0, md: 700 },
+              width: { xs: 0, md: 500, lg: 700},
+              height: { xs: 0, md: 500, lg: 700},
               border: "1px solid #D1D1D1",
-              bgcolor: "#F4F4F4",
+              bgcolor: theme.palette.background.default,
               opacity: 1,
               pointerEvents: "none",
               zIndex: 0,
@@ -72,16 +72,14 @@ const DiamondTeamSection = () => {
             }}
           >
             <Typography
+              variant="heroTitle"
+              component="h1"
               sx={{
-                fontFamily: "Poppins, sans-serif",
-                fontWeight: 500,
-                fontSize: { xs: "3rem", md: "102px" },
-                lineHeight: { xs: "3.5rem", md: "117px" },
-                letterSpacing: "-0.01em",
-                color: "#000000",
-                mb: 2,
-                pb: 1,
-                borderBottom: "1px solid #67697C",
+                color: theme.palette.text.primary,
+                fontWeight: typographyTokens.fontWeights.medium,
+                mb: 4,
+                pb: 4,
+                borderBottom: "2px solid #D1D1D1",
               }}
             >
               Meet Our Team
@@ -91,14 +89,12 @@ const DiamondTeamSection = () => {
           {/* Team Members Grid */}
           <Grid
             container
-            spacing={{ xs: 4, md: 8 }}
+            spacing={{ xs: 2, md: 4, lg: 6}}
             justifyContent="center"
             alignItems="center"
             sx={{
               position: "relative",
               zIndex: 1,
-              maxWidth: "1200px",
-              mx: "auto",
             }}
           >
             {teamMembers.map((member, index) => (
@@ -127,29 +123,18 @@ interface TeamMemberCardProps {
 }
 
 const TeamMemberCard = ({ member }: TeamMemberCardProps) => {
+  const theme = useTheme();
   return (
-    <Stack spacing={2} alignItems="center">
-      {/* Diamond Container */}
+    <Stack spacing={5} alignItems="center">
       <Box
         sx={{
           position: "relative",
-          width: { xs: 200, md: 256 },
-          height: { xs: 200, md: 256 },
+          width: { xs: 200, md: 300 },
+          height: { xs: 200, md: 300 },
           flexShrink: 0,
         }}
       >
-        {/* Background Diamond */}
-        <Box
-          sx={{
-            position: "absolute",
-            inset: 0,
-            bgcolor: "#e5e7eb",
-            opacity: 0.2,
-            transform: "rotate(45deg)",
-          }}
-        />
 
-        {/* Diamond Frame */}
         <Box
           sx={{
             position: "absolute",
@@ -184,28 +169,22 @@ const TeamMemberCard = ({ member }: TeamMemberCardProps) => {
       </Box>
 
       {/* Member Info */}
-      <Stack spacing={0.5} alignItems="center">
+      <Stack spacing={1} alignItems="center">
         <Typography
+          variant="h3"
           sx={{
-            fontFamily: "Poppins, sans-serif",
-            fontWeight: 600,
-            fontSize: "24px",
-            lineHeight: "47px",
-            letterSpacing: "0%",
-            color: "#000000",
+            fontWeight: typographyTokens.fontWeights["semi-bold"],
+            color: theme.palette.text.primary,
             textAlign: "center",
           }}
         >
           {member.name}
         </Typography>
         <Typography
+          variant="h6"
           sx={{
-            fontFamily: "Poppins, sans-serif",
-            fontWeight: 400,
-            fontSize: "14px",
-            lineHeight: "26px",
-            letterSpacing: "0%",
-            color: "#3D3D3D",
+            fontWeight: typographyTokens.fontWeights.regular,
+            color: theme.palette.text.primary,
             textAlign: "center",
           }}
         >
@@ -217,4 +196,3 @@ const TeamMemberCard = ({ member }: TeamMemberCardProps) => {
 };
 
 export default DiamondTeamSection;
-
