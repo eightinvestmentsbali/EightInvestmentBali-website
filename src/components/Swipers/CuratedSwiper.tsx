@@ -6,8 +6,6 @@ import { useRef, useState } from "react";
 import { typographyTokens } from "../../theme/MuiTheme";
 import { useTheme } from "@mui/material/styles";
 
-/* ---------------- SLIDES DATA ---------------- */
-
 const slides = [
   {
     label: "Curated Location",
@@ -43,20 +41,32 @@ const slides = [
   },
 ];
 
-/* ---------------- COMPONENT ---------------- */
-
 export default function CuratedSwiper() {
   const theme = useTheme();
   const swiperRef = useRef<SwiperType | null>(null);
   const [activeIndex, setActiveIndex] = useState(0);
 
-  return (
-    <Box sx={{ mt: { xs: 2, md: 6, lg: 12} }}>
-      <Box sx={{ position: "relative", mx: "auto" }}>
-        <Box sx={bgCard(50, theme.palette.background.paper)} />
-        <Box sx={bgCard(25, theme.palette.background.paper)} />
-        {/* stacked background cards */}
+  // Inside your component
+const clipPathData = `
+  M 0,0.16 
+  V 0.94 
+  Q 0,1 0.06,1 
+  H 0.94 
+  Q 1,1 1,0.94 
+  V 0.06 
+  Q 1,0 0.94,0 
+  H 0.55 
+  Q 0.51,0 0.51,0.03 
+  V 0.10
+  Q 0.51,0.16 0.45,0.16 
+  H 0.06 
+  Q 0,0.16 0,0.22 
+  Z
+`;
 
+  return (
+    <Box sx={{ mt: { xs: 2, md: 6, lg: 12 } }}>
+      <Box sx={{ position: "relative", mx: "auto" }}>
         {/* Swiper */}
         <Swiper
           modules={[Navigation]}
@@ -69,13 +79,67 @@ export default function CuratedSwiper() {
         >
           {slides.map((item, i) => (
             <SwiperSlide key={i}>
-              <Box sx={mainCard}>
-                {/* LEFT CONTENT */}
-                <Box sx={rightGradient} />
+                <Typography
+                  variant="h1"
+                  sx={{
+                    position: "absolute",
+                    top: "4%",   
+                    left: "5%",  // Adjust based on your design
+                    maxWidth: "20%", // Keeps text within the tab
+                    fontWeight: typographyTokens.fontWeights.medium,
+                    lineHeight: 1.2,
+                    zIndex: 2,
+                    color: theme.palette.text.primary,
+                  }}
+                >
+                  {item.title}
+                </Typography>
+              <Box
+                sx={{
+                  position: "relative",
+                  clipPath: "url(#stairClip)",
+                  borderRadius: 10,
+                  zIndex: 1,
+                  border: `2px solid ${theme.palette.divider}`,
+                  bgcolor: "#ccc",
+                  minHeight: "650px",
+                  p: { xs: 3, md: 6 },
+                  overflow: "hidden",
+                  "&::before": {
+                    content: '""',
+                    position: "absolute",
+                    inset: "0px", // Use 0px to cover the whole card; inset 3px can leave gaps
+                    clipPath: "url(#stairClip)",
+                    zIndex: -1,
+                    background: `
+                      linear-gradient(
+                        90deg, 
+                        rgba(255,255,255,1) 0%, 
+                        rgba(255,255,255,1) 40%, 
+                        rgba(255,255,255,0) 100%
+                      ),
+                      linear-gradient(
+                        180deg,
+                        rgba(69,197,168,0.9) 0%,
+                        rgba(69,197,168,0.55) 35%,
+                        rgba(107,143,214,0.65) 65%,
+                        rgba(107,143,214,0.95) 100%
+                      )
+                    `,
+                  },
+                }}
+              >
+                <svg width="0" height="0" style={{ position: "absolute" }}>
+                  <defs>
+                    <clipPath id="stairClip" clipPathUnits="objectBoundingBox">
+                      <path d={clipPathData} />
+                    </clipPath>
+                  </defs>
+                </svg>
                 <Box sx={innerMainCard}>
                   <Box sx={contentWrapper}>
                     <Typography
-                      variant="h3"
+                      variant="heroSubTitle"
                       fontWeight={typographyTokens.fontWeights.medium}
                       mb={2}
                     >
@@ -83,8 +147,7 @@ export default function CuratedSwiper() {
                     </Typography>
 
                     <Typography
-                      variant="h4"
-                      sx={{ maxWidth: "80%" }}
+                      variant="h2"
                       fontWeight={typographyTokens.fontWeights.regular}
                       lineHeight={1.8}
                     >
@@ -138,11 +201,20 @@ export default function CuratedSwiper() {
             sx={{
               ...thumb,
               borderColor: activeIndex === i ? "#4b6b2f" : "transparent",
-              // opacity: activeIndex === i ? 1 : 0.4,
+              opacity: activeIndex === i ? 1 : 0.4,
             }}
           >
             <Box component="img" src={s.image} sx={thumbImg} />
-            <Typography variant="h6" color={activeIndex === i ? theme.palette.text.primary : theme.palette.text.disabled}>{s.label}</Typography>
+            <Typography
+              variant="h6"
+              color={
+                activeIndex === i
+                  ? theme.palette.text.primary
+                  : theme.palette.text.disabled
+              }
+            >
+              {s.label}
+            </Typography>
           </Box>
         ))}
       </Box>
@@ -150,74 +222,20 @@ export default function CuratedSwiper() {
   );
 }
 
-/* ---------------- STYLES ---------------- */
-
-const bgCard = (offset: number, color: string) => ({
-  position: "absolute",
-
-  top: 0,
-  bottom: 0,
-  left: -offset, // 👈 stack to the LEFT
-  right: 0,
-
-  bgcolor: color,
-  borderRadius: 10,
-  zIndex: 0,
-  border: "2px solid #d8d8d8ff",
-});
-
-const mainCard = {
-  position: "relative",
-  zIndex: 2,
-  gap: 4,
-  bgcolor: "#fff",
-  borderRadius: 10,
-  p: { xs: 3, md: 6 },
-  boxShadow: "0px 20px 40px rgba(0,0,0,.08)",
-  overflow: "hidden",
-  border: `2px solid ${"#d8d8d8ff"}`,
-};
-
-const rightGradient = {
-  position: "absolute",
-  top: 0,
-  right: 0,
-  width: "50%",
-  height: "100%",
-  zIndex: -1,
-
-  background: `
-    linear-gradient(
-      90deg,
-      rgba(255,255,255,0.95) 0%,
-      rgba(255,255,255,0.75) 15%,
-      rgba(255,255,255,0.35) 30%,
-      rgba(255,255,255,0) 45%
-    ),
-    linear-gradient(
-      180deg,
-      rgba(69,197,168,0.9) 0%,
-      rgba(69,197,168,0.55) 35%,
-      rgba(107,143,214,0.65) 65%,
-      rgba(107,143,214,0.95) 100%
-    )
-  `,
-
-  borderTopRightRadius: 24,
-  borderBottomRightRadius: 24,
-};
-
 const innerMainCard = {
   display: "flex",
   justifyContent: "space-between",
-  // bgcolor: "#ccc"
 };
 
 const contentWrapper = {
-  // maxWidth: "40%",
+  height: { xs: "200px", md: "365px", lg: "500px" },
+  alignSelf: "flex-end",
   display: "flex",
   flexDirection: "column",
   justifyContent: "center",
+  maxWidth: "48%",
+  pl: { xs: 3, md: 6 },
+  // bgcolor:"#ccc"
 };
 const imageWrapper = {
   borderTopLeftRadius: 100,
@@ -226,7 +244,7 @@ const imageWrapper = {
   borderBottomRightRadius: 100,
   overflow: "hidden",
   height: "700px",
-  width: "550px",
+  width: "600px",
   flexShrink: 0,
 };
 
@@ -276,8 +294,8 @@ const Arrow = ({ children, onClick }: ArrowProps) => (
   <Box
     onClick={onClick}
     sx={{
-      width: 40,
-      height: 40,
+      width: 50,
+      height: 50,
       borderRadius: "50%",
       background: "rgba(177, 191, 241, 0.35)",
       backdropFilter: "blur(8px)",
@@ -286,7 +304,7 @@ const Arrow = ({ children, onClick }: ArrowProps) => (
       border: "1px solid rgba(255, 255, 255, 1)",
       justifyContent: "center",
       cursor: "pointer",
-      fontSize: "1.6rem",
+      fontSize: "2.6rem",
       color: "#fefefeff",
       userSelect: "none",
       "&:hover": {
