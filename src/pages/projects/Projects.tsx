@@ -1,9 +1,28 @@
-import React from 'react'
+import { Box, Container } from "@mui/material";
+import React from "react";
+import { useTheme } from "@mui/material/styles";
+import Navbar from "../../components/navbar/Navbar";
+import BestInvestmentOpportunity from "./Components/BestInvestmentOpportunity/BestInvestmentOpportunity";
 
 const Projects: React.FC = () => {
+  const theme = useTheme();
   return (
-    <div>Projects</div>
-  )
-}
+    <Box
+      component="section"
+      sx={{
+        position: "relative",
+        width: "100%",
+        bgcolor: theme.palette.background.paper,
+      }}
+    >
+      <Box sx={{ position: "relative", zIndex: 1 }}>
+        <Container maxWidth="xl" sx={{ overflow: "visible" }}>
+          <Navbar />
+          <BestInvestmentOpportunity />
+        </Container>
+      </Box>
+    </Box>
+  );
+};
 
-export default Projects
+export default Projects;

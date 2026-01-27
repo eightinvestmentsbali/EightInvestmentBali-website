@@ -38,6 +38,7 @@ const Navbar: React.FC = () => {
           background: "transparent",
           boxShadow: "none",
           py: 1,
+          px: 2,
         }}
       >
         <Toolbar sx={{ minHeight: 72 }}>
@@ -103,6 +104,7 @@ const Navbar: React.FC = () => {
               disableElevation
                 variant="contained"
                 sx={{
+                  fontWeight: 500,
                   borderRadius: "10px",
                   textTransform: "none",
                   px: 3,

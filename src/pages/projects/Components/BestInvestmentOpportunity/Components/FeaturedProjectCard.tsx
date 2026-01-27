@@ -1,10 +1,10 @@
 import { Box, Stack, Typography } from "@mui/material";
-import LillVillage from "../../assets/lilvillage.png";
-import CurrentProgressSVG from "../../assets/DesignElement/CurrentProgressSVG";
-import LocationIcon from "../../assets/DesignElement/LocationIcon";
+import LillVillage from "../../../../../assets/lilvillage.png";
 import { useTheme } from "@mui/material/styles";
-import { typographyTokens } from "../../theme/MuiTheme";
-import ArrowNortEastIcon from "../../assets/DesignElement/ArrowNortEastIcon";
+import { typographyTokens } from "../../../../../theme/MuiTheme";
+import ArrowNortEastIcon from "../../../../../assets/DesignElement/ArrowNortEastIcon";
+import LocationIcon from "../../../../../assets/DesignElement/LocationIcon";
+import CurrentProgressSVG from "../../../../../assets/DesignElement/CurrentProgressSVG";
 
 const FeaturedProjectCard = () => {
   const theme = useTheme();
@@ -35,8 +35,8 @@ const FeaturedProjectCard = () => {
       >
         <Typography
           variant="h1"
+          color={theme.palette.text.primary}
           lineHeight={1.4}
-          color={theme.palette.primary.contrastText}
           fontWeight={typographyTokens.fontWeights.medium}
         >
           SOLD OUT IN <br /> 3 WEEKS
@@ -47,7 +47,7 @@ const FeaturedProjectCard = () => {
         sx={{
           position: "absolute",
           // Match the SVG 'V 0.95' and 'H 0.80' area
-          bottom: "4.5%",
+          bottom: "0%",
           right: "5%",
           zIndex: 20,
           textTransform: "none",
@@ -57,13 +57,13 @@ const FeaturedProjectCard = () => {
         }}
       >
         <Typography
-          variant="h1"
-          color={theme.palette.primary.contrastText}
+          variant="heroTitle"
+          component="h1"
+          color={theme.palette.text.secondary}
           fontWeight={typographyTokens.fontWeights.medium}
         >
-          See more
+          1/4
         </Typography>
-        <ArrowNortEastIcon />
       </Box>
 
       {/* Main Container with Curve Clip */}
@@ -122,7 +122,7 @@ const FeaturedProjectCard = () => {
               <LocationIcon /> Abianbase–Mengwi, Bali
             </Typography>
 
-            <Box sx={{ width: { md: "200px", lg: "430px" } }}>
+            <Box sx={{ width: {md:"200px", lg:"430px"} }}>
               <CurrentProgressSVG width={"100%"} height={"100%"} />
             </Box>
           </Stack>
@@ -132,7 +132,7 @@ const FeaturedProjectCard = () => {
           sx={{
             zIndex: 1,
             alignSelf: "flex-start",
-            height: { xs: "300px", md: "465px", lg: "765px" },
+              height: { xs: "300px", md: "465px", lg: "765px" },
             width: "60%",
             display: "flex",
             alignItems: "center",
@@ -145,7 +145,7 @@ const FeaturedProjectCard = () => {
               position: "relative",
               borderRadius: "70px 200px 70px 70px",
               overflow: "hidden",
-              height: { xs: "300px", md: "420px", lg: "660px" },
+              height: { xs: "300px", md: "420px", lg: "660px"},
               width: { xs: "400px", md: "100%" },
             }}
           >
