@@ -1,11 +1,18 @@
 import { Box, Stack, Typography } from "@mui/material";
-import LillVillage from "../../../../../assets/lilvillage.png";
 import { useTheme } from "@mui/material/styles";
 import { typographyTokens } from "../../../../../theme/MuiTheme";
 import LocationIcon from "../../../../../assets/DesignElement/LocationIcon";
-import CurrentProgressSVG from "../../../../../assets/DesignElement/CurrentProgressSVG";
+import { motion, AnimatePresence } from "framer-motion";
 
-const FeaturedProjectCard = () => {
+interface FeaturedProjectCardProps {
+  projectName: string;
+  location: string;
+  image: string;
+  progressImage: string;
+  projectNumber: string;
+}
+
+const FeaturedProjectCard = ({ projectName, location, image, progressImage, projectNumber }: FeaturedProjectCardProps) => {
   const theme = useTheme();
 
   const clipPathData =
@@ -55,14 +62,21 @@ const FeaturedProjectCard = () => {
           gap: 2,
         }}
       >
-        <Typography
-          variant="heroTitle"
-          component="h1"
-          color={theme.palette.text.secondary}
-          fontWeight={typographyTokens.fontWeights.medium}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.4, ease: "easeOut" }}
+          key={projectNumber}
         >
-          1/4
-        </Typography>
+          <Typography
+            variant="heroTitle"
+            component="h1"
+            color={theme.palette.text.secondary}
+            fontWeight={typographyTokens.fontWeights.medium}
+          >
+            {projectNumber}
+          </Typography>
+        </motion.div>
       </Box>
 
       {/* Main Container with Curve Clip */}
@@ -105,24 +119,52 @@ const FeaturedProjectCard = () => {
           }}
         >
           <Stack spacing={3}>
-            <Typography
-              variant="heroSubTitle"
-              component="h1"
-              color={theme.palette.primary.contrastText}
-              fontWeight={typographyTokens.fontWeights.medium}
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, ease: "easeOut" }}
             >
-              Lili Village
-            </Typography>
-            <Typography
-              variant="h3"
-              fontWeight={typographyTokens.fontWeights.regular}
-              color={theme.palette.text.secondary}
+              <Typography
+                variant="heroSubTitle"
+                component="h1"
+                color={theme.palette.primary.contrastText}
+                fontWeight={typographyTokens.fontWeights.medium}
+              >
+                {projectName}
+              </Typography>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: 0.1, ease: "easeOut" }}
             >
-              <LocationIcon /> Abianbase–Mengwi, Bali
-            </Typography>
+              <Typography
+                variant="h3"
+                fontWeight={typographyTokens.fontWeights.regular}
+                color={theme.palette.text.secondary}
+              >
+                <LocationIcon /> {location}
+              </Typography>
+            </motion.div>
 
             <Box sx={{ width: {md:"200px", lg:"430px"} }}>
-              <CurrentProgressSVG width={"100%"} height={"100%"} />
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
+              >
+                <Box
+                  component="img"
+                  src={progressImage}
+                  alt="Progress"
+                  sx={{
+                    width: "100%",
+                    height: "auto",
+                    objectFit: "contain",
+                    borderRadius: 1,
+                  }}
+                />
+              </motion.div>
             </Box>
           </Stack>
         </Box>
@@ -148,15 +190,30 @@ const FeaturedProjectCard = () => {
               width: { xs: "400px", md: "100%" },
             }}
           >
-            <Box
-              component="img"
-              src={LillVillage}
-              sx={{
-                width: "100%",
-                height: "100%",
-                objectFit: "cover",
-              }}
-            />
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={image}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.5, ease: "easeInOut" }}
+                style={{
+                  position: "absolute",
+                  width: "100%",
+                  height: "100%",
+                }}
+              >
+                <Box
+                  component="img"
+                  src={image}
+                  sx={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                  }}
+                />
+              </motion.div>
+            </AnimatePresence>
           </Box>
         </Box>
       </Box>

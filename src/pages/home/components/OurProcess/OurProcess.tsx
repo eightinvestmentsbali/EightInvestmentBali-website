@@ -52,10 +52,14 @@ const OurProcess: React.FC = () => {
   const pauseTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   // Use intersection observer to detect if section is in view
-  const { ref, inView } = useInView({
+  const { ref } = useInView({
     threshold: 0.3, // Trigger when 30% of section is visible
     triggerOnce: false, // Keep checking
   });
+  // const { ref, inView } = useInView({
+  //   threshold: 0.3, // Trigger when 30% of section is visible
+  //   triggerOnce: false, // Keep checking
+  // });
 
   const activeStep = steps[0];
   const cardColor = parseInt(activeStep.id) % 2 === 1 ? "#258873" : "#A0B5D9";
@@ -77,29 +81,30 @@ const OurProcess: React.FC = () => {
 
           setTimeout(() => {
             setSteps((prev) => {
-              const currentFirstStepId = prev[0].id; // Step before rotation
+              // const currentFirstStepId = prev[0].id; // Step before rotation
               const updated = [...prev];
               const [first] = updated.splice(0, 1);
               updated.push(first);
-              const newFirstStepId = updated[0].id; // Step after rotation
+              // const newFirstStepId = updated[0].id; // Step after rotation
 
               // Check if cycle completed (went from "04" to "01")
               // Only scroll if section is currently in view
-              if (
-                currentFirstStepId === "04" &&
-                newFirstStepId === "01" &&
-                inView
-              ) {
-                setTimeout(() => {
-                  const nextSection = document.getElementById("our-services");
-                  if (nextSection && inView) {
-                    nextSection.scrollIntoView({
-                      behavior: "smooth",
-                      block: "start",
-                    });
-                  }
-                }, 500);
-              }
+              // COMMENTED OUT: Auto-scroll to next section
+              // if (
+              //   currentFirstStepId === "04" &&
+              //   newFirstStepId === "01" &&
+              //   inView
+              // ) {
+              //   setTimeout(() => {
+              //     const nextSection = document.getElementById("our-services");
+              //     if (nextSection && inView) {
+              //       nextSection.scrollIntoView({
+              //         behavior: "smooth",
+              //         block: "start",
+              //       });
+              //     }
+              //   }, 500);
+              // }
 
               return updated;
             });
@@ -144,25 +149,26 @@ const OurProcess: React.FC = () => {
     // Delay the actual state change to sync with animation
     setTimeout(() => {
       setSteps((prev) => {
-        const currentFirstStepId = prev[0].id; // Step before click
+        // const currentFirstStepId = prev[0].id; // Step before click
         const updated = [...prev];
         const [clicked] = updated.splice(index, 1);
         updated.unshift(clicked);
-        const newFirstStepId = updated[0].id; // Step after click
+        // const newFirstStepId = updated[0].id; // Step after click
 
         // Check if cycle completed (went from "04" to "01")
         // Only scroll if section is currently in view
-        if (currentFirstStepId === "04" && newFirstStepId === "01" && inView) {
-          setTimeout(() => {
-            const nextSection = document.getElementById("our-services");
-            if (nextSection && inView) {
-              nextSection.scrollIntoView({
-                behavior: "smooth",
-                block: "start",
-              });
-            }
-          }, 500);
-        }
+        // COMMENTED OUT: Auto-scroll to next section
+        // if (currentFirstStepId === "04" && newFirstStepId === "01" && inView) {
+        //   setTimeout(() => {
+        //     const nextSection = document.getElementById("our-services");
+        //     if (nextSection && inView) {
+        //       nextSection.scrollIntoView({
+        //         behavior: "smooth",
+        //         block: "start",
+        //       });
+        //     }
+        //   }, 500);
+        // }
 
         return updated;
       });
@@ -469,18 +475,6 @@ const OurProcess: React.FC = () => {
                         },
                       }}
                     >
-                      <Typography
-                        variant={isActive ? "heroTitle" : "heroSubTitle"}
-                        sx={{
-                          fontWeight: 500,
-                          color: "#2929291C",
-                          minWidth: { xs: 48, sm: 56, md: 64 },
-                          flexShrink: 0,
-                        }}
-                      >
-                        {step.id}
-                      </Typography>
-
                       <Typography
                         variant={isActive ? "heroTitle" : "heroSubTitle"}
                         sx={{

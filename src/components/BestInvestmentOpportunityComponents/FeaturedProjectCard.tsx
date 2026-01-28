@@ -1,12 +1,18 @@
 import { Box, Stack, Typography } from "@mui/material";
-import LillVillage from "../../assets/lilvillage.png";
-import CurrentProgressSVG from "../../assets/DesignElement/CurrentProgressSVG";
 import LocationIcon from "../../assets/DesignElement/LocationIcon";
 import { useTheme } from "@mui/material/styles";
 import { typographyTokens } from "../../theme/MuiTheme";
 import ArrowNortEastIcon from "../../assets/DesignElement/ArrowNortEastIcon";
 
-const FeaturedProjectCard = () => {
+interface FeaturedProjectCardProps {
+  projectName: string;
+  location: string;
+  image: string;
+  progressImage: string;
+  onSeeMoreClick?: () => void;
+}
+
+const FeaturedProjectCard = ({ projectName, location, image, progressImage, onSeeMoreClick }: FeaturedProjectCardProps) => {
   const theme = useTheme();
 
   const clipPathData =
@@ -44,9 +50,9 @@ const FeaturedProjectCard = () => {
       </Box>
 
       <Box
+        onClick={onSeeMoreClick}
         sx={{
           position: "absolute",
-          // Match the SVG 'V 0.95' and 'H 0.80' area
           bottom: "4.5%",
           right: "5%",
           zIndex: 20,
@@ -54,6 +60,11 @@ const FeaturedProjectCard = () => {
           display: "flex",
           alignItems: "center",
           gap: 2,
+          cursor: "pointer",
+          transition: "transform 0.2s ease",
+          "&:hover": {
+            transform: "translateX(4px)",
+          },
         }}
       >
         <Typography
@@ -112,18 +123,28 @@ const FeaturedProjectCard = () => {
               color={theme.palette.primary.contrastText}
               fontWeight={typographyTokens.fontWeights.medium}
             >
-              Lili Village
+              {projectName}
             </Typography>
             <Typography
               variant="h3"
               fontWeight={typographyTokens.fontWeights.regular}
               color={theme.palette.text.secondary}
             >
-              <LocationIcon /> Abianbase–Mengwi, Bali
+              <LocationIcon /> {location}
             </Typography>
 
             <Box sx={{ width: { md: "200px", lg: "430px" } }}>
-              <CurrentProgressSVG width={"100%"} height={"100%"} />
+              <Box
+                component="img"
+                src={progressImage}
+                alt="Progress"
+                sx={{
+                  width: "100%",
+                  height: "auto",
+                  objectFit: "contain",
+                  borderRadius: 1,
+                }}
+              />
             </Box>
           </Stack>
         </Box>
@@ -151,7 +172,7 @@ const FeaturedProjectCard = () => {
           >
             <Box
               component="img"
-              src={LillVillage}
+              src={image}
               sx={{
                 width: "100%",
                 height: "100%",
