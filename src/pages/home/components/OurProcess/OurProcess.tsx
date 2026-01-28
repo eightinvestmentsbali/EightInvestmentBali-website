@@ -50,7 +50,7 @@ const OurProcess: React.FC = () => {
   const [isPaused, setIsPaused] = useState(false);
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const pauseTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  
+
   // Use intersection observer to detect if section is in view
   const { ref, inView } = useInView({
     threshold: 0.3, // Trigger when 30% of section is visible
@@ -82,21 +82,25 @@ const OurProcess: React.FC = () => {
               const [first] = updated.splice(0, 1);
               updated.push(first);
               const newFirstStepId = updated[0].id; // Step after rotation
-              
+
               // Check if cycle completed (went from "04" to "01")
               // Only scroll if section is currently in view
-              if (currentFirstStepId === "04" && newFirstStepId === "01" && inView) {
+              if (
+                currentFirstStepId === "04" &&
+                newFirstStepId === "01" &&
+                inView
+              ) {
                 setTimeout(() => {
                   const nextSection = document.getElementById("our-services");
                   if (nextSection && inView) {
-                    nextSection.scrollIntoView({ 
+                    nextSection.scrollIntoView({
                       behavior: "smooth",
-                      block: "start"
+                      block: "start",
                     });
                   }
                 }, 500);
               }
-              
+
               return updated;
             });
             setIsFlipping(false);
@@ -145,21 +149,21 @@ const OurProcess: React.FC = () => {
         const [clicked] = updated.splice(index, 1);
         updated.unshift(clicked);
         const newFirstStepId = updated[0].id; // Step after click
-        
+
         // Check if cycle completed (went from "04" to "01")
         // Only scroll if section is currently in view
         if (currentFirstStepId === "04" && newFirstStepId === "01" && inView) {
           setTimeout(() => {
             const nextSection = document.getElementById("our-services");
             if (nextSection && inView) {
-              nextSection.scrollIntoView({ 
+              nextSection.scrollIntoView({
                 behavior: "smooth",
-                block: "start"
+                block: "start",
               });
             }
           }, 500);
         }
-        
+
         return updated;
       });
       setIsFlipping(false);
@@ -222,23 +226,24 @@ const OurProcess: React.FC = () => {
         bgcolor: theme.palette.background.paper,
         overflow: { xs: "visible", md: "visible" },
         width: "100%",
+        py: { xs: 2, md: 5, lg: 10 },
       }}
     >
       <Container
         maxWidth="xl"
         sx={{
           overflow: { xs: "visible", md: "visible" },
-          px: { xs: 2, sm: 3, md: 4 },
         }}
       >
         {/* -------------------- HEADER -------------------- */}
-        <Stack spacing={3}>
+        <Stack spacing={{ xs: 2, md: 4, lg: 6 }} mb={{ xs: 3, md: 6 }}>
           <Typography
             variant="heroTitle"
             component="h1"
             sx={{
               color: theme.palette.text.primary,
               fontWeight: typographyTokens.fontWeights.medium,
+              mb: { xs: 2, md: 6 },
             }}
           >
             Our Process
@@ -248,11 +253,21 @@ const OurProcess: React.FC = () => {
 
           <Typography
             variant="h4"
-            sx={{ color: "#484848", fontWeight: typographyTokens.fontWeights.regular, lineHeight: 1.3,fontSize: { xs: "1rem", sm: "1.125rem", lg:"2rem",xl: "2.5rem" }}}
+            sx={{
+              color: "#484848",
+              fontWeight: typographyTokens.fontWeights.regular,
+              lineHeight: 1.3,
+              fontSize: {
+                xs: "1rem",
+                sm: "1.125rem",
+                lg: "2rem",
+                xl: "2.5rem",
+              },
+            }}
           >
-            Our thought process is deeply rooted in our core values. These values
-            shape every decision we make and guide our approach to investment
-            management.
+            Our thought process is deeply rooted in our core values. These
+            values shape every decision we make and guide our approach to
+            investment management.
           </Typography>
         </Stack>
 
@@ -357,13 +372,20 @@ const OurProcess: React.FC = () => {
                       sx={{
                         bgcolor: cardColor,
                         color: "#fff",
-                        borderRadius: { xs: "0px 40px 0px 0px", sm: "0px 60px 0px 0px", md: "0px 120px 0px 0px" },
+                        borderRadius: {
+                          xs: "0px 40px 0px 0px",
+                          sm: "0px 60px 0px 0px",
+                          md: "0px 120px 0px 0px",
+                        },
                         px: { xs: 3, sm: 4, md: 6 },
                         py: { xs: 4, sm: 5, md: 7 },
                         height: "auto",
                         minHeight: { xs: 350, sm: 450, md: 500 },
                         overflow: "hidden",
-                        boxShadow: { xs: "0 10px 30px rgba(0,0,0,0.2)", md: "0 20px 60px rgba(0,0,0,0.2)" },
+                        boxShadow: {
+                          xs: "0 10px 30px rgba(0,0,0,0.2)",
+                          md: "0 20px 60px rgba(0,0,0,0.2)",
+                        },
                       }}
                     >
                       <motion.div
@@ -373,7 +395,11 @@ const OurProcess: React.FC = () => {
                       >
                         <Typography
                           sx={{
-                            fontSize: { xs: "1.25rem", sm: "1.5rem", md: "1.9rem" },
+                            fontSize: {
+                              xs: "1.25rem",
+                              sm: "1.5rem",
+                              md: "1.9rem",
+                            },
                             fontWeight: typographyTokens.fontWeights.medium,
                             mb: { xs: 1.5, md: 2 },
                           }}
@@ -383,7 +409,11 @@ const OurProcess: React.FC = () => {
 
                         <Typography
                           sx={{
-                            fontSize: { xs: "0.875rem", sm: "1.125rem", md: "1.5rem" },
+                            fontSize: {
+                              xs: "0.875rem",
+                              sm: "1.125rem",
+                              md: "1.5rem",
+                            },
                             fontWeight: 400,
                             lineHeight: { xs: 1.6, md: 1.7 },
                             opacity: 0.95,
@@ -400,7 +430,7 @@ const OurProcess: React.FC = () => {
           </Grid>
 
           {/* -------------------- RIGHT STEPS -------------------- */}
-          <Grid size={{ xs: 12, sm: 12, md: 6 }} >
+          <Grid size={{ xs: 12, sm: 12, md: 6 }}>
             <Stack spacing={{ xs: 3, sm: 4, md: 5 }} mt={{ xs: 4, md: 0 }}>
               {steps.map((step, index) => {
                 const isActive = index === 0;
