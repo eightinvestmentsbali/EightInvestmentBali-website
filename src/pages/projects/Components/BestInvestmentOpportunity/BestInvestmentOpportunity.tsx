@@ -84,7 +84,7 @@ const BestInvestmentOpportunity: React.FC = () => {
     <Box sx={{ py: { xs: 2, md: 4 } }}>
       <VideoPlayer />
       <Grid size={{ xs: 12 }}>
-        <Box sx={{ mt: { xs: 2, md: 3, lg: 4 }, px: { xs: 2, md: 4, lg: 6 } }}>
+        <Box sx={{ mt: { xs: 2, md: 3, lg: 4 }, }}>
           <Typography
             variant="heroTitle"
             component="h1"
@@ -106,7 +106,7 @@ const BestInvestmentOpportunity: React.FC = () => {
               width: { xs: "calc(100% + 32px)", md: "calc(100% + 64px)", lg: "calc(100% + 96px)" },
             }}
           />
-          <FeaturedProjectCard 
+          <FeaturedProjectCard
             key={activeIndex}
             projectName={activeProject.name}
             location={activeProject.location}
@@ -233,12 +233,12 @@ const BestInvestmentOpportunity: React.FC = () => {
                 </motion.div>
               </AnimatePresence>
             </Box>
-            <Divider 
-              sx={{ 
+            <Divider
+              sx={{
                 mb: { xs: 4, md: 6, lg: 8 },
                 mx: { xs: -2, md: -4, lg: -6 },
                 width: { xs: "calc(100% + 32px)", md: "calc(100% + 64px)", lg: "calc(100% + 96px)" },
-              }} 
+              }}
             />
             <Grid
               container
@@ -247,8 +247,8 @@ const BestInvestmentOpportunity: React.FC = () => {
             >
               {features.map((item, index) => (
                 <Grid size={{ xs: 12, md: 6 }} key={index}>
-                  <Stack 
-                    spacing={{ xs: 2, md: 2.5 }} 
+                  <Stack
+                    spacing={{ xs: 2, md: 2.5 }}
                     sx={{
                       // p: { xs: 3, md: 4, lg: 5 },
                       height: "100%",

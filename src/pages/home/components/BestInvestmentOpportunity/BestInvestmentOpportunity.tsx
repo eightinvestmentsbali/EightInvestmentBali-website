@@ -19,7 +19,7 @@ import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import NorthEastIcon from "@mui/icons-material/NorthEast";
 import CloseIcon from "@mui/icons-material/Close";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import StrategicInvestmentIcon from "../../../../assets/DesignElement/StrategicInvestmentIcon";
 import PremierFacilitiesIcon from "../../../../assets/DesignElement/PremierFacilitiesIcon";
 import ArtfullyCraftedLivingIcon from "../../../../assets/DesignElement/ArtfullyCraftedLivingIcon";
@@ -87,6 +87,16 @@ const BestInvestmentOpportunity = () => {
   const [isLoading, setIsLoading] = useState(false);
   const descriptionRef = useRef<HTMLDivElement>(null);
   const isInitialMount = useRef(true);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end end"],
+  });
+
+  // Calculate opacity for the title - fades out as you scroll
+  const titleOpacity = useTransform(scrollYProgress, [0, 0.15], [1, 0]);
+  const titleY = useTransform(scrollYProgress, [0, 0.15], [0, -50]);
 
   useEffect(() => {
     if (isInitialMount.current) {
@@ -120,10 +130,13 @@ const BestInvestmentOpportunity = () => {
 
   return (
     <Box
+      id="best-investment-opportunity"
+      ref={containerRef}
       sx={{
         bgcolor: "#232323",
         px: { xs: 2, md: 4, lg: 6 },
         pt: { xs: 2, md: 4, lg: 6 },
+        position: "relative",
       }}
     >
       <Box
@@ -134,22 +147,31 @@ const BestInvestmentOpportunity = () => {
       >
         <Container maxWidth="xl">
           {/* HEADER */}
-          <Stack
-            direction="row"
-            alignItems="flex-end"
-            justifyContent="space-between"
-            mb={{ xs: 6, md: 10 }}
+          <motion.div
+            style={{
+              opacity: titleOpacity,
+              y: titleY,
+              position: "sticky",
+              top: 0,
+              zIndex: 1,
+            }}
           >
-            <Typography
-              variant="heroTitle"
-              component="h1"
-              color={theme.palette.primary.contrastText}
-              sx={{
-                maxWidth: "60%",
-              }}
+            <Stack
+              direction="row"
+              alignItems="flex-end"
+              justifyContent="space-between"
+              mb={{ xs: 6, md: 10 }}
             >
-              Best investment opportunity
-            </Typography>
+              <Typography
+                variant="heroTitle"
+                component="h1"
+                color={theme.palette.primary.contrastText}
+                sx={{
+                  maxWidth: "60%",
+                }}
+              >
+                Best investment opportunity
+              </Typography>
 
             <Button
               variant="outlined"
@@ -178,6 +200,7 @@ const BestInvestmentOpportunity = () => {
               mb: { xs: 6, md: 10 },
             }}
           />
+          </motion.div>
           <FeaturedProjectCard 
             projectName={projects[activeIndex].name}
             location={projects[activeIndex].location}

@@ -1,33 +1,326 @@
-import { Box, Divider, Grid, Typography } from "@mui/material";
-import React from "react";
-import CuratedSwiper from "../../../../components/Swipers/CuratedSwiper";
+import { Box, Button, Divider, Grid, Typography } from "@mui/material";
+import React, { useRef } from "react";
 import { useTheme } from "@mui/material/styles";
+import { motion, useScroll, useTransform, useMotionValueEvent } from "framer-motion";
+import { typographyTokens } from "../../../../theme/MuiTheme";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+
+// Define your card data with images
+const investmentReasons = [
+  {
+    id: 1,
+    title: "High Returns",
+    tags: ["ROI Focused", "Growth Strategy", "Market Analysis"],
+    description: "Consistently delivering above-market returns through strategic property selection and development.",
+    image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=90&w=2400&auto=format&fit=crop",
+    buttonText: "Learn More",
+  },
+  {
+    id: 2,
+    title: "Prime Locations",
+    tags: ["Beachfront", "City Center", "Tourist Hotspots"],
+    description: "Exclusive access to Bali's most sought-after investment locations with high growth potential.",
+    image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=90&w=2400&auto=format&fit=crop",
+    buttonText: "View Properties",
+  },
+  {
+    id: 3,
+    title: "Expert Management",
+    tags: ["24/7 Support", "Professional Team", "Maintenance"],
+    description: "Professional property management ensuring optimal rental yields and property maintenance.",
+    image: "https://images.unsplash.com/photo-1552664730-d307ca884978?q=90&w=2400&auto=format&fit=crop",
+    buttonText: "Meet Our Team",
+  },
+  {
+    id: 4,
+    title: "Legal Security",
+    tags: ["Compliance", "Transparency", "Documentation"],
+    description: "Full legal compliance and transparent ownership structures for international investors.",
+    image: "https://images.unsplash.com/photo-1582407947304-fd86f028f716?q=90&w=2400&auto=format&fit=crop",
+    buttonText: "Legal Framework",
+  },
+  {
+    id: 5,
+    title: "Proven Track Record",
+    tags: ["Success Stories", "Client Reviews", "Portfolio"],
+    description: "Years of successful projects and satisfied investors across Bali's real estate market.",
+    image: "https://images.unsplash.com/photo-1611892440504-42a792e24d32?q=90&w=2400&auto=format&fit=crop",
+    buttonText: "View Success",
+  },
+];
 
 const WhyDoInvestorschoose: React.FC = () => {
   const theme = useTheme();
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end end"],
+  });
+
+  // Calculate opacity for the title - fades out as you scroll
+  const titleOpacity = useTransform(scrollYProgress, [0, 0.15], [1, 0]);
+  const titleY = useTransform(scrollYProgress, [0, 0.15], [0, -50]);
+
+  // Auto-scroll to next section when cards complete
+  const hasScrolledRef = useRef(false);
+  useMotionValueEvent(scrollYProgress, "change", (latest) => {
+    if (latest >= 0.95 && !hasScrolledRef.current) {
+      hasScrolledRef.current = true;
+      setTimeout(() => {
+        const targetElement = document.getElementById("best-investment-opportunity");
+        if (targetElement) {
+          targetElement.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      }, 500);
+    }
+  });
 
   return (
     <Grid size={{ xs: 12 }}>
-      <Box sx={{ my: { xs: 8, md: 16 } }}>
-        <Typography
-          variant="heroTitle"
-          component="h1"
-          sx={{
-            color: theme.palette.text.primary,
-            mb: { xs: 6, md: 10 },
+      <Box
+        ref={containerRef}
+        sx={{
+          position: "relative",
+          height: `${100 + investmentReasons.length * 100}vh`,
+          px: { xs: 2, md: 4, lg: 6 },
+        }}
+      >
+        {/* Title Section - Fades out on scroll */}
+        <motion.div
+          style={{
+            opacity: titleOpacity,
+            y: titleY,
+            position: "sticky",
+            top: 0,
+            zIndex: 1,
           }}
         >
-          Why do investors choose Eight Investments Bali
-        </Typography>
+          <Box sx={{ my: { xs: 8, md: 16 } }}>
+            <Typography
+              variant="heroTitle"
+              component="h1"
+              sx={{
+                color: theme.palette.text.primary,
+                mb: { xs: 4, md: 6 },
+                maxWidth: { xs: "100%", md: "70%" },
+              }}
+            >
+              Why do investors choose Eight Investments Bali
+            </Typography>
 
-        <Divider
-          sx={{
-            height: "2px",
-            backgroundColor: "#cfd8dc",
-            my: 2,
-          }}
-        />
-        <CuratedSwiper />
+            <Divider
+              sx={{
+                height: "2px",
+                backgroundColor: theme.palette.divider,
+                my: 2,
+              }}
+            />
+          </Box>
+        </motion.div>
+
+        {/* Cards Section - Stacked and revealed on scroll */}
+        {investmentReasons.map((reason, index) => {
+          const isLast = index === investmentReasons.length - 1;
+
+          // Calculate scroll progress for each card
+          const cardStart = 0.15 + (index * 0.75) / investmentReasons.length;
+          const cardEnd = 0.15 + ((index + 1) * 0.75) / investmentReasons.length;
+
+          // Scale down the card behind as new card comes up
+          const scale = useTransform(
+            scrollYProgress,
+            [cardStart, cardEnd],
+            [1, isLast ? 1 : 0.9]
+          );
+
+          // Fade out the card behind
+          const opacity = useTransform(
+            scrollYProgress,
+            [cardStart, cardEnd],
+            [1, isLast ? 1 : 0]
+          );
+
+          // Move the current card UP from below as you scroll
+          const y = useTransform(
+            scrollYProgress,
+            [cardStart - 0.05, cardStart, cardEnd],
+            [100, 0, 0] // Starts from 100px below, moves to 0, stays at 0
+          );
+
+          return (
+            <motion.div
+              key={reason.id}
+              style={{
+                position: "sticky",
+                top: "12vh",
+                scale,
+                opacity,
+                y,
+                zIndex: index + 2, // Higher index = on top
+              }}
+            >
+              <Box
+                sx={{
+                  position: "relative",
+                  borderRadius: 4,
+                  bgcolor: theme.palette.background.paper,
+                  minHeight: { xs: "500px", md: "600px", xl: "650px" },
+                  p: { xs: 4, md: 6, lg: 8 },
+                  overflow: "hidden",
+                  mx: "auto",
+                  width: "100%",
+                  boxShadow: "0 8px 32px rgba(0, 0, 0, 0.08)",
+                  border: `1px solid ${theme.palette.divider}`,
+                  // Gradient background similar to the image
+                  background: `linear-gradient(135deg, 
+                    ${theme.palette.mode === 'light' ? '#f8f9fa' : '#1a1a1a'} 0%, 
+                    ${theme.palette.mode === 'light' ? '#ffffff' : '#2d2d2d'} 100%)`,
+                }}
+              >
+                {/* Content Layout */}
+                <Box
+                  sx={{
+                    display: "flex",
+                    flexDirection: { xs: "column", md: "row" },
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                    gap: { xs: 4, md: 6, lg: 8 },
+                    height: { xs: "100%", md: "500px", xl: "600px" },
+                  }}
+                >
+                  {/* Left Content */}
+                  <Box
+                    sx={{
+                      flex: { xs: 1, md: "0 0 45%" },
+                      display: "flex",
+                      flexDirection: "column",
+                      justifyContent: "center",
+                      gap: 3,
+                    }}
+                  >
+                    {/* Title */}
+                    <Typography
+                      variant="h1"
+                      sx={{
+                        fontWeight: typographyTokens.fontWeights.medium,
+                        color: theme.palette.text.primary,
+                        fontSize: { xs: "2.5rem", md: "3.5rem", lg: "4rem" },
+                        lineHeight: 1.1,
+                        letterSpacing: "-0.02em",
+                      }}
+                    >
+                      {reason.title}
+                    </Typography>
+
+                    {/* Tags */}
+                    <Box
+                      sx={{
+                        display: "flex",
+                        flexWrap: "wrap",
+                        gap: 1.5,
+                      }}
+                    >
+                      {reason.tags.map((tag, idx) => (
+                        <Box
+                          key={idx}
+                          sx={{
+                            px: 2.5,
+                            py: 1,
+                            borderRadius: 2,
+                            bgcolor: theme.palette.mode === 'light'
+                              ? 'rgba(0, 0, 0, 0.04)'
+                              : 'rgba(255, 255, 255, 0.08)',
+                            border: `1px solid ${theme.palette.divider}`,
+                          }}
+                        >
+                          <Typography
+                            variant="body2"
+                            sx={{
+                              fontSize: "0.875rem",
+                              color: theme.palette.text.secondary,
+                              fontWeight: typographyTokens.fontWeights.regular,
+                            }}
+                          >
+                            {tag}
+                          </Typography>
+                        </Box>
+                      ))}
+                    </Box>
+
+                    {/* Description */}
+                    <Typography
+                      variant="body1"
+                      sx={{
+                        fontWeight: typographyTokens.fontWeights.regular,
+                        lineHeight: 1.8,
+                        color: theme.palette.text.secondary,
+                        fontSize: { xs: "1rem", md: "1.125rem" },
+                        maxWidth: "90%",
+                      }}
+                    >
+                      {reason.description}
+                    </Typography>
+
+                    {/* Button */}
+                    <Box sx={{ mt: 2 }}>
+                      <Button
+                        variant="outlined"
+                        endIcon={<ArrowForwardIcon />}
+                        sx={{
+                          px: 4,
+                          py: 1.5,
+                          borderRadius: 10,
+                          borderColor: theme.palette.text.primary,
+                          color: theme.palette.text.primary,
+                          fontSize: "1rem",
+                          fontWeight: typographyTokens.fontWeights.medium,
+                          textTransform: "none",
+                          transition: "all 0.3s ease",
+                          "&:hover": {
+                            borderColor: theme.palette.primary.main,
+                            bgcolor: theme.palette.primary.main,
+                            color: theme.palette.primary.contrastText,
+                            transform: "translateX(4px)",
+                          },
+                        }}
+                      >
+                        {reason.buttonText}
+                      </Button>
+                    </Box>
+                  </Box>
+
+                  {/* Right Image */}
+                  <Box
+                    sx={{
+                      flex: { xs: 1, md: "0 0 48%" },
+                      height: { xs: "300px", md: "500px", xl: "600px" },
+                      width: "100%",
+                      borderRadius: '20px 150px 20px 20px',
+                      overflow: "hidden",
+                      flexShrink: 0,
+                      position: "relative",
+                    }}
+                  >
+                    <Box
+                      component="img"
+                      src={reason.image}
+                      alt={reason.title}
+                      sx={{
+                        width: "100%",
+                        height: "100%",
+                        objectFit: "cover",
+                        objectPosition: "center",
+                        display: "block",
+                      }}
+                      loading="lazy"
+                    />
+                  </Box>
+                </Box>
+              </Box>
+            </motion.div>
+          );
+        })}
       </Box>
     </Grid>
   );
