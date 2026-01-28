@@ -6,16 +6,20 @@ import {
   Grid,
   Stack,
   Typography,
+  Modal,
+  IconButton,
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import FeaturedProjectCard from "../../../../components/BestInvestmentOpportunityComponents/FeaturedProjectCard";
 import { typographyTokens } from "../../../../theme/MuiTheme";
 import PlayCircleOutlineIcon from "@mui/icons-material/PlayCircleOutline";
 import EastIcon from "@mui/icons-material/East";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import NorthEastIcon from "@mui/icons-material/NorthEast";
+import CloseIcon from "@mui/icons-material/Close";
+import { motion } from "framer-motion";
 import StrategicInvestmentIcon from "../../../../assets/DesignElement/StrategicInvestmentIcon";
 import PremierFacilitiesIcon from "../../../../assets/DesignElement/PremierFacilitiesIcon";
 import ArtfullyCraftedLivingIcon from "../../../../assets/DesignElement/ArtfullyCraftedLivingIcon";
@@ -44,10 +48,75 @@ const features = [
   },
 ];
 
+const projects = [
+  {
+    name: "Lili Village",
+    location: "Abianbase–Mengwi, Bali",
+    image: "https://images.unsplash.com/photo-1503387762-592deb58ef4e",
+    progressImage: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=400&fit=crop",
+    description: "Lili Village spans 2960 square meters of artfully designed space offering 18 unique townhouses crafted in 2-bedroom (155 sqm) and 3-bedroom (235 sqm) styles. At its heart lies a social clubhouse, blending art and balance, where a gym, pool bar, serene swimming pool, and a communal restaurant create a harmonious living experience.",
+  },
+  {
+    name: "The Hive",
+    location: "Abianbase–Mengwi, Bali",
+    image: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c",
+    progressImage: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=400&fit=crop",
+    description: "The Hive represents a modern architectural masterpiece, featuring innovative design concepts that seamlessly blend contemporary living with traditional Balinese aesthetics. This development offers luxury residences with state-of-the-art amenities and breathtaking views of the surrounding landscape.",
+  },
+  {
+    name: "Little Soho",
+    location: "Abianbase–Mengwi, Bali",
+    image: "https://images.unsplash.com/photo-1580587771525-78b9dba3b914",
+    progressImage: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=400&fit=crop",
+    description: "Little Soho brings urban sophistication to Bali with its chic design and vibrant community spaces. Each unit is thoughtfully designed to maximize space and natural light, creating an inviting atmosphere that reflects the dynamic energy of modern living in paradise.",
+  },
+  {
+    name: "Dynasty 8",
+    location: "Abianbase–Mengwi, Bali",
+    image: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d",
+    progressImage: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=400&fit=crop",
+    description: "Dynasty 8 embodies luxury and exclusivity, offering premium residences with world-class facilities. This prestigious development features elegant architecture, private amenities, and exceptional attention to detail, creating an unparalleled living experience for discerning investors.",
+  },
+];
+
 const BestInvestmentOpportunity = () => {
   const theme = useTheme();
-  const items = ["Lili Village", "The Hive", "Little Soho", "Dynasty 8"];
+  const items = projects.map((p) => p.name);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const descriptionRef = useRef<HTMLDivElement>(null);
+  const isInitialMount = useRef(true);
+
+  useEffect(() => {
+    if (isInitialMount.current) {
+      isInitialMount.current = false;
+      return;
+    }
+
+    if (descriptionRef.current) {
+      setTimeout(() => {
+        descriptionRef.current?.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+      }, 100);
+    }
+  }, [activeIndex]);
+
+  useEffect(() => {
+    if (isModalOpen) {
+      setIsLoading(true);
+      // Simulate loading time
+      const timer = setTimeout(() => {
+        setIsLoading(false);
+      }, 400); // 0.4 seconds loading time
+
+      return () => clearTimeout(timer);
+    } else {
+      setIsLoading(false);
+    }
+  }, [isModalOpen]);
 
   return (
     <Box
@@ -109,13 +178,19 @@ const BestInvestmentOpportunity = () => {
               mb: { xs: 6, md: 10 },
             }}
           />
-          <FeaturedProjectCard />
-          <Box mt={{ xs: 2, md: 4, lg: 6 }} display="flex" gap={3}>
+          <FeaturedProjectCard 
+            projectName={projects[activeIndex].name}
+            location={projects[activeIndex].location}
+            image={projects[activeIndex].image}
+            progressImage={projects[activeIndex].progressImage}
+            onSeeMoreClick={() => setIsModalOpen(true)}
+          />
+          {/* CAROUSEL ITEMS */}
+          <Box mt={{ xs: 2, md: 4, lg: 6 }}>
             <Grid container spacing={2}>
-              {items.map((item, index) => (
-                <Grid size={{ xs: 12, md: 6, lg: 3 }}>
+              {projects.map((project, index) => (
+                <Grid size={{ xs: 12, md: 6, lg: 3 }} key={project.name}>
                   <Box
-                    key={item}
                     onClick={() => setActiveIndex(index)}
                     sx={{
                       borderRadius: 3,
@@ -131,10 +206,10 @@ const BestInvestmentOpportunity = () => {
                   >
                     <Box
                       component="img"
-                      src="https://images.unsplash.com/photo-1503387762-592deb58ef4e"
+                      src={project.image}
                       sx={{
                         width: "100%",
-                        height: 350,
+                        height: { xs: 200, md: 250, lg: 280 },
                         objectFit: "cover",
                         borderRadius: 2,
                       }}
@@ -147,7 +222,7 @@ const BestInvestmentOpportunity = () => {
                       color="white"
                       textAlign="center"
                     >
-                      {item}
+                      {project.name}
                     </Typography>
                   </Box>
                 </Grid>
@@ -160,6 +235,7 @@ const BestInvestmentOpportunity = () => {
             display="flex"
             alignItems="center"
             justifyContent="space-between"
+            width="100%"
           >
             {/* DOTS */}
             <Box display="flex" gap={1.5} justifyContent="center" flex={1}>
@@ -242,7 +318,7 @@ const BestInvestmentOpportunity = () => {
             </Box>
           </Box>
           {/* PROJECT DESCRIPTION */}
-          <Box mt={8}>
+          <Box ref={descriptionRef} mt={8} width="100%">
             <Typography
               variant="heroSubTitle"
               component="h1"
@@ -252,22 +328,19 @@ const BestInvestmentOpportunity = () => {
                 lineHeight: 1.6,
               }}
             >
-              Lili Village spans 2960 square meters of artfully designed space
-              offering 18 unique townhouses crafted in 2-bedroom (155 sqm) and
-              3-bedroom (235 sqm) styles. At its heart lies a social clubhouse,
-              blending art and balance, where a gym, pool bar, serene swimming
-              pool, and a communal restaurant create a harmonious living
-              experience.
+              {projects[activeIndex].description}
             </Typography>
 
             <Button
               variant="text"
+              onClick={() => setIsModalOpen(true)}
               sx={{
                 color: theme.palette.primary.contrastText,
                 fontSize: typographyTokens.fontSizes["3xl"],
                 fontWeight: typographyTokens.fontWeights.regular,
                 textTransform: "none",
                 px: 0,
+                cursor: "pointer",
                 "&:hover": { background: "transparent" },
               }}
               endIcon={
@@ -327,6 +400,215 @@ const BestInvestmentOpportunity = () => {
           </Grid>
         </Container>
       </Box>
+
+      {/* MODAL */}
+      <Modal
+        open={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          p: 2,
+        }}
+      >
+        <>
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.25, ease: [0.25, 0.46, 0.45, 0.94] }}
+            style={{
+              position: "absolute",
+              inset: 0,
+              backgroundColor: "rgba(0, 0, 0, 0.85)",
+              backdropFilter: "blur(8px)",
+            }}
+            onClick={() => setIsModalOpen(false)}
+          />
+          {isLoading ? (
+            <motion.div
+              animate={{ rotate: 360 }}
+              transition={{
+                duration: 0.8,
+                repeat: Infinity,
+                ease: "linear",
+              }}
+              style={{
+                position: "relative",
+                width: "100px",
+                height: "100px",
+                backgroundColor: "#000",
+                borderRadius: "16px",
+                border: `2px solid ${theme.palette.primary.main}`,
+                boxShadow: `0 0 30px rgba(92, 255, 157, 0.5)`,
+                transformOrigin: "center center",
+                zIndex: 1,
+              }}
+            />
+          ) : (
+            <motion.div
+              initial={{ scale: 0.25, opacity: 0, rotate: 0 }}
+              animate={{ scale: 1, opacity: 1, rotate: 0 }}
+              transition={{
+                scale: {
+                  duration: 0.5,
+                  ease: [0.25, 0.46, 0.45, 0.94],
+                },
+                opacity: {
+                  duration: 0.4,
+                  ease: [0.25, 0.46, 0.45, 0.94],
+                },
+                rotate: {
+                  duration: 0,
+                },
+              }}
+              onClick={(e) => e.stopPropagation()}
+              style={{
+                position: "relative",
+                width: "90%",
+                maxWidth: "900px",
+                maxHeight: "90vh",
+                backgroundColor: "#000",
+                borderRadius: "16px",
+                overflow: "hidden",
+                display: "flex",
+                flexDirection: "column",
+                zIndex: 1,
+                boxShadow: "0 8px 32px rgba(0, 0, 0, 0.4)",
+                transformOrigin: "center center",
+              }}
+            >
+              <Box
+                sx={{
+                  position: "relative",
+                  width: "100%",
+                  height: { xs: "250px", md: "400px" },
+                  overflow: "hidden",
+                }}
+              >
+                <IconButton
+                  onClick={() => setIsModalOpen(false)}
+                  sx={{
+                    position: "absolute",
+                    top: 16,
+                    right: 16,
+                    zIndex: 10,
+                    bgcolor: "rgba(0, 0, 0, 0.5)",
+                    color: "#fff",
+                    "&:hover": {
+                      bgcolor: "rgba(0, 0, 0, 0.7)",
+                    },
+                  }}
+                >
+                  <CloseIcon />
+                </IconButton>
+                <motion.div
+                  initial={{ scale: 1.05, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  transition={{ 
+                    duration: 0.35, 
+                    delay: 0.2, 
+                    ease: [0.25, 0.46, 0.45, 0.94] 
+                  }}
+                >
+                  <Box
+                    component="img"
+                    src={projects[activeIndex].image}
+                    alt={projects[activeIndex].name}
+                    sx={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                    }}
+                  />
+                </motion.div>
+                {/* Progress Image - Bottom Right over the image */}
+                <Box
+                  sx={{
+                    position: "absolute",
+                    bottom: { xs: 16, md: 24 },
+                    right: { xs: 16, md: 24 },
+                    zIndex: 5,
+                    width: { xs: "120px", md: "180px", lg: "250px" },
+                  }}
+                >
+                  <motion.div
+                    initial={{ scale: 0.8, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    transition={{ 
+                      duration: 0.4, 
+                      delay: 0.4, 
+                      ease: [0.25, 0.46, 0.45, 0.94] 
+                    }}
+                  >
+                    <Box
+                      component="img"
+                      src={projects[activeIndex].progressImage}
+                      alt="Progress"
+                      sx={{
+                        width: "100%",
+                        height: "auto",
+                        objectFit: "contain",
+                        borderRadius: 1,
+                      }}
+                    />
+                  </motion.div>
+                </Box>
+              </Box>
+              <Box
+                sx={{
+                  p: { xs: 3, md: 5 },
+                  overflowY: "auto",
+                  flex: 1,
+                }}
+              >
+                <motion.div
+                  initial={{ y: 15, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ 
+                    duration: 0.35, 
+                    delay: 0.3, 
+                    ease: [0.25, 0.46, 0.45, 0.94] 
+                  }}
+                >
+                <Typography
+                  variant="heroTitle"
+                  component="h2"
+                  sx={{
+                    color: theme.palette.primary.contrastText,
+                    mb: 2,
+                    fontWeight: typographyTokens.fontWeights.medium,
+                  }}
+                >
+                  {projects[activeIndex].name}
+                </Typography>
+                <Typography
+                  variant="h3"
+                  sx={{
+                    color: theme.palette.text.secondary,
+                    mb: 3,
+                    fontWeight: typographyTokens.fontWeights.regular,
+                  }}
+                >
+                  {projects[activeIndex].location}
+                </Typography>
+                <Typography
+                  variant="heroSubTitle"
+                  sx={{
+                    color: theme.palette.text.secondary,
+                    lineHeight: 1.8,
+                    fontSize: { xs: "1rem", md: "1.125rem" },
+                  }}
+                >
+                    {projects[activeIndex].description}
+                  </Typography>
+                </motion.div>
+              </Box>
+            </motion.div>
+          )}
+        </>
+      </Modal>
     </Box>
   );
 };
