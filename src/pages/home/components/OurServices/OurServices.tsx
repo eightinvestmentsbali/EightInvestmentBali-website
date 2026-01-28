@@ -58,7 +58,34 @@ const OurServices: React.FC = () => {
         <Grid container spacing={4}>
           {services.map((service) => (
             <Grid size={{ xs: 12, md: 6 }} key={service.title}>
-              <Box>
+              <Box sx={{ position: "relative" }}>
+                <svg width="0" height="0" style={{ position: "absolute" }}>
+                  <defs>
+                    <clipPath
+                      id="topFrameClip"
+                      clipPathUnits="objectBoundingBox"
+                    >
+                      <path
+                        d="
+                              M 0,0 
+                              H 0.40 
+                              Q 0.3,0 0.3,0.05 
+                              V 0.15
+                              Q 0.3,0.2 0.25,0.2 
+                              H 0.05 
+                              Q 0,0.2 0,0.25 
+                              V 0.95 
+                              Q 0,1 0.05,1 
+                              H 0.95 
+                              Q 1,1 1,0.95 
+                              V 0.05 
+                              Q 1,0 0.95,0 
+                              Z
+                            "
+                      />
+                    </clipPath>
+                  </defs>
+                </svg>
                 <Box
                   sx={{
                     position: "relative",
@@ -75,44 +102,17 @@ const OurServices: React.FC = () => {
                     variant="h5"
                     sx={{
                       position: "absolute",
-                      top: 15,
-                      left: 15,
+                      top: "20px",
+                      left: "10px",
                       fontWeight: "regular",
-                      width: "200px", // Limits width to stay in the notch
+                      width: "200px",
                       lineHeight: 1.2,
                       zIndex: 2,
+                      whiteSpace: "pre-line",
                     }}
                   >
                     {service.title}
                   </Typography>
-
-                  <svg width="0" height="0" style={{ position: "absolute" }}>
-                    <defs>
-                      <clipPath
-                        id="stairClip"
-                        clipPathUnits="objectBoundingBox"
-                      >
-                        <path
-                          d="
-                            M 0,0.25 
-                            V 0.95 
-                            Q 0,1 0.05,1 
-                            H 0.95 
-                            Q 1,1 1,0.95 
-                            V 0.05 
-                            Q 1,0 0.95,0 
-                            H 0.35 
-                            Q 0.3,0 0.3,0.05 
-                            V 0.15
-                            Q 0.3,0.2 0.25,0.2 
-                            H 0.05 
-                            Q 0,0.2 0,0.25 
-                            Z
-                          "
-                        />
-                      </clipPath>
-                    </defs>
-                  </svg>
 
                   <Box
                     component="img"
@@ -122,7 +122,7 @@ const OurServices: React.FC = () => {
                       width: "100%",
                       height: "100%",
                       objectFit: "cover",
-                      clipPath: "url(#stairClip)",
+                      clipPath: "url(#topFrameClip)",
                       display: "block",
                     }}
                   />

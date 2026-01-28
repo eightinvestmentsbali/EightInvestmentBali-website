@@ -1,6 +1,9 @@
 import { Box, Typography, Container, Grid, Stack } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
-import { typographyTokens } from "../../../../theme/MuiTheme";
+import { shadowTokens, typographyTokens } from "../../../../theme/MuiTheme";
+import HassanBallout from "../../../../assets/HassanBallout.png";
+import RamyHachem from "../../../../assets/RamyHachem.png";
+import JubinDaniel from "../../../../assets/JubinDaniel.png";
 
 interface TeamMember {
   name: string;
@@ -11,21 +14,18 @@ interface TeamMember {
 const teamMembers: TeamMember[] = [
   {
     name: "Hassan Ballout",
-    role: "At Eight Investments",
-    image:
-      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop",
+    role: "Co-founder",
+    image: HassanBallout,
   },
   {
-    name: "Hassan Ballout",
-    role: "At Eight Investments",
-    image:
-      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=400&fit=crop",
+    name: "Ramy Hachem",
+    role: "Co-founder",
+    image: RamyHachem,
   },
   {
-    name: "Hassan Ballout",
-    role: "At Eight Investments",
-    image:
-      "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop",
+    name: "Jubin Daniel",
+    role: "Chief Financial Officer",
+    image: JubinDaniel,
   },
 ];
 
@@ -33,26 +33,27 @@ const DiamondTeamSection = () => {
   const theme = useTheme();
   return (
     <Box
+      id="our-team"
       sx={{
         bgcolor: theme.palette.background.paper,
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
         pt: { xs: 8, md: 16 },
-        pb: { xs: 16, md: 32, lg: 50},
+        pb: { xs: 16, md: 32, lg: 50 },
         position: "relative",
       }}
     >
       <Container maxWidth="xl" sx={{ position: "relative", zIndex: 10 }}>
-        <Box sx={{ position: "relative"}}>
+        <Box sx={{ position: "relative" }}>
           <Box
             sx={{
               position: "absolute",
               top: "70%",
               left: "50%",
               transform: "translate(-50%, -50%) rotate(45deg)",
-              width: { xs: 0, md: 500, lg: 700},
-              height: { xs: 0, md: 500, lg: 700},
+              width: { xs: 0, md: 500, lg: 700 },
+              height: { xs: 0, md: 500, lg: 700 },
               border: "1px solid #D1D1D1",
               bgcolor: theme.palette.background.default,
               opacity: 1,
@@ -89,7 +90,7 @@ const DiamondTeamSection = () => {
           {/* Team Members Grid */}
           <Grid
             container
-            spacing={{ xs: 2, md: 4, lg: 6}}
+            spacing={{ xs: 2, md: 4, lg: 6 }}
             justifyContent="center"
             alignItems="center"
             sx={{
@@ -134,7 +135,6 @@ const TeamMemberCard = ({ member }: TeamMemberCardProps) => {
           flexShrink: 0,
         }}
       >
-
         <Box
           sx={{
             position: "absolute",
@@ -142,29 +142,23 @@ const TeamMemberCard = ({ member }: TeamMemberCardProps) => {
             transform: "rotate(45deg)",
             overflow: "hidden",
             bgcolor: "#ffffff",
-            boxShadow:
-              "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)",
+            boxShadow: shadowTokens.large,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
           }}
         >
-          {/* Image inside diamond */}
           <Box
+            component="img"
+            src={member.image}
+            alt={member.name}
             sx={{
-              position: "absolute",
-              inset: 0,
-              transform: "rotate(-45deg) scale(1.5)",
+              width: "100%",
+              height: "100%",
+              objectFit: "contain",
+              transform: "rotate(-45deg) scale(1.15) translateY(15%)",
             }}
-          >
-            <Box
-              component="img"
-              src={member.image}
-              alt={member.name}
-              sx={{
-                width: "100%",
-                height: "100%",
-                objectFit: "cover",
-              }}
-            />
-          </Box>
+          />
         </Box>
       </Box>
 
