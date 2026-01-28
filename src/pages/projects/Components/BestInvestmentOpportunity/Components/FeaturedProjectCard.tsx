@@ -2,7 +2,6 @@ import { Box, Stack, Typography } from "@mui/material";
 import LillVillage from "../../../../../assets/lilvillage.png";
 import { useTheme } from "@mui/material/styles";
 import { typographyTokens } from "../../../../../theme/MuiTheme";
-import ArrowNortEastIcon from "../../../../../assets/DesignElement/ArrowNortEastIcon";
 import LocationIcon from "../../../../../assets/DesignElement/LocationIcon";
 import CurrentProgressSVG from "../../../../../assets/DesignElement/CurrentProgressSVG";
 
