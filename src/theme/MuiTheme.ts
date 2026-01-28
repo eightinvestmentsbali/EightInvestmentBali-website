@@ -303,7 +303,7 @@ export const colorTokens = {
     900: "#39464E",
   },
   neutral: {
-    50: "#FFFFFF",
+    50: "#F4F7FA",
     100: "#F4F4F4",
     200: "#E2E8F0",
     300: "#CBD5E1",

@@ -3,6 +3,8 @@ import React from "react";
 import { useTheme } from "@mui/material/styles";
 import Navbar from "../../components/navbar/Navbar";
 import BestInvestmentOpportunity from "./Components/BestInvestmentOpportunity/BestInvestmentOpportunity";
+import ProjectWork from "./Components/BestInvestmentOpportunity/Components/ProjectsWork/ProjectWork";
+import ContactFooter from "../home/components/ContactFooter/ContactFooter";
 
 const Projects: React.FC = () => {
   const theme = useTheme();
@@ -20,6 +22,8 @@ const Projects: React.FC = () => {
           <Navbar />
           <BestInvestmentOpportunity />
         </Container>
+        <ProjectWork />
+        <ContactFooter />
       </Box>
     </Box>
   );
