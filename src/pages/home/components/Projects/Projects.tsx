@@ -114,6 +114,7 @@ const Projects: React.FC = () => {
   return (
     <>
       <Box
+        id="our-projects"
         sx={{
           bgcolor: "#232323",
           px: { xs: 2, md: 4, lg: 6 },

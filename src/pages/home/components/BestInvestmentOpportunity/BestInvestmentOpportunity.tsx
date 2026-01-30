@@ -153,7 +153,7 @@ const BestInvestmentOpportunity = () => {
               y: titleY,
               position: "sticky",
               top: 0,
-              zIndex: 1,
+              zIndex: 0,
             }}
           >
             <Stack

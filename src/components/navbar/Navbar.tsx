@@ -101,6 +101,8 @@ const Navbar: React.FC = () => {
     const sectionMap: { [key: string]: string } = {
       "Services": "our-services",
       "Our Team": "our-team",
+      "Projects": "our-projects",
+      "About Us": "about-us",
     };
 
     const sectionId = sectionMap[label];
@@ -166,7 +168,7 @@ const Navbar: React.FC = () => {
 
             {/* Center Logo */}
             <Box sx={{ flex: 1, textAlign: "center" }}>
-              <Logo style={{ height: 36 }} />
+              <Logo style={{ height: 40 }} />
             </Box>
 
             {/* Right Icon */}
@@ -191,7 +193,7 @@ const Navbar: React.FC = () => {
             {/* Menu */}
             <Stack direction="row" spacing={6} alignItems="center">
               {menuItems.map((item) => {
-                const isScrollable = item.label === "Services" || item.label === "Our Team";
+                const isScrollable = item.label === "Services" || item.label === "Our Team" || item.label === "Projects" || item.label === "About Us";
                 return (
                   <Typography
                     key={item.label}
