@@ -19,7 +19,7 @@ const investmentReasons = [
     description:
       "Consistently delivering above-market returns through strategic property selection and development.",
     image:
-      "https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=90&w=2400&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     buttonText: "Learn More",
   },
   {
@@ -74,7 +74,7 @@ const WhyDoInvestorschoose: React.FC = () => {
   });
 
   // Calculate opacity for the title - fades out as you scroll
-  const titleOpacity = useTransform(scrollYProgress, [0, 0.15], [1, 0]);
+  const titleOpacity = useTransform(scrollYProgress, [0, 0.05], [1, 0]);
   const titleY = useTransform(scrollYProgress, [0, 0.15], [0, -50]);
 
   // Auto-scroll to next section when cards complete
@@ -101,6 +101,7 @@ const WhyDoInvestorschoose: React.FC = () => {
           position: "relative",
           height: `${100 + investmentReasons.length * 100}vh`,
           px: { xs: 2, md: 4, lg: 6 },
+          pb: { xs: 4, md: 8, lg: 16 },
         }}
       >
         {/* Title Section - Fades out on scroll */}
@@ -109,11 +110,11 @@ const WhyDoInvestorschoose: React.FC = () => {
             opacity: titleOpacity,
             y: titleY,
             position: "sticky",
-            top: 0,
+            top: "80px", // offset so sticky title sits below the fixed navbar
             zIndex: 1,
           }}
         >
-          <Box sx={{ my: { xs: 8, md: 16 } }}>
+          <Box sx={{ mt: { xs: 6, md: 16 }, mb: { xs: 4, md: 10 } }}>
             <Typography
               variant="heroTitle"
               component="h1"
@@ -161,7 +162,7 @@ const WhyDoInvestorschoose: React.FC = () => {
           // Move the current card UP from below as you scroll
           const y = useTransform(
             scrollYProgress,
-            [cardStart - 0.05, cardStart, cardEnd],
+            [cardStart - 0.5, cardStart, cardEnd],
             [100, 0, 0], // Starts from 100px below, moves to 0, stays at 0
           );
 
@@ -170,7 +171,7 @@ const WhyDoInvestorschoose: React.FC = () => {
               key={reason.id}
               style={{
                 position: "sticky",
-                top: "8vh",
+                top: "80px",
                 scale,
                 opacity,
                 y,
@@ -180,10 +181,11 @@ const WhyDoInvestorschoose: React.FC = () => {
               <Box
                 sx={{
                   position: "relative",
-                  borderRadius: 10,
+                  borderRadius: 20,
                   overflow: "hidden",
                   mx: "auto",
                   width: "100%",
+                  mb: 20,
                   // Use a clean off-white/paper base
                   bgcolor: theme.palette.background.paper,
                   boxShadow: "0 8px 32px rgba(0, 0, 0, 0.05)",
@@ -216,7 +218,7 @@ const WhyDoInvestorschoose: React.FC = () => {
                     justifyContent: "space-between",
                     alignItems: "center",
                     gap: { xs: 4, md: 6, lg: 8 },
-                    height: { xs: "500px", md: "600px", xl: "850px" },
+                    height: { xs: "500px", md: "600px", xl: "800px" },
                     p: { xs: 4, md: 6, lg: 8 },
                     zIndex: 1,
                   }}
@@ -234,11 +236,11 @@ const WhyDoInvestorschoose: React.FC = () => {
                   >
                     {/* Title */}
                     <Typography
-                      variant="h1"
+                      variant="heroSubTitle"
+                      component="h2"
                       sx={{
                         fontWeight: typographyTokens.fontWeights.medium,
                         color: theme.palette.text.primary,
-                        fontSize: { xs: "2.5rem", md: "3.5rem", lg: "4rem" },
                         lineHeight: 1.1,
                         letterSpacing: "-0.02em",
                       }}
@@ -284,12 +286,11 @@ const WhyDoInvestorschoose: React.FC = () => {
 
                     {/* Description */}
                     <Typography
-                      variant="body1"
+                      variant="h1"
                       sx={{
                         fontWeight: typographyTokens.fontWeights.regular,
-                        lineHeight: 1.8,
-                        color: theme.palette.text.secondary,
-                        fontSize: { xs: "1rem", md: "1.125rem" },
+                        lineHeight: 1.5,
+                        color: theme.palette.text.primary,
                         maxWidth: "90%",
                       }}
                     >
@@ -327,7 +328,7 @@ const WhyDoInvestorschoose: React.FC = () => {
                   {/* Right Image */}
                   <Box
                     sx={{
-                      flex: { xs: 1, md: "0 0 48%" },
+                      flex: { xs: 1, md: "0 0 50%" },
                       width: "100%",
                       height: "100%",
                       borderRadius: "50px 200px 50px 50px",
@@ -349,7 +350,7 @@ const WhyDoInvestorschoose: React.FC = () => {
                         width: "100%",
                         height: "100%",
                         objectFit: "cover",
-                        objectPosition: "center 45%",
+                        objectPosition: "center 50%",
                         display: "block",
                       }}
                       loading="lazy"

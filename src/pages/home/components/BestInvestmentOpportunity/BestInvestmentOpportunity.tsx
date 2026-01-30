@@ -152,7 +152,7 @@ const BestInvestmentOpportunity = () => {
               opacity: titleOpacity,
               y: titleY,
               position: "sticky",
-              top: 0,
+              top: "80px",
               zIndex: 0,
             }}
           >
