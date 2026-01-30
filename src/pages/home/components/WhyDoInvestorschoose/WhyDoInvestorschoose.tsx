@@ -199,9 +199,9 @@ const WhyDoInvestorschoose: React.FC = () => {
                     // Modern Mesh Gradient Implementation
                     background: `
                     /* Top Right Emerald Glow */
-                    linear-gradient(225deg, rgba(69, 197, 168, 0.15) 0%, rgba(69, 197, 168, 0) 50%),
+                    linear-gradient(225deg, rgb(69, 197, 167) 0%, rgba(69, 197, 168, 0) 50%),
                     /* Bottom Right Ocean Blue Glow */
-                    linear-gradient(45deg, rgba(36, 97, 241, 0.12) 0%, rgba(36, 97, 241, 0) 40%),
+                    linear-gradient(315deg, rgb(36, 97, 241) 0%, rgba(36, 97, 241, 0) 40%),
                     /* Soft Warm Overlay */
                     linear-gradient(180deg, rgba(255, 255, 255, 0.5) 0%, rgba(244, 247, 252, 0) 100%)
                   `,
