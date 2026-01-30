@@ -6,7 +6,7 @@ import { useTheme } from "@mui/material/styles";
 const UnifyYourVision: React.FC = () => {
   const theme = useTheme();
   return (
-    <Grid size={{ xs: 12 }}>
+    <Grid size={{ xs: 12 }} id="about-us">
       <Box sx={{ mt: { xs: 2, md: 6, lg: 10 } }}>
         <Typography
           variant="heroTitle"
@@ -23,7 +23,7 @@ const UnifyYourVision: React.FC = () => {
           sx={{
             height: "2px",
             backgroundColor: theme.palette.divider,
-            mb: { xs: 2, md: 6, lg: 10 },
+            mb: { xs: 2, md: 6, lg: 8 },
           }}
         />
         <Typography
@@ -31,7 +31,7 @@ const UnifyYourVision: React.FC = () => {
           component="h1"
           sx={{
             color: "#484848",
-            mb: { xs: 2, md: 6, lg: 10 },
+            mb: { xs: 2, md: 6, lg: 8 },
           }}
         >
           We connect global investors with a haven of exclusive investment

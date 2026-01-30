@@ -1,7 +1,12 @@
 import { Box, Button, Divider, Grid, Typography } from "@mui/material";
 import React, { useRef } from "react";
 import { useTheme } from "@mui/material/styles";
-import { motion, useScroll, useTransform, useMotionValueEvent } from "framer-motion";
+import {
+  motion,
+  useScroll,
+  useTransform,
+  useMotionValueEvent,
+} from "framer-motion";
 import { typographyTokens } from "../../../../theme/MuiTheme";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 
@@ -11,40 +16,50 @@ const investmentReasons = [
     id: 1,
     title: "High Returns",
     tags: ["ROI Focused", "Growth Strategy", "Market Analysis"],
-    description: "Consistently delivering above-market returns through strategic property selection and development.",
-    image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=90&w=2400&auto=format&fit=crop",
+    description:
+      "Consistently delivering above-market returns through strategic property selection and development.",
+    image:
+      "https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=90&w=2400&auto=format&fit=crop",
     buttonText: "Learn More",
   },
   {
     id: 2,
     title: "Prime Locations",
     tags: ["Beachfront", "City Center", "Tourist Hotspots"],
-    description: "Exclusive access to Bali's most sought-after investment locations with high growth potential.",
-    image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=90&w=2400&auto=format&fit=crop",
+    description:
+      "Exclusive access to Bali's most sought-after investment locations with high growth potential.",
+    image:
+      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=90&w=2400&auto=format&fit=crop",
     buttonText: "View Properties",
   },
   {
     id: 3,
     title: "Expert Management",
     tags: ["24/7 Support", "Professional Team", "Maintenance"],
-    description: "Professional property management ensuring optimal rental yields and property maintenance.",
-    image: "https://images.unsplash.com/photo-1552664730-d307ca884978?q=90&w=2400&auto=format&fit=crop",
+    description:
+      "Professional property management ensuring optimal rental yields and property maintenance.",
+    image:
+      "https://images.unsplash.com/photo-1552664730-d307ca884978?q=90&w=2400&auto=format&fit=crop",
     buttonText: "Meet Our Team",
   },
   {
     id: 4,
     title: "Legal Security",
     tags: ["Compliance", "Transparency", "Documentation"],
-    description: "Full legal compliance and transparent ownership structures for international investors.",
-    image: "https://images.unsplash.com/photo-1582407947304-fd86f028f716?q=90&w=2400&auto=format&fit=crop",
+    description:
+      "Full legal compliance and transparent ownership structures for international investors.",
+    image:
+      "https://images.unsplash.com/photo-1582407947304-fd86f028f716?q=90&w=2400&auto=format&fit=crop",
     buttonText: "Legal Framework",
   },
   {
     id: 5,
     title: "Proven Track Record",
     tags: ["Success Stories", "Client Reviews", "Portfolio"],
-    description: "Years of successful projects and satisfied investors across Bali's real estate market.",
-    image: "https://images.unsplash.com/photo-1611892440504-42a792e24d32?q=90&w=2400&auto=format&fit=crop",
+    description:
+      "Years of successful projects and satisfied investors across Bali's real estate market.",
+    image:
+      "https://images.unsplash.com/photo-1611892440504-42a792e24d32?q=90&w=2400&auto=format&fit=crop",
     buttonText: "View Success",
   },
 ];
@@ -68,7 +83,9 @@ const WhyDoInvestorschoose: React.FC = () => {
     if (latest >= 0.95 && !hasScrolledRef.current) {
       hasScrolledRef.current = true;
       setTimeout(() => {
-        const targetElement = document.getElementById("best-investment-opportunity");
+        const targetElement = document.getElementById(
+          "best-investment-opportunity",
+        );
         if (targetElement) {
           targetElement.scrollIntoView({ behavior: "smooth", block: "start" });
         }
@@ -103,7 +120,6 @@ const WhyDoInvestorschoose: React.FC = () => {
               sx={{
                 color: theme.palette.text.primary,
                 mb: { xs: 4, md: 6 },
-                maxWidth: { xs: "100%", md: "70%" },
               }}
             >
               Why do investors choose Eight Investments Bali
@@ -125,27 +141,28 @@ const WhyDoInvestorschoose: React.FC = () => {
 
           // Calculate scroll progress for each card
           const cardStart = 0.15 + (index * 0.75) / investmentReasons.length;
-          const cardEnd = 0.15 + ((index + 1) * 0.75) / investmentReasons.length;
+          const cardEnd =
+            0.15 + ((index + 1) * 0.75) / investmentReasons.length;
 
           // Scale down the card behind as new card comes up
           const scale = useTransform(
             scrollYProgress,
             [cardStart, cardEnd],
-            [1, isLast ? 1 : 0.9]
+            [1, isLast ? 1 : 0.9],
           );
 
           // Fade out the card behind
           const opacity = useTransform(
             scrollYProgress,
             [cardStart, cardEnd],
-            [1, isLast ? 1 : 0]
+            [1, isLast ? 1 : 0],
           );
 
           // Move the current card UP from below as you scroll
           const y = useTransform(
             scrollYProgress,
             [cardStart - 0.05, cardStart, cardEnd],
-            [100, 0, 0] // Starts from 100px below, moves to 0, stays at 0
+            [100, 0, 0], // Starts from 100px below, moves to 0, stays at 0
           );
 
           return (
@@ -153,7 +170,7 @@ const WhyDoInvestorschoose: React.FC = () => {
               key={reason.id}
               style={{
                 position: "sticky",
-                top: "12vh",
+                top: "8vh",
                 scale,
                 opacity,
                 y,
@@ -163,19 +180,32 @@ const WhyDoInvestorschoose: React.FC = () => {
               <Box
                 sx={{
                   position: "relative",
-                  borderRadius: 4,
-                  bgcolor: theme.palette.background.paper,
-                  minHeight: { xs: "500px", md: "600px", xl: "650px" },
-                  p: { xs: 4, md: 6, lg: 8 },
+                  borderRadius: 10,
                   overflow: "hidden",
                   mx: "auto",
                   width: "100%",
-                  boxShadow: "0 8px 32px rgba(0, 0, 0, 0.08)",
+                  // Use a clean off-white/paper base
+                  bgcolor: theme.palette.background.paper,
+                  boxShadow: "0 8px 32px rgba(0, 0, 0, 0.05)",
                   border: `1px solid ${theme.palette.divider}`,
-                  // Gradient background similar to the image
-                  background: `linear-gradient(135deg, 
-                    ${theme.palette.mode === 'light' ? '#f8f9fa' : '#1a1a1a'} 0%, 
-                    ${theme.palette.mode === 'light' ? '#ffffff' : '#2d2d2d'} 100%)`,
+                  // Ensure the card is above the background but its children are above its own pseudo-elements
+                  zIndex: 1,
+                  "&::before": {
+                    content: '""',
+                    position: "absolute",
+                    inset: 0,
+                    zIndex: -1, // Changed to -1 so it stays behind the text content
+                    pointerEvents: "none",
+                    // Modern Mesh Gradient Implementation
+                    background: `
+                    /* Top Right Emerald Glow */
+                    linear-gradient(225deg, rgba(69, 197, 168, 0.15) 0%, rgba(69, 197, 168, 0) 50%),
+                    /* Bottom Right Ocean Blue Glow */
+                    linear-gradient(45deg, rgba(36, 97, 241, 0.12) 0%, rgba(36, 97, 241, 0) 40%),
+                    /* Soft Warm Overlay */
+                    linear-gradient(180deg, rgba(255, 255, 255, 0.5) 0%, rgba(244, 247, 252, 0) 100%)
+                  `,
+                  },
                 }}
               >
                 {/* Content Layout */}
@@ -186,7 +216,9 @@ const WhyDoInvestorschoose: React.FC = () => {
                     justifyContent: "space-between",
                     alignItems: "center",
                     gap: { xs: 4, md: 6, lg: 8 },
-                    height: { xs: "100%", md: "500px", xl: "600px" },
+                    height: { xs: "500px", md: "600px", xl: "850px" },
+                    p: { xs: 4, md: 6, lg: 8 },
+                    zIndex: 1,
                   }}
                 >
                   {/* Left Content */}
@@ -197,6 +229,7 @@ const WhyDoInvestorschoose: React.FC = () => {
                       flexDirection: "column",
                       justifyContent: "center",
                       gap: 3,
+                      zIndex: 1,
                     }}
                   >
                     {/* Title */}
@@ -228,9 +261,10 @@ const WhyDoInvestorschoose: React.FC = () => {
                             px: 2.5,
                             py: 1,
                             borderRadius: 2,
-                            bgcolor: theme.palette.mode === 'light'
-                              ? 'rgba(0, 0, 0, 0.04)'
-                              : 'rgba(255, 255, 255, 0.08)',
+                            bgcolor:
+                              theme.palette.mode === "light"
+                                ? "rgba(0, 0, 0, 0.04)"
+                                : "rgba(255, 255, 255, 0.08)",
                             border: `1px solid ${theme.palette.divider}`,
                           }}
                         >
@@ -294,12 +328,17 @@ const WhyDoInvestorschoose: React.FC = () => {
                   <Box
                     sx={{
                       flex: { xs: 1, md: "0 0 48%" },
-                      height: { xs: "300px", md: "500px", xl: "600px" },
                       width: "100%",
-                      borderRadius: '20px 150px 20px 20px',
+                      height: "100%",
+                      borderRadius: "50px 200px 50px 50px",
                       overflow: "hidden",
                       flexShrink: 0,
                       position: "relative",
+                      alignSelf: "center",
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      bgcolor: "#ccc",
                     }}
                   >
                     <Box
@@ -310,7 +349,7 @@ const WhyDoInvestorschoose: React.FC = () => {
                         width: "100%",
                         height: "100%",
                         objectFit: "cover",
-                        objectPosition: "center",
+                        objectPosition: "center 45%",
                         display: "block",
                       }}
                       loading="lazy"
