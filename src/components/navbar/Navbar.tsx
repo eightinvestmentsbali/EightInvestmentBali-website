@@ -237,6 +237,9 @@ const Navbar: React.FC = () => {
         </Toolbar>
       </AppBar>
 
+      {/* Spacer to offset fixed AppBar so page content doesn't sit under the navbar */}
+      <Toolbar sx={{ minHeight: 72 }} />
+
       {/* ===== MOBILE DRAWER ===== */}
       <Drawer anchor="left" open={open} onClose={() => setOpen(false)}>
         <Box sx={{ width: 260, p: 3 }}>
