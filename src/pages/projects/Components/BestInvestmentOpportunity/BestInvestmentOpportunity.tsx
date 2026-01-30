@@ -81,10 +81,10 @@ const BestInvestmentOpportunity: React.FC = () => {
   const activeProject = projects[activeIndex];
 
   return (
-    <Box sx={{ py: { xs: 2, md: 4 } }}>
+    <Box sx={{ py: { xs: 2, md: 4, lg: 6 } }}>
       <VideoPlayer />
       <Grid size={{ xs: 12 }}>
-        <Box sx={{ mt: { xs: 2, md: 3, lg: 4 }, }}>
+        <Box sx={{ mt: { xs: 2, md: 8, lg: 20 }, }}>
           <Typography
             variant="heroTitle"
             component="h1"

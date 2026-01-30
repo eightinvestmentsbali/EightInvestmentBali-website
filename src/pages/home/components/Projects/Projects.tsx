@@ -4,6 +4,7 @@ import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { useTheme } from "@mui/material/styles";
 import { motion, AnimatePresence } from "framer-motion";
+import { typographyTokens } from "../../../../theme/MuiTheme";
 
 const images = [
   "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c",
@@ -183,10 +184,7 @@ const Projects: React.FC = () => {
               zIndex: 2,
             }}
           >
-            <motion.div
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-            >
+            <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
               <IconButton
                 onClick={handlePrev}
                 sx={{
@@ -196,7 +194,7 @@ const Projects: React.FC = () => {
                   height: { xs: 40, md: 48 },
                   borderRadius: "50%",
                   border: "none",
-                  "&:hover": { 
+                  "&:hover": {
                     bgcolor: "rgba(255, 255, 255, 0.7)",
                   },
                 }}
@@ -204,10 +202,7 @@ const Projects: React.FC = () => {
                 <ArrowBackIosNewIcon sx={{ fontSize: { xs: 18, md: 20 } }} />
               </IconButton>
             </motion.div>
-            <motion.div
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-            >
+            <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
               <IconButton
                 onClick={handleNext}
                 sx={{
@@ -217,7 +212,7 @@ const Projects: React.FC = () => {
                   height: { xs: 44, md: 52 },
                   borderRadius: "50%",
                   border: "none",
-                  "&:hover": { 
+                  "&:hover": {
                     bgcolor: "rgba(255, 255, 255, 0.9)",
                   },
                 }}
@@ -260,16 +255,25 @@ const Projects: React.FC = () => {
                 overflow: "hidden",
                 cursor: "pointer",
                 opacity: index === activeIndex ? 1 : 0.6,
-                border: index === activeIndex 
-                  ? { xs: "2px solid #ffffff", md: "3px solid #ffffff" }
-                  : { xs: "2px solid transparent", md: "3px solid transparent" },
-                transition: "opacity .3s ease, filter .3s ease, border .3s ease",
+                border:
+                  index === activeIndex
+                    ? { xs: "2px solid #ffffff", md: "3px solid #ffffff" }
+                    : {
+                        xs: "2px solid transparent",
+                        md: "3px solid transparent",
+                      },
+                transition:
+                  "opacity .3s ease, filter .3s ease, border .3s ease",
                 "&:hover": {
                   opacity: 1,
                   filter: "brightness(1.2)",
-                  border: index === activeIndex 
-                    ? { xs: "2px solid #ffffff", md: "3px solid #ffffff" }
-                    : { xs: "2px solid rgba(255, 255, 255, 0.5)", md: "3px solid rgba(255, 255, 255, 0.5)" },
+                  border:
+                    index === activeIndex
+                      ? { xs: "2px solid #ffffff", md: "3px solid #ffffff" }
+                      : {
+                          xs: "2px solid rgba(255, 255, 255, 0.5)",
+                          md: "3px solid rgba(255, 255, 255, 0.5)",
+                        },
                 },
               }}
             >
@@ -296,11 +300,12 @@ const Projects: React.FC = () => {
         }}
       >
         <Typography
+          variant="heroTitle"
+          component="h1"
           sx={{
             color: theme.palette.primary.contrastText,
-            fontSize: { xs: "2rem", md: "3rem" },
-            fontWeight: 500,
             mb: { xs: 2, md: 4 },
+            fontWeight: typographyTokens.fontWeights.medium,
           }}
         >
           Projects

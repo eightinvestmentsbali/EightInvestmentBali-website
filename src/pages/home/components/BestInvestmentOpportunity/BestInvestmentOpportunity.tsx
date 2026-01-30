@@ -24,6 +24,7 @@ import StrategicInvestmentIcon from "../../../../assets/DesignElement/StrategicI
 import PremierFacilitiesIcon from "../../../../assets/DesignElement/PremierFacilitiesIcon";
 import ArtfullyCraftedLivingIcon from "../../../../assets/DesignElement/ArtfullyCraftedLivingIcon";
 import StrongRentalIcon from "../../../../assets/DesignElement/StrongRentalIcon";
+import { useNavigate } from "react-router-dom";
 
 const features = [
   {
@@ -53,34 +54,43 @@ const projects = [
     name: "Lili Village",
     location: "Abianbase–Mengwi, Bali",
     image: "https://images.unsplash.com/photo-1503387762-592deb58ef4e",
-    progressImage: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=400&fit=crop",
-    description: "Lili Village spans 2960 square meters of artfully designed space offering 18 unique townhouses crafted in 2-bedroom (155 sqm) and 3-bedroom (235 sqm) styles. At its heart lies a social clubhouse, blending art and balance, where a gym, pool bar, serene swimming pool, and a communal restaurant create a harmonious living experience.",
+    progressImage:
+      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=400&fit=crop",
+    description:
+      "Lili Village spans 2960 square meters of artfully designed space offering 18 unique townhouses crafted in 2-bedroom (155 sqm) and 3-bedroom (235 sqm) styles. At its heart lies a social clubhouse, blending art and balance, where a gym, pool bar, serene swimming pool, and a communal restaurant create a harmonious living experience.",
   },
   {
     name: "The Hive",
     location: "Abianbase–Mengwi, Bali",
     image: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c",
-    progressImage: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=400&fit=crop",
-    description: "The Hive represents a modern architectural masterpiece, featuring innovative design concepts that seamlessly blend contemporary living with traditional Balinese aesthetics. This development offers luxury residences with state-of-the-art amenities and breathtaking views of the surrounding landscape.",
+    progressImage:
+      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=400&fit=crop",
+    description:
+      "The Hive represents a modern architectural masterpiece, featuring innovative design concepts that seamlessly blend contemporary living with traditional Balinese aesthetics. This development offers luxury residences with state-of-the-art amenities and breathtaking views of the surrounding landscape.",
   },
   {
     name: "Little Soho",
     location: "Abianbase–Mengwi, Bali",
     image: "https://images.unsplash.com/photo-1580587771525-78b9dba3b914",
-    progressImage: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=400&fit=crop",
-    description: "Little Soho brings urban sophistication to Bali with its chic design and vibrant community spaces. Each unit is thoughtfully designed to maximize space and natural light, creating an inviting atmosphere that reflects the dynamic energy of modern living in paradise.",
+    progressImage:
+      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=400&fit=crop",
+    description:
+      "Little Soho brings urban sophistication to Bali with its chic design and vibrant community spaces. Each unit is thoughtfully designed to maximize space and natural light, creating an inviting atmosphere that reflects the dynamic energy of modern living in paradise.",
   },
   {
     name: "Dynasty 8",
     location: "Abianbase–Mengwi, Bali",
     image: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d",
-    progressImage: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=400&fit=crop",
-    description: "Dynasty 8 embodies luxury and exclusivity, offering premium residences with world-class facilities. This prestigious development features elegant architecture, private amenities, and exceptional attention to detail, creating an unparalleled living experience for discerning investors.",
+    progressImage:
+      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=400&fit=crop",
+    description:
+      "Dynasty 8 embodies luxury and exclusivity, offering premium residences with world-class facilities. This prestigious development features elegant architecture, private amenities, and exceptional attention to detail, creating an unparalleled living experience for discerning investors.",
   },
 ];
 
 const BestInvestmentOpportunity = () => {
   const theme = useTheme();
+  const navigate = useNavigate();
   const items = projects.map((p) => p.name);
   const [activeIndex, setActiveIndex] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -146,7 +156,6 @@ const BestInvestmentOpportunity = () => {
         }}
       >
         <Container maxWidth="xl">
-          {/* HEADER */}
           <motion.div
             style={{
               opacity: titleOpacity,
@@ -173,43 +182,43 @@ const BestInvestmentOpportunity = () => {
                 Best investment opportunity
               </Typography>
 
-            <Button
-              variant="outlined"
+              <Button
+                onClick={() => navigate("/projects")}
+                variant="outlined"
+                sx={{
+                  color: theme.palette.primary.contrastText,
+                  borderColor: theme.palette.primary.contrastText,
+                  borderRadius: 50,
+                  px: 3,
+                  py: 1,
+                  fontWeight: typographyTokens.fontWeights.regular,
+                  fontSize: typographyTokens.fontSizes["3xl"],
+                  "& .MuiButton-startIcon svg": {
+                    fontSize: 32,
+                  },
+                }}
+                startIcon={<PlayCircleOutlineIcon />}
+                endIcon={<EastIcon />}
+              >
+                CONSTRUCTION UPDATE
+              </Button>
+            </Stack>
+            <Divider
               sx={{
-                color: theme.palette.primary.contrastText,
-                borderColor: theme.palette.primary.contrastText,
-                borderRadius: 50,
-                px: 3,
-                py: 1,
-                fontWeight: typographyTokens.fontWeights.regular,
-                fontSize: typographyTokens.fontSizes["3xl"],
-                "& .MuiButton-startIcon svg": {
-                  fontSize: 32,
-                },
+                backgroundColor: theme.palette.divider,
+                mt: 4,
+                mb: { xs: 6, md: 10 },
               }}
-              startIcon={<PlayCircleOutlineIcon />}
-              endIcon={<EastIcon />}
-            >
-              CONSTRUCTION UPDATE
-            </Button>
-          </Stack>
-          <Divider
-            sx={{
-            backgroundColor: theme.palette.divider,
-              mt: 4,
-              mb: { xs: 6, md: 10 },
-            }}
-          />
+            />
           </motion.div>
-          <FeaturedProjectCard 
+          <FeaturedProjectCard
             projectName={projects[activeIndex].name}
             location={projects[activeIndex].location}
             image={projects[activeIndex].image}
             progressImage={projects[activeIndex].progressImage}
             onSeeMoreClick={() => setIsModalOpen(true)}
           />
-          {/* CAROUSEL ITEMS */}
-          <Box mt={{ xs: 2, md: 4, lg: 6 }}>
+          <Box mt={{ xs: 2, md: 4, lg: 6 }} sx={{ bgcolor: "#000" }}>
             <Grid container spacing={2}>
               {projects.map((project, index) => (
                 <Grid size={{ xs: 12, md: 6, lg: 3 }} key={project.name}>
@@ -252,7 +261,6 @@ const BestInvestmentOpportunity = () => {
               ))}
             </Grid>
           </Box>
-          {/* DOTS + NAVIGATION */}
           <Box
             mt={6}
             display="flex"
@@ -260,7 +268,6 @@ const BestInvestmentOpportunity = () => {
             justifyContent="space-between"
             width="100%"
           >
-            {/* DOTS */}
             <Box display="flex" gap={1.5} justifyContent="center" flex={1}>
               {items.map((_, index) => (
                 <Box
@@ -444,8 +451,8 @@ const BestInvestmentOpportunity = () => {
             style={{
               position: "absolute",
               inset: 0,
-              backgroundColor: "rgba(0, 0, 0, 0.85)",
-              backdropFilter: "blur(8px)",
+              backgroundColor: "rgba(0, 0, 0, 0.34)",
+              backdropFilter: "blur(2px)",
             }}
             onClick={() => setIsModalOpen(false)}
           />
@@ -529,10 +536,10 @@ const BestInvestmentOpportunity = () => {
                 <motion.div
                   initial={{ scale: 1.05, opacity: 0 }}
                   animate={{ scale: 1, opacity: 1 }}
-                  transition={{ 
-                    duration: 0.35, 
-                    delay: 0.2, 
-                    ease: [0.25, 0.46, 0.45, 0.94] 
+                  transition={{
+                    duration: 0.35,
+                    delay: 0.2,
+                    ease: [0.25, 0.46, 0.45, 0.94],
                   }}
                 >
                   <Box
@@ -559,10 +566,10 @@ const BestInvestmentOpportunity = () => {
                   <motion.div
                     initial={{ scale: 0.8, opacity: 0 }}
                     animate={{ scale: 1, opacity: 1 }}
-                    transition={{ 
-                      duration: 0.4, 
-                      delay: 0.4, 
-                      ease: [0.25, 0.46, 0.45, 0.94] 
+                    transition={{
+                      duration: 0.4,
+                      delay: 0.4,
+                      ease: [0.25, 0.46, 0.45, 0.94],
                     }}
                   >
                     <Box
@@ -589,41 +596,41 @@ const BestInvestmentOpportunity = () => {
                 <motion.div
                   initial={{ y: 15, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
-                  transition={{ 
-                    duration: 0.35, 
-                    delay: 0.3, 
-                    ease: [0.25, 0.46, 0.45, 0.94] 
+                  transition={{
+                    duration: 0.35,
+                    delay: 0.3,
+                    ease: [0.25, 0.46, 0.45, 0.94],
                   }}
                 >
-                <Typography
-                  variant="heroTitle"
-                  component="h2"
-                  sx={{
-                    color: theme.palette.primary.contrastText,
-                    mb: 2,
-                    fontWeight: typographyTokens.fontWeights.medium,
-                  }}
-                >
-                  {projects[activeIndex].name}
-                </Typography>
-                <Typography
-                  variant="h3"
-                  sx={{
-                    color: theme.palette.text.secondary,
-                    mb: 3,
-                    fontWeight: typographyTokens.fontWeights.regular,
-                  }}
-                >
-                  {projects[activeIndex].location}
-                </Typography>
-                <Typography
-                  variant="heroSubTitle"
-                  sx={{
-                    color: theme.palette.text.secondary,
-                    lineHeight: 1.8,
-                    fontSize: { xs: "1rem", md: "1.125rem" },
-                  }}
-                >
+                  <Typography
+                    variant="heroTitle"
+                    component="h2"
+                    sx={{
+                      color: theme.palette.primary.contrastText,
+                      mb: 2,
+                      fontWeight: typographyTokens.fontWeights.medium,
+                    }}
+                  >
+                    {projects[activeIndex].name}
+                  </Typography>
+                  <Typography
+                    variant="h3"
+                    sx={{
+                      color: theme.palette.text.secondary,
+                      mb: 3,
+                      fontWeight: typographyTokens.fontWeights.regular,
+                    }}
+                  >
+                    {projects[activeIndex].location}
+                  </Typography>
+                  <Typography
+                    variant="heroSubTitle"
+                    sx={{
+                      color: theme.palette.text.secondary,
+                      lineHeight: 1.8,
+                      fontSize: { xs: "1rem", md: "1.125rem" },
+                    }}
+                  >
                     {projects[activeIndex].description}
                   </Typography>
                 </motion.div>

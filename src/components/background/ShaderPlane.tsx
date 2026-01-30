@@ -136,8 +136,8 @@ export function ShaderPlane() {
           u_time: { value: 0 },
           u_mouse: { value: new THREE.Vector4() },
           u_resolution: { value: new THREE.Vector2() },
-          u_colorA: { value: new THREE.Color("#86f4b5ff") },
-          u_colorB: { value: new THREE.Color("#16c2ae") },
+          u_colorA: { value: new THREE.Color("rgb(209, 92, 251)") },
+          u_colorB: { value: new THREE.Color("#ffffff") },
         }}
       />
     </mesh>

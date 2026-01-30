@@ -9,11 +9,34 @@ const VideoPlayer: React.FC = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);
 
+  // Attempt to autoplay muted on mount (browsers require muted autoplay)
+  React.useEffect(() => {
+    const v = videoRef.current;
+    if (!v) return;
+
+    const tryAutoplay = async () => {
+      try {
+        v.muted = true; // ensure muted so browsers allow autoplay
+        v.loop = true; // optional: keep it looping
+        v.playsInline = true;
+        await v.play();
+        setIsPlaying(true);
+      } catch (err) {
+        // Autoplay was blocked by the browser. Keep controls to allow manual play.
+        setIsPlaying(false);
+      }
+    };
+
+    tryAutoplay();
+  }, []);
+
   const togglePlay = () => {
     if (videoRef.current) {
       if (isPlaying) {
         videoRef.current.pause();
       } else {
+        // Unmute on user interaction if they manually play
+        videoRef.current.muted = false;
         videoRef.current.play();
       }
       setIsPlaying(!isPlaying);
@@ -50,7 +73,7 @@ const VideoPlayer: React.FC = () => {
     "Z";
 
   return (
-    <Box sx={{ position: "relative", width: "100%", mt: { xs: 8, md: 10, lg: 8 }, mb: { xs: 4, md: 6, lg: 8 } }}>
+    <Box sx={{ position: "relative", width: "100%", mt: { xs: 2 }, mb: { xs: 4, md: 6, lg: 8 } }}>
       {/* SVG Definition */}
       <svg width="0" height="0" style={{ position: "absolute" }}>
         <defs>
@@ -65,7 +88,7 @@ const VideoPlayer: React.FC = () => {
         <Box
           sx={{
             width: "100%",
-            aspectRatio: "16/9",
+            aspectRatio: "16/8",
             clipPath: "url(#videoClip)",
             bgcolor: "#000",
             position: "relative",
@@ -80,6 +103,10 @@ const VideoPlayer: React.FC = () => {
             src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
             onClick={togglePlay}
             playsInline
+            muted
+            autoPlay
+            loop
+            preload="auto"
           />
 
           {!isPlaying && (
@@ -123,8 +150,6 @@ const VideoPlayer: React.FC = () => {
             pr: 6,
             pb: 2,
             zIndex: 10,
-            // Match the staircase rounding
-            borderTopRightRadius: "60px",
           }}
         >
           <Typography
@@ -135,8 +160,6 @@ const VideoPlayer: React.FC = () => {
               lineHeight: 0.85,
               color: theme.palette.text.primary,
               fontFamily: "inherit",
-              mt: 0,
-              // fontSize: { xs: "2.5rem", md: "6.875rem" },
             }}
           >
             Lili <br /> Village
