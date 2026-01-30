@@ -41,9 +41,18 @@ const FeaturedProjectCard = ({ projectName, location, image, progressImage, onSe
       >
         <Typography
           variant="h1"
-          lineHeight={1.4}
+          lineHeight={1.2} // Tightened slightly for large headers
           color={theme.palette.primary.contrastText}
           fontWeight={typographyTokens.fontWeights.medium}
+          sx={{
+            // Responsive Font Size
+            fontSize: {
+              xs: typographyTokens.fontSizes["xs"], // Mobile size
+              sm: typographyTokens.fontSizes["5xl"], // Tablet size
+            },
+            // Optional: Adjust alignment or margin for mobile
+            textAlign: { xs: 'left', md: 'left' },
+          }}
         >
           SOLD OUT IN <br /> 3 WEEKS
         </Typography>
@@ -71,6 +80,9 @@ const FeaturedProjectCard = ({ projectName, location, image, progressImage, onSe
           variant="h1"
           color={theme.palette.primary.contrastText}
           fontWeight={typographyTokens.fontWeights.medium}
+          sx={{
+            display: { xs: 'none', md: 'inline-flex' },
+          }}
         >
           See more
         </Typography>
@@ -164,9 +176,9 @@ const FeaturedProjectCard = ({ projectName, location, image, progressImage, onSe
           <Box
             sx={{
               position: "relative",
-              borderRadius: "70px 200px 70px 70px",
+              // borderRadius: "70px 200px 70px 70px",
               overflow: "hidden",
-              height: { xs: "300px", md: "420px", lg: "660px" },
+              height: { xs: "150px", md: "420px", lg: "660px" },
               width: { xs: "400px", md: "100%" },
             }}
           >
@@ -174,8 +186,11 @@ const FeaturedProjectCard = ({ projectName, location, image, progressImage, onSe
               component="img"
               src={image}
               sx={{
-                width: "100%",
+                width: "110%",
                 height: "100%",
+                left: "20%",
+                top:0,
+                position: "absolute",
                 objectFit: "cover",
               }}
             />
