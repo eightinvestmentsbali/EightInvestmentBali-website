@@ -7,7 +7,7 @@ const ArchitectingProsperity: React.FC = () => {
   const theme = useTheme();
   return (
     <>
-      <Grid size={{ xs: 12 }} sx={{ mx: "auto", mt: { xs: 2, md: 6, lg: 10} }}>
+      <Grid size={{ xs: 12 }} sx={{ mt: { xs: 2, md: 6, lg: 10} }}>
         <Typography
           variant="heroTitle"
           component="h1"

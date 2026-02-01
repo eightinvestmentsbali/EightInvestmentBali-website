@@ -10,7 +10,7 @@ import {
   Modal,
   IconButton,
 } from "@mui/material";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import CloseIcon from "@mui/icons-material/Close";
 import { typographyTokens } from "../../../../theme/MuiTheme";
 
@@ -89,7 +89,7 @@ const OurServices: React.FC = () => {
         <Grid container spacing={4}>
           {services.map((service) => (
             <Grid
-              size={{ xs: 12, md: 6 }}
+              size={{ xs: 12, sm: 6, md: 6 }}
               sx={{ cursor: "pointer" }}
               key={service.title}
             >
@@ -131,7 +131,7 @@ const OurServices: React.FC = () => {
                 <Box
                   sx={{
                     position: "relative",
-                    height: 400,
+                    height: { xs: "250px", sm: "300px", md: "400px" },
                     width: "100%",
                     // Add a light background color to see the "cutout" area if needed
                     // backgroundColor: "#f5f5f5",
@@ -143,11 +143,17 @@ const OurServices: React.FC = () => {
                   <Typography
                     variant="h5"
                     sx={{
+                      fontSize: {
+                        xs: typographyTokens.fontSizes.sm,
+                        md: typographyTokens.fontSizes.md,
+                        sm: typographyTokens.fontSizes.sm,
+                        lg: typographyTokens.fontSizes.lg,
+                      },
                       position: "absolute",
-                      top: "20px",
+                      top: { xs: "2%", sm: "3%", md: "5%" },
                       left: "10px",
                       fontWeight: "regular",
-                      width: "200px",
+                      width: { xs: "80px", sm: "90px", md: "140px", lg: "180px"},
                       lineHeight: 1.2,
                       zIndex: 2,
                       whiteSpace: "pre-line",
@@ -209,7 +215,7 @@ const OurServices: React.FC = () => {
                 ease: "linear",
               }}
               style={{
-               position: "relative",
+                position: "relative",
                 width: "100px",
                 height: "100px",
                 backgroundColor: "#000",
@@ -223,21 +229,21 @@ const OurServices: React.FC = () => {
           ) : (
             selectedService && (
               <motion.div
-              initial={{ scale: 0.25, opacity: 0, rotate: 0 }}
-              animate={{ scale: 1, opacity: 1, rotate: 0 }}
-              transition={{
-                scale: {
-                  duration: 0.5,
-                  ease: [0.25, 0.46, 0.45, 0.94],
-                },
-                opacity: {
-                  duration: 0.4,
-                  ease: [0.25, 0.46, 0.45, 0.94],
-                },
-                rotate: {
-                  duration: 0,
-                },
-              }}
+                initial={{ scale: 0.25, opacity: 0, rotate: 0 }}
+                animate={{ scale: 1, opacity: 1, rotate: 0 }}
+                transition={{
+                  scale: {
+                    duration: 0.5,
+                    ease: [0.25, 0.46, 0.45, 0.94],
+                  },
+                  opacity: {
+                    duration: 0.4,
+                    ease: [0.25, 0.46, 0.45, 0.94],
+                  },
+                  rotate: {
+                    duration: 0,
+                  },
+                }}
                 style={{
                   position: "relative",
                   width: "90%",

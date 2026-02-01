@@ -119,7 +119,7 @@ const Projects: React.FC = () => {
         sx={{
           bgcolor: "#232323",
           px: { xs: 2, md: 4, lg: 6 },
-          minHeight: { xs: "auto", md: "100vh" },
+          minHeight: { xs: "auto", md: "800px", lg: "100vh" },
           display: "flex",
           flexDirection: "column",
         }}
@@ -127,7 +127,12 @@ const Projects: React.FC = () => {
         <Box
           sx={{
             flex: { xs: "0 0 auto", md: "1 1 0" },
-            height: { xs: "285.8px", md: "calc(100vh - 200px)" },
+            height: {
+              xs: "285.8px",
+              sm: "500px",
+              md: "600px",
+              lg: "calc(100vh - 500px)",
+            },
             display: "flex",
             flexDirection: "column",
             position: "relative",
@@ -313,7 +318,7 @@ const Projects: React.FC = () => {
 
         <Grid container spacing={2}>
           {projects.map((project) => (
-            <Grid size={{ xs: 12, md: 6 }} key={project.title}>
+            <Grid size={{ xs: 12, sm: 6, md: 6 }} key={project.title}>
               <Box
                 sx={{
                   borderRadius: 3,

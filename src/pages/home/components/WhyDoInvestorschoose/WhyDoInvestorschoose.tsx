@@ -1,4 +1,4 @@
-import { Box, Button, Divider, Grid, Typography } from "@mui/material";
+import { Box, Divider, Grid, Typography } from "@mui/material";
 import React, { useRef } from "react";
 import { useTheme } from "@mui/material/styles";
 import {
@@ -8,7 +8,7 @@ import {
   useMotionValueEvent,
 } from "framer-motion";
 import { typographyTokens } from "../../../../theme/MuiTheme";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+// import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 
 // Define your card data with images
 const investmentReasons = [
@@ -181,14 +181,14 @@ const WhyDoInvestorschoose: React.FC = () => {
               <Box
                 sx={{
                   position: "relative",
-                  borderRadius: 20,
+                  borderRadius: { xs: 10, md: 20, lg: 30 },
                   overflow: "hidden",
                   mx: "auto",
                   width: "100%",
                   mb: 20,
                   // Use a clean off-white/paper base
                   bgcolor: theme.palette.background.paper,
-                  boxShadow: "0 8px 32px rgba(0, 0, 0, 0.05)",
+                  boxShadow: "0 16px 32px rgba(0, 0, 0, 0.05)",
                   border: `1px solid ${theme.palette.divider}`,
                   // Ensure the card is above the background but its children are above its own pseudo-elements
                   zIndex: 1,
@@ -218,7 +218,7 @@ const WhyDoInvestorschoose: React.FC = () => {
                     justifyContent: "space-between",
                     alignItems: "center",
                     gap: { xs: 4, md: 6, lg: 8 },
-                    height: { xs: "500px", md: "600px", xl: "800px" },
+                    height: { xs: "400px", md: "600px", xl: "800px" },
                     p: { xs: 4, md: 6, lg: 8 },
                     zIndex: 1,
                   }}
@@ -226,11 +226,11 @@ const WhyDoInvestorschoose: React.FC = () => {
                   {/* Left Content */}
                   <Box
                     sx={{
-                      flex: { xs: 1, md: "0 0 45%" },
+                      // flex: { xs: 1, md: "0 0 45%" },
                       display: "flex",
                       flexDirection: "column",
                       justifyContent: "center",
-                      gap: 3,
+                      gap: { xs: 1, md: 2, lg: 3 },
                       zIndex: 1,
                     }}
                   >
@@ -253,15 +253,15 @@ const WhyDoInvestorschoose: React.FC = () => {
                       sx={{
                         display: "flex",
                         flexWrap: "wrap",
-                        gap: 1.5,
+                        gap: { xs: 0.5, md: 1, lg: 1.5},
                       }}
                     >
                       {reason.tags.map((tag, idx) => (
                         <Box
                           key={idx}
                           sx={{
-                            px: 2.5,
-                            py: 1,
+                            px: { xs: 1, md: 2, lg: 2.5 },
+                            py: { xs: 0.5, md: 0.8, lg: 1 },
                             borderRadius: 2,
                             bgcolor:
                               theme.palette.mode === "light"
@@ -273,7 +273,6 @@ const WhyDoInvestorschoose: React.FC = () => {
                           <Typography
                             variant="body2"
                             sx={{
-                              fontSize: "0.875rem",
                               color: theme.palette.text.secondary,
                               fontWeight: typographyTokens.fontWeights.regular,
                             }}
@@ -286,10 +285,10 @@ const WhyDoInvestorschoose: React.FC = () => {
 
                     {/* Description */}
                     <Typography
-                      variant="h1"
                       sx={{
+                        fontSize: { xs: "0.8rem", md: "1.5rem", lg: "2.5rem" },
                         fontWeight: typographyTokens.fontWeights.regular,
-                        lineHeight: 1.5,
+                        lineHeight: { xs: 1.2, md: 1.2, lg: 1.5},
                         color: theme.palette.text.primary,
                         maxWidth: "90%",
                       }}
@@ -298,7 +297,7 @@ const WhyDoInvestorschoose: React.FC = () => {
                     </Typography>
 
                     {/* Button */}
-                    <Box sx={{ mt: 2 }}>
+                    {/* <Box sx={{ mt: 2 }}>
                       <Button
                         variant="outlined"
                         endIcon={<ArrowForwardIcon />}
@@ -322,7 +321,7 @@ const WhyDoInvestorschoose: React.FC = () => {
                       >
                         {reason.buttonText}
                       </Button>
-                    </Box>
+                    </Box> */}
                   </Box>
 
                   {/* Right Image */}
@@ -331,7 +330,11 @@ const WhyDoInvestorschoose: React.FC = () => {
                       flex: { xs: 1, md: "0 0 50%" },
                       width: "100%",
                       height: "100%",
-                      borderRadius: "50px 200px 50px 50px",
+                      borderRadius: {
+                        xs: "30px 30px 30px 30px",
+                        md: "30px 100px 30px 30px",
+                        lg: "50px 200px 50px 50px",
+                      },
                       overflow: "hidden",
                       flexShrink: 0,
                       position: "relative",

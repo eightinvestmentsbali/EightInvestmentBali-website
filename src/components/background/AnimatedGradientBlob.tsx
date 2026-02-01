@@ -32,10 +32,10 @@ const AnimatedGradientBlob = () => {
       if (blobRef.current) {
         blobRef.current.style.background = `
           radial-gradient(
-            60% 60% at ${pos.current.x}% ${pos.current.y}%,
-             rgba(8, 155, 126, 0.85),
+            90% 90% at ${pos.current.x}% ${pos.current.y}%,
+             rgba(143, 35, 243, 0.85),
             rgba(104, 255, 180, 0.82),
-            rgba(199, 248, 244, 0.45),
+            rgba(159, 249, 241, 0.45),
             transparent 70%
           )
         `;
@@ -56,7 +56,7 @@ const AnimatedGradientBlob = () => {
       sx={{
         position: "absolute",
         inset: "-30%",
-        filter: "blur(120px)",
+        // filter: "blur(10px)",
         zIndex: 0,
         pointerEvents: "none",
         background: `
