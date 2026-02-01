@@ -7,7 +7,6 @@ import {
   Dialog,
   DialogContent,
   IconButton,
-  useMediaQuery,
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import { shadowTokens, typographyTokens } from "../../../../theme/MuiTheme";
@@ -49,7 +48,6 @@ const teamMembers: TeamMember[] = [
 const DiamondTeamSection = () => {
   const theme = useTheme();
   const [selectedMember, setSelectedMember] = useState<TeamMember | null>(null);
-  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
   return (
     <Box
@@ -284,8 +282,8 @@ const TeamMemberCard = ({ member }: TeamMemberCardProps) => {
       <Box
         sx={{
           position: "relative",
-          width: { xs: 200, md: 300 },
-          height: { xs: 200, md: 300 },
+          width: { xs: 200, sm: 250, md: 300 },
+          height: { xs: 200, sm: 250, md: 300 },
           flexShrink: 0,
         }}
       >

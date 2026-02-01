@@ -1,4 +1,4 @@
-import { Box, Stack, Typography } from "@mui/material";
+import { Box, Stack, Typography, useMediaQuery } from "@mui/material";
 import LocationIcon from "../../assets/DesignElement/LocationIcon";
 import { useTheme } from "@mui/material/styles";
 import { typographyTokens } from "../../theme/MuiTheme";
@@ -12,8 +12,15 @@ interface FeaturedProjectCardProps {
   onSeeMoreClick?: () => void;
 }
 
-const FeaturedProjectCard = ({ projectName, location, image, progressImage, onSeeMoreClick }: FeaturedProjectCardProps) => {
+const FeaturedProjectCard = ({
+  projectName,
+  location,
+  image,
+  progressImage,
+  onSeeMoreClick,
+}: FeaturedProjectCardProps) => {
   const theme = useTheme();
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
 
   const clipPathData =
     "M 0,0.20 Q 0,0.15 0.05,0.15 H 0.20 Q 0.25,0.15 0.25,0.1 V 0.05 Q 0.25,0 0.30,0 H 0.95 Q 1,0 1,0.05 V 0.80 Q 1,0.85 0.95,0.85 H 0.80 Q 0.75,0.85 0.75,0.9 V 0.95 Q 0.75,1 0.70,1 H 0.05 Q 0,1 0,0.95 Z";
@@ -30,7 +37,7 @@ const FeaturedProjectCard = ({ projectName, location, image, progressImage, onSe
       <Box
         sx={{
           position: "absolute",
-          top: "6.5%",
+          top: { xs: "5%", md: "6.5%" },
           left: "12%",
           zIndex: 10, // Higher than background
           px: 3,
@@ -45,13 +52,13 @@ const FeaturedProjectCard = ({ projectName, location, image, progressImage, onSe
           color={theme.palette.primary.contrastText}
           fontWeight={typographyTokens.fontWeights.medium}
           sx={{
-            // Responsive Font Size
             fontSize: {
-              xs: typographyTokens.fontSizes["xs"], // Mobile size
-              sm: typographyTokens.fontSizes["5xl"], // Tablet size
+              xs: typographyTokens.fontSizes["md"], // Mobile size
+              sm: typographyTokens.fontSizes["xl"], // Tablet size
+              md: typographyTokens.fontSizes["4xl"],
+              lg: typographyTokens.fontSizes["5xl"], // Desktop size
             },
-            // Optional: Adjust alignment or margin for mobile
-            textAlign: { xs: 'left', md: 'left' },
+            textAlign: { xs: "left", md: "left" },
           }}
         >
           SOLD OUT IN <br /> 3 WEEKS
@@ -62,13 +69,15 @@ const FeaturedProjectCard = ({ projectName, location, image, progressImage, onSe
         onClick={onSeeMoreClick}
         sx={{
           position: "absolute",
-          bottom: "4.5%",
-          right: "5%",
+          bottom: { xs: "2%", md: "3%", lg: "4.5%" },
+          right: { xs: "1%", md: "3%", lg: "5%" },
           zIndex: 20,
+          maxWidth: "25%",
+          px: 2,
           textTransform: "none",
           display: "flex",
           alignItems: "center",
-          gap: 2,
+          gap: { xs: 0.5, md: 2 },
           cursor: "pointer",
           transition: "transform 0.2s ease",
           "&:hover": {
@@ -81,12 +90,21 @@ const FeaturedProjectCard = ({ projectName, location, image, progressImage, onSe
           color={theme.palette.primary.contrastText}
           fontWeight={typographyTokens.fontWeights.medium}
           sx={{
-            display: { xs: 'none', md: 'inline-flex' },
+            fontSize: {
+              xs: typographyTokens.fontSizes["md"], // Mobile size
+              sm: typographyTokens.fontSizes["xl"], // Tablet size
+              md: typographyTokens.fontSizes["2xl"],
+              lg: typographyTokens.fontSizes["3xl"], // Desktop size
+            },
+            lineHeight: 1.2,
           }}
         >
           See more
         </Typography>
-        <ArrowNortEastIcon />
+        <ArrowNortEastIcon
+          width={isSmallScreen ? 15 : 25}
+          height={isSmallScreen ? 15 : 25}
+        />
       </Box>
 
       {/* Main Container with Curve Clip */}
@@ -96,8 +114,8 @@ const FeaturedProjectCard = ({ projectName, location, image, progressImage, onSe
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
-          height: { xs: "300px", md: "600px", lg: "900px" },
-          px: { xs: 4, md: 10 },
+          height: { xs: "300px", sm: "400px", md: "600px", lg: "900px" },
+          px: { xs: 3, sm: 5, md: 6, lg: 10 },
           clipPath: "url(#outerFrameClip)",
           background: theme.palette.primary.main,
           overflow: "visible",
@@ -120,7 +138,7 @@ const FeaturedProjectCard = ({ projectName, location, image, progressImage, onSe
           sx={{
             zIndex: 1,
             alignSelf: "flex-end",
-            height: { xs: "300px", md: "465px", lg: "765px" },
+            height: { xs: "255px", sm: "340px", md: "510px", lg: "765px" },
             width: "40%",
             display: "flex",
             alignItems: "center",
@@ -128,12 +146,20 @@ const FeaturedProjectCard = ({ projectName, location, image, progressImage, onSe
             // justifyContent: "center",
           }}
         >
-          <Stack spacing={3}>
+          <Stack spacing={{ xs: 1, md: 2, lg: 3 }}>
             <Typography
               variant="heroSubTitle"
               component="h1"
               color={theme.palette.primary.contrastText}
               fontWeight={typographyTokens.fontWeights.medium}
+              sx={{
+                fontSize: {
+                  xs: typographyTokens.fontSizes["2xl"],
+                  sm: typographyTokens.fontSizes["3xl"],
+                  md: typographyTokens.fontSizes["4xl"],
+                  lg: "3.1875rem",
+                },
+              }}
             >
               {projectName}
             </Typography>
@@ -141,8 +167,24 @@ const FeaturedProjectCard = ({ projectName, location, image, progressImage, onSe
               variant="h3"
               fontWeight={typographyTokens.fontWeights.regular}
               color={theme.palette.text.secondary}
+              lineHeight={{ xs: 1.2, md: 1.4 }}
+              sx={{
+                fontSize: {
+                  xs: typographyTokens.fontSizes["sm"], // Mobile size
+                  sm: typographyTokens.fontSizes["md"], // Tablet size
+                  md: typographyTokens.fontSizes["xl"],
+                  lg: typographyTokens.fontSizes["2xl"],
+                },
+                display: "flex",
+                alignItems: "center",
+                gap: 1,
+              }}
             >
-              <LocationIcon /> {location}
+              <LocationIcon
+                width={isSmallScreen ? 16 : 25}
+                height={isSmallScreen ? 16 : 25}
+              />
+              {location}
             </Typography>
 
             <Box sx={{ width: { md: "200px", lg: "430px" } }}>
@@ -165,32 +207,32 @@ const FeaturedProjectCard = ({ projectName, location, image, progressImage, onSe
           sx={{
             zIndex: 1,
             alignSelf: "flex-start",
-            height: { xs: "300px", md: "465px", lg: "765px" },
-            width: "60%",
+            height: { xs: "255px", sm: "340px", md: "510px", lg: "765px" },
+            width: { xs: "50%", md: "60%" },
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            // bgcolor: "#ccc",
           }}
         >
           <Box
             sx={{
               position: "relative",
-              // borderRadius: "70px 200px 70px 70px",
+              borderRadius: {
+                xs: "10px 50px 10px 10px",
+                md: "30px 100px 30px 30px",
+                lg: "70px 200px 70px 70px",
+              },
               overflow: "hidden",
-              height: { xs: "150px", md: "420px", lg: "660px" },
-              width: { xs: "400px", md: "100%" },
+              height: { xs: "200px", sm: "260px", md: "420px", lg: "660px" },
+              width: { xs: "100%", md: "100%" },
             }}
           >
             <Box
               component="img"
               src={image}
               sx={{
-                width: "110%",
+                width: "100%",
                 height: "100%",
-                left: "20%",
-                top:0,
-                position: "absolute",
                 objectFit: "cover",
               }}
             />

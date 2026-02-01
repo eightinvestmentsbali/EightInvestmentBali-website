@@ -74,7 +74,7 @@ const OurCoreValues: React.FC = () => {
 
         <Grid container spacing={{ xs: 4, md: 6 }}>
           {values.map((item, index) => (
-            <Grid size={{ xs: 12, md: 6 }} key={index}>
+            <Grid size={{ xs: 12, sm: 6, md: 6 }} key={index}>
               <Stack spacing={2}>
                 {/* ICON */}
                 <Box
@@ -100,7 +100,7 @@ const OurCoreValues: React.FC = () => {
                   variant="h4"
                   sx={{
                     fontWeight: typographyTokens.fontWeights.regular,
-                    maxWidth: {xs: "100%", md: "90%", lg: "80%"},
+                    maxWidth: { xs: "100%", md: "90%", lg: "80%" },
                     color: theme.palette.text.primary,
                     lineHeight: 1.6,
                   }}

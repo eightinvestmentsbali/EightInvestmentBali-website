@@ -238,16 +238,16 @@ const themeOptions: ThemeOptions = {
       lineHeight: 1.7,
 
       "@media (max-width:900px)": {
-        fontSize: "1.1rem",
+        fontSize: "1.5rem",
       },
       "@media (max-width:600px)": {
-        fontSize: "1rem",
+        fontSize: "1.2rem",
       },
     },
 
     // Headings (RESPONSIVE)
     h1: createTypographyVariant(
-      { mobile: "1xl", tablet: "3xl", desktop: "5xl" },
+      { mobile: "2xl", tablet: "3xl", desktop: "5xl" },
       "5xl",
       "bold"
     ),

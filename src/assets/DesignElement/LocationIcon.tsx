@@ -1,10 +1,9 @@
 import React from "react";
 
-const LocationIcon: React.FC<React.SVGProps<SVGSVGElement>> = () => {
+const LocationIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => {
   return (
     <svg
-      width="18"
-      height="23"
+      {...props}
       viewBox="0 0 18 23"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
