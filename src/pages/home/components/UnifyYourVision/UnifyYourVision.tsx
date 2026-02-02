@@ -2,41 +2,70 @@ import { Box, Divider, Grid, Typography } from "@mui/material";
 import React from "react";
 import { typographyTokens } from "../../../../theme/MuiTheme";
 import { useTheme } from "@mui/material/styles";
+import { motion } from "framer-motion";
 
 const UnifyYourVision: React.FC = () => {
   const theme = useTheme();
   return (
     <Grid size={{ xs: 12 }} id="about-us">
-      <Box sx={{ mt: { xs: 3.75, sm: 7.5, md: 13, lg: 26 } }}>
-        <Typography
-          variant="heroTitle"
-          component="h1"
-          sx={{
-            color: theme.palette.text.primary,
-            mb: { xs: 2, md: 6, lg: 8 },
+      <Box sx={{ mt: { xs: 3.75, sm: 7.5, md: 13, lg: 20 } }}>
+        <motion.div
+          initial={{ y: 60, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{
+            duration: 0.6,
+            ease: "easeOut",
           }}
         >
-          Unify your vision with limitless possibilities
-        </Typography>
+          <Typography
+            variant="heroTitle"
+            component="h1"
+            sx={{
+              color: theme.palette.text.primary,
+              mb: { xs: 2, md: 6, lg: 8 },
+            }}
+          >
+            Unify your vision with <br /> limitless possibilities
+          </Typography>
+        </motion.div>
 
-        <Divider
-          sx={{
-            height: "2px",
-            backgroundColor: theme.palette.divider,
-            mb: { xs: 2, md: 6, lg: 8 },
-          }}
-        />
-        <Typography
-          variant="heroSubTitle"
-          component="h1"
-          sx={{
-            color: "#484848",
-            mb: { xs: 2, md: 6, lg: 8 },
+        <motion.div
+          initial={{ y: 60, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{
+            duration: 0.6,
+            ease: "easeOut",
           }}
         >
-          We connect global investors with a haven of exclusive investment
-          opportunities in Bali
-        </Typography>
+          <Divider
+            sx={{
+              height: "2px",
+              backgroundColor: theme.palette.divider,
+              mb: { xs: 1, md: 6, lg: 8 },
+            }}
+          />
+        </motion.div>
+
+        <motion.div
+          initial={{ y: 60, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{
+            duration: 0.6,
+            ease: "easeOut",
+          }}
+        >
+          <Typography
+            variant="heroSubTitle"
+            component="h1"
+            sx={{
+              color: "#484848",
+              mb: { xs: 2, md: 6, lg: 8 },
+            }}
+          >
+            We connect global investors with a haven of exclusive investment
+            opportunities in Bali
+          </Typography>
+        </motion.div>
 
         {/* ===== STATS ===== */}
         <Grid container spacing={4} alignItems="center">
@@ -46,56 +75,69 @@ const UnifyYourVision: React.FC = () => {
             { value: "$40M+", label: "Total Managed Investments" },
           ].map((item, index) => (
             <Grid size={{ xs: 12, sm: 4 }} key={item.label}>
-              <Box
-                sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
+              <motion.div
+                initial={{ y: 60, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{
+                  duration: 0.6,
+                  ease: "easeOut",
                 }}
               >
                 <Box
                   sx={{
+                    display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
-                    textAlign: "center",
                   }}
                 >
-                  <Typography
-                    variant="heroSubTitle"
-                    component="h1"
-                    sx={{
-                      fontWeight: typographyTokens.fontWeights.medium,
-                      color: theme.palette.text.primary,
-                    }}
-                  >
-                    {item.value}
-                  </Typography>
-                  <Typography
-                    variant="heroSubTitle"
-                    component="h1"
-                    sx={{
-                      color: "#484848",
-                      mt: 1,
-                      lineHeight: 1.5,
-                    }}
-                  >
-                    {item.label}
-                  </Typography>
-                </Box>
-
-                {/* Vertical divider */}
-                {index !== 2 && (
                   <Box
                     sx={{
-                      height: 70,
-                      width: "2px",
-                      backgroundColor: "#cfd8dc",
-                      mx: 3,
-                      display: { xs: "none", sm: "block" },
+                      alignItems: "center",
+                      justifyContent: "center",
+                      textAlign: "center",
                     }}
-                  />
-                )}
-              </Box>
+                  >
+                    <Typography
+                      variant="heroSubTitle"
+                      component="h1"
+                      sx={{
+                        fontWeight: typographyTokens.fontWeights.medium,
+                        color: theme.palette.text.primary,
+                      }}
+                    >
+                      {item.value}
+                    </Typography>
+                    <Typography
+                      variant="heroSubTitle"
+                      component="h1"
+                      sx={{
+                        color: "#484848",
+                        mt: 1,
+                        lineHeight: 1.5,
+                      }}
+                    >
+                      {item.label}
+                    </Typography>
+                  </Box>
+
+                  {index !== 2 && (
+                    <Box
+                      sx={{
+                        height: {
+                          xs: "50px",
+                          sm: "70px",
+                          md: "90px",
+                          lg: "110px",
+                        },
+                        width: "2px",
+                        backgroundColor: "#cfd8dc",
+                        mx: 3,
+                        display: { xs: "none", sm: "block" },
+                      }}
+                    />
+                  )}
+                </Box>
+              </motion.div>
             </Grid>
           ))}
         </Grid>

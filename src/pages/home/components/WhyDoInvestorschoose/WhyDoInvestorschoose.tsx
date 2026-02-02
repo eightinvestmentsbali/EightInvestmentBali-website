@@ -98,12 +98,12 @@ const WhyDoInvestorschoose: React.FC = () => {
       <Box
         ref={containerRef}
         sx={{
-          mt: { xs: 3.75, sm: 7.5, md: 13, lg: 26 },
+          mt: { xs: 3.75, sm: 7.5, md: 13, lg: 20 },
           position: "relative",
-          height: {
-           xs: "auto",   
-            md: `${100 + investmentReasons.length * 100}vh`,
-          },
+          // height: {
+          //   xs: `${investmentReasons.length * 90 - 60}vh`,
+          //   md: `${100 + investmentReasons.length * 100}vh`,
+          // },
           px: { xs: 2, md: 4, lg: 6 },
           pb: { xs: 2, sm: 4, md: 8, lg: 16 },
         }}
@@ -117,6 +117,10 @@ const WhyDoInvestorschoose: React.FC = () => {
             top: "80px", // offset so sticky title sits below the fixed navbar
             zIndex: 1,
           }}
+          initial={{ opacity: 0, y: 80 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, margin: "-80px 0px 0px 0px" }}
+          transition={{ duration: 0.4, ease: "easeOut" }}
         >
           <Box sx={{ mb: { xs: 4, md: 10 } }}>
             <Typography
@@ -159,8 +163,8 @@ const WhyDoInvestorschoose: React.FC = () => {
           // Fade out the card behind
           const opacity = useTransform(
             scrollYProgress,
-            [cardStart, cardEnd],
-            [1, isLast ? 1 : 0],
+            [cardStart, cardEnd - 0.02],
+            [1, 1],
           );
 
           // Move the current card UP from below as you scroll
@@ -185,14 +189,14 @@ const WhyDoInvestorschoose: React.FC = () => {
               <Box
                 sx={{
                   position: "relative",
-                  borderRadius: { xs: 10, md: 20, lg: 30 },
+                  borderRadius: { xs: 5, md: 10, lg: 10 },
                   overflow: "hidden",
                   mx: "auto",
                   width: "100%",
                   mb: isLast ? 0 : 20,
                   // Use a clean off-white/paper base
                   bgcolor: theme.palette.background.paper,
-                  boxShadow: "0 16px 32px rgba(0, 0, 0, 0.05)",
+                  boxShadow: "0 32px 64px rgba(0, 0, 0, 0.2)",
                   border: `1px solid ${theme.palette.divider}`,
                   // Ensure the card is above the background but its children are above its own pseudo-elements
                   zIndex: 1,
@@ -222,7 +226,7 @@ const WhyDoInvestorschoose: React.FC = () => {
                     justifyContent: "space-between",
                     alignItems: "center",
                     gap: { xs: 4, md: 6, lg: 8 },
-                    height: { xs: "400px", md: "600px", xl: "800px" },
+                    height: { xs: "400px", md: "60vh", lg: "80vh" },
                     p: { xs: 4, md: 6, lg: 8 },
                     zIndex: 1,
                   }}
@@ -289,8 +293,9 @@ const WhyDoInvestorschoose: React.FC = () => {
 
                     {/* Description */}
                     <Typography
+                      variant="h3"
                       sx={{
-                        fontSize: { xs: "0.8rem", md: "1.5rem", lg: "2.5rem" },
+                        // fontSize: { xs: "0.5rem", md: "1rem", lg: "2rem" },
                         fontWeight: typographyTokens.fontWeights.regular,
                         lineHeight: { xs: 1.2, md: 1.2, lg: 1.5 },
                         color: theme.palette.text.primary,

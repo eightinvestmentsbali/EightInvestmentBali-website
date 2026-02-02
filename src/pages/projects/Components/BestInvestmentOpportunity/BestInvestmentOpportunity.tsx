@@ -106,7 +106,7 @@ const BestInvestmentOpportunity: React.FC = () => {
               maxWidth: { xs: "100%", md: "60%" },
             }}
           >
-            Best investment opportunity
+            Best investment <br/> opportunity
           </Typography>
 
           <Divider

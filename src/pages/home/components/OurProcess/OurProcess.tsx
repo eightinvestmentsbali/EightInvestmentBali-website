@@ -280,14 +280,14 @@ const OurProcess: React.FC = () => {
         {/* -------------------- CONTENT -------------------- */}
         <Grid
           container
-          spacing={{ xs: 4, sm: 6, md: 8 }}
+          spacing={{ xs: 4, sm: 4, md: 8 }}
           mt={{ xs: 2, md: 6 }}
           alignItems="center"
           sx={{ flexWrap: "wrap" }}
         >
           {/* -------------------- LEFT CARD -------------------- */}
           <Grid
-            size={{ xs: 12, sm: 12, md: 6 }}
+            size={{ xs: 12, sm: 6, md: 6 }}
             sx={{
               pl: { xs: 2, sm: 3, md: 6 },
               overflow: "visible",
@@ -417,8 +417,9 @@ const OurProcess: React.FC = () => {
                           sx={{
                             fontSize: {
                               xs: "0.875rem",
-                              sm: "1.125rem",
-                              md: "1.5rem",
+                              sm: "1rem",
+                              md: "1.3rem",
+                              lg: "1.5rem",
                             },
                             fontWeight: 400,
                             lineHeight: { xs: 1.6, md: 1.7 },
@@ -436,7 +437,7 @@ const OurProcess: React.FC = () => {
           </Grid>
 
           {/* -------------------- RIGHT STEPS -------------------- */}
-          <Grid size={{ xs: 12, sm: 12, md: 6 }}>
+          <Grid size={{ xs: 12, sm: 6, md: 6 }}>
             <Stack spacing={{ xs: 3, sm: 4, md: 5 }} mt={{ xs: 4, md: 0 }}>
               {steps.map((step, index) => {
                 const isActive = index === 0;

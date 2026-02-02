@@ -1,7 +1,6 @@
 import React from "react";
 import { Box, Container, Grid } from "@mui/material";
 import Navbar from "../../components/navbar/Navbar";
-import { useTheme } from "@mui/material/styles";
 import ArchitectingProsperity from "./components/ArchitectingProsperity/ArchitectingProsperity";
 import UnifyYourVision from "./components/UnifyYourVision/UnifyYourVision";
 import WhyDoInvestorschoose from "./components/WhyDoInvestorschoose/WhyDoInvestorschoose";
@@ -19,7 +18,8 @@ import OurCoreValues from "./components/OurCoreValues/OurCoreValues";
 // import MeshBackground from "../../components/background/MeshBackground";
 // import BackgroundParticles from "../../components/background/BackgroundParticles";
 // import MuiGradientBackground from "../../components/background/MuiGradientBackground";
-// import AnimatedGradientBlob from "../../components/background/AnimatedGradientBlob";
+import AnimatedGradientBlob from "../../components/background/AnimatedGradientBlob";
+import { useTheme } from '@mui/material/styles';
 
 const Home: React.FC = () => {
   const theme = useTheme();
@@ -32,9 +32,10 @@ const Home: React.FC = () => {
         bgcolor: theme.palette.background.paper,
       }}
     >
+      <AnimatedGradientBlob />
+      {/* Your content */}
       {/* <MuiGradientBackground /> */}
       {/* <BackgroundParticles /> */}
-      {/* <AnimatedGradientBlob /> */}
 
       {/* <GLSLBackground /> */}
       {/* <ShaderBackground /> */}

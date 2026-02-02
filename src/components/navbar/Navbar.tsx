@@ -12,7 +12,7 @@ import {
   Drawer,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
+// import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { useTheme } from "@mui/material/styles";
 import Logo from "../../assets/DesignElement/LogoSVG";
@@ -98,6 +98,18 @@ const Navbar: React.FC = () => {
     e.preventDefault();
     
     const isHomePage = location.pathname === "/";
+
+    if (label === "Home") {
+      if (isHomePage) {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      } else {
+        navigate("/");
+        window.scrollTo(0, 0);
+      }
+      setOpen(false);
+      return;
+    }
+
     const sectionMap: { [key: string]: string } = {
       "Services": "our-services",
       "Our Team": "our-team",
@@ -172,9 +184,10 @@ const Navbar: React.FC = () => {
             </Box>
 
             {/* Right Icon */}
-            <IconButton>
+            {/* <IconButton>
               <NotificationsNoneIcon />
-            </IconButton>
+            </IconButton> */}
+            <Box sx={{ width: 40 }} />
           </Box>
 
           {/* ===== DESKTOP VIEW ===== */}
@@ -193,7 +206,7 @@ const Navbar: React.FC = () => {
             {/* Menu */}
             <Stack direction="row" spacing={6} alignItems="center">
               {menuItems.map((item) => {
-                const isScrollable = item.label === "Services" || item.label === "Our Team" || item.label === "Projects" || item.label === "About Us";
+                const isScrollable = item.label === "Services" || item.label === "Our Team" || item.label === "Projects" || item.label === "About Us" || item.label === "Home";
                 return (
                   <Typography
                     key={item.label}
@@ -245,7 +258,7 @@ const Navbar: React.FC = () => {
         <Box sx={{ width: 260, p: 3 }}>
           <Stack spacing={3}>
             {menuItems.map((item) => {
-              const isScrollable = item.label === "Services" || item.label === "Our Team";
+              const isScrollable = item.label === "Services" || item.label === "Our Team" || item.label === "Projects" || item.label === "About Us" || item.label === "Home";
               return (
                 <Typography
                   key={item.label}
