@@ -98,6 +98,7 @@ const WhyDoInvestorschoose: React.FC = () => {
       <Box
         ref={containerRef}
         sx={{
+          mt: { xs: 3.75, sm: 7.5, md: 13, lg: 26 },
           position: "relative",
           height: `${100 + investmentReasons.length * 100}vh`,
           px: { xs: 2, md: 4, lg: 6 },
@@ -114,7 +115,7 @@ const WhyDoInvestorschoose: React.FC = () => {
             zIndex: 1,
           }}
         >
-          <Box sx={{ mt: { xs: 6, md: 16 }, mb: { xs: 4, md: 10 } }}>
+          <Box sx={{ mb: { xs: 4, md: 10 } }}>
             <Typography
               variant="heroTitle"
               component="h1"
@@ -253,7 +254,7 @@ const WhyDoInvestorschoose: React.FC = () => {
                       sx={{
                         display: "flex",
                         flexWrap: "wrap",
-                        gap: { xs: 0.5, md: 1, lg: 1.5},
+                        gap: { xs: 0.5, md: 1, lg: 1.5 },
                       }}
                     >
                       {reason.tags.map((tag, idx) => (
@@ -288,7 +289,7 @@ const WhyDoInvestorschoose: React.FC = () => {
                       sx={{
                         fontSize: { xs: "0.8rem", md: "1.5rem", lg: "2.5rem" },
                         fontWeight: typographyTokens.fontWeights.regular,
-                        lineHeight: { xs: 1.2, md: 1.2, lg: 1.5},
+                        lineHeight: { xs: 1.2, md: 1.2, lg: 1.5 },
                         color: theme.palette.text.primary,
                         maxWidth: "90%",
                       }}
