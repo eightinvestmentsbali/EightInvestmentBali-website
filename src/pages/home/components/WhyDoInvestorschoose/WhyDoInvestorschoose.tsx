@@ -100,9 +100,12 @@ const WhyDoInvestorschoose: React.FC = () => {
         sx={{
           mt: { xs: 3.75, sm: 7.5, md: 13, lg: 26 },
           position: "relative",
-          height: `${100 + investmentReasons.length * 100}vh`,
+          height: {
+           xs: "auto",   
+            md: `${100 + investmentReasons.length * 100}vh`,
+          },
           px: { xs: 2, md: 4, lg: 6 },
-          pb: { xs: 4, md: 8, lg: 16 },
+          pb: { xs: 2, sm: 4, md: 8, lg: 16 },
         }}
       >
         {/* Title Section - Fades out on scroll */}
@@ -186,7 +189,7 @@ const WhyDoInvestorschoose: React.FC = () => {
                   overflow: "hidden",
                   mx: "auto",
                   width: "100%",
-                  mb: 20,
+                  mb: isLast ? 0 : 20,
                   // Use a clean off-white/paper base
                   bgcolor: theme.palette.background.paper,
                   boxShadow: "0 16px 32px rgba(0, 0, 0, 0.05)",
@@ -274,7 +277,7 @@ const WhyDoInvestorschoose: React.FC = () => {
                           <Typography
                             variant="body2"
                             sx={{
-                              color: theme.palette.text.secondary,
+                              color: "#484848",
                               fontWeight: typographyTokens.fontWeights.regular,
                             }}
                           >
