@@ -67,7 +67,8 @@ const OurServices: React.FC = () => {
       id="our-services"
       sx={{
         bgcolor: theme.palette.background.paper,
-        py: { xs: 2, md: 5, lg: 10 },
+        pb: { xs: 2, md: 5, lg: 10 },
+        mt: { xs: 3.75, sm: 7.5, md: 13, lg: 26 },
       }}
     >
       <Container maxWidth="xl">
@@ -153,7 +154,12 @@ const OurServices: React.FC = () => {
                       top: { xs: "2%", sm: "3%", md: "5%" },
                       left: "10px",
                       fontWeight: "regular",
-                      width: { xs: "80px", sm: "90px", md: "140px", lg: "180px"},
+                      width: {
+                        xs: "80px",
+                        sm: "90px",
+                        md: "140px",
+                        lg: "180px",
+                      },
                       lineHeight: 1.2,
                       zIndex: 2,
                       whiteSpace: "pre-line",

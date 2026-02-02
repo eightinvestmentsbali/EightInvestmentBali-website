@@ -94,7 +94,7 @@ const BestInvestmentOpportunity = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const descriptionRef = useRef<HTMLDivElement>(null);
-  const isInitialMount = useRef(true);
+  // const isInitialMount = useRef(true);
   const containerRef = useRef<HTMLDivElement>(null);
 
   const { scrollYProgress } = useScroll({
@@ -106,21 +106,21 @@ const BestInvestmentOpportunity = () => {
   const titleOpacity = useTransform(scrollYProgress, [0, 0.15], [1, 0]);
   const titleY = useTransform(scrollYProgress, [0, 0.15], [0, -50]);
 
-  useEffect(() => {
-    if (isInitialMount.current) {
-      isInitialMount.current = false;
-      return;
-    }
+  // useEffect(() => {
+  //   if (isInitialMount.current) {
+  //     isInitialMount.current = false;
+  //     return;
+  //   }
 
-    if (descriptionRef.current) {
-      setTimeout(() => {
-        descriptionRef.current?.scrollIntoView({
-          behavior: "smooth",
-          block: "start",
-        });
-      }, 100);
-    }
-  }, [activeIndex]);
+  //   if (descriptionRef.current) {
+  //     setTimeout(() => {
+  //       descriptionRef.current?.scrollIntoView({
+  //         behavior: "smooth",
+  //         block: "start",
+  //       });
+  //     }, 100);
+  //   }
+  // }, [activeIndex]);
 
   useEffect(() => {
     if (isModalOpen) {

@@ -7,13 +7,13 @@ const UnifyYourVision: React.FC = () => {
   const theme = useTheme();
   return (
     <Grid size={{ xs: 12 }} id="about-us">
-      <Box sx={{ mt: { xs: 2, md: 6, lg: 10 } }}>
+      <Box sx={{ mt: { xs: 3.75, sm: 7.5, md: 13, lg: 26 } }}>
         <Typography
           variant="heroTitle"
           component="h1"
           sx={{
             color: theme.palette.text.primary,
-            mb: { xs: 2, md: 6, lg: 10 },
+            mb: { xs: 2, md: 6, lg: 8 },
           }}
         >
           Unify your vision with limitless possibilities
