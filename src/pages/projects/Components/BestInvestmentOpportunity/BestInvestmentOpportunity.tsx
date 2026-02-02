@@ -16,30 +16,42 @@ const projects = [
   {
     name: "Lili Village",
     location: "Abianbase–Mengwi, Bali",
-    image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    progressImage: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=400&fit=crop",
-    description: "Lili Village spans 2,960 square meters of artfully designed space, offering 18 unique townhouses crafted in 2-bedroom (155 sqm) and 3-bedroom (235 sqm) styles. At its heart lies a social clubhouse, blending art and balance, where a gym, pool bar, serene swimming pool, and a communal restaurant create a harmonious living experience.",
+    image:
+      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    progressImage:
+      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=400&fit=crop",
+    description:
+      "Lili Village spans 2,960 square meters of artfully designed space, offering 18 unique townhouses crafted in 2-bedroom (155 sqm) and 3-bedroom (235 sqm) styles. At its heart lies a social clubhouse, blending art and balance, where a gym, pool bar, serene swimming pool, and a communal restaurant create a harmonious living experience.",
   },
   {
     name: "The Hive",
     location: "Ubud, Bali",
-    image: "https://images.unsplash.com/photo-1676500684456-99f21e42a6fe?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    progressImage: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=400&fit=crop",
-    description: "The Hive represents a modern architectural masterpiece, featuring innovative design concepts that seamlessly blend contemporary living with traditional Balinese aesthetics. This development offers luxury residences with state-of-the-art amenities and breathtaking views of the surrounding landscape.",
+    image:
+      "https://images.unsplash.com/photo-1676500684456-99f21e42a6fe?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    progressImage:
+      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=400&fit=crop",
+    description:
+      "The Hive represents a modern architectural masterpiece, featuring innovative design concepts that seamlessly blend contemporary living with traditional Balinese aesthetics. This development offers luxury residences with state-of-the-art amenities and breathtaking views of the surrounding landscape.",
   },
   {
     name: "Little Soho",
     location: "Canggu, Bali",
-    image: "https://images.unsplash.com/photo-1634344656611-0773d8dbbe2c?q=80&w=1169&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    progressImage: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=400&fit=crop",
-    description: "Little Soho brings urban sophistication to Bali with its chic design and vibrant community spaces. Each unit is thoughtfully designed to maximize space and natural light, creating an inviting atmosphere that reflects the dynamic energy of modern living in paradise.",
+    image:
+      "https://images.unsplash.com/photo-1634344656611-0773d8dbbe2c?q=80&w=1169&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    progressImage:
+      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=400&fit=crop",
+    description:
+      "Little Soho brings urban sophistication to Bali with its chic design and vibrant community spaces. Each unit is thoughtfully designed to maximize space and natural light, creating an inviting atmosphere that reflects the dynamic energy of modern living in paradise.",
   },
   {
     name: "Dynasty 8",
     location: "Seminyak, Bali",
-    image: "https://images.unsplash.com/photo-1582407947304-fd86f028f716?q=80&w=1296&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    progressImage: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=400&fit=crop",
-    description: "Dynasty 8 embodies luxury and exclusivity, offering premium residences with world-class facilities. This prestigious development features elegant architecture, private amenities, and exceptional attention to detail, creating an unparalleled living experience for discerning investors.",
+    image:
+      "https://images.unsplash.com/photo-1582407947304-fd86f028f716?q=80&w=1296&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    progressImage:
+      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=400&fit=crop",
+    description:
+      "Dynasty 8 embodies luxury and exclusivity, offering premium residences with world-class facilities. This prestigious development features elegant architecture, private amenities, and exceptional attention to detail, creating an unparalleled living experience for discerning investors.",
   },
 ];
 
@@ -84,14 +96,14 @@ const BestInvestmentOpportunity: React.FC = () => {
     <Box sx={{ py: { xs: 2, md: 4, lg: 6 } }}>
       <VideoPlayer />
       <Grid size={{ xs: 12 }}>
-        <Box sx={{ mt: { xs: 2, md: 8, lg: 20 }, }}>
+        <Box sx={{ mt: { xs: 2, md: 8, lg: 20 } }}>
           <Typography
             variant="heroTitle"
             component="h1"
             sx={{
               color: theme.palette.text.primary,
-              mb: { xs: 3, md: 4, lg: 5 },
-              maxWidth: "60%",
+              mb: { xs: 4, md: 6, lg: 10 },
+              maxWidth: { xs: "100%", md: "60%" },
             }}
           >
             Best investment opportunity
@@ -103,7 +115,11 @@ const BestInvestmentOpportunity: React.FC = () => {
               backgroundColor: theme.palette.divider,
               mb: { xs: 4, md: 6, lg: 8 },
               mx: { xs: -2, md: -4, lg: -6 },
-              width: { xs: "calc(100% + 32px)", md: "calc(100% + 64px)", lg: "calc(100% + 96px)" },
+              width: {
+                xs: "calc(100% + 32px)",
+                md: "calc(100% + 64px)",
+                lg: "calc(100% + 96px)",
+              },
             }}
           />
           <FeaturedProjectCard
@@ -114,11 +130,11 @@ const BestInvestmentOpportunity: React.FC = () => {
             progressImage={activeProject.progressImage}
             projectNumber={`${activeIndex + 1}/${projects.length}`}
           />
-          <Box sx={{ mt: { xs: 4, md: 6, lg: 8 } }}>
+          <Box mt={{ xs: 2, md: 4, lg: 6 }}>
             {/* Image slider */}
-            <Grid container spacing={{ xs: 2, md: 3, lg: 4 }}>
+            <Grid container spacing={{ xs: 0.7, md: 1.4, lg: 2 }}>
               {projects.map((project, index) => (
-                <Grid size={{ xs: 12, md: 6, lg: 3 }} key={index}>
+                <Grid size={{ xs: 3 }} key={index}>
                   <Box
                     onClick={() => setActiveIndex(index)}
                     sx={{
@@ -127,7 +143,7 @@ const BestInvestmentOpportunity: React.FC = () => {
                         activeIndex === index
                           ? `2px solid ${theme.palette.primary.main}`
                           : "2px solid transparent",
-                      p: activeIndex === index ? 1.5 : 0,
+                      p: { xs: 0.5, md: 1, lg: 1.5 },
                       borderRadius: 3,
                       opacity: index === activeIndex ? 1 : 0.6,
                       transition: "all .3s ease",
@@ -144,7 +160,7 @@ const BestInvestmentOpportunity: React.FC = () => {
                       src={project.image}
                       sx={{
                         width: "100%",
-                        height: { xs: 200, md: 250, lg: 280 },
+                        height: { xs: "80px", md: "160px", lg: "280px" },
                         borderRadius: 2,
                         objectFit: "cover",
                       }}
@@ -237,7 +253,11 @@ const BestInvestmentOpportunity: React.FC = () => {
               sx={{
                 mb: { xs: 4, md: 6, lg: 8 },
                 mx: { xs: -2, md: -4, lg: -6 },
-                width: { xs: "calc(100% + 32px)", md: "calc(100% + 64px)", lg: "calc(100% + 96px)" },
+                width: {
+                  xs: "calc(100% + 32px)",
+                  md: "calc(100% + 64px)",
+                  lg: "calc(100% + 96px)",
+                },
               }}
             />
             <Grid

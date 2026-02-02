@@ -188,8 +188,8 @@ const BestInvestmentOpportunity = () => {
                   borderColor: theme.palette.primary.contrastText,
                   borderRadius: 50,
                   display: { xs: "none", sm: "inline-flex" },
-                  px: { xs: 2, sm: 2, md: 3},
-                  py: { xs: 0.5, sm: 0.8, md: 1 },
+                  px: { xs: 2, sm: 2, md: 3 },
+                  py: { xs: 0.5, sm: 0.8, md: 1, lg: 2 },
                   flexShrink: 0,
                   fontWeight: typographyTokens.fontWeights.regular,
                   fontSize: { xs: "8px", sm: "12px", md: "16px", lg: "32px" },
@@ -413,7 +413,7 @@ const BestInvestmentOpportunity = () => {
             mx="auto"
           >
             {features.map((item, index) => (
-              <Grid size={{ xs: 12, sm: 6, md: 6}} key={index}>
+              <Grid size={{ xs: 12, sm: 6, md: 6 }} key={index}>
                 <Stack spacing={2} p={{ xs: 2, md: 4, lg: 8 }}>
                   {/* ICON */}
                   <Box

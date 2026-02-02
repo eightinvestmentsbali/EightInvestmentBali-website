@@ -218,7 +218,7 @@ const FeaturedProjectCard = ({
             sx={{
               position: "relative",
               borderRadius: {
-                xs: "10px 50px 10px 10px",
+                xs: "30px 50px 30px 20px",
                 md: "30px 100px 30px 30px",
                 lg: "70px 200px 70px 70px",
               },
