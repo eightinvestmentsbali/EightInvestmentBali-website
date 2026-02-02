@@ -73,7 +73,14 @@ const VideoPlayer: React.FC = () => {
     "Z";
 
   return (
-    <Box sx={{ position: "relative", width: "100%", mt: { xs: 2 }, mb: { xs: 4, md: 6, lg: 8 } }}>
+    <Box
+      sx={{
+        position: "relative",
+        width: "100%",
+        mt: { xs: 2 },
+        mb: { xs: 4, md: 6, lg: 8 },
+      }}
+    >
       {/* SVG Definition */}
       <svg width="0" height="0" style={{ position: "absolute" }}>
         <defs>
@@ -83,7 +90,7 @@ const VideoPlayer: React.FC = () => {
         </defs>
       </svg>
 
-      <Box sx={{ position: "relative", overflow: "visible",  }}>
+      <Box sx={{ position: "relative", overflow: "visible" }}>
         {/* Video Container */}
         <Box
           sx={{
@@ -146,9 +153,9 @@ const VideoPlayer: React.FC = () => {
           sx={{
             position: "absolute",
             bottom: 0,
-            left: { xs: 10, md: 20, lg: 30 },
+            left: { xs: 5, sm: 10, md: 20, lg: 30 },
             pr: 6,
-            pb: 2,
+            pb: { xs: 0, sm: 1, md: 2 },
             zIndex: 10,
           }}
         >

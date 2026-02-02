@@ -1,4 +1,4 @@
-import { Box, Stack, Typography } from "@mui/material";
+import { Box, Stack, Typography, useMediaQuery } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import { typographyTokens } from "../../../../../theme/MuiTheme";
 import LocationIcon from "../../../../../assets/DesignElement/LocationIcon";
@@ -12,8 +12,15 @@ interface FeaturedProjectCardProps {
   projectNumber: string;
 }
 
-const FeaturedProjectCard = ({ projectName, location, image, progressImage, projectNumber }: FeaturedProjectCardProps) => {
+const FeaturedProjectCard = ({
+  projectName,
+  location,
+  image,
+  progressImage,
+  projectNumber,
+}: FeaturedProjectCardProps) => {
   const theme = useTheme();
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
 
   const clipPathData =
     "M 0,0.20 Q 0,0.15 0.05,0.15 H 0.20 Q 0.25,0.15 0.25,0.1 V 0.05 Q 0.25,0 0.30,0 H 0.95 Q 1,0 1,0.05 V 0.80 Q 1,0.85 0.95,0.85 H 0.80 Q 0.75,0.85 0.75,0.9 V 0.95 Q 0.75,1 0.70,1 H 0.05 Q 0,1 0,0.95 Z";
@@ -41,9 +48,18 @@ const FeaturedProjectCard = ({ projectName, location, image, progressImage, proj
       >
         <Typography
           variant="h1"
+          lineHeight={1.2} // Tightened slightly for large headers
           color={theme.palette.text.primary}
-          lineHeight={1.4}
           fontWeight={typographyTokens.fontWeights.medium}
+          sx={{
+            fontSize: {
+              xs: typographyTokens.fontSizes["md"], // Mobile size
+              sm: typographyTokens.fontSizes["xl"], // Tablet size
+              md: typographyTokens.fontSizes["4xl"],
+              lg: typographyTokens.fontSizes["5xl"], // Desktop size
+            },
+            textAlign: { xs: "left", md: "left" },
+          }}
         >
           SOLD OUT IN <br /> 3 WEEKS
         </Typography>
@@ -73,6 +89,15 @@ const FeaturedProjectCard = ({ projectName, location, image, progressImage, proj
             component="h1"
             color={theme.palette.text.secondary}
             fontWeight={typographyTokens.fontWeights.medium}
+            sx={{
+              fontSize: {
+                xs: typographyTokens.fontSizes["lg"], // Mobile size
+                sm: typographyTokens.fontSizes["xl"], // Tablet size
+                md: typographyTokens.fontSizes["2xl"],
+                lg: typographyTokens.fontSizes["5xl"], // Desktop size
+              },
+              lineHeight: 1.2,
+            }}
           >
             {projectNumber}
           </Typography>
@@ -86,8 +111,8 @@ const FeaturedProjectCard = ({ projectName, location, image, progressImage, proj
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
-          height: { xs: "300px", md: "600px", lg: "900px" },
-          px: { xs: 4, md: 10 },
+          height: { xs: "300px", sm: "400px", md: "600px", lg: "900px" },
+          px: { xs: 3, sm: 5, md: 6, lg: 10 },
           clipPath: "url(#outerFrameClip)",
           background: theme.palette.primary.main,
           overflow: "visible",
@@ -110,7 +135,7 @@ const FeaturedProjectCard = ({ projectName, location, image, progressImage, proj
           sx={{
             zIndex: 1,
             alignSelf: "flex-end",
-            height: { xs: "300px", md: "465px", lg: "765px" },
+            height: { xs: "255px", sm: "340px", md: "510px", lg: "765px" },
             width: "40%",
             display: "flex",
             alignItems: "center",
@@ -118,7 +143,7 @@ const FeaturedProjectCard = ({ projectName, location, image, progressImage, proj
             // justifyContent: "center",
           }}
         >
-          <Stack spacing={3}>
+          <Stack spacing={{ xs: 1, md: 2, lg: 3 }}>
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
@@ -129,6 +154,14 @@ const FeaturedProjectCard = ({ projectName, location, image, progressImage, proj
                 component="h1"
                 color={theme.palette.primary.contrastText}
                 fontWeight={typographyTokens.fontWeights.medium}
+                sx={{
+                  fontSize: {
+                    xs: typographyTokens.fontSizes["2xl"],
+                    sm: typographyTokens.fontSizes["3xl"],
+                    md: typographyTokens.fontSizes["4xl"],
+                    lg: "3.1875rem",
+                  },
+                }}
               >
                 {projectName}
               </Typography>
@@ -142,12 +175,28 @@ const FeaturedProjectCard = ({ projectName, location, image, progressImage, proj
                 variant="h3"
                 fontWeight={typographyTokens.fontWeights.regular}
                 color={theme.palette.text.secondary}
+                lineHeight={{ xs: 1.2, md: 1.4 }}
+                sx={{
+                  fontSize: {
+                    xs: typographyTokens.fontSizes["sm"], // Mobile size
+                    sm: typographyTokens.fontSizes["md"], // Tablet size
+                    md: typographyTokens.fontSizes["xl"],
+                    lg: typographyTokens.fontSizes["2xl"],
+                  },
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 1,
+                }}
               >
-                <LocationIcon /> {location}
+                <LocationIcon
+                  width={isSmallScreen ? 16 : 25}
+                  height={isSmallScreen ? 16 : 25}
+                />
+                {location}
               </Typography>
             </motion.div>
 
-            <Box sx={{ width: {md:"200px", lg:"430px"} }}>
+            <Box sx={{ width: { md: "200px", lg: "430px" } }}>
               <motion.div
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
@@ -173,8 +222,8 @@ const FeaturedProjectCard = ({ projectName, location, image, progressImage, proj
           sx={{
             zIndex: 1,
             alignSelf: "flex-start",
-              height: { xs: "300px", md: "465px", lg: "765px" },
-            width: "60%",
+            height: { xs: "255px", sm: "340px", md: "510px", lg: "765px" },
+            width: { xs: "50%", md: "60%" },
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
@@ -184,10 +233,14 @@ const FeaturedProjectCard = ({ projectName, location, image, progressImage, proj
           <Box
             sx={{
               position: "relative",
-              borderRadius: "70px 200px 70px 70px",
+              borderRadius: {
+                xs: "10px 50px 10px 10px",
+                md: "30px 100px 30px 30px",
+                lg: "70px 200px 70px 70px",
+              },
               overflow: "hidden",
-              height: { xs: "300px", md: "420px", lg: "660px"},
-              width: { xs: "400px", md: "100%" },
+              height: { xs: "200px", sm: "260px", md: "420px", lg: "660px" },
+              width: { xs: "100%", md: "100%" },
             }}
           >
             <AnimatePresence mode="wait">

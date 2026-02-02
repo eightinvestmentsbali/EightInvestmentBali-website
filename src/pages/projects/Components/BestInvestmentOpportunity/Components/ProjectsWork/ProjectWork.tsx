@@ -3,6 +3,7 @@ import { Box, Grid, IconButton, Typography } from "@mui/material";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { useTheme } from "@mui/material/styles";
+import { typographyTokens } from "../../../../../../theme/MuiTheme";
 
 const images = [
   "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c",
@@ -54,7 +55,15 @@ const ProjectWork: React.FC = () => {
         sx={{
           position: "relative",
           overflow: "hidden",
-          mb: 3,
+          height: {
+            xs: "285.8px",
+            sm: "500px",
+            md: "600px",
+            lg: "calc(100vh - 500px)",
+          },
+          display: "flex",
+          flexDirection: "column",
+          mb: { xs: 3, md: 2 },
         }}
       >
         <Box
@@ -62,7 +71,7 @@ const ProjectWork: React.FC = () => {
           src={images[activeIndex]}
           sx={{
             width: "100%",
-            height: { xs: "285.8px", md: "970px" },
+            height: "100%",
             objectFit: "cover",
           }}
         />
@@ -111,8 +120,9 @@ const ProjectWork: React.FC = () => {
             key={index}
             onClick={() => setActiveIndex(index)}
             sx={{
-              width: { xs: "100%", md: "50%", lg: "20%" },
-              height: 180,
+              minWidth: { xs: "80px", md: 0 },
+              width: { xs: "80px", md: "auto" },
+              height: { xs: 80, md: 180 },
               overflow: "hidden",
               cursor: "pointer",
               opacity: index === activeIndex ? 1 : 0.6,
@@ -145,8 +155,8 @@ const ProjectWork: React.FC = () => {
           component="h1"
           sx={{
             color: theme.palette.text.primary,
-            fontWeight: 500,
-            mb: { xs: 4, md: 8 },
+            mb: { xs: 2, md: 4 },
+            fontWeight: typographyTokens.fontWeights.medium,
           }}
         >
           Projects
@@ -154,7 +164,7 @@ const ProjectWork: React.FC = () => {
 
         <Grid container spacing={4}>
           {projects.map((project) => (
-            <Grid size={{ xs: 12, md: 6 }} key={project.title}>
+            <Grid size={{ xs: 12, sm:6, md: 6 }} key={project.title}>
               <Box
                 sx={{
                   borderRadius: 3,

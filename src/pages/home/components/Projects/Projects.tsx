@@ -119,7 +119,7 @@ const Projects: React.FC = () => {
         sx={{
           bgcolor: "#232323",
           px: { xs: 2, md: 4, lg: 6 },
-          minHeight: { xs: "auto", md: "800px", lg: "100vh" },
+          // minHeight: { xs: "auto", md: "800px", lg: "100vh" },
           display: "flex",
           flexDirection: "column",
         }}
