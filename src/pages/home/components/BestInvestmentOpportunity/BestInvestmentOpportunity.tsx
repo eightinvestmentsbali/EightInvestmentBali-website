@@ -8,6 +8,7 @@ import {
   Typography,
   Modal,
   IconButton,
+  Skeleton,
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import FeaturedProjectCard from "../../../../components/BestInvestmentOpportunityComponents/FeaturedProjectCard";
@@ -98,6 +99,7 @@ const BestInvestmentOpportunity = () => {
   const descriptionRef = useRef<HTMLDivElement>(null);
   // const isInitialMount = useRef(true);
   const cardRef = useRef<HTMLDivElement>(null);
+  const [loadedImages, setLoadedImages] = useState<Record<number, boolean>>({});
 
   const { scrollYProgress: cardProgress } = useScroll({
     target: cardRef,
@@ -106,7 +108,11 @@ const BestInvestmentOpportunity = () => {
 
   const headerOpacity = useTransform(cardProgress, [0, 1], [1, 0]);
   const headerY = useTransform(cardProgress, [0, 1], [0, -24]);
-  const headerBlur = useTransform(cardProgress, [0, 1], ["blur(0px)", "blur(4px)"]);
+  const headerBlur = useTransform(
+    cardProgress,
+    [0, 1],
+    ["blur(0px)", "blur(4px)"],
+  );
 
   // useEffect(() => {
   //   if (isInitialMount.current) {
@@ -177,11 +183,11 @@ const BestInvestmentOpportunity = () => {
                 component="h1"
                 color={theme.palette.primary.contrastText}
               >
-                Best investment <br/> opportunity
+                Best investment <br /> opportunity
               </Typography>
 
               <Button
-              onClick={() => navigate("/projects")}
+                onClick={() => navigate("/projects")}
                 variant="outlined"
                 sx={{
                   color: theme.palette.primary.contrastText,
@@ -214,6 +220,7 @@ const BestInvestmentOpportunity = () => {
               }}
             />
           </motion.div>
+
           <Box ref={cardRef}>
             <FeaturedProjectCard
               projectName={projects[activeIndex].name}
@@ -224,7 +231,7 @@ const BestInvestmentOpportunity = () => {
             />
           </Box>
           {/* CAROUSEL ITEMS */}
-          <Box mt={{ xs: 2, md: 4, lg: 6 }}>
+          {/* <Box mt={{ xs: 2, md: 4, lg: 6 }}>
             <Grid container spacing={{ xs: 0.7, md: 1.4, lg: 2 }}>
               {projects.map((project, index) => (
                 <Grid size={{ xs: 3 }} key={project.name}>
@@ -266,7 +273,100 @@ const BestInvestmentOpportunity = () => {
                 </Grid>
               ))}
             </Grid>
+          </Box> */}
+          <Box mt={{ xs: 2, md: 4, lg: 6 }}>
+            <Grid container spacing={{ xs: 0.7, md: 1.4, lg: 2 }}>
+              {projects.map((project, index) => {
+                const isLoaded = loadedImages[index];
+
+                return (
+                  <Grid size={{ xs: 3 }} key={project.name}>
+                    <Box
+                      onClick={() => setActiveIndex(index)}
+                      sx={{
+                        borderRadius: 3,
+                        p: { xs: 0.5, md: 1, lg: 1.5 },
+                        cursor: "pointer",
+                        border:
+                          index === activeIndex ? "2px solid #5CFF9D" : "",
+                        transition: "all .3s ease",
+                        backgroundColor: "#000",
+
+                        "&:hover": {
+                          transform: "translate3d(0,-4px,0)",
+                        },
+                      }}
+                    >
+                      {/* IMAGE WRAPPER */}
+                      <Box
+                        sx={{
+                          position: "relative",
+                          width: "100%",
+                          height: { xs: "80px", md: "160px", lg: "280px" },
+                          borderRadius: 2,
+                          overflow: "hidden",
+                          backgroundColor: "#111",
+                        }}
+                      >
+                        {/* LOADER */}
+                        {!isLoaded && (
+                          <Box
+                            sx={{
+                              position: "absolute",
+                              inset: 0,
+                              display: "flex",
+                              alignItems: "center",
+                              justifyContent: "center",
+                              zIndex: 10,
+                            }}
+                          >
+                            <Skeleton
+                              variant="rectangular"
+                              width="100%"
+                              height="100%"
+                              sx={{ bgcolor: "#868686" }}
+                            />
+                          </Box>
+                        )}
+
+                        {/* IMAGE */}
+                        <Box
+                          component="img"
+                          src={project.image}
+                          loading="eager"
+                          decoding="async"
+                          onLoad={() =>
+                            setLoadedImages((prev) => ({
+                              ...prev,
+                              [index]: true,
+                            }))
+                          }
+                          sx={{
+                            width: "100%",
+                            height: "100%",
+                            objectFit: "cover",
+                            opacity: isLoaded ? 1 : 0,
+                            transition: "opacity .3s ease",
+                          }}
+                        />
+                      </Box>
+
+                      <Typography
+                        mt={{ xs: 0.7, md: 1.4, lg: 2 }}
+                        fontSize={16}
+                        fontWeight={500}
+                        color="white"
+                        textAlign="center"
+                      >
+                        {project.name}
+                      </Typography>
+                    </Box>
+                  </Grid>
+                );
+              })}
+            </Grid>
           </Box>
+
           {/* DOTS + NAVIGATION */}
           <Box
             mt={6}
