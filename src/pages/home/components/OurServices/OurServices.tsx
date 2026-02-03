@@ -68,7 +68,7 @@ const OurServices: React.FC = () => {
       sx={{
         bgcolor: theme.palette.background.paper,
         pb: { xs: 2, md: 5, lg: 10 },
-        mt: { xs: 3.75, sm: 7.5, md: 13, lg: 26 },
+        pt: { xs: 3.75, sm: 7.5, md: 13, lg: 20 },
       }}
     >
       <Container maxWidth="xl">
@@ -90,7 +90,7 @@ const OurServices: React.FC = () => {
         <Grid container spacing={4}>
           {services.map((service) => (
             <Grid
-              size={{ xs: 12, sm: 6, md: 6 }}
+              size={{ xs: 12, sm: 12, md: 6 }}
               sx={{ cursor: "pointer" }}
               key={service.title}
             >
@@ -132,7 +132,7 @@ const OurServices: React.FC = () => {
                 <Box
                   sx={{
                     position: "relative",
-                    height: { xs: "250px", sm: "300px", md: "400px" },
+                    height: { xs: "250px", sm: "350px", md: "400px" },
                     width: "100%",
                     // Add a light background color to see the "cutout" area if needed
                     // backgroundColor: "#f5f5f5",
@@ -157,9 +157,11 @@ const OurServices: React.FC = () => {
                       width: {
                         xs: "80px",
                         sm: "90px",
-                        md: "140px",
-                        lg: "180px",
+                        md: "100px",
+                        lg: "140px",
+                        xl: "180px",
                       },
+                      // bgcolor: "#ccc",
                       lineHeight: 1.2,
                       zIndex: 2,
                       whiteSpace: "pre-line",

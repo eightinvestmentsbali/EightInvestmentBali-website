@@ -23,7 +23,7 @@ const MuiGradientBackground = () => {
         bgRef.current.style.background = `
           radial-gradient(
             900px at ${currentX}% ${currentY}%,
-            rgba(25, 204, 153, 1) 0%,
+            rgb(25, 132, 204) 0%,
             rgba(135, 209, 248, 1) 35%,
             rgba(240,248,255,1) 70%
           )

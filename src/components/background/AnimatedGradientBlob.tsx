@@ -4,50 +4,69 @@ import { useEffect, useRef } from "react";
 const AnimatedGradientBlob = () => {
   const blobRef = useRef<HTMLDivElement>(null);
 
-  // persistent values
+  // Current position
   const pos = useRef({ x: 85, y: 15 });
+
+  // Target position
   const target = useRef({ x: 85, y: 15 });
+
+  // Idle animation angle
   const idleAngle = useRef(0);
+
+  // Mouse activity flag
   const isMouseActive = useRef(false);
+  const mouseActivityTimeout = useRef<number | null>(null);
 
   useEffect(() => {
+    let animationFrameId: number;
+
     const onMouseMove = (e: MouseEvent) => {
+      if (mouseActivityTimeout.current) {
+        window.clearTimeout(mouseActivityTimeout.current);
+      }
       isMouseActive.current = true;
       target.current.x = (e.clientX / window.innerWidth) * 100;
       target.current.y = (e.clientY / window.innerHeight) * 100;
+
+      // After 2 seconds of inactivity, resume the idle animation
+      mouseActivityTimeout.current = window.setTimeout(() => {
+        isMouseActive.current = false;
+      }, 2000);
     };
 
     const animate = () => {
-      // 👉 Idle floating movement (when mouse not moving)
+      // 🌊 Idle floating motion (when mouse is inactive)
       if (!isMouseActive.current) {
-        idleAngle.current += 0.003;
-        target.current.x = 85 + Math.cos(idleAngle.current) * 8;
-        target.current.y = 15 + Math.sin(idleAngle.current) * 8;
+        idleAngle.current += 0.0018;
+        target.current.x = 85 + Math.cos(idleAngle.current) * 10;
+        target.current.y = 15 + Math.sin(idleAngle.current) * 10;
       }
 
-      // Smooth interpolation
-      pos.current.x += (target.current.x - pos.current.x) * 0.04;
-      pos.current.y += (target.current.y - pos.current.y) * 0.04;
+      // 🧈 Ultra-smooth interpolation (premium feel)
+      pos.current.x += (target.current.x - pos.current.x) * 0.025;
+      pos.current.y += (target.current.y - pos.current.y) * 0.025;
 
+      // More performant to update a CSS custom property
       if (blobRef.current) {
-        blobRef.current.style.background = `
-          radial-gradient(
-            90% 90% at ${pos.current.x}% ${pos.current.y}%,
-             rgba(143, 35, 243, 0.85),
-            rgba(104, 255, 180, 0.82),
-            rgba(159, 249, 241, 0.45),
-            transparent 70%
-          )
-        `;
+        blobRef.current.style.setProperty(
+          "--gradient-pos",
+          `${pos.current.x}% ${pos.current.y}%`
+        );
       }
 
-      requestAnimationFrame(animate);
+      animationFrameId = requestAnimationFrame(animate);
     };
 
     window.addEventListener("mousemove", onMouseMove);
-    animate();
+    animationFrameId = requestAnimationFrame(animate);
 
-    return () => window.removeEventListener("mousemove", onMouseMove);
+    return () => {
+      window.removeEventListener("mousemove", onMouseMove);
+      cancelAnimationFrame(animationFrameId);
+      if (mouseActivityTimeout.current) {
+        window.clearTimeout(mouseActivityTimeout.current);
+      }
+    };
   }, []);
 
   return (
@@ -55,19 +74,30 @@ const AnimatedGradientBlob = () => {
       ref={blobRef}
       sx={{
         position: "absolute",
-        inset: "-30%",
-        // filter: "blur(10px)",
-        zIndex: 0,
+        top: 0,
+        left: 0,
+        width: "100%",
+        height: "100%", // ✅ gives it render space
+        zIndex: 1,
         pointerEvents: "none",
+
+        // Define the gradient using a CSS variable for the position
+        // @ts-ignore - Allow custom property
+        "--gradient-pos": "85% 15%",
         background: `
           radial-gradient(
-            60% 60% at 85% 15%,
-            rgba(21, 231, 189, 0.85),
-            rgba(181, 253, 217, 0.65),
-            rgba(199, 248, 244, 0.45),
-            transparent 70%
+            85% 85% at var(--gradient-pos),
+            rgba(106, 48, 232, 0.59), rgba(14, 205, 135, 0.39),
+            rgba(248, 101, 101, 0.43), rgba(56, 32, 238, 0.37),
+            transparent 72%
           )
         `,
+
+        filter: "blur(0px)",
+        opacity: 0.8,
+
+        // ❌ disable blend mode for now
+        // mixBlendMode: "soft-light",
       }}
     />
   );

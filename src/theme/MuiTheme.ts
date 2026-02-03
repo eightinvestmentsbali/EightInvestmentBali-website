@@ -223,12 +223,26 @@ const themeOptions: ThemeOptions = {
       fontSize: "6.5rem",
       lineHeight: 1.1,
       letterSpacing: "-0.02em",
-
+      "@media (max-width:1600px)": {
+        fontSize: "5rem",
+      },
+      "@media (max-width:1400px)": {
+        fontSize: "4.5rem",
+      },
+      "@media (max-width:1200px)": {
+        fontSize: "4rem",
+      },
       "@media (max-width:900px)": {
         fontSize: "3rem",
       },
       "@media (max-width:600px)": {
         fontSize: "1.8rem",
+      },
+      "@media (max-width:500px)": {
+        fontSize: "1.5rem",
+      },
+      "@media (max-width:400px)": {
+        fontSize: "1.3rem",
       },
     },
     heroSubTitle: {
@@ -237,11 +251,26 @@ const themeOptions: ThemeOptions = {
       fontSize: "3.1875rem",
       lineHeight: 1.7,
 
+      "@media (max-width:1600px)": {
+        fontSize: "3rem",
+      },
+      "@media (max-width:1400px)": {
+        fontSize: "2.5rem",
+      },
+      "@media (max-width:1200px)": {
+        fontSize: "2rem",
+      },
       "@media (max-width:900px)": {
         fontSize: "1.5rem",
       },
       "@media (max-width:600px)": {
         fontSize: "1.2rem",
+      },
+      "@media (max-width:500px)": {
+        fontSize: "1rem",
+      },
+      "@media (max-width:400px)": {
+        fontSize: "0.8rem",
       },
     },
 

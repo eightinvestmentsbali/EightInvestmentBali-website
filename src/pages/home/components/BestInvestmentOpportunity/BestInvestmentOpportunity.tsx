@@ -24,6 +24,7 @@ import StrategicInvestmentIcon from "../../../../assets/DesignElement/StrategicI
 import PremierFacilitiesIcon from "../../../../assets/DesignElement/PremierFacilitiesIcon";
 import ArtfullyCraftedLivingIcon from "../../../../assets/DesignElement/ArtfullyCraftedLivingIcon";
 import StrongRentalIcon from "../../../../assets/DesignElement/StrongRentalIcon";
+import { useNavigate } from "react-router-dom";
 
 const features = [
   {
@@ -89,22 +90,23 @@ const projects = [
 
 const BestInvestmentOpportunity = () => {
   const theme = useTheme();
+  const navigate = useNavigate();
   const items = projects.map((p) => p.name);
   const [activeIndex, setActiveIndex] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const descriptionRef = useRef<HTMLDivElement>(null);
   // const isInitialMount = useRef(true);
-  const containerRef = useRef<HTMLDivElement>(null);
+  const cardRef = useRef<HTMLDivElement>(null);
 
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"],
+  const { scrollYProgress: cardProgress } = useScroll({
+    target: cardRef,
+    offset: ["start 350px", "start 100px"],
   });
 
-  // Calculate opacity for the title - fades out as you scroll
-  const titleOpacity = useTransform(scrollYProgress, [0, 0.15], [1, 0]);
-  const titleY = useTransform(scrollYProgress, [0, 0.15], [0, -50]);
+  const headerOpacity = useTransform(cardProgress, [0, 1], [1, 0]);
+  const headerY = useTransform(cardProgress, [0, 1], [0, -24]);
+  const headerBlur = useTransform(cardProgress, [0, 1], ["blur(0px)", "blur(4px)"]);
 
   // useEffect(() => {
   //   if (isInitialMount.current) {
@@ -139,7 +141,6 @@ const BestInvestmentOpportunity = () => {
   return (
     <Box
       id="best-investment-opportunity"
-      ref={containerRef}
       sx={{
         bgcolor: "#232323",
         px: { xs: 2, md: 4, lg: 6 },
@@ -157,8 +158,9 @@ const BestInvestmentOpportunity = () => {
           {/* HEADER */}
           <motion.div
             style={{
-              opacity: titleOpacity,
-              y: titleY,
+              opacity: headerOpacity,
+              y: headerY,
+              filter: headerBlur,
               position: "sticky",
               top: "80px",
               zIndex: 0,
@@ -174,14 +176,12 @@ const BestInvestmentOpportunity = () => {
                 variant="heroTitle"
                 component="h1"
                 color={theme.palette.primary.contrastText}
-                sx={{
-                  maxWidth: { xs: "100%", md: "60%" },
-                }}
               >
-                Best investment opportunity
+                Best investment <br/> opportunity
               </Typography>
 
               <Button
+              onClick={() => navigate("/projects")}
                 variant="outlined"
                 sx={{
                   color: theme.palette.primary.contrastText,
@@ -214,13 +214,15 @@ const BestInvestmentOpportunity = () => {
               }}
             />
           </motion.div>
-          <FeaturedProjectCard
-            projectName={projects[activeIndex].name}
-            location={projects[activeIndex].location}
-            image={projects[activeIndex].image}
-            progressImage={projects[activeIndex].progressImage}
-            onSeeMoreClick={() => setIsModalOpen(true)}
-          />
+          <Box ref={cardRef}>
+            <FeaturedProjectCard
+              projectName={projects[activeIndex].name}
+              location={projects[activeIndex].location}
+              image={projects[activeIndex].image}
+              progressImage={projects[activeIndex].progressImage}
+              onSeeMoreClick={() => setIsModalOpen(true)}
+            />
+          </Box>
           {/* CAROUSEL ITEMS */}
           <Box mt={{ xs: 2, md: 4, lg: 6 }}>
             <Grid container spacing={{ xs: 0.7, md: 1.4, lg: 2 }}>

@@ -53,9 +53,9 @@ const FeaturedProjectCard = ({
           fontWeight={typographyTokens.fontWeights.medium}
           sx={{
             fontSize: {
-              xs: typographyTokens.fontSizes["md"], // Mobile size
+              xs: typographyTokens.fontSizes["xs"], // Mobile size
               sm: typographyTokens.fontSizes["xl"], // Tablet size
-              md: typographyTokens.fontSizes["4xl"],
+              md: typographyTokens.fontSizes["3xl"],
               lg: typographyTokens.fontSizes["5xl"], // Desktop size
             },
             textAlign: { xs: "left", md: "left" },
@@ -91,10 +91,10 @@ const FeaturedProjectCard = ({
           fontWeight={typographyTokens.fontWeights.medium}
           sx={{
             fontSize: {
-              xs: typographyTokens.fontSizes["md"], // Mobile size
+              xs: typographyTokens.fontSizes["xs"], // Mobile size
               sm: typographyTokens.fontSizes["xl"], // Tablet size
-              md: typographyTokens.fontSizes["2xl"],
-              lg: typographyTokens.fontSizes["3xl"], // Desktop size
+              md: typographyTokens.fontSizes["3xl"],
+              lg: typographyTokens.fontSizes["5xl"], // Desktop size
             },
             lineHeight: 1.2,
           }}

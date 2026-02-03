@@ -282,8 +282,8 @@ const TeamMemberCard = ({ member }: TeamMemberCardProps) => {
       <Box
         sx={{
           position: "relative",
-          width: { xs: 200, sm: 250, md: 300 },
-          height: { xs: 200, sm: 250, md: 300 },
+          width: { xs: 200, sm: 240, md: 270, lg: 300},
+          height: { xs: 200, sm: 240, md: 270, lg: 300},
           flexShrink: 0,
         }}
       >
