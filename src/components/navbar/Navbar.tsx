@@ -246,6 +246,7 @@ const Navbar: React.FC = () => {
 
                 <Button
                   disableElevation
+                  disableRipple
                   variant="contained"
                   onClick={(e) => {
                     handleNavClick("/contact-us", "Contact Us", e);
@@ -256,6 +257,21 @@ const Navbar: React.FC = () => {
                     textTransform: "none",
                     px: 3,
                     py: 1.5,
+                    "&:hover": {
+                      backgroundColor: "primary.main",
+                    },
+                    "&:active": {
+                      backgroundColor: "primary.main",
+                      boxShadow: "none",
+                    },
+                    "&:focus": {
+                      outline: "none",
+                      boxShadow: "none",
+                    },
+                    "&:focus-visible": {
+                      outline: "none",
+                      boxShadow: "none",
+                    },
                   }}
                 >
                   Contact Us
@@ -306,9 +322,27 @@ const Navbar: React.FC = () => {
 
             <Button
               disableElevation
+              disableRipple
               variant="contained"
               onClick={(e) => {
                 handleNavClick("/", "Contact Us", e);
+              }}
+              sx={{
+                "&:hover": {
+                  backgroundColor: "primary.main",
+                },
+                "&:active": {
+                  backgroundColor: "primary.main",
+                  boxShadow: "none",
+                },
+                "&:focus": {
+                  outline: "none",
+                  boxShadow: "none",
+                },
+                "&:focus-visible": {
+                  outline: "none",
+                  boxShadow: "none",
+                },
               }}
             >
               Contact Us
