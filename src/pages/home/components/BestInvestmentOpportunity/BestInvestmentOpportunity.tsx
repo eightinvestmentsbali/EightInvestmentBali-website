@@ -247,15 +247,33 @@ const BestInvestmentOpportunity = () => {
                   borderRadius: 50,
                   display: { xs: "none", sm: "inline-flex" },
                   px: { xs: 2, sm: 2, md: 3 },
-                  py: { xs: 0.5, sm: 0.8, md: 1, lg: 1.5, xl: 2},
+                  py: { xs: 0.5, sm: 0.8, md: 1, lg: 1.5, xl: 2 },
                   flexShrink: 0,
                   fontWeight: typographyTokens.fontWeights.regular,
-                  fontSize: { xs: "8px", sm: "10px", md: "12px", lg: "16px", xl: "32px" },
+                  fontSize: {
+                    xs: "8px",
+                    sm: "10px",
+                    md: "12px",
+                    lg: "16px",
+                    xl: "32px",
+                  },
                   "& .MuiButton-startIcon svg": {
-                  fontSize: { xs: "8px", sm: "10px", md: "12px", lg: "16px", xl: "32px" },
+                    fontSize: {
+                      xs: "8px",
+                      sm: "10px",
+                      md: "12px",
+                      lg: "16px",
+                      xl: "32px",
+                    },
                   },
                   "& .MuiButton-endIcon svg": {
-                  fontSize: { xs: "8px", sm: "10px", md: "12px", lg: "16px", xl: "32px" },
+                    fontSize: {
+                      xs: "8px",
+                      sm: "10px",
+                      md: "12px",
+                      lg: "16px",
+                      xl: "32px",
+                    },
                   },
                 }}
                 startIcon={<PlayCircleOutlineIcon />}
@@ -567,189 +585,189 @@ const BestInvestmentOpportunity = () => {
         </Container>
       </Box>
 
+      <Box
+        sx={{
+          // bgcolor: "#232323",
+          // px: { xs: 2, md: 4, lg: 6 },
+          minHeight: { xs: "auto", md: "800px", lg: "100vh" },
+          pb: { xs: 2, md: 3, lg: 4 },
+          display: "flex",
+          flexDirection: "column",
+        }}
+      >
         <Box
           sx={{
-            // bgcolor: "#232323",
-            // px: { xs: 2, md: 4, lg: 6 },
-            minHeight: { xs: "auto", md: "800px", lg: "100vh" },
-            pb: { xs: 4, md: 6 },
+            flex: { xs: "0 0 auto", md: "1 1 0" },
+            height: {
+              xs: "285.8px",
+              sm: "500px",
+              md: "600px",
+              lg: "calc(100vh - 500px)",
+            },
             display: "flex",
             flexDirection: "column",
+            position: "relative",
+            mb: { xs: 3, md: 2 },
+            overflow: "hidden",
+          }}
+          onMouseEnter={pauseAutoRotation}
+          onMouseLeave={() => {
+            if (pauseTimeoutRef.current) {
+              clearTimeout(pauseTimeoutRef.current);
+            }
+            setIsPaused(false);
           }}
         >
-          <Box
-            sx={{
-              flex: { xs: "0 0 auto", md: "1 1 0" },
-              height: {
-                xs: "285.8px",
-                sm: "500px",
-                md: "600px",
-                lg: "calc(100vh - 500px)",
-              },
-              display: "flex",
-              flexDirection: "column",
-              position: "relative",
-              mb: { xs: 3, md: 2 },
-              overflow: "hidden",
-            }}
-            onMouseEnter={pauseAutoRotation}
-            onMouseLeave={() => {
-              if (pauseTimeoutRef.current) {
-                clearTimeout(pauseTimeoutRef.current);
-              }
-              setIsPaused(false);
-            }}
-          >
-            <AnimatePresence initial={false} custom={direction}>
-              <motion.div
-                key={activeImageIndex}
-                custom={direction}
-                variants={slideVariants}
-                initial="enter"
-                animate="center"
-                exit="exit"
-                transition={slideTransition}
-                style={{
-                  position: "absolute",
-                  top: 0,
-                  left: 0,
-                  width: "100%",
-                  height: "100%",
-                }}
-              >
-                <Box
-                  component="img"
-                  src={images[activeImageIndex] || images[0]}
-                  loading="eager"
-                  fetchPriority="high"
-                  sx={{
-                    width: "100%",
-                    height: "100%",
-                    objectFit: "cover",
-                    imageRendering: "-webkit-optimize-contrast",
-                  }}
-                />
-              </motion.div>
-            </AnimatePresence>
-            <Stack
-              direction="row"
-              justifyContent="flex-end"
-              spacing={1.5}
-              sx={{
-                p: 2,
-                mt: "auto",
-                position: "relative",
-                zIndex: 2,
+          <AnimatePresence initial={false} custom={direction}>
+            <motion.div
+              key={activeImageIndex}
+              custom={direction}
+              variants={slideVariants}
+              initial="enter"
+              animate="center"
+              exit="exit"
+              transition={slideTransition}
+              style={{
+                position: "absolute",
+                top: 0,
+                left: 0,
+                width: "100%",
+                height: "100%",
               }}
             >
-              <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
-                <IconButton
-                  onClick={handlePrev}
-                  sx={{
-                    bgcolor: "rgba(255, 255, 255, 0.5)",
-                    color: "#000000",
-                    width: { xs: 40, md: 48 },
-                    height: { xs: 40, md: 48 },
-                    borderRadius: "50%",
-                    border: "none",
-                    "&:hover": {
-                      bgcolor: "rgba(255, 255, 255, 0.7)",
-                    },
-                  }}
-                >
-                  <ArrowBackIosNewIcon sx={{ fontSize: { xs: 18, md: 20 } }} />
-                </IconButton>
-              </motion.div>
-              <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
-                <IconButton
-                  onClick={handleNext}
-                  sx={{
-                    bgcolor: "rgba(255, 255, 255, 1)",
-                    color: "#000000",
-                    width: { xs: 44, md: 52 },
-                    height: { xs: 44, md: 52 },
-                    borderRadius: "50%",
-                    border: "none",
-                    "&:hover": {
-                      bgcolor: "rgba(255, 255, 255, 0.9)",
-                    },
-                  }}
-                >
-                  <ArrowForwardIosIcon sx={{ fontSize: { xs: 18, md: 20 } }} />
-                </IconButton>
-              </motion.div>
-            </Stack>
-          </Box>
-
-          <Box
+              <Box
+                component="img"
+                src={images[activeImageIndex] || images[0]}
+                loading="eager"
+                fetchPriority="high"
+                sx={{
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover",
+                  imageRendering: "-webkit-optimize-contrast",
+                }}
+              />
+            </motion.div>
+          </AnimatePresence>
+          <Stack
+            direction="row"
+            justifyContent="flex-end"
+            spacing={1.5}
             sx={{
-              display: "flex",
-              gap: { xs: 1, md: 2 },
-              justifyContent: "center",
-              flexShrink: 0,
-              height: { xs: "auto", md: "180px" },
-              overflowX: { xs: "auto", md: "visible" },
-              overflowY: "hidden",
-              pb: { xs: 1, md: 0 },
-              "&::-webkit-scrollbar": {
-                display: "none",
-              },
-              scrollbarWidth: "none",
-              msOverflowStyle: "none",
+              p: 2,
+              mt: "auto",
+              position: "relative",
+              zIndex: 2,
             }}
           >
-            {images.map((img, index) => (
-              <Box
-                key={index}
-                component={motion.div}
-                onClick={() => handleThumbnailClick(index)}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+            <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
+              <IconButton
+                onClick={handlePrev}
                 sx={{
-                  flex: { xs: "0 0 auto", md: 1 },
-                  minWidth: { xs: "80px", md: 0 },
-                  width: { xs: "80px", md: "auto" },
-                  height: { xs: 80, md: 180 },
-                  overflow: "hidden",
-                  cursor: "pointer",
-                  opacity: index === activeImageIndex ? 1 : 0.6,
+                  bgcolor: "rgba(255, 255, 255, 0.5)",
+                  color: "#000000",
+                  width: { xs: 40, md: 48 },
+                  height: { xs: 40, md: 48 },
+                  borderRadius: "50%",
+                  border: "none",
+                  "&:hover": {
+                    bgcolor: "rgba(255, 255, 255, 0.7)",
+                  },
+                }}
+              >
+                <ArrowBackIosNewIcon sx={{ fontSize: { xs: 18, md: 20 } }} />
+              </IconButton>
+            </motion.div>
+            <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
+              <IconButton
+                onClick={handleNext}
+                sx={{
+                  bgcolor: "rgba(255, 255, 255, 1)",
+                  color: "#000000",
+                  width: { xs: 44, md: 52 },
+                  height: { xs: 44, md: 52 },
+                  borderRadius: "50%",
+                  border: "none",
+                  "&:hover": {
+                    bgcolor: "rgba(255, 255, 255, 0.9)",
+                  },
+                }}
+              >
+                <ArrowForwardIosIcon sx={{ fontSize: { xs: 18, md: 20 } }} />
+              </IconButton>
+            </motion.div>
+          </Stack>
+        </Box>
+
+        <Box
+          sx={{
+            display: "flex",
+            gap: { xs: 1, md: 2 },
+            justifyContent: "center",
+            flexShrink: 0,
+            height: { xs: "auto", md: "180px" },
+            overflowX: { xs: "auto", md: "visible" },
+            overflowY: "hidden",
+            pb: { xs: 1, md: 0 },
+            "&::-webkit-scrollbar": {
+              display: "none",
+            },
+            scrollbarWidth: "none",
+            msOverflowStyle: "none",
+          }}
+        >
+          {images.map((img, index) => (
+            <Box
+              key={index}
+              component={motion.div}
+              onClick={() => handleThumbnailClick(index)}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              sx={{
+                flex: { xs: "0 0 auto", md: 1 },
+                minWidth: { xs: "80px", md: 0 },
+                width: { xs: "80px", md: "auto" },
+                height: { xs: 80, md: 180 },
+                overflow: "hidden",
+                cursor: "pointer",
+                opacity: index === activeImageIndex ? 1 : 0.6,
+                border:
+                  index === activeImageIndex
+                    ? { xs: "2px solid #ffffff", md: "3px solid #ffffff" }
+                    : {
+                        xs: "2px solid transparent",
+                        md: "3px solid transparent",
+                      },
+                transition:
+                  "opacity .3s ease, filter .3s ease, border .3s ease",
+                "&:hover": {
+                  opacity: 1,
+                  filter: "brightness(1.2)",
                   border:
                     index === activeImageIndex
                       ? { xs: "2px solid #ffffff", md: "3px solid #ffffff" }
                       : {
-                          xs: "2px solid transparent",
-                          md: "3px solid transparent",
+                          xs: "2px solid rgba(255, 255, 255, 0.5)",
+                          md: "3px solid rgba(255, 255, 255, 0.5)",
                         },
-                  transition:
-                    "opacity .3s ease, filter .3s ease, border .3s ease",
-                  "&:hover": {
-                    opacity: 1,
-                    filter: "brightness(1.2)",
-                    border:
-                      index === activeImageIndex
-                        ? { xs: "2px solid #ffffff", md: "3px solid #ffffff" }
-                        : {
-                            xs: "2px solid rgba(255, 255, 255, 0.5)",
-                            md: "3px solid rgba(255, 255, 255, 0.5)",
-                          },
-                  },
+                },
+              }}
+            >
+              <Box
+                component="img"
+                src={img}
+                loading={index <= 2 ? "eager" : "lazy"}
+                sx={{
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover",
+                  imageRendering: "-webkit-optimize-contrast",
                 }}
-              >
-                <Box
-                  component="img"
-                  src={img}
-                  loading={index <= 2 ? "eager" : "lazy"}
-                  sx={{
-                    width: "100%",
-                    height: "100%",
-                    objectFit: "cover",
-                    imageRendering: "-webkit-optimize-contrast",
-                  }}
-                />
-              </Box>
-            ))}
-          </Box>
+              />
+            </Box>
+          ))}
         </Box>
+      </Box>
 
       {/* MODAL */}
       <Modal

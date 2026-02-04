@@ -194,19 +194,21 @@ const VideoPlayer: React.FC<Props> = ({ data }) => {
           sx={{
             position: "absolute",
             bottom: 0,
-            left: { xs: 5, sm: 10, md: 20, lg: 30 },
-            pr: 6,
+            left: { xs: 2, sm: 3, md: 5, lg: 10 },
+            // pr: 6,
+            // bgcolor:"#ccc",
             pb: { xs: 0, sm: 1, md: 2 },
             zIndex: 10,
+            
           }}
         >
           <Typography
             variant="heroSubTitle"
             component="h1"
             sx={{
-              fontSize: { xs: "1rem", sm: "2rem", md: "4rem", lg: "5rem" },
+              fontSize: { xs: "1.2rem", sm: "2rem", md: "3rem", lg: "4.1rem", xl: "5rem"},
               fontWeight: typographyTokens.fontWeights["semi-bold"],
-              lineHeight: 0.85,
+              lineHeight: 1,
               color: theme.palette.text.primary,
               fontFamily: "inherit",
               maxWidth: "80%",

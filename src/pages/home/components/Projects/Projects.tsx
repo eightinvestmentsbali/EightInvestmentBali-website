@@ -17,6 +17,7 @@ const Projects: React.FC = () => {
         sx={{
           px: { xs: 2, md: 4, lg: 6 },
           pb: { xs: 4, md: 6 },
+          pt: { xs: 4, md: 6, lg: 8 },
         }}
       >
         <Typography

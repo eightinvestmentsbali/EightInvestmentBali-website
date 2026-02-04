@@ -152,7 +152,6 @@ const Navbar: React.FC = () => {
             : "transparent",
           backdropFilter: scrolled ? "blur(10px)" : "none",
           boxShadow: scrolled ? "0 2px 8px rgba(0,0,0,0.1)" : "none",
-          py: 1,
           px: 2,
           zIndex: 1000,
           top: 0,
@@ -162,7 +161,7 @@ const Navbar: React.FC = () => {
           willChange: "transform",
         }}
       >
-        <Toolbar sx={{ minHeight: 72 }}>
+        <Toolbar sx={{ minHeight: 60 }}>
           {/* ===== MOBILE VIEW ===== */}
           <Box
             sx={{
@@ -178,7 +177,7 @@ const Navbar: React.FC = () => {
 
             {/* Center Logo */}
             <Box sx={{ flex: 1, textAlign: "center" }}>
-              <Logo style={{ height: 45 }} />
+              <Logo style={{ height: 40 }} />
             </Box>
 
             {/* Right Icon */}
@@ -199,7 +198,7 @@ const Navbar: React.FC = () => {
             <Container maxWidth="xl" sx={{ display: "flex" }}>
               {/* Logo */}
               <Box sx={{ flex: 1 }}>
-                <Logo style={{ height: 45 }} />
+                <Logo style={{ height: 48 }} />
               </Box>
 
               {/* Menu */}

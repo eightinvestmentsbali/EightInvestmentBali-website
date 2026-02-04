@@ -8,7 +8,7 @@ const UnifyYourVision: React.FC = () => {
   const theme = useTheme();
   return (
     <Grid size={{ xs: 12 }} id="about-us">
-      <Box sx={{ mb: { xs: 3.75, sm: 6.5, md: 7.5, lg: 13, xl: 20 } }}>
+      <Box sx={{ mb: { xs: 3.75, sm: 6.5, md: 7.5, lg: 13, xl: 20 }, mt: { xs: 1.5, md: 2.5, lg: 6, xl: 7.5 } }}>
         <motion.div
           initial={{ y: 60, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}

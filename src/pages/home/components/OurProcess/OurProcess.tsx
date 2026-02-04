@@ -232,8 +232,12 @@ const OurProcess: React.FC = () => {
         bgcolor: theme.palette.background.paper,
         overflow: { xs: "visible", md: "visible" },
         width: "100%",
-        pt: { xs: 2, md: 5, lg: 10 },
-        pb: { xs: 3.75, sm: 7.5, md: 13, lg: 20 },
+        py: {
+          xs: 2,
+          sm: 4,
+          md: 6.5,
+          lg: 10,
+        },
       }}
     >
       <Container

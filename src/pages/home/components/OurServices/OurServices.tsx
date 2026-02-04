@@ -67,7 +67,12 @@ const OurServices: React.FC = () => {
       id="our-services"
       sx={{
         bgcolor: theme.palette.background.paper,
-        pb: { xs: 2, md: 5, lg: 10 },
+        py: {
+          xs: 2,
+          sm: 4,
+          md: 6.5,
+          lg: 10,
+        },
       }}
     >
       <Container maxWidth="xl">
