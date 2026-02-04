@@ -236,7 +236,7 @@ const BestInvestmentOpportunity = () => {
 
               <Button
                 onClick={() => {
-                  navigate("/projects", {
+                  navigate("/project-details", {
                     state: { projectIndex: activeProjectIndex },
                   });
                 }}
@@ -247,15 +247,15 @@ const BestInvestmentOpportunity = () => {
                   borderRadius: 50,
                   display: { xs: "none", sm: "inline-flex" },
                   px: { xs: 2, sm: 2, md: 3 },
-                  py: { xs: 0.5, sm: 0.8, md: 1, lg: 2 },
+                  py: { xs: 0.5, sm: 0.8, md: 1, lg: 1.5, xl: 2},
                   flexShrink: 0,
                   fontWeight: typographyTokens.fontWeights.regular,
-                  fontSize: { xs: "8px", sm: "12px", md: "16px", lg: "32px" },
+                  fontSize: { xs: "8px", sm: "10px", md: "12px", lg: "16px", xl: "32px" },
                   "& .MuiButton-startIcon svg": {
-                    fontSize: { xs: "8px", sm: "16px", md: "20px", lg: "32px" },
+                  fontSize: { xs: "8px", sm: "10px", md: "12px", lg: "16px", xl: "32px" },
                   },
                   "& .MuiButton-endIcon svg": {
-                    fontSize: { xs: "8px", sm: "16px", md: "20px", lg: "32px" },
+                  fontSize: { xs: "8px", sm: "10px", md: "12px", lg: "16px", xl: "32px" },
                   },
                 }}
                 startIcon={<PlayCircleOutlineIcon />}

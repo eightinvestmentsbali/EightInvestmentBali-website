@@ -226,13 +226,28 @@ const themeOptions: ThemeOptions = {
       "@media (max-width:1600px)": {
         fontSize: "7rem",
       },
+      "@media (max-width:1500px)": {
+        fontSize: "6.5rem",
+      },
       "@media (max-width:1400px)": {
         fontSize: "6rem",
+      },
+      "@media (max-width:1300px)": {
+        fontSize: "5.5rem",
       },
       "@media (max-width:1200px)": {
         fontSize: "5rem",
       },
+      "@media (max-width:1100px)": {
+        fontSize: "4.5rem",
+      },
+      "@media (max-width:1000px)": {
+        fontSize: "4rem",
+      },
       "@media (max-width:900px)": {
+        fontSize: "3.5rem",
+      },
+      "@media (max-width:800px)": {
         fontSize: "3rem",
       },
       "@media (max-width:600px)": {
@@ -254,8 +269,14 @@ const themeOptions: ThemeOptions = {
       "@media (max-width:1600px)": {
         fontSize: "3rem",
       },
+      "@media (max-width:1500px)": {
+        fontSize: "2.8rem",
+      },
       "@media (max-width:1400px)": {
         fontSize: "2.5rem",
+      },
+      "@media (max-width:1300px)": {
+        fontSize: "2.2rem",
       },
       "@media (max-width:1200px)": {
         fontSize: "2rem",

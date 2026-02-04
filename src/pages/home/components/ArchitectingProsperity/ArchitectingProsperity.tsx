@@ -11,7 +11,7 @@ const ArchitectingProsperity: React.FC = () => {
     <>
       {/* Title: Bottom to Top */}
       <Grid size={{ xs: 12 }}>
-        <Box sx={{ mt: { xs: 2, md: 4, lg: 5, xl: 8}, mb: { xs: 3, md: 5, lg: 7.5, xl: 15} }}>
+        <Box id="hero" sx={{ mt: { xs: 2, md: 4, lg: 5, xl: 8}, mb: { xs: 3, md: 5, lg: 7.5, xl: 15} }}>
           <motion.div
             initial={{ y: 60, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}

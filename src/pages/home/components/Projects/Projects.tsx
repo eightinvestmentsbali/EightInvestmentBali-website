@@ -36,7 +36,7 @@ const Projects: React.FC = () => {
             <Grid size={{ xs: 12, sm: 6, md: 6 }} key={project.name}>
               <Box
                 onClick={() =>
-                  navigate("/projects", {
+                  navigate("/project-details", {
                     state: { projectIndex: index },
                   })
                 }
