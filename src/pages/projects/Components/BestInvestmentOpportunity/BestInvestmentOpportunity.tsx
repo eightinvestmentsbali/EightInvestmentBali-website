@@ -88,8 +88,8 @@ const BestInvestmentOpportunity: React.FC<Props> = ({
               projectNumber={`${activeIndex + 1}/${data.length}`}
             />
 
-            <Box mt={{ xs: 2, md: 4, lg: 6 }}>
               {/* Image slider */}
+            <Box mt={{ xs: 2, md: 4, lg: 6 }}>
               <Grid container spacing={{ xs: 0.7, md: 1.4, lg: 2 }}>
                 {data.map((project, index) => (
                   <Grid size={{ xs: 3 }} key={index}>
