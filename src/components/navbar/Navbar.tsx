@@ -15,6 +15,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { useTheme } from "@mui/material/styles";
 import Logo from "../../assets/DesignElement/LogoSVG";
+import { typographyTokens } from "../../theme/MuiTheme";
 
 const menuItems = [
   { label: "Home", path: "/" },
@@ -114,7 +115,7 @@ const Navbar: React.FC = () => {
       "Our Team": "our-team",
       Projects: "our-projects",
       "About Us": "about-us",
-      "Contact Us": "contact-us", // ✅ correct
+      "Contact Us": "contact-us", 
     };
 
     const sectionId = sectionMap[label];
@@ -218,8 +219,6 @@ const Navbar: React.FC = () => {
                   return (
                     <Typography
                       key={item.label}
-                      component={NavLink}
-                      to={item.path}
                       onClick={(e) => {
                         if (isScrollable) {
                           handleNavClick(item.path, item.label, e);
@@ -237,7 +236,7 @@ const Navbar: React.FC = () => {
 
                         "&.active": {
                           color: theme.palette.primary.main,
-                          fontWeight: 700,
+                          fontWeight: typographyTokens.fontWeights.bold,
                         },
 
                         "&:hover": {

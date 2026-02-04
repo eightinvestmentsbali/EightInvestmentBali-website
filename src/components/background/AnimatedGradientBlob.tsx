@@ -4,16 +4,11 @@ import { useEffect, useRef } from "react";
 const AnimatedGradientBlob = () => {
   const blobRef = useRef<HTMLDivElement>(null);
 
-  // Current position
-  const pos = useRef({ x: 85, y: 15 });
-
-  // Target position
-  const target = useRef({ x: 85, y: 15 });
-
-  // Idle animation angle
+  // Start at top right (85vw, 15vh)
+  const pos = useRef({ x: window.innerWidth * 0.85, y: window.innerHeight * 0.15 });
+  const target = useRef({ x: window.innerWidth * 0.85, y: window.innerHeight * 0.15 });
+  
   const idleAngle = useRef(0);
-
-  // Mouse activity flag
   const isMouseActive = useRef(false);
   const mouseActivityTimeout = useRef<number | null>(null);
 
@@ -21,37 +16,35 @@ const AnimatedGradientBlob = () => {
     let animationFrameId: number;
 
     const onMouseMove = (e: MouseEvent) => {
-      if (mouseActivityTimeout.current) {
-        window.clearTimeout(mouseActivityTimeout.current);
-      }
+      if (mouseActivityTimeout.current) window.clearTimeout(mouseActivityTimeout.current);
+      
       isMouseActive.current = true;
-      target.current.x = (e.clientX / window.innerWidth) * 100;
-      target.current.y = (e.clientY / window.innerHeight) * 100;
+      target.current.x = e.clientX;
+      target.current.y = e.clientY;
 
-      // After 2 seconds of inactivity, resume the idle animation
       mouseActivityTimeout.current = window.setTimeout(() => {
         isMouseActive.current = false;
       }, 2000);
     };
 
     const animate = () => {
-      // 🌊 Idle floating motion (when mouse is inactive)
       if (!isMouseActive.current) {
-        idleAngle.current += 0.0018;
-        target.current.x = 85 + Math.cos(idleAngle.current) * 10;
-        target.current.y = 15 + Math.sin(idleAngle.current) * 10;
+        idleAngle.current += 0.015;
+        // Float around the last known target or initial top-right
+        const centerX = isMouseActive.current ? target.current.x : window.innerWidth * 0.85;
+        const centerY = isMouseActive.current ? target.current.y : window.innerHeight * 0.15;
+        
+        target.current.x = centerX + Math.cos(idleAngle.current) * 30;
+        target.current.y = centerY + Math.sin(idleAngle.current) * 30;
       }
 
-      // 🧈 Ultra-smooth interpolation (premium feel)
-      pos.current.x += (target.current.x - pos.current.x) * 0.025;
-      pos.current.y += (target.current.y - pos.current.y) * 0.025;
+      // Smooth interpolation (Lerp)
+      pos.current.x += (target.current.x - pos.current.x) * 0.08;
+      pos.current.y += (target.current.y - pos.current.y) * 0.08;
 
-      // More performant to update a CSS custom property
       if (blobRef.current) {
-        blobRef.current.style.setProperty(
-          "--gradient-pos",
-          `${pos.current.x}% ${pos.current.y}%`
-        );
+        // Use transform translate for much better performance than background-position
+        blobRef.current.style.transform = `translate(${pos.current.x}px, ${pos.current.y}px) translate(-50%, -50%)`;
       }
 
       animationFrameId = requestAnimationFrame(animate);
@@ -63,9 +56,6 @@ const AnimatedGradientBlob = () => {
     return () => {
       window.removeEventListener("mousemove", onMouseMove);
       cancelAnimationFrame(animationFrameId);
-      if (mouseActivityTimeout.current) {
-        window.clearTimeout(mouseActivityTimeout.current);
-      }
     };
   }, []);
 
@@ -73,31 +63,23 @@ const AnimatedGradientBlob = () => {
     <Box
       ref={blobRef}
       sx={{
-        position: "absolute",
+        position: "fixed",
         top: 0,
         left: 0,
-        width: "100%",
-        height: "100%", // ✅ gives it render space
-        zIndex: 1,
+        // Responsive sizing using vmax
+        width: { xs: "30vmax", md: "40vmax" },
+        height: { xs: "30vmax", md: "40vmax" },
+        borderRadius: "50%",
+        zIndex: 0,
         pointerEvents: "none",
-
-        // Define the gradient using a CSS variable for the position
-        // @ts-ignore - Allow custom property
-        "--gradient-pos": "85% 15%",
-        background: `
-          radial-gradient(
-            85% 85% at var(--gradient-pos),
-            rgba(106, 48, 232, 0.59), rgba(14, 205, 135, 0.39),
-            rgba(248, 101, 101, 0.43), rgba(56, 32, 238, 0.37),
-            transparent 72%
-          )
-        `,
-
-        filter: "blur(0px)",
+        background: `radial-gradient(circle, 
+          rgba(28, 99, 81, 1) 0%, 
+          rgba(10, 150, 99, 0.8) 40%, 
+          rgba(5, 150, 234, 0.54) 70%, 
+          transparent 100%)`,
+        filter: { xs: "blur(40px)", md: "blur(90px)" },
         opacity: 0.8,
-
-        // ❌ disable blend mode for now
-        // mixBlendMode: "soft-light",
+        willChange: "transform", // Optimizes GPU rendering
       }}
     />
   );

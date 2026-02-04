@@ -226,7 +226,7 @@ const FeaturedProjectCard = ({
             zIndex: 1,
             alignSelf: "flex-start",
             height: { xs: "255px", sm: "340px", md: "510px", lg: "595px", xl: "765px" },
-            width: { xs: "40%", sm: "45%", md: "50%", lg: "55%", xl: "60%" },
+            width: { xs: "50%", sm: "50%", md: "50%", lg: "55%", xl: "60%" },
             display: "flex",
             alignItems: "center",
             justifyContent: "center",

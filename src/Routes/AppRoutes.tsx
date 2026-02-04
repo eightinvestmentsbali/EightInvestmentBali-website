@@ -14,7 +14,7 @@ const AppRoutes: React.FC = () => {
       <Route path="/" element={<ViewPort />}>
         <Route index element={<Home />} />
         {/* <Route path="about" element={<AboutUs />} /> */}
-        <Route path="projects" element={<Projects />} />
+        <Route path="project-details" element={<Projects />} />
         {/* <Route path="services" element={<Services />} />
         <Route path="team" element={<Team />} />
         <Route path="card-section-example" element={<CardSectionExample />} />

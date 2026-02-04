@@ -35,6 +35,7 @@ const Home: React.FC = () => {
     >
       {/* <AnimatedGradient /> */}
       <AnimatedGradientBlob />
+
       {/* Your content */}
       {/* <MuiGradientBackground /> */}
       {/* <BackgroundParticles /> */}
@@ -46,13 +47,10 @@ const Home: React.FC = () => {
       <Box
         sx={{ position: "relative", zIndex: 1 }}
         // style={{
-          // filter: "saturate(115%) contrast(105%)",
+        // filter: "saturate(115%) contrast(105%)",
         // }}
       >
-        <Container
-          maxWidth="xl"
-          sx={{ overflow: "visible" }}
-        >
+        <Container maxWidth="xl" sx={{ overflow: "visible" }}>
           <Grid container justifyContent="center" alignItems="center">
             <ArchitectingProsperity />
             <UnifyYourVision />
