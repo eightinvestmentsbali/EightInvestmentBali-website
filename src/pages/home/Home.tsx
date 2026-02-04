@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Box, Container, Grid } from "@mui/material";
 import Navbar from "../../components/navbar/Navbar";
 import ArchitectingProsperity from "./components/ArchitectingProsperity/ArchitectingProsperity";
@@ -20,10 +20,31 @@ import OurCoreValues from "./components/OurCoreValues/OurCoreValues";
 // import MuiGradientBackground from "../../components/background/MuiGradientBackground";
 import { useTheme } from "@mui/material/styles";
 import AnimatedGradientBlob from "../../components/background/AnimatedGradientBlob";
+import { useLocation } from "react-router-dom";
 // import AnimatedGradient from "../../components/background/AnimatedGradient";
 
 const Home: React.FC = () => {
   const theme = useTheme();
+
+  const location = useLocation();
+
+  useEffect(() => {
+    const sectionId = location.state?.scrollTo;
+
+    if (!sectionId) return;
+
+    const section = document.getElementById(sectionId);
+
+    if (section) {
+      setTimeout(() => {
+        section.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+      }, 100);
+    }
+  }, [location]);
+
   return (
     <Box
       component="section"

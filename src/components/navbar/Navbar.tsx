@@ -115,7 +115,7 @@ const Navbar: React.FC = () => {
       "Our Team": "our-team",
       Projects: "our-projects",
       "About Us": "about-us",
-      "Contact Us": "contact-us", 
+      "Contact Us": "contact-us",
     };
 
     const sectionId = sectionMap[label];
@@ -129,13 +129,9 @@ const Navbar: React.FC = () => {
           return;
         }
       } else {
-        navigate("/");
-        setTimeout(() => {
-          const section = document.getElementById(sectionId);
-          if (section) {
-            section.scrollIntoView({ behavior: "smooth", block: "start" });
-          }
-        }, 100);
+        navigate("/", {
+          state: { scrollTo: sectionId },
+        });
         setOpen(false);
         return;
       }
@@ -284,7 +280,7 @@ const Navbar: React.FC = () => {
                 item.label === "Our Team" ||
                 item.label === "Projects" ||
                 item.label === "About Us" ||
-                item.label === "Home"
+                item.label === "Home";
               return (
                 <Typography
                   key={item.label}
