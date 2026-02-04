@@ -20,86 +20,59 @@ import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import NorthEastIcon from "@mui/icons-material/NorthEast";
 import CloseIcon from "@mui/icons-material/Close";
-import { motion, useScroll, useTransform } from "framer-motion";
-import StrategicInvestmentIcon from "../../../../assets/DesignElement/StrategicInvestmentIcon";
-import PremierFacilitiesIcon from "../../../../assets/DesignElement/PremierFacilitiesIcon";
-import ArtfullyCraftedLivingIcon from "../../../../assets/DesignElement/ArtfullyCraftedLivingIcon";
-import StrongRentalIcon from "../../../../assets/DesignElement/StrongRentalIcon";
+import {
+  AnimatePresence,
+  motion,
+  useScroll,
+  useTransform,
+} from "framer-motion";
+// import StrategicInvestmentIcon from "../../../../assets/DesignElement/StrategicInvestmentIcon";
+// import PremierFacilitiesIcon from "../../../../assets/DesignElement/PremierFacilitiesIcon";
+// import ArtfullyCraftedLivingIcon from "../../../../assets/DesignElement/ArtfullyCraftedLivingIcon";
+// import StrongRentalIcon from "../../../../assets/DesignElement/StrongRentalIcon";
 import { useNavigate } from "react-router-dom";
+import { projectsData } from "../../../../components/Data/projectsData";
 
-const features = [
-  {
-    title: "Strategic Investment",
-    desc: "A 30+ year investment strategy commitment designed to align with your financial goals, whether short, medium, or long-term.",
-    icon: <StrategicInvestmentIcon />,
-  },
-  {
-    title: "Premier Facilities",
-    desc: "Lili Village offers balanced living with spacious layouts, high-end finishes, and modern conveniences, including gym, pool bar, and swimming pool.",
-    icon: <PremierFacilitiesIcon />,
-  },
-  {
-    title: "Artfully Crafted Living",
-    desc: "Thoughtfully designed spaces where open layouts seamlessly connect living areas, fostering harmony with nature and community.",
-    icon: <ArtfullyCraftedLivingIcon />,
-  },
-  {
-    title: "Strong Rental Returns",
-    desc: "High rental yields driven by strategic growth and multi-developing infrastructure, making it ideal for reliable income.",
-    icon: <StrongRentalIcon />,
-  },
-];
-
-const projects = [
-  {
-    name: "Lili Village",
-    location: "Abianbase–Mengwi, Bali",
-    image: "https://images.unsplash.com/photo-1503387762-592deb58ef4e",
-    progressImage:
-      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=400&fit=crop",
-    description:
-      "Lili Village spans 2960 square meters of artfully designed space offering 18 unique townhouses crafted in 2-bedroom (155 sqm) and 3-bedroom (235 sqm) styles. At its heart lies a social clubhouse, blending art and balance, where a gym, pool bar, serene swimming pool, and a communal restaurant create a harmonious living experience.",
-  },
-  {
-    name: "The Hive",
-    location: "Abianbase–Mengwi, Bali",
-    image: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c",
-    progressImage:
-      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=400&fit=crop",
-    description:
-      "The Hive represents a modern architectural masterpiece, featuring innovative design concepts that seamlessly blend contemporary living with traditional Balinese aesthetics. This development offers luxury residences with state-of-the-art amenities and breathtaking views of the surrounding landscape.",
-  },
-  {
-    name: "Little Soho",
-    location: "Abianbase–Mengwi, Bali",
-    image: "https://images.unsplash.com/photo-1580587771525-78b9dba3b914",
-    progressImage:
-      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=400&fit=crop",
-    description:
-      "Little Soho brings urban sophistication to Bali with its chic design and vibrant community spaces. Each unit is thoughtfully designed to maximize space and natural light, creating an inviting atmosphere that reflects the dynamic energy of modern living in paradise.",
-  },
-  {
-    name: "Dynasty 8",
-    location: "Abianbase–Mengwi, Bali",
-    image: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d",
-    progressImage:
-      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=400&fit=crop",
-    description:
-      "Dynasty 8 embodies luxury and exclusivity, offering premium residences with world-class facilities. This prestigious development features elegant architecture, private amenities, and exceptional attention to detail, creating an unparalleled living experience for discerning investors.",
-  },
-];
+// const features = [
+//   {
+//     title: "Strategic Investment",
+//     desc: "A 30+ year investment strategy commitment designed to align with your financial goals, whether short, medium, or long-term.",
+//     icon: <StrategicInvestmentIcon />,
+//   },
+//   {
+//     title: "Premier Facilities",
+//     desc: "Lili Village offers balanced living with spacious layouts, high-end finishes, and modern conveniences, including gym, pool bar, and swimming pool.",
+//     icon: <PremierFacilitiesIcon />,
+//   },
+//   {
+//     title: "Artfully Crafted Living",
+//     desc: "Thoughtfully designed spaces where open layouts seamlessly connect living areas, fostering harmony with nature and community.",
+//     icon: <ArtfullyCraftedLivingIcon />,
+//   },
+//   {
+//     title: "Strong Rental Returns",
+//     desc: "High rental yields driven by strategic growth and multi-developing infrastructure, making it ideal for reliable income.",
+//     icon: <StrongRentalIcon />,
+//   },
+// ];
 
 const BestInvestmentOpportunity = () => {
   const theme = useTheme();
   const navigate = useNavigate();
-  const items = projects.map((p) => p.name);
-  const [activeIndex, setActiveIndex] = useState(0);
+  const items = projectsData.map((p) => p.name);
+  const [activeProjectIndex, setActiveProjectIndex] = useState(0);
+  const [activeImageIndex, setActiveImageIndex] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const descriptionRef = useRef<HTMLDivElement>(null);
   // const isInitialMount = useRef(true);
   const cardRef = useRef<HTMLDivElement>(null);
   const [loadedImages, setLoadedImages] = useState<Record<number, boolean>>({});
+  const [direction, setDirection] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+  const intervalRef = useRef<number | undefined>(undefined);
+  const pauseTimeoutRef = useRef<number | undefined>(undefined);
+  const images = projectsData[activeProjectIndex]?.featuresImages ?? [];
 
   const { scrollYProgress: cardProgress } = useScroll({
     target: cardRef,
@@ -131,6 +104,10 @@ const BestInvestmentOpportunity = () => {
   // }, [activeIndex]);
 
   useEffect(() => {
+    setActiveImageIndex(0);
+  }, [activeProjectIndex]);
+
+  useEffect(() => {
     if (isModalOpen) {
       setIsLoading(true);
       // Simulate loading time
@@ -143,6 +120,77 @@ const BestInvestmentOpportunity = () => {
       setIsLoading(false);
     }
   }, [isModalOpen]);
+
+  const slideVariants = {
+    enter: (direction: number) => ({
+      x: direction > 0 ? "100%" : "-100%",
+      opacity: 0,
+    }),
+    center: {
+      zIndex: 1,
+      x: 0,
+      opacity: 1,
+    },
+    exit: (direction: number) => ({
+      zIndex: 0,
+      x: direction < 0 ? "100%" : "-100%",
+      opacity: 0,
+    }),
+  };
+
+  const slideTransition = {
+    x: { type: "spring" as const, stiffness: 300, damping: 30 },
+    opacity: { duration: 0.3 },
+  };
+
+  const handlePrev = () => {
+    setDirection(-1);
+    setActiveImageIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
+    pauseAutoRotation();
+  };
+
+  const handleNext = () => {
+    setDirection(1);
+    setActiveImageIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
+    pauseAutoRotation();
+  };
+
+  const handleThumbnailClick = (index: number) => {
+    setDirection(index > activeImageIndex ? 1 : -1);
+    setActiveImageIndex(index);
+    pauseAutoRotation();
+  };
+
+  const pauseAutoRotation = () => {
+    setIsPaused(true);
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+    }
+    if (pauseTimeoutRef.current) {
+      clearTimeout(pauseTimeoutRef.current);
+    }
+    pauseTimeoutRef.current = window.setTimeout(() => {
+      setIsPaused(false);
+    }, 3000);
+  };
+
+  useEffect(() => {
+    if (!images.length) return;
+
+    if (!isPaused) {
+      intervalRef.current = window.setInterval(() => {
+        setDirection(1);
+        setActiveImageIndex((prev) =>
+          prev === images.length - 1 ? 0 : prev + 1,
+        );
+      }, 4000);
+    }
+
+    return () => {
+      if (intervalRef.current) clearInterval(intervalRef.current);
+      if (pauseTimeoutRef.current) clearTimeout(pauseTimeoutRef.current);
+    };
+  }, [isPaused, images.length]);
 
   return (
     <Box
@@ -187,7 +235,11 @@ const BestInvestmentOpportunity = () => {
               </Typography>
 
               <Button
-                onClick={() => navigate("/projects")}
+                onClick={() => {
+                  navigate("/projects", {
+                    state: { projectIndex: activeProjectIndex },
+                  });
+                }}
                 variant="outlined"
                 sx={{
                   color: theme.palette.primary.contrastText,
@@ -223,72 +275,31 @@ const BestInvestmentOpportunity = () => {
 
           <Box ref={cardRef}>
             <FeaturedProjectCard
-              projectName={projects[activeIndex].name}
-              location={projects[activeIndex].location}
-              image={projects[activeIndex].image}
-              progressImage={projects[activeIndex].progressImage}
+              projectName={projectsData[activeProjectIndex].name}
+              location={projectsData[activeProjectIndex].location}
+              image={projectsData[activeProjectIndex].image}
+              progressImage={projectsData[activeProjectIndex].progressImage}
               onSeeMoreClick={() => setIsModalOpen(true)}
             />
           </Box>
           {/* CAROUSEL ITEMS */}
-          {/* <Box mt={{ xs: 2, md: 4, lg: 6 }}>
-            <Grid container spacing={{ xs: 0.7, md: 1.4, lg: 2 }}>
-              {projects.map((project, index) => (
-                <Grid size={{ xs: 3 }} key={project.name}>
-                  <Box
-                    onClick={() => setActiveIndex(index)}
-                    sx={{
-                      borderRadius: 3,
-                      p: { xs: 0.5, md: 1, lg: 1.5 },
-                      cursor: "pointer",
-                      border: index === activeIndex ? "2px solid #5CFF9D" : "",
-                      transition: "all .3s ease",
-
-                      "&:hover": {
-                        transform: "translateY(-4px)",
-                      },
-                    }}
-                  >
-                    <Box
-                      component="img"
-                      src={project.image}
-                      sx={{
-                        width: "100%",
-                        height: { xs: "80px", md: "160px", lg: "280px" },
-                        objectFit: "cover",
-                        borderRadius: 2,
-                      }}
-                    />
-
-                    <Typography
-                      mt={{ xs: 0.7, md: 1.4, lg: 2 }}
-                      fontSize={16}
-                      fontWeight={500}
-                      color="white"
-                      textAlign="center"
-                    >
-                      {project.name}
-                    </Typography>
-                  </Box>
-                </Grid>
-              ))}
-            </Grid>
-          </Box> */}
           <Box mt={{ xs: 2, md: 4, lg: 6 }}>
             <Grid container spacing={{ xs: 0.7, md: 1.4, lg: 2 }}>
-              {projects.map((project, index) => {
+              {projectsData.map((project, index) => {
                 const isLoaded = loadedImages[index];
 
                 return (
                   <Grid size={{ xs: 3 }} key={project.name}>
                     <Box
-                      onClick={() => setActiveIndex(index)}
+                      onClick={() => setActiveProjectIndex(index)}
                       sx={{
                         borderRadius: 3,
                         p: { xs: 0.5, md: 1, lg: 1.5 },
                         cursor: "pointer",
                         border:
-                          index === activeIndex ? "2px solid #5CFF9D" : "",
+                          index === activeProjectIndex
+                            ? "2px solid #5CFF9D"
+                            : "",
                         transition: "all .3s ease",
                         backgroundColor: "#000",
 
@@ -380,14 +391,15 @@ const BestInvestmentOpportunity = () => {
               {items.map((_, index) => (
                 <Box
                   key={index}
-                  onClick={() => setActiveIndex(index)}
+                  onClick={() => setActiveProjectIndex(index)}
                   sx={{
                     width: { xs: "10px", md: "12px", lg: "15px" },
                     height: { xs: "10px", md: "12px", lg: "15px" },
                     borderRadius: "50%",
                     cursor: "pointer",
-                    border: index === activeIndex ? "" : "2px solid #ffff",
-                    bgcolor: index === activeIndex ? "#ffffff" : "",
+                    border:
+                      index === activeProjectIndex ? "" : "2px solid #ffff",
+                    bgcolor: index === activeProjectIndex ? "#ffffff" : "",
                     transition: "all .3s ease",
                   }}
                 />
@@ -399,7 +411,7 @@ const BestInvestmentOpportunity = () => {
               {/* PREV */}
               <Box
                 onClick={() =>
-                  setActiveIndex((prev) =>
+                  setActiveProjectIndex((prev) =>
                     prev === 0 ? items.length - 1 : prev - 1,
                   )
                 }
@@ -436,7 +448,7 @@ const BestInvestmentOpportunity = () => {
               {/* NEXT */}
               <Box
                 onClick={() =>
-                  setActiveIndex((prev) =>
+                  setActiveProjectIndex((prev) =>
                     prev === items.length - 1 ? 0 : prev + 1,
                   )
                 }
@@ -482,7 +494,7 @@ const BestInvestmentOpportunity = () => {
                 lineHeight: 1.6,
               }}
             >
-              {projects[activeIndex].description}
+              {projectsData[activeProjectIndex].description}
             </Typography>
 
             <Button
@@ -514,7 +526,7 @@ const BestInvestmentOpportunity = () => {
             maxWidth={{ xs: "100%", md: "80%" }}
             mx="auto"
           >
-            {features.map((item, index) => (
+            {projectsData[activeProjectIndex].features.map((item, index) => (
               <Grid size={{ xs: 12, sm: 6, md: 6 }} key={index}>
                 <Stack spacing={2} p={{ xs: 2, md: 4, lg: 8 }}>
                   {/* ICON */}
@@ -524,7 +536,7 @@ const BestInvestmentOpportunity = () => {
                       justifyContent: "center",
                     }}
                   >
-                    {item.icon}
+                    <item.icon />
                   </Box>
 
                   {/* TITLE */}
@@ -554,6 +566,190 @@ const BestInvestmentOpportunity = () => {
           </Grid>
         </Container>
       </Box>
+
+        <Box
+          sx={{
+            // bgcolor: "#232323",
+            // px: { xs: 2, md: 4, lg: 6 },
+            minHeight: { xs: "auto", md: "800px", lg: "100vh" },
+            pb: { xs: 4, md: 6 },
+            display: "flex",
+            flexDirection: "column",
+          }}
+        >
+          <Box
+            sx={{
+              flex: { xs: "0 0 auto", md: "1 1 0" },
+              height: {
+                xs: "285.8px",
+                sm: "500px",
+                md: "600px",
+                lg: "calc(100vh - 500px)",
+              },
+              display: "flex",
+              flexDirection: "column",
+              position: "relative",
+              mb: { xs: 3, md: 2 },
+              overflow: "hidden",
+            }}
+            onMouseEnter={pauseAutoRotation}
+            onMouseLeave={() => {
+              if (pauseTimeoutRef.current) {
+                clearTimeout(pauseTimeoutRef.current);
+              }
+              setIsPaused(false);
+            }}
+          >
+            <AnimatePresence initial={false} custom={direction}>
+              <motion.div
+                key={activeImageIndex}
+                custom={direction}
+                variants={slideVariants}
+                initial="enter"
+                animate="center"
+                exit="exit"
+                transition={slideTransition}
+                style={{
+                  position: "absolute",
+                  top: 0,
+                  left: 0,
+                  width: "100%",
+                  height: "100%",
+                }}
+              >
+                <Box
+                  component="img"
+                  src={images[activeImageIndex] || images[0]}
+                  loading="eager"
+                  fetchPriority="high"
+                  sx={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                    imageRendering: "-webkit-optimize-contrast",
+                  }}
+                />
+              </motion.div>
+            </AnimatePresence>
+            <Stack
+              direction="row"
+              justifyContent="flex-end"
+              spacing={1.5}
+              sx={{
+                p: 2,
+                mt: "auto",
+                position: "relative",
+                zIndex: 2,
+              }}
+            >
+              <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
+                <IconButton
+                  onClick={handlePrev}
+                  sx={{
+                    bgcolor: "rgba(255, 255, 255, 0.5)",
+                    color: "#000000",
+                    width: { xs: 40, md: 48 },
+                    height: { xs: 40, md: 48 },
+                    borderRadius: "50%",
+                    border: "none",
+                    "&:hover": {
+                      bgcolor: "rgba(255, 255, 255, 0.7)",
+                    },
+                  }}
+                >
+                  <ArrowBackIosNewIcon sx={{ fontSize: { xs: 18, md: 20 } }} />
+                </IconButton>
+              </motion.div>
+              <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
+                <IconButton
+                  onClick={handleNext}
+                  sx={{
+                    bgcolor: "rgba(255, 255, 255, 1)",
+                    color: "#000000",
+                    width: { xs: 44, md: 52 },
+                    height: { xs: 44, md: 52 },
+                    borderRadius: "50%",
+                    border: "none",
+                    "&:hover": {
+                      bgcolor: "rgba(255, 255, 255, 0.9)",
+                    },
+                  }}
+                >
+                  <ArrowForwardIosIcon sx={{ fontSize: { xs: 18, md: 20 } }} />
+                </IconButton>
+              </motion.div>
+            </Stack>
+          </Box>
+
+          <Box
+            sx={{
+              display: "flex",
+              gap: { xs: 1, md: 2 },
+              justifyContent: "center",
+              flexShrink: 0,
+              height: { xs: "auto", md: "180px" },
+              overflowX: { xs: "auto", md: "visible" },
+              overflowY: "hidden",
+              pb: { xs: 1, md: 0 },
+              "&::-webkit-scrollbar": {
+                display: "none",
+              },
+              scrollbarWidth: "none",
+              msOverflowStyle: "none",
+            }}
+          >
+            {images.map((img, index) => (
+              <Box
+                key={index}
+                component={motion.div}
+                onClick={() => handleThumbnailClick(index)}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                sx={{
+                  flex: { xs: "0 0 auto", md: 1 },
+                  minWidth: { xs: "80px", md: 0 },
+                  width: { xs: "80px", md: "auto" },
+                  height: { xs: 80, md: 180 },
+                  overflow: "hidden",
+                  cursor: "pointer",
+                  opacity: index === activeImageIndex ? 1 : 0.6,
+                  border:
+                    index === activeImageIndex
+                      ? { xs: "2px solid #ffffff", md: "3px solid #ffffff" }
+                      : {
+                          xs: "2px solid transparent",
+                          md: "3px solid transparent",
+                        },
+                  transition:
+                    "opacity .3s ease, filter .3s ease, border .3s ease",
+                  "&:hover": {
+                    opacity: 1,
+                    filter: "brightness(1.2)",
+                    border:
+                      index === activeImageIndex
+                        ? { xs: "2px solid #ffffff", md: "3px solid #ffffff" }
+                        : {
+                            xs: "2px solid rgba(255, 255, 255, 0.5)",
+                            md: "3px solid rgba(255, 255, 255, 0.5)",
+                          },
+                  },
+                }}
+              >
+                <Box
+                  component="img"
+                  src={img}
+                  loading={index <= 2 ? "eager" : "lazy"}
+                  sx={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                    imageRendering: "-webkit-optimize-contrast",
+                  }}
+                />
+              </Box>
+            ))}
+          </Box>
+        </Box>
 
       {/* MODAL */}
       <Modal
@@ -668,8 +864,8 @@ const BestInvestmentOpportunity = () => {
                 >
                   <Box
                     component="img"
-                    src={projects[activeIndex].image}
-                    alt={projects[activeIndex].name}
+                    src={projectsData[activeProjectIndex].image}
+                    alt={projectsData[activeProjectIndex].name}
                     sx={{
                       width: "100%",
                       height: "100%",
@@ -698,7 +894,7 @@ const BestInvestmentOpportunity = () => {
                   >
                     <Box
                       component="img"
-                      src={projects[activeIndex].progressImage}
+                      src={projectsData[activeProjectIndex].progressImage}
                       alt="Progress"
                       sx={{
                         width: "100%",
@@ -735,7 +931,7 @@ const BestInvestmentOpportunity = () => {
                       fontWeight: typographyTokens.fontWeights.medium,
                     }}
                   >
-                    {projects[activeIndex].name}
+                    {projectsData[activeProjectIndex].name}
                   </Typography>
                   <Typography
                     variant="h3"
@@ -745,7 +941,7 @@ const BestInvestmentOpportunity = () => {
                       fontWeight: typographyTokens.fontWeights.regular,
                     }}
                   >
-                    {projects[activeIndex].location}
+                    {projectsData[activeProjectIndex].location}
                   </Typography>
                   <Typography
                     variant="heroSubTitle"
@@ -755,7 +951,7 @@ const BestInvestmentOpportunity = () => {
                       fontSize: { xs: "1rem", md: "1.125rem" },
                     }}
                   >
-                    {projects[activeIndex].description}
+                    {projectsData[activeProjectIndex].description}
                   </Typography>
                 </motion.div>
               </Box>

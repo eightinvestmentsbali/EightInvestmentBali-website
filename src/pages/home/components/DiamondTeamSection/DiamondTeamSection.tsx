@@ -13,6 +13,7 @@ import { shadowTokens, typographyTokens } from "../../../../theme/MuiTheme";
 import HassanBallout from "../../../../assets/HassanBallout.png";
 import RamyHachem from "../../../../assets/RamyHachem.png";
 import JubinDaniel from "../../../../assets/JubinDaniel.png";
+import FeraSanti from "../../../../assets/FeraSanti.png";
 import { useState } from "react";
 import CloseIcon from "@mui/icons-material/Close";
 import { motion, AnimatePresence } from "framer-motion";
@@ -43,6 +44,12 @@ const teamMembers: TeamMember[] = [
     image: JubinDaniel,
     bio: "Jubin runs finance at Eight Investments. He builds the models, plans the capital, and keeps runway and cash flow tight from build to operations. He turns numbers into clear go or no go decisions, pressure tests returns, and keeps controls simple so the team can move fast. His background spans corporate finance and venture ops, and he brings a builder’s view to growth and risk.",
   },
+  {
+    name: "Fera Santi",
+    role: "Head of Human Resources",
+    image: FeraSanti,
+    bio: "Fera Santi leads Eight Investments’ HR function, bringing experience across HR &amp; General Affairs within Bali’s hospitality sector. She supports recruitment, onboarding, employee relations, and compliance, building a people-first culture that scales with the group.",
+  },
 ];
 
 const DiamondTeamSection = () => {
@@ -57,7 +64,6 @@ const DiamondTeamSection = () => {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        pt: { xs: 8, md: 16 },
         pb: { xs: 16, md: 32, lg: 50 },
         position: "relative",
       }}
@@ -108,7 +114,7 @@ const DiamondTeamSection = () => {
           {/* Team Members Grid */}
           <Grid
             container
-            spacing={{ xs: 2, md: 4, lg: 6 }}
+            spacing={{ xs: 4, md: 6, lg: 6 }}
             justifyContent="center"
             alignItems="center"
             sx={{
@@ -118,7 +124,7 @@ const DiamondTeamSection = () => {
           >
             {teamMembers.map((member, index) => (
               <Grid
-                size={{ xs: 12, sm: 6, md: 4 }}
+                size={{ xs: 12, sm: 6, md: 6, lg: 3 }}
                 key={index}
                 sx={{
                   display: "flex",
@@ -282,8 +288,8 @@ const TeamMemberCard = ({ member }: TeamMemberCardProps) => {
       <Box
         sx={{
           position: "relative",
-          width: { xs: 200, sm: 240, md: 270, lg: 300},
-          height: { xs: 200, sm: 240, md: 270, lg: 300},
+          width: { xs: 200, sm: 220, md: 240, lg: 260, xl: 280},
+          height: { xs: 200, sm: 220, md: 240, lg: 260, xl: 280},
           flexShrink: 0,
         }}
       >
@@ -315,7 +321,7 @@ const TeamMemberCard = ({ member }: TeamMemberCardProps) => {
       </Box>
 
       {/* Member Info */}
-      <Stack spacing={1} alignItems="center">
+      <Stack spacing={{ xs: 0, md: 3 }} alignItems="center">
         <Typography
           variant="h3"
           sx={{

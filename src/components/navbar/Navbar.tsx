@@ -1,5 +1,3 @@
-
-
 import React, { useState, useEffect, useRef } from "react";
 import {
   AppBar,
@@ -10,6 +8,7 @@ import {
   Stack,
   IconButton,
   Drawer,
+  Container,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 // import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
@@ -23,6 +22,7 @@ const menuItems = [
   { label: "Projects", path: "/projects" },
   { label: "Services", path: "/services" },
   { label: "Our Team", path: "/team" },
+  // { label: "Contact Us", path: "/contact-us" },
 ];
 
 const Navbar: React.FC = () => {
@@ -96,7 +96,6 @@ const Navbar: React.FC = () => {
 
   const handleNavClick = (path: string, label: string, e: React.MouseEvent) => {
     e.preventDefault();
-    
     const isHomePage = location.pathname === "/";
 
     if (label === "Home") {
@@ -111,14 +110,15 @@ const Navbar: React.FC = () => {
     }
 
     const sectionMap: { [key: string]: string } = {
-      "Services": "our-services",
+      Services: "our-services",
       "Our Team": "our-team",
-      "Projects": "our-projects",
+      Projects: "our-projects",
       "About Us": "about-us",
+      "Contact Us": "contact-us", // ✅ correct
     };
 
     const sectionId = sectionMap[label];
-    
+
     if (sectionId) {
       if (isHomePage) {
         const section = document.getElementById(sectionId);
@@ -160,7 +160,8 @@ const Navbar: React.FC = () => {
           zIndex: 1000,
           top: 0,
           transform: isVisible ? "translateY(0)" : "translateY(-100%)",
-          transition: "transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), background 0.3s ease-in-out, backdrop-filter 0.3s ease-in-out",
+          transition:
+            "transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), background 0.3s ease-in-out, backdrop-filter 0.3s ease-in-out",
           willChange: "transform",
         }}
       >
@@ -180,7 +181,7 @@ const Navbar: React.FC = () => {
 
             {/* Center Logo */}
             <Box sx={{ flex: 1, textAlign: "center" }}>
-              <Logo style={{ height: 40 }} />
+              <Logo style={{ height: 45 }} />
             </Box>
 
             {/* Right Icon */}
@@ -198,54 +199,75 @@ const Navbar: React.FC = () => {
               width: "100%",
             }}
           >
-            {/* Logo */}
-            <Box sx={{ flex: 1 }}>
-              <Logo style={{ height: 45 }} />
-            </Box>
+            <Container maxWidth="xl" sx={{ display: "flex" }}>
+              {/* Logo */}
+              <Box sx={{ flex: 1 }}>
+                <Logo style={{ height: 45 }} />
+              </Box>
 
-            {/* Menu */}
-            <Stack direction="row" spacing={6} alignItems="center">
-              {menuItems.map((item) => {
-                const isScrollable = item.label === "Services" || item.label === "Our Team" || item.label === "Projects" || item.label === "About Us" || item.label === "Home";
-                return (
-                  <Typography
-                    key={item.label}
-                    component={NavLink}
-                    to={item.path}
-                    onClick={(e) => {
-                      if (isScrollable) {
-                        handleNavClick(item.path, item.label, e);
-                      }
-                    }}
-                    sx={{
-                      textDecoration: "none",
-                      fontWeight: 500,
-                      color: theme.palette.text.primary,
-                      cursor: "pointer",
-                      "&.active": {
-                        color: theme.palette.primary.main,
-                        fontWeight: 700,
-                      },
-                    }}
-                  >
-                    {item.label}
-                  </Typography>
-                );
-              })}
+              {/* Menu */}
+              <Stack direction="row" spacing={6} alignItems="center">
+                {menuItems.map((item) => {
+                  const isScrollable =
+                    item.label === "Services" ||
+                    item.label === "Our Team" ||
+                    item.label === "Projects" ||
+                    item.label === "About Us" ||
+                    item.label === "Home" ||
+                    item.label === "Contact Us";
+                  return (
+                    <Typography
+                      key={item.label}
+                      component={NavLink}
+                      to={item.path}
+                      onClick={(e) => {
+                        if (isScrollable) {
+                          handleNavClick(item.path, item.label, e);
+                          setIsVisible(false);
+                        }
+                      }}
+                      sx={{
+                        textDecoration: "none",
+                        fontWeight: 500,
+                        color: theme.palette.text.primary,
+                        cursor: "pointer",
+                        "&:visited": {
+                          color: theme.palette.text.primary,
+                        },
 
-              <Button
-              disableElevation
-                variant="contained"
-                sx={{
-                  fontWeight: 500,
-                  borderRadius: "10px",
-                  textTransform: "none",
-                  px: 3,
-                }}
-              >
-                Contact Us
-              </Button>
-            </Stack>
+                        "&.active": {
+                          color: theme.palette.primary.main,
+                          fontWeight: 700,
+                        },
+
+                        "&:hover": {
+                          color: theme.palette.primary.main,
+                        },
+                      }}
+                    >
+                      {item.label}
+                    </Typography>
+                  );
+                })}
+
+                <Button
+                  disableElevation
+                  variant="contained"
+                  onClick={(e) => {
+                    handleNavClick("/contact-us", "Contact Us", e);
+                  }}
+                  sx={{
+                    fontWeight: 500,
+                    borderRadius: "10px",
+                    textTransform: "none",
+                    px: 3,
+                    py: 1.5,
+                  }}
+                >
+                  Contact Us
+                </Button>
+              </Stack>
+            </Container>
           </Box>
         </Toolbar>
       </AppBar>
@@ -258,7 +280,12 @@ const Navbar: React.FC = () => {
         <Box sx={{ width: 260, p: 3 }}>
           <Stack spacing={3}>
             {menuItems.map((item) => {
-              const isScrollable = item.label === "Services" || item.label === "Our Team" || item.label === "Projects" || item.label === "About Us" || item.label === "Home";
+              const isScrollable =
+                item.label === "Services" ||
+                item.label === "Our Team" ||
+                item.label === "Projects" ||
+                item.label === "About Us" ||
+                item.label === "Home"
               return (
                 <Typography
                   key={item.label}
@@ -283,7 +310,13 @@ const Navbar: React.FC = () => {
               );
             })}
 
-            <Button variant="contained" disableElevation fullWidth>
+            <Button
+              disableElevation
+              variant="contained"
+              onClick={(e) => {
+                handleNavClick("/", "Contact Us", e);
+              }}
+            >
               Contact Us
             </Button>
           </Stack>

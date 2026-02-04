@@ -4,7 +4,10 @@ import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import { typographyTokens } from "../../../../theme/MuiTheme";
 import { useTheme } from "@mui/material/styles";
 
-const VideoPlayer: React.FC = () => {
+interface Props {
+  data: any;
+}
+const VideoPlayer: React.FC<Props> = ({ data }) => {
   const theme = useTheme();
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -16,10 +19,11 @@ const VideoPlayer: React.FC = () => {
 
     const tryAutoplay = async () => {
       try {
-        v.muted = true; // ensure muted so browsers allow autoplay
+        v.muted = false; // ensure muted so browsers allow autoplay
         v.loop = true; // optional: keep it looping
         v.playsInline = true;
         await v.play();
+
         setIsPlaying(true);
       } catch (err) {
         // Autoplay was blocked by the browser. Keep controls to allow manual play.
@@ -97,7 +101,6 @@ const VideoPlayer: React.FC = () => {
             width: "100%",
             aspectRatio: "16/8",
             clipPath: "url(#videoClip)",
-            bgcolor: "#000",
             position: "relative",
             display: "flex",
             alignItems: "center",
@@ -107,7 +110,7 @@ const VideoPlayer: React.FC = () => {
           <video
             ref={videoRef}
             style={{ width: "100%", height: "100%", objectFit: "cover" }}
-            src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+            src={data.video}
             onClick={togglePlay}
             playsInline
             muted
@@ -160,16 +163,18 @@ const VideoPlayer: React.FC = () => {
           }}
         >
           <Typography
-            variant="heroTitle"
+            variant="heroSubTitle"
             component="h1"
             sx={{
+              fontSize: { xs: "1rem", sm: "2rem", md: "4rem", lg: "5rem" },
               fontWeight: typographyTokens.fontWeights["semi-bold"],
               lineHeight: 0.85,
               color: theme.palette.text.primary,
               fontFamily: "inherit",
+              maxWidth: "80%",
             }}
           >
-            Lili <br /> Village
+            {data.name}
           </Typography>
         </Box>
       </Box>

@@ -220,17 +220,17 @@ const themeOptions: ThemeOptions = {
     heroTitle: {
       fontFamily: "Poppins, sans-serif",
       fontWeight: typographyTokens.fontWeights.medium,
-      fontSize: "6.5rem",
+      fontSize: "7rem",
       lineHeight: 1.1,
       letterSpacing: "-0.02em",
       "@media (max-width:1600px)": {
-        fontSize: "5rem",
+        fontSize: "7rem",
       },
       "@media (max-width:1400px)": {
-        fontSize: "4.5rem",
+        fontSize: "6rem",
       },
       "@media (max-width:1200px)": {
-        fontSize: "4rem",
+        fontSize: "5rem",
       },
       "@media (max-width:900px)": {
         fontSize: "3rem",

@@ -2,7 +2,8 @@ import { Box, Stack, Typography, useMediaQuery } from "@mui/material";
 import LocationIcon from "../../assets/DesignElement/LocationIcon";
 import { useTheme } from "@mui/material/styles";
 import { typographyTokens } from "../../theme/MuiTheme";
-import ArrowNortEastIcon from "../../assets/DesignElement/ArrowNortEastIcon";
+// import ArrowNortEastIcon from "../../assets/DesignElement/ArrowNortEastIcon";
+import { motion, AnimatePresence } from "framer-motion";
 
 interface FeaturedProjectCardProps {
   projectName: string;
@@ -17,7 +18,7 @@ const FeaturedProjectCard = ({
   location,
   image,
   progressImage,
-  onSeeMoreClick,
+  // onSeeMoreClick,
 }: FeaturedProjectCardProps) => {
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
@@ -65,7 +66,7 @@ const FeaturedProjectCard = ({
         </Typography>
       </Box>
 
-      <Box
+      {/* <Box
         onClick={onSeeMoreClick}
         sx={{
           position: "absolute",
@@ -105,7 +106,7 @@ const FeaturedProjectCard = ({
           width={isSmallScreen ? 15 : 25}
           height={isSmallScreen ? 15 : 25}
         />
-      </Box>
+      </Box> */}
 
       {/* Main Container with Curve Clip */}
       <Box
@@ -114,7 +115,7 @@ const FeaturedProjectCard = ({
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
-          height: { xs: "300px", sm: "400px", md: "600px", lg: "900px" },
+          height: { xs: "300px", sm: "400px", md: "600px", lg: "700px", xl: "900px" },
           px: { xs: 3, sm: 5, md: 6, lg: 10 },
           clipPath: "url(#outerFrameClip)",
           background: theme.palette.primary.main,
@@ -138,7 +139,7 @@ const FeaturedProjectCard = ({
           sx={{
             zIndex: 1,
             alignSelf: "flex-end",
-            height: { xs: "255px", sm: "340px", md: "510px", lg: "765px" },
+            height: { xs: "255px", sm: "340px", md: "510px", lg: "595px", xl: "765px" },
             width: "40%",
             display: "flex",
             alignItems: "center",
@@ -147,58 +148,75 @@ const FeaturedProjectCard = ({
           }}
         >
           <Stack spacing={{ xs: 1, md: 2, lg: 3 }}>
-            <Typography
-              variant="heroSubTitle"
-              component="h1"
-              color={theme.palette.primary.contrastText}
-              fontWeight={typographyTokens.fontWeights.medium}
-              sx={{
-                fontSize: {
-                  xs: typographyTokens.fontSizes["2xl"],
-                  sm: typographyTokens.fontSizes["3xl"],
-                  md: typographyTokens.fontSizes["4xl"],
-                  lg: "3.1875rem",
-                },
-              }}
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, ease: "easeOut" }}
             >
-              {projectName}
-            </Typography>
-            <Typography
-              variant="h3"
-              fontWeight={typographyTokens.fontWeights.regular}
-              color={theme.palette.text.secondary}
-              lineHeight={{ xs: 1.2, md: 1.4 }}
-              sx={{
-                fontSize: {
-                  xs: typographyTokens.fontSizes["sm"], // Mobile size
-                  sm: typographyTokens.fontSizes["md"], // Tablet size
-                  md: typographyTokens.fontSizes["xl"],
-                  lg: typographyTokens.fontSizes["2xl"],
-                },
-                display: "flex",
-                alignItems: "center",
-                gap: 1,
-              }}
-            >
-              <LocationIcon
-                width={isSmallScreen ? 16 : 25}
-                height={isSmallScreen ? 16 : 25}
-              />
-              {location}
-            </Typography>
-
-            <Box sx={{ width: { md: "200px", lg: "430px" } }}>
-              <Box
-                component="img"
-                src={progressImage}
-                alt="Progress"
+              <Typography
+                variant="heroSubTitle"
+                component="h1"
+                color={theme.palette.primary.contrastText}
+                fontWeight={typographyTokens.fontWeights.medium}
                 sx={{
-                  width: "100%",
-                  height: "auto",
-                  objectFit: "contain",
-                  borderRadius: 1,
+                  fontSize: {
+                    xs: typographyTokens.fontSizes["2xl"],
+                    sm: typographyTokens.fontSizes["3xl"],
+                    md: typographyTokens.fontSizes["4xl"],
+                    lg: "3.1875rem",
+                  },
                 }}
-              />
+              >
+                {projectName}
+              </Typography>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: 0.1, ease: "easeOut" }}
+            >
+              <Typography
+                variant="h3"
+                fontWeight={typographyTokens.fontWeights.regular}
+                color={theme.palette.text.secondary}
+                lineHeight={{ xs: 1.2, md: 1.4 }}
+                sx={{
+                  fontSize: {
+                    xs: typographyTokens.fontSizes["sm"], // Mobile size
+                    sm: typographyTokens.fontSizes["md"], // Tablet size
+                    md: typographyTokens.fontSizes["xl"],
+                    lg: typographyTokens.fontSizes["2xl"],
+                  },
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 1,
+                }}
+              >
+                <LocationIcon
+                  width={isSmallScreen ? 16 : 25}
+                  height={isSmallScreen ? 16 : 25}
+                />
+                {location}
+              </Typography>
+            </motion.div>
+            <Box sx={{ width: {  xs: "100px", sm: "150px", md: "200px", lg: "330px", xl: "430px" } }}>
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
+              >
+                <Box
+                  component="img"
+                  src={progressImage}
+                  alt="Progress"
+                  sx={{
+                    width: "100%",
+                    height: "auto",
+                    objectFit: "contain",
+                    borderRadius: 1,
+                  }}
+                />
+              </motion.div>
             </Box>
           </Stack>
         </Box>
@@ -207,35 +225,52 @@ const FeaturedProjectCard = ({
           sx={{
             zIndex: 1,
             alignSelf: "flex-start",
-            height: { xs: "255px", sm: "340px", md: "510px", lg: "765px" },
-            width: { xs: "50%", md: "60%" },
+            height: { xs: "255px", sm: "340px", md: "510px", lg: "595px", xl: "765px" },
+            width: { xs: "40%", sm: "45%", md: "50%", lg: "55%", xl: "60%" },
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
+            // bgcolor: "#ccc",
           }}
         >
           <Box
             sx={{
               position: "relative",
               borderRadius: {
-                xs: "30px 50px 30px 20px",
+                xs: "20px 50px 20px 20px",
+                sm: "30px 80px 30px 30px",
                 md: "30px 100px 30px 30px",
                 lg: "70px 200px 70px 70px",
               },
               overflow: "hidden",
-              height: { xs: "200px", sm: "260px", md: "420px", lg: "660px" },
+              height: { xs: "200px", sm: "260px", md: "420px", lg: "490px", xl: "660px" },
               width: { xs: "100%", md: "100%" },
             }}
           >
-            <Box
-              component="img"
-              src={image}
-              sx={{
-                width: "100%",
-                height: "100%",
-                objectFit: "cover",
-              }}
-            />
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={image}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.5, ease: "easeInOut" }}
+                style={{
+                  position: "absolute",
+                  width: "100%",
+                  height: "100%",
+                }}
+              >
+                <Box
+                  component="img"
+                  src={image}
+                  sx={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                  }}
+                />
+              </motion.div>
+            </AnimatePresence>
           </Box>
         </Box>
       </Box>

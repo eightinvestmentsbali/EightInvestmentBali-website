@@ -98,13 +98,13 @@ const WhyDoInvestorschoose: React.FC = () => {
       <Box
         ref={containerRef}
         sx={{
-          mt: { xs: 3.75, sm: 7.5, md: 13, lg: 20 },
+          // mb: { xs: 3.75, sm: 7.5, md: 13, lg: 15 },
           position: "relative",
           // height: {
           //   xs: `${investmentReasons.length * 90 - 60}vh`,
           //   md: `${100 + investmentReasons.length * 100}vh`,
           // },
-          px: { xs: 2, md: 4, lg: 6 },
+          // px: { xs: 2, md: 4, lg: 6 },
           pb: { xs: 2, sm: 4, md: 8, lg: 16 },
         }}
       >
@@ -131,7 +131,7 @@ const WhyDoInvestorschoose: React.FC = () => {
                 mb: { xs: 4, md: 6 },
               }}
             >
-              Why do investors choose Eight Investments Bali
+              Why do investors choose <br /> Eight Investments Bali
             </Typography>
 
             <Divider
@@ -257,7 +257,7 @@ const WhyDoInvestorschoose: React.FC = () => {
                     </Typography>
 
                     {/* Tags */}
-                    <Box
+                    {/* <Box
                       sx={{
                         display: "flex",
                         flexWrap: "wrap",
@@ -289,7 +289,7 @@ const WhyDoInvestorschoose: React.FC = () => {
                           </Typography>
                         </Box>
                       ))}
-                    </Box>
+                    </Box> */}
 
                     {/* Description */}
                     <Typography
