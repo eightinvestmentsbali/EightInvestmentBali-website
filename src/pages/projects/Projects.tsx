@@ -3,11 +3,19 @@ import React from "react";
 import { useTheme } from "@mui/material/styles";
 import Navbar from "../../components/navbar/Navbar";
 import BestInvestmentOpportunity from "./Components/BestInvestmentOpportunity/BestInvestmentOpportunity";
-import ProjectWork from "./Components/BestInvestmentOpportunity/Components/ProjectsWork/ProjectWork";
+// import ProjectWork from "./Components/BestInvestmentOpportunity/Components/ProjectsWork/ProjectWork";
 import ContactFooter from "../home/components/ContactFooter/ContactFooter";
+import { projectsData } from "../../components/Data/projectsData";
+import { useLocation } from "react-router-dom";
 
 const Projects: React.FC = () => {
   const theme = useTheme();
+  const location = useLocation();
+  const projectIndexFromState = location.state?.projectIndex;
+
+  const initialIndex =
+    typeof projectIndexFromState === "number" ? projectIndexFromState : 0;
+
   return (
     <Box
       component="section"
@@ -20,9 +28,12 @@ const Projects: React.FC = () => {
       <Box sx={{ position: "relative", zIndex: 1 }}>
         <Container maxWidth="xl" sx={{ overflow: "visible" }}>
           <Navbar />
-          <BestInvestmentOpportunity />
+          <BestInvestmentOpportunity
+            data={projectsData}
+            initialActiveIndex={initialIndex >= 0 ? initialIndex : 0}
+          />
         </Container>
-        <ProjectWork />
+        {/* <ProjectWork /> */}
         <ContactFooter />
       </Box>
     </Box>

@@ -61,6 +61,7 @@ const ContactFooter = () => {
 
   return (
     <Box
+      id="contact-us"
       sx={{
         bgcolor: "#000000",
         color: "#FFFFFF",

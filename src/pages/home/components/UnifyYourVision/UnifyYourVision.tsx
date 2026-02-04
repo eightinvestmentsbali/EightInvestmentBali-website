@@ -8,7 +8,7 @@ const UnifyYourVision: React.FC = () => {
   const theme = useTheme();
   return (
     <Grid size={{ xs: 12 }} id="about-us">
-      <Box sx={{ mt: { xs: 3.75, sm: 7.5, md: 13, lg: 20 } }}>
+      <Box sx={{ mb: { xs: 3.75, sm: 6.5, md: 7.5, lg: 13, xl: 20 } }}>
         <motion.div
           initial={{ y: 60, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
@@ -22,7 +22,7 @@ const UnifyYourVision: React.FC = () => {
             component="h1"
             sx={{
               color: theme.palette.text.primary,
-              mb: { xs: 2, md: 6, lg: 8 },
+              mb: { xs: 2, md: 4, lg: 6, xl: 8},
             }}
           >
             Unify your vision with <br /> limitless possibilities
@@ -41,7 +41,7 @@ const UnifyYourVision: React.FC = () => {
             sx={{
               height: "2px",
               backgroundColor: theme.palette.divider,
-              mb: { xs: 1, md: 6, lg: 8 },
+              mb: { xs: 2, md: 4, lg: 6, xl: 8},
             }}
           />
         </motion.div>

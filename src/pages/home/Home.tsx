@@ -18,8 +18,8 @@ import OurCoreValues from "./components/OurCoreValues/OurCoreValues";
 // import MeshBackground from "../../components/background/MeshBackground";
 // import BackgroundParticles from "../../components/background/BackgroundParticles";
 // import MuiGradientBackground from "../../components/background/MuiGradientBackground";
-// import AnimatedGradientBlob from "../../components/background/AnimatedGradientBlob";
 import { useTheme } from "@mui/material/styles";
+import AnimatedGradientBlob from "../../components/background/AnimatedGradientBlob";
 // import AnimatedGradient from "../../components/background/AnimatedGradient";
 
 const Home: React.FC = () => {
@@ -34,7 +34,7 @@ const Home: React.FC = () => {
       }}
     >
       {/* <AnimatedGradient /> */}
-      {/* <AnimatedGradientBlob /> */}
+      <AnimatedGradientBlob />
       {/* Your content */}
       {/* <MuiGradientBackground /> */}
       {/* <BackgroundParticles /> */}
@@ -42,14 +42,17 @@ const Home: React.FC = () => {
       {/* <GLSLBackground /> */}
       {/* <ShaderBackground /> */}
       {/* <MeshBackground /> */}
+      <Navbar />
       <Box
         sx={{ position: "relative", zIndex: 1 }}
         // style={{
-        //   filter: "saturate(115%) contrast(105%)",
+          // filter: "saturate(115%) contrast(105%)",
         // }}
       >
-        <Container maxWidth="xl" sx={{ overflow: "visible" }}>
-          <Navbar />
+        <Container
+          maxWidth="xl"
+          sx={{ overflow: "visible" }}
+        >
           <Grid container justifyContent="center" alignItems="center">
             <ArchitectingProsperity />
             <UnifyYourVision />

@@ -43,7 +43,8 @@ const OurCoreValues: React.FC = () => {
     <Box
       sx={{
         bgcolor: theme.palette.background.paper,
-        py: { xs: 2, md: 5, lg: 10 },
+        pt: { xs: 2, md: 5, lg: 10 },
+        pb: { xs: 8, md: 16 },
       }}
     >
       <Container maxWidth="xl">
