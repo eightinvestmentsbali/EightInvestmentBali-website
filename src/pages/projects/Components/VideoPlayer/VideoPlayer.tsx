@@ -1,8 +1,10 @@
 import React, { useRef, useState } from "react";
-import { Box, Typography, IconButton } from "@mui/material";
+import { Box, Typography, IconButton, Tooltip } from "@mui/material";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import { typographyTokens } from "../../../../theme/MuiTheme";
 import { useTheme } from "@mui/material/styles";
+import VolumeUpIcon from "@mui/icons-material/VolumeUp";
+import VolumeOffIcon from "@mui/icons-material/VolumeOff";
 
 interface Props {
   data: any;
@@ -11,6 +13,7 @@ const VideoPlayer: React.FC<Props> = ({ data }) => {
   const theme = useTheme();
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [isMuted, setIsMuted] = useState(true); // Default to muted for autoplay
 
   // Attempt to autoplay muted on mount (browsers require muted autoplay)
   React.useEffect(() => {
@@ -19,7 +22,7 @@ const VideoPlayer: React.FC<Props> = ({ data }) => {
 
     const tryAutoplay = async () => {
       try {
-        v.muted = false; // ensure muted so browsers allow autoplay
+        v.muted = true; // ensure muted so browsers allow autoplay
         v.loop = true; // optional: keep it looping
         v.playsInline = true;
         await v.play();
@@ -47,10 +50,14 @@ const VideoPlayer: React.FC<Props> = ({ data }) => {
     }
   };
 
-  /**
-   * FIX: The "Two Stairs" Clip Path
-   * This path creates the double-step effect and rounds every outer/inner corner.
-   */
+  const toggleMute = (e: React.MouseEvent) => {
+    e.stopPropagation(); // Prevents the video from pausing when clicking mute
+    if (videoRef.current) {
+      videoRef.current.muted = !videoRef.current.muted;
+      setIsMuted(videoRef.current.muted);
+    }
+  };
+
   const clipPathData =
     // ---- top edge ----
     "M 0.04,0 " +
@@ -118,6 +125,37 @@ const VideoPlayer: React.FC<Props> = ({ data }) => {
             loop
             preload="auto"
           />
+
+          <Tooltip title={isMuted ? "Unmute" : "Mute"}>
+            <IconButton
+              onClick={toggleMute}
+              sx={{
+                position: "absolute",
+                bottom: { xs: "3%", md: "5%" }, // Adjusted to stay above your stepped label
+                right: { xs: "2%", md: "3%" },
+                bgcolor: "rgba(255, 255, 255, 0.2)",
+                backdropFilter: "blur(8px)",
+                color: "#fff",
+                outline: "none",
+                "&:focus": {
+                  outline: "none",
+                },
+                "&:active": {
+                  outline: "none",
+                },
+                // Removes the gray/black highlight on mobile devices
+                WebkitTapHighlightColor: "transparent",
+
+                "&:hover": {
+                  bgcolor: "rgba(255, 255, 255, 0.4)",
+                  outline: "none",
+                },
+                zIndex: 20,
+              }}
+            >
+              {isMuted ? <VolumeOffIcon /> : <VolumeUpIcon />}
+            </IconButton>
+          </Tooltip>
 
           {!isPlaying && (
             <Box
