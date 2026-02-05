@@ -4,6 +4,7 @@ import { useTheme } from "@mui/material/styles";
 import { typographyTokens } from "../../theme/MuiTheme";
 // import ArrowNortEastIcon from "../../assets/DesignElement/ArrowNortEastIcon";
 import { motion, AnimatePresence } from "framer-motion";
+// import ProjectProgress from "./ProjectProgress";
 
 interface FeaturedProjectCardProps {
   projectName: string;
@@ -115,7 +116,13 @@ const FeaturedProjectCard = ({
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
-          height: { xs: "300px", sm: "400px", md: "600px", lg: "700px", xl: "900px" },
+          height: {
+            xs: "300px",
+            sm: "400px",
+            md: "600px",
+            lg: "700px",
+            xl: "900px",
+          },
           px: { xs: 3, sm: 5, md: 6, lg: 10 },
           clipPath: "url(#outerFrameClip)",
           background: theme.palette.primary.main,
@@ -139,7 +146,13 @@ const FeaturedProjectCard = ({
           sx={{
             zIndex: 1,
             alignSelf: "flex-end",
-            height: { xs: "255px", sm: "340px", md: "510px", lg: "595px", xl: "765px" },
+            height: {
+              xs: "255px",
+              sm: "340px",
+              md: "510px",
+              lg: "595px",
+              xl: "765px",
+            },
             width: "40%",
             display: "flex",
             alignItems: "center",
@@ -199,7 +212,17 @@ const FeaturedProjectCard = ({
                 {location}
               </Typography>
             </motion.div>
-            <Box sx={{ width: {  xs: "100px", sm: "150px", md: "200px", lg: "330px", xl: "430px" } }}>
+            <Box
+              sx={{
+                width: {
+                  xs: "100px",
+                  sm: "150px",
+                  md: "200px",
+                  lg: "330px",
+                  xl: "430px",
+                },
+              }}
+            >
               <motion.div
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
@@ -216,6 +239,7 @@ const FeaturedProjectCard = ({
                     borderRadius: 1,
                   }}
                 />
+                {/* <ProjectProgress /> */}
               </motion.div>
             </Box>
           </Stack>
@@ -225,7 +249,13 @@ const FeaturedProjectCard = ({
           sx={{
             zIndex: 1,
             alignSelf: "flex-start",
-            height: { xs: "255px", sm: "340px", md: "510px", lg: "595px", xl: "765px" },
+            height: {
+              xs: "255px",
+              sm: "340px",
+              md: "510px",
+              lg: "595px",
+              xl: "765px",
+            },
             width: { xs: "50%", sm: "50%", md: "50%", lg: "55%", xl: "60%" },
             display: "flex",
             alignItems: "center",
@@ -243,7 +273,13 @@ const FeaturedProjectCard = ({
                 lg: "70px 200px 70px 70px",
               },
               overflow: "hidden",
-              height: { xs: "200px", sm: "260px", md: "420px", lg: "490px", xl: "660px" },
+              height: {
+                xs: "200px",
+                sm: "260px",
+                md: "420px",
+                lg: "490px",
+                xl: "660px",
+              },
               width: { xs: "100%", md: "100%" },
             }}
           >
