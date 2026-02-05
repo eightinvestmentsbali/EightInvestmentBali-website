@@ -1,11 +1,16 @@
 import { Box, Divider, Grid, Typography } from "@mui/material";
-import React, { useEffect, useRef } from "react";
+import React, { useRef, useState } from "react";
 import { useTheme } from "@mui/material/styles";
+import {
+  motion,
+  useMotionValueEvent,
+  useScroll,
+  useTransform,
+} from "framer-motion";
 import { typographyTokens } from "../../../../theme/MuiTheme";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useScroll, useTransform, motion } from "framer-motion";
+// import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 
+// Define your card data with images
 const investmentReasons = [
   {
     id: 1,
@@ -14,7 +19,7 @@ const investmentReasons = [
     description:
       "Consistently delivering above-market returns through strategic property selection and development.",
     image:
-      "https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D%22",
     buttonText: "Learn More",
   },
   {
@@ -59,80 +64,79 @@ const investmentReasons = [
   },
 ];
 
-gsap.registerPlugin(ScrollTrigger);
-
 const WhyDoInvestorschoose: React.FC = () => {
   const theme = useTheme();
   const containerRef = useRef<HTMLDivElement>(null);
-  const [currentIndex, setCurrentIndex] = React.useState(0);
-  const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
+  const [activeCardIndex, setActiveCardIndex] = useState(0);
+
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"],
   });
 
+  // Calculate opacity for the title - fades out as you scroll
   const titleOpacity = useTransform(scrollYProgress, [0, 0.05], [1, 0]);
   const titleY = useTransform(scrollYProgress, [0, 0.15], [0, -50]);
 
-  useEffect(() => {
-    if (!containerRef.current) return;
-
-    const cards = cardsRef.current;
-
-    gsap.set(cards, {
-      yPercent: (i) => (i === 0 ? 0 : 120),
-      scale: 1,
-      opacity: 1,
+  useMotionValueEvent(scrollYProgress, "change", (latest) => {
+    const cardThresholds = investmentReasons.map((_, index) => {
+      return 0.15 + (index * 0.75) / investmentReasons.length;
     });
 
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: containerRef.current,
-        start: "top top",
-        end: `+=${window.innerHeight * (cards.length - 1)}`,
-        scrub: true,
-        pin: true,
-        pinSpacing: true,
-        onUpdate: (self) => {
-          const index = Math.min(
-            cards.length - 1,
-            Math.floor(self.progress * cards.length),
-          );
-          setCurrentIndex(index);
-        },
-      },
-    });
+    for (let i = cardThresholds.length - 1; i >= 0; i--) {
+      if (latest >= cardThresholds[i]) {
+        setActiveCardIndex(i);
+        break;
+      }
+    }
+  });
 
-    cards.forEach((_, i) => {
-      if (i === 0) return;
-
-      tl.to(cards[i - 1], { scale: 0.9 }, i - 1).to(
-        cards[i],
-        { yPercent: 0 },
-        i - 1,
-      );
-    });
-
-    return () => ScrollTrigger.getAll().forEach((t) => t.kill());
-  }, []);
+  // Auto-scroll to next section when cards complete
+  // const hasScrolledRef = useRef(false);
+  // useMotionValueEvent(scrollYProgress, "change", (latest) => {
+  //   if (latest >= 0.95 && !hasScrolledRef.current) {
+  //     hasScrolledRef.current = true;
+  //     setTimeout(() => {
+  //       const targetElement = document.getElementById(
+  //         "best-investment-opportunity",
+  //       );
+  //       if (targetElement) {
+  //         targetElement.scrollIntoView({ behavior: "smooth", block: "start" });
+  //       }
+  //     }, 500);
+  //   }
+  // });
 
   return (
     <Grid size={{ xs: 12 }}>
-      <Box>
+      <Box
+        ref={containerRef}
+        sx={{
+          // mb: { xs: 3.75, sm: 7.5, md: 13, lg: 15 },
+          position: "relative",
+          // height: {
+          //   xs: `${investmentReasons.length * 90 - 60}vh`,
+          //   md: `${100 + investmentReasons.length * 100}vh`,
+          // },
+          // px: { xs: 2, md: 4, lg: 6 },
+          pb: { xs: 2, sm: 4, md: 8, lg: 16 },
+        }}
+      >
+        {/* Title Section - Fades out on scroll */}
         <motion.div
           style={{
             opacity: titleOpacity,
             y: titleY,
             position: "sticky",
             top: "80px", // offset so sticky title sits below the fixed navbar
-            zIndex: -1,
+            zIndex: 1,
           }}
           initial={{ opacity: 0, y: 80 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: false, margin: "-80px 0px 0px 0px" }}
           transition={{ duration: 0.4, ease: "easeOut" }}
         >
-          <Box sx={{ mb: { xs: 2, md: 4, lg: 6, xl: 8 } }}>
+          <Box sx={{ mb: { xs: 4, md: 10 } }}>
             <Typography
               variant="heroTitle"
               component="h1"
@@ -148,40 +152,54 @@ const WhyDoInvestorschoose: React.FC = () => {
               sx={{
                 height: "2px",
                 backgroundColor: theme.palette.divider,
-                my: { xs: 0, md: 2 },
+                my: 2,
               }}
             />
           </Box>
         </motion.div>
-        <Box
-          ref={containerRef}
-          sx={{
-            height: "100vh",
-            position: "relative",
-          }}
-        >
-          {investmentReasons.map((reason, index) => (
-            <Box
+
+        {/* Cards Section - Stacked and revealed on scroll */}
+        {investmentReasons.map((reason, index) => {
+          const isLast = index === investmentReasons.length - 1;
+
+          // Calculate scroll progress for each card
+          const cardStart = 0.15 + (index * 0.75) / investmentReasons.length;
+          const cardEnd =
+            0.15 + ((index + 1) * 0.75) / investmentReasons.length;
+
+          // Scale down the card behind as new card comes up
+          const scale = useTransform(
+            scrollYProgress,
+            [cardStart, cardEnd],
+            [1, isLast ? 1 : 0.9],
+          );
+
+          // Fade out the card behind
+          const opacity = useTransform(
+            scrollYProgress,
+            [cardStart, cardEnd - 0.02],
+            [1, 1],
+          );
+
+          // Move the current card UP from below as you scroll
+          const y = useTransform(
+            scrollYProgress,
+            [cardStart - 0.5, cardStart, cardEnd],
+            [100, 0, 0], // Starts from 100px below, moves to 0, stays at 0
+          );
+
+          return (
+            <motion.div
               key={reason.id}
-              ref={(el: HTMLDivElement | null) => {
-                if (el) {
-                  cardsRef.current[index] = el;
-                }
-              }}
-              sx={{
-                position: "absolute",
-                top: 80,
-                left: 0,
-                right: 0,
-                mx: "auto",
-                width: "100%",
-                borderRadius: { xs: 5, md: 10, lg: 10 },
-                overflow: "hidden",
-                bgcolor: theme.palette.background.paper,
-                boxShadow: "0 32px 64px rgba(0,0,0,.2)",
+              style={{
+                position: "sticky",
+                top: "80px",
+                scale,
+                opacity,
+                y,
+                zIndex: index + 2, // Higher index = on top
               }}
             >
-              {/* content same as your card */}
               <Box
                 sx={{
                   position: "relative",
@@ -189,7 +207,7 @@ const WhyDoInvestorschoose: React.FC = () => {
                   overflow: "hidden",
                   mx: "auto",
                   width: "100%",
-                  // mb: isLast ? 0 : 20,
+                  mb: isLast ? 0 : 20,
                   // Use a clean off-white/paper base
                   bgcolor: theme.palette.background.paper,
                   boxShadow: "0 32px 64px rgba(0, 0, 0, 0.2)",
@@ -227,6 +245,39 @@ const WhyDoInvestorschoose: React.FC = () => {
                     zIndex: 1,
                   }}
                 >
+                  <Box
+                    sx={{
+                      position: "absolute",
+                      bottom: { xs: "2%", md: "4%" },
+                      left: "4%",
+                      transform: "translateY(-50%)",
+                    display: { xs: "none", md: "flex" },
+                      flexDirection: "row",
+                      gap: 1.5,
+                    }}
+                  >
+                    {investmentReasons.map((_, index) => (
+                      <Box
+                        key={index}
+                        sx={{
+                          width: { xs: "8px", md: "8px", lg: "10px"},
+                          height: { xs: "8px", md: "8px", lg: "10px"},
+                          borderRadius: "50%",
+                          bgcolor:
+                            activeCardIndex === index
+                              ? theme.palette.primary.main
+                              : "thransparent",
+                          transition: "all 0.3s ease",
+                          cursor: "pointer",
+                          border: `1px solid ${theme.palette.primary.main}`,
+                          transform:
+                            activeCardIndex === index
+                              ? "scale(1.2)"
+                              : "scale(1)",
+                        }}
+                      />
+                    ))}
+                  </Box>
                   {/* Left Content */}
                   <Box
                     sx={{
@@ -252,6 +303,41 @@ const WhyDoInvestorschoose: React.FC = () => {
                       {reason.title}
                     </Typography>
 
+                    {/* Tags */}
+                    {/* <Box
+                      sx={{
+                        display: "flex",
+                        flexWrap: "wrap",
+                        gap: { xs: 0.5, md: 1, lg: 1.5 },
+                      }}
+                    >
+                      {reason.tags.map((tag, idx) => (
+                        <Box
+                          key={idx}
+                          sx={{
+                            px: { xs: 1, md: 2, lg: 2.5 },
+                            py: { xs: 0.5, md: 0.8, lg: 1 },
+                            borderRadius: 2,
+                            bgcolor:
+                              theme.palette.mode === "light"
+                                ? "rgba(0, 0, 0, 0.04)"
+                                : "rgba(255, 255, 255, 0.08)",
+                            border: `1px solid ${theme.palette.divider}`,
+                          }}
+                        >
+                          <Typography
+                            variant="body2"
+                            sx={{
+                              color: "#484848",
+                              fontWeight: typographyTokens.fontWeights.regular,
+                            }}
+                          >
+                            {tag}
+                          </Typography>
+                        </Box>
+                      ))}
+                    </Box> */}
+
                     {/* Description */}
                     <Typography
                       variant="h3"
@@ -265,42 +351,33 @@ const WhyDoInvestorschoose: React.FC = () => {
                     >
                       {reason.description}
                     </Typography>
-                  </Box>
-                  <Box
-                    sx={{
-                      position: "absolute",
-                      left: "5%",
-                      bottom: "4%",
-                      display: "flex",
-                      gap: 1.2,
-                      zIndex: 20,
-                    }}
-                  >
-                    {investmentReasons.map((_, index) => {
-                      const isActive = index === currentIndex;
 
-                      return (
-                        <Box
-                          key={index}
-                          sx={{
-                            width: {
-                              xs: 8,
-                              sm: 10,
-                              md: 12,
-                              lg: 12,
-                              xl: 14,
-                            },
-                            height: { xs: 8, sm: 10, md: 12, lg: 12, xl: 14 },
-                            borderRadius: "50%",
-                            border: `2px solid ${theme.palette.primary.main}`,
-                            bgcolor: isActive
-                              ? theme.palette.primary.main
-                              : "transparent",
-                            transition: "all .3s ease",
-                          }}
-                        />
-                      );
-                    })}
+                    {/* Button */}
+                    {/* <Box sx={{ mt: 2 }}>
+                      <Button
+                        variant="outlined"
+                        endIcon={<ArrowForwardIcon />}
+                        sx={{
+                          px: 4,
+                          py: 1.5,
+                          borderRadius: 10,
+                          borderColor: theme.palette.text.primary,
+                          color: theme.palette.text.primary,
+                          fontSize: "1rem",
+                          fontWeight: typographyTokens.fontWeights.medium,
+                          textTransform: "none",
+                          transition: "all 0.3s ease",
+                          "&:hover": {
+                            borderColor: theme.palette.primary.main,
+                            bgcolor: theme.palette.primary.main,
+                            color: theme.palette.primary.contrastText,
+                            transform: "translateX(4px)",
+                          },
+                        }}
+                      >
+                        {reason.buttonText}
+                      </Button>
+                    </Box> */}
                   </Box>
 
                   {/* Right Image */}
@@ -340,9 +417,9 @@ const WhyDoInvestorschoose: React.FC = () => {
                   </Box>
                 </Box>
               </Box>
-            </Box>
-          ))}
-        </Box>
+            </motion.div>
+          );
+        })}
       </Box>
     </Grid>
   );
