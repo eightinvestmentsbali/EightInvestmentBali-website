@@ -314,7 +314,7 @@ const OurProcess: React.FC = () => {
                 }
                 pauseTimeoutRef.current = setTimeout(() => {
                   setIsPaused(false);
-                }, 2000);
+                }, 500);
               }}
             >
               {/* STACKED CARDS - Dynamic colors based on active step */}
@@ -443,7 +443,10 @@ const OurProcess: React.FC = () => {
 
           {/* -------------------- RIGHT STEPS -------------------- */}
           <Grid size={{ xs: 12, sm: 6, md: 6 }}>
-            <Stack spacing={{ xs: 3, sm: 4, md: 5 }} mt={{ xs: 4, md: 0 }}>
+            <Stack
+              spacing={{ xs: 2, sm: 3, md: 4, lg: 5 }}
+              mt={{ xs: 4, md: 0 }}
+            >
               {steps.map((step, index) => {
                 const isActive = index === 0;
 
@@ -484,6 +487,22 @@ const OurProcess: React.FC = () => {
                       <Typography
                         variant={isActive ? "heroTitle" : "heroSubTitle"}
                         sx={{
+                          fontSize: isActive
+                            ? {
+                                xs: "3.2rem", // Your active mobile size
+                                sm: "3.2rem",
+                                md: "4.5rem",
+                                lg: "6rem",
+                                xl: "7rem",
+                              }
+                            : {
+                                xs: "2rem", // Balanced inactive mobile size
+                                sm: "2.3rem",
+                                md: "3rem",
+                                lg: "3.8rem",
+                                xl: "4.5rem",
+                              },
+                          transition: "all 0.5s ease-in-out", // Smooth scaling during rotation
                           fontWeight: isActive ? 600 : 500,
                           color: isActive
                             ? theme.palette.text.primary

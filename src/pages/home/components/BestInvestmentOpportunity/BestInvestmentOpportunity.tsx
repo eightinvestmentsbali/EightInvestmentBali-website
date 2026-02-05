@@ -298,6 +298,7 @@ const BestInvestmentOpportunity = () => {
               image={projectsData[activeProjectIndex].image}
               progressImage={projectsData[activeProjectIndex].progressImage}
               onSeeMoreClick={() => setIsModalOpen(true)}
+              statusBadge={projectsData[activeProjectIndex].statusBadge}
             />
           </Box>
           {/* CAROUSEL ITEMS */}

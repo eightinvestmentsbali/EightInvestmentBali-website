@@ -6,6 +6,7 @@ import StrongRentalIcon from './../../assets/DesignElement/StrongRentalIcon';
 export const projectsData = [
   {
     name: "Lili Village",
+    statusBadge: "SOLD OUT IN \n 3 WEEKS",
     location: "Abianbase–Mengwi, Bali",
     image: "https://backoffice.eightinvestmentsbali.com/images/gallery/large/1724668116_49b9bf2d5134d73c6c4d.jpg",
     progressImage:
@@ -47,6 +48,7 @@ export const projectsData = [
   },
   {
     name: "The Hive",
+    statusBadge: "SOLD OUT IN \n 3 DAYS",
     location: "Abianbase–Mengwi, Bali",
     image: "https://backoffice.eightinvestmentsbali.com/images/gallery/large/1761998024_03354e41b9619df8f488.png",
     progressImage:
@@ -88,6 +90,7 @@ export const projectsData = [
   },
   {
     name: "Little Soho",
+    statusBadge: "SOLD OUT",
     location: "Abianbase–Mengwi, Bali",
     image: "https://backoffice.eightinvestmentsbali.com/images/gallery/large/1761999764_38b0c767b6072af9ea40.jpg",
     progressImage:
@@ -129,6 +132,7 @@ export const projectsData = [
   },
   {
     name: "Dynasty 8",
+    statusBadge: "NEW PROJECT",
     location: "Abianbase–Mengwi, Bali",
     image: "https://backoffice.eightinvestmentsbali.com/images/gallery/large/1762002352_c6eafa1f85965ce00ced.jpg",
     progressImage:

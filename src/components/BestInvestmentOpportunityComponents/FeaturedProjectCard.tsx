@@ -11,6 +11,7 @@ interface FeaturedProjectCardProps {
   location: string;
   image: string;
   progressImage: string;
+  statusBadge: string;
   onSeeMoreClick?: () => void;
 }
 
@@ -19,6 +20,7 @@ const FeaturedProjectCard = ({
   location,
   image,
   progressImage,
+  statusBadge,
   // onSeeMoreClick,
 }: FeaturedProjectCardProps) => {
   const theme = useTheme();
@@ -61,9 +63,11 @@ const FeaturedProjectCard = ({
               lg: typographyTokens.fontSizes["5xl"], // Desktop size
             },
             textAlign: { xs: "left", md: "left" },
+            whiteSpace: "pre-line",
           }}
         >
-          SOLD OUT IN <br /> 3 WEEKS
+          {/* SOLD OUT IN <br /> 3 WEEKS */}
+          {statusBadge}
         </Typography>
       </Box>
 

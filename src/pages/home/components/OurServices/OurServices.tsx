@@ -68,7 +68,7 @@ const OurServices: React.FC = () => {
       sx={{
         bgcolor: theme.palette.background.paper,
         py: {
-          xs: 2,
+          xs: 3,
           sm: 4,
           md: 6.5,
           lg: 10,
