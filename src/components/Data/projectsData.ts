@@ -67,23 +67,23 @@ export const projectsData = [
     ],
     features: [
       {
-        title: "Strategic Investment",
-        desc: "A 30+ year investment strategy commitment designed to align with your financial goals, whether short, medium, or long-term.",
+        title: "Premier Location",
+        desc: "A premier Northern Canggu apartment complex offering modern living amid cafes and rice fields, perfectly blending coastal tranquillity with vibrant lifestyle access and international conveniences.",
         icon: StrategicInvestmentIcon,
       },
       {
         title: "Premier Facilities",
-        desc: "Lili Village offers balanced living with spacious layouts, high-end finishes, and modern conveniences, including gym, pool bar, and swimming pool.",
+        desc: "Experience thoughtful living with premier facilities, a sunlit pool, community spaces, and dedicated parking, all designed to elevate connection, comfort, and peace of mind.",
         icon: PremierFacilitiesIcon,
       },
       {
-        title: "Artfully Crafted Living",
-        desc: "Thoughtfully designed spaces where open layouts seamlessly connect living areas, fostering harmony with nature and community.",
-        icon: ArtfullyCraftedLivingIcon,
+        title: "High ROI",
+        desc: "Offering up to 38% ROI and six-year payback, this profitable Northern Canggu investment ensures high occupancy, exceptional income potential, and long-term growth.",
+        icon: StrategicInvestmentIcon,
       },
       {
-        title: "Strong Rental Returns",
-        desc: "High rental yields driven by strategic growth and multi-developing infrastructure, making it ideal for reliable income.",
+        title: "Modern, Sleek Design",
+        desc: "Warm tones, soft neutrals, and golden hues create spacious elegance. Thoughtfully curated details evoke balance and sophistication, making each space feel expansive yet inviting.",
         icon: StrongRentalIcon,
       },
     ]
@@ -109,23 +109,23 @@ export const projectsData = [
     ],
     features: [
       {
-        title: "Strategic Investment",
-        desc: "A 30+ year investment strategy commitment designed to align with your financial goals, whether short, medium, or long-term.",
+        title: "Premier Location",
+        desc: "Pantai Lima’s development positions Little Soho at the growth forefront, meeting rising demand from digital nomads for flexible, long-term, high-quality residential accommodations.",
         icon: StrategicInvestmentIcon,
       },
       {
-        title: "Premier Facilities",
-        desc: "Lili Village offers balanced living with spacious layouts, high-end finishes, and modern conveniences, including gym, pool bar, and swimming pool.",
+        title: "Multiple Revenue Streams",
+        desc: "Diversified dining, workspace, and room income drive 15–20% annual growth, ensuring stable performance, high resilience, strong ROI, and sustainable long-term profitability.",
         icon: PremierFacilitiesIcon,
       },
       {
-        title: "Artfully Crafted Living",
-        desc: "Thoughtfully designed spaces where open layouts seamlessly connect living areas, fostering harmony with nature and community.",
-        icon: ArtfullyCraftedLivingIcon,
+        title: "Expansive Market Potential",
+        desc: "Little Soho’s design blends natural harmony with modern simplicity, balancing functionality and aesthetic warmth to create fluid, authentic spaces celebrating comfort and elegance.",
+        icon: StrategicInvestmentIcon,
       },
       {
-        title: "Strong Rental Returns",
-        desc: "High rental yields driven by strategic growth and multi-developing infrastructure, making it ideal for reliable income.",
+        title: "Hands-on Management",
+        desc: "Managed by Bali Hospitality Management, Little Soho offers investors a hands-free experience with expert operations ensuring high guest satisfaction, consistent profitability, and growth.",
         icon: StrongRentalIcon,
       },
     ]
@@ -151,23 +151,23 @@ export const projectsData = [
     ],
     features: [
       {
-        title: "Strategic Investment",
-        desc: "A 30+ year investment strategy commitment designed to align with your financial goals, whether short, medium, or long-term.",
+        title: "Premier Location",
+        desc: "Located in North Canggu, Mengwi, Dynasty 8 balances tranquility and connectivity, offering quick access to creative hubs, healthcare, and Bali’s vibrant cultural heartland.",
         icon: StrategicInvestmentIcon,
       },
       {
-        title: "Premier Facilities",
-        desc: "Lili Village offers balanced living with spacious layouts, high-end finishes, and modern conveniences, including gym, pool bar, and swimming pool.",
+        title: "Design Philosophy",
+        desc: "Minimalist geometries and tactile materials blend warm woods with stone. Curated furnishing packages follow this timeless ethos, ensuring durable, sophisticated, and tranquil living spaces.",
         icon: PremierFacilitiesIcon,
       },
       {
-        title: "Artfully Crafted Living",
-        desc: "Thoughtfully designed spaces where open layouts seamlessly connect living areas, fostering harmony with nature and community.",
+        title: "Private Pool Area",
+        desc: "A narrow pool, tropical greenery, and a heritage-adorned stone wall create a tranquil villa retreat. Modern lounging and seamless glass interiors enhance luxury.",
         icon: ArtfullyCraftedLivingIcon,
       },
       {
-        title: "Strong Rental Returns",
-        desc: "High rental yields driven by strategic growth and multi-developing infrastructure, making it ideal for reliable income.",
+        title: "Strong ROI",
+        desc: "Dynasty 8 offers flexible investment terms with 20–48% ROI and 6–8 year payback, balancing capital appreciation and rental yield for steady, long-term profitability.",
         icon: StrongRentalIcon,
       },
     ]
