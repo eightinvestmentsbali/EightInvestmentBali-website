@@ -195,7 +195,7 @@ const Navbar: React.FC = () => {
               width: "100%",
             }}
           >
-            <Container maxWidth="xl" sx={{ display: "flex" }}>
+            <Container maxWidth="xl" sx={{ display: "flex",  }}>
               {/* Logo */}
               <Box sx={{ flex: 1 }}>
                 <Logo style={{ height: 48 }} />

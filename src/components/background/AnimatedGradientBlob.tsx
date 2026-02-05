@@ -1,87 +1,102 @@
 import { Box } from "@mui/material";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+
+const HERO_HEIGHT = "80vh"; // 🔒 blob visible area
 
 const AnimatedGradientBlob = () => {
   const blobRef = useRef<HTMLDivElement>(null);
-
-  // Start at top right (85vw, 15vh)
-  const pos = useRef({ x: window.innerWidth * 0.85, y: window.innerHeight * 0.15 });
-  const target = useRef({ x: window.innerWidth * 0.85, y: window.innerHeight * 0.15 });
-  
-  const idleAngle = useRef(0);
-  const isMouseActive = useRef(false);
-  const mouseActivityTimeout = useRef<number | null>(null);
+  const t = useRef(0);
+  const [visible, setVisible] = useState(true);
 
   useEffect(() => {
-    let animationFrameId: number;
-
-    const onMouseMove = (e: MouseEvent) => {
-      if (mouseActivityTimeout.current) window.clearTimeout(mouseActivityTimeout.current);
-      
-      isMouseActive.current = true;
-      target.current.x = e.clientX;
-      target.current.y = e.clientY;
-
-      mouseActivityTimeout.current = window.setTimeout(() => {
-        isMouseActive.current = false;
-      }, 2000);
-    };
+    let rafId: number;
 
     const animate = () => {
-      if (!isMouseActive.current) {
-        idleAngle.current += 0.015;
-        // Float around the last known target or initial top-right
-        const centerX = isMouseActive.current ? target.current.x : window.innerWidth * 0.85;
-        const centerY = isMouseActive.current ? target.current.y : window.innerHeight * 0.15;
-        
-        target.current.x = centerX + Math.cos(idleAngle.current) * 30;
-        target.current.y = centerY + Math.sin(idleAngle.current) * 30;
+      if (!blobRef.current) {
+        rafId = requestAnimationFrame(animate);
+        return;
       }
 
-      // Smooth interpolation (Lerp)
-      pos.current.x += (target.current.x - pos.current.x) * 0.08;
-      pos.current.y += (target.current.y - pos.current.y) * 0.08;
+      t.current += 0.028;
 
-      if (blobRef.current) {
-        // Use transform translate for much better performance than background-position
-        blobRef.current.style.transform = `translate(${pos.current.x}px, ${pos.current.y}px) translate(-50%, -50%)`;
-      }
+      const offsetX =
+        Math.sin(t.current * 0.9) * 80 +
+        Math.cos(t.current * 0.5) * 40;
 
-      animationFrameId = requestAnimationFrame(animate);
+      const offsetY =
+        Math.cos(t.current * 0.7) * 60 +
+        Math.sin(t.current * 0.4) * 30;
+
+      blobRef.current.style.transform = `
+        translate(${offsetX}px, ${offsetY}px)
+      `;
+
+      blobRef.current.style.borderRadius = `
+        ${60 + Math.sin(t.current) * 10}% 
+        ${70 + Math.cos(t.current) * 12}% 
+        ${55 + Math.sin(t.current * 0.9) * 8}% 
+        ${65 + Math.cos(t.current * 1.4) * 10}% /
+        ${65}% ${55}% ${70}% ${60}%
+      `;
+
+      rafId = requestAnimationFrame(animate);
     };
 
-    window.addEventListener("mousemove", onMouseMove);
-    animationFrameId = requestAnimationFrame(animate);
+    rafId = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(rafId);
+  }, []);
 
-    return () => {
-      window.removeEventListener("mousemove", onMouseMove);
-      cancelAnimationFrame(animationFrameId);
+  useEffect(() => {
+    const onScroll = () => {
+      setVisible(window.scrollY < window.innerHeight * 0.7);
     };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   return (
-    <Box
-      ref={blobRef}
-      sx={{
-        position: "fixed",
-        top: 0,
-        left: 0,
-        // Responsive sizing using vmax
-        width: { xs: "30vmax", md: "40vmax" },
-        height: { xs: "30vmax", md: "40vmax" },
-        borderRadius: "50%",
-        zIndex: 0,
-        pointerEvents: "none",
-        background: `radial-gradient(circle, 
-          rgba(28, 99, 81, 1) 0%, 
-          rgba(10, 150, 99, 0.8) 40%, 
-          rgba(5, 150, 234, 0.54) 70%, 
-          transparent 100%)`,
-        filter: { xs: "blur(40px)", md: "blur(90px)" },
-        opacity: 0.8,
-        willChange: "transform", // Optimizes GPU rendering
-      }}
-    />
+  <Box
+  sx={{
+    position: "absolute",
+    top: 0,
+    right: 0,
+    height: HERO_HEIGHT, // 70vh
+    width: "100%",
+    overflow: "hidden",
+    pointerEvents: "none",
+    zIndex: 0,
+    opacity: visible ? 1 : 0,
+    transition: "opacity .4s ease",
+
+    // 👇 THIS IS THE KEY PART
+    maskImage:
+      "linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgb(121, 118, 118) 65%, rgba(0,0,0,0) 100%)",
+    WebkitMaskImage:
+      "linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 65%, rgba(0,0,0,0) 100%)",
+  }}
+>
+
+      <Box
+        ref={blobRef}
+        sx={{
+          position: "absolute",
+          top: "-20%",
+          right: "-20%",
+          width: "50vmax",
+          height: "45vmax",
+          background: `radial-gradient(
+            60% 60% at 50% 50%,
+            rgba(3, 91, 69, 0.95) 0%,
+            rgba(10, 115, 77, 0.97) 40%,
+            rgba(9, 186, 202, 0.71) 70%,
+            transparent 100%
+          )`,
+          filter: "blur(90px)",
+          willChange: "transform, border-radius",
+        }}
+      />
+    </Box>
   );
 };
 

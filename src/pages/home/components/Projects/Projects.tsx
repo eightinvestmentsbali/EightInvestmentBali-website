@@ -32,7 +32,7 @@ const Projects: React.FC = () => {
           Projects
         </Typography>
 
-        <Grid container spacing={2}>
+        <Grid container spacing={5}>
           {projects.map((project, index) => (
             <Grid size={{ xs: 12, sm: 6, md: 6 }} key={project.name}>
               <Box
@@ -42,9 +42,7 @@ const Projects: React.FC = () => {
                   })
                 }
                 sx={{
-                  borderRadius: 3,
                   overflow: "hidden",
-                  // bgcolor: "#1E1E1E",
                   cursor: "pointer",
                   transition: "all .35s ease",
 
@@ -58,8 +56,9 @@ const Projects: React.FC = () => {
                   src={project.image}
                   loading="lazy"
                   sx={{
+                    borderRadius: { xs: 3, md: 4, lg: 5 },
                     width: "100%",
-                    height: { xs: 200, md: 280 },
+                    height: { xs: 200, md: 280, lg: 350, xl: 400 },
                     objectFit: "cover",
                     transition: "transform .5s ease",
                     imageRendering: "-webkit-optimize-contrast",
@@ -69,11 +68,11 @@ const Projects: React.FC = () => {
                 {/* TITLE */}
                 <Box sx={{ py: 1.5, bgcolor: "transparent" }}>
                   <Typography
+                    variant="h3"
                     align="center"
                     sx={{
-                      color: "#ffffff",
-                      fontSize: { xs: "0.95rem", md: "1rem" },
-                      fontWeight: 500,
+                      color: theme.palette.primary.contrastText,
+                      fontWeight: typographyTokens.fontWeights.medium,
                       bgcolor: "transparent",
                     }}
                   >

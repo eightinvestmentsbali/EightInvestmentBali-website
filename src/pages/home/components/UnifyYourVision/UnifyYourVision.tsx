@@ -1,14 +1,60 @@
 import { Box, Divider, Grid, Typography } from "@mui/material";
-import React from "react";
+import React, { useRef } from "react";
 import { typographyTokens } from "../../../../theme/MuiTheme";
 import { useTheme } from "@mui/material/styles";
-import { motion } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 
 const UnifyYourVision: React.FC = () => {
   const theme = useTheme();
+
+const Counter: React.FC<{ value: string; duration?: number }> = ({ value, duration = 2000 }) => {
+  const [count, setCount] = React.useState(0);
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-50px" });
+
+  // Parsing logic
+  const target = parseInt(value.replace(/\D/g, ""), 10);
+  const prefix = value.startsWith("$") ? "$" : "";
+  const suffix = value.replace(/[0-9$.]/g, "");
+
+  React.useEffect(() => {
+    // Only run the logic if the component is in view
+    if (!isInView) return;
+
+    let startTimestamp: number | null = null;
+    const step = (timestamp: number) => {
+      if (!startTimestamp) startTimestamp = timestamp;
+      const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+      
+      // Optional: Add an easing function for a smoother finish
+      // const easeOutQuad = (t: number) => t * (2 - t);
+      // const easedProgress = easeOutQuad(progress);
+      
+      setCount(Math.floor(progress * target));
+      
+      if (progress < 1) {
+        window.requestAnimationFrame(step);
+      }
+    };
+    
+    window.requestAnimationFrame(step);
+  }, [isInView, target, duration]);
+
+  return (
+    <span ref={ref}>
+      {prefix}{count}{suffix}
+    </span>
+  );
+};
+
   return (
     <Grid size={{ xs: 12 }} id="about-us">
-      <Box sx={{ mb: { xs: 3.75, sm: 6.5, md: 7.5, lg: 13, xl: 20 }, mt: { xs: 1.5, md: 2.5, lg: 6, xl: 7.5 } }}>
+      <Box
+        sx={{
+          mb: { xs: 3.75, sm: 6.5, md: 7.5, lg: 13, xl: 20 },
+          mt: { xs: 1.5, md: 2.5, lg: 6, xl: 7.5 },
+        }}
+      >
         <motion.div
           initial={{ y: 60, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
@@ -22,7 +68,7 @@ const UnifyYourVision: React.FC = () => {
             component="h1"
             sx={{
               color: theme.palette.text.primary,
-              mb: { xs: 2, md: 4, lg: 6, xl: 8},
+              mb: { xs: 2, md: 4, lg: 6, xl: 8 },
             }}
           >
             Unify your vision with <br /> limitless possibilities
@@ -41,7 +87,7 @@ const UnifyYourVision: React.FC = () => {
             sx={{
               height: "2px",
               backgroundColor: theme.palette.divider,
-              mb: { xs: 2, md: 4, lg: 6, xl: 8},
+              mb: { xs: 2, md: 4, lg: 6, xl: 8 },
             }}
           />
         </motion.div>
@@ -105,7 +151,7 @@ const UnifyYourVision: React.FC = () => {
                         color: theme.palette.text.primary,
                       }}
                     >
-                      {item.value}
+                      <Counter value={item.value} />
                     </Typography>
                     <Typography
                       variant="heroSubTitle"
