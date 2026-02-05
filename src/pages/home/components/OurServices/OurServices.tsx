@@ -18,26 +18,36 @@ const services = [
   {
     title: "Real Estate\nDevelopment",
     image: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c",
+    subTitle:
+      "Eight Investments Bali unlocks a world of bespoke Real Estate Development opportunities, allowing you to transform your vision into a reality that transcends exceptional property.",
     description:
-      "Our real estate development division focuses on creating sustainable, high-value properties that harmonize with the local environment while providing modern luxury. From initial site selection to final construction, we ensure every detail meets our rigorous standards of quality and design excellence.",
+      "We collaborate with investors to craft exceptional real estate experiences. Our team of experts will guide you through every step, from securing the most coveted locations to utilizing cutting-edge technologies and the finest materials to ensure a timeless investment that embodies investor's vision and delivers exceptional returns.",
   },
   {
     title: "Facility\nManagement",
     image: "https://images.unsplash.com/photo-1580587771525-78b9dba3b914",
+    subTitle:
+      "Eight Investments Bali provides seamless integrated facility services, ensuring invested property operates flawlessly behind the scenes.",
     description:
-      "We provide comprehensive facility management services designed to preserve and enhance the value of your property. Our team handles everything from technical maintenance and security to landscaping and housekeeping, ensuring a seamless living experience for residents.",
+      "Imagine a world where impeccable maintenance, pristine housekeeping, and top-tier security are effortlessly handled. Our dedicated team takes care of every detail, allowing investor to focus on the true luxury - enjoying your Bali retreat while maximizing rental income.",
   },
   {
     title: "Property Assets\nManagement",
     image: "https://images.unsplash.com/photo-1580587771525-78b9dba3b914",
-    description:
-      "Maximize your investment potential with our strategic asset management. We handle tenant relations, financial reporting, and long-term value appreciation strategies, allowing owners to enjoy passive income without the stress of day-to-day operations.",
+    subTitle:
+      "Investing in Bali's thriving real estate market unlocks a world of potential. But navigating day-to-day operations shouldn't disrupt investor's vision.",
+    description: `Eight Investments Bali offers discerning asset management, ensuring owner's property thrives while investor seamlessly enjoy the rewards. Our dedicated team handles everything - from meticulous tenant selection to maximizing rental yields.
+      {"\n\n"}
+      Imagine worry-free ownership while the investment flourishes. Investor can focus on what matters most - experiencing the magic of Bali.`,
   },
   {
     title: "Strategic Investment\nConsultancy",
     image: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d",
-    description:
-      "Our consultancy services provide deep market insights and financial modeling for investors looking to enter the Bali market. We guide you through legal frameworks, ROI projections, and risk assessment to ensure your capital is deployed effectively.",
+    subTitle:
+      "Navigate with Confidence. Eight Investments Bali provides strategic investment counsel, guiding you towards maximizing your returns with astute precision.",
+    description: `Our team of experts acts as investor's trusted advisor, meticulously analyzing market trends and identifying the most unique opportunities. We craft personalized investment strategies that align with investor's financial goals, ensuring every decision is informed and empowering.
+      {"\n\n"}
+      Embrace Bali's hidden potential with confidence.`,
   },
 ];
 
@@ -77,7 +87,7 @@ const OurServices: React.FC = () => {
     >
       <Container maxWidth="xl">
         {/* HEADER */}
-        <Stack spacing={{ xs: 2, md: 4, lg: 6 }} mb={{ xs: 3, md: 6 }}>
+        <Stack spacing={{ xs: 1, sm: 2, md: 4, lg: 6 }} mb={{ xs: 3, md: 6 }}>
           <Typography
             variant="heroTitle"
             component="h1"
@@ -94,15 +104,14 @@ const OurServices: React.FC = () => {
         <Grid container spacing={4}>
           {services.map((service) => (
             <Grid
-              size={{ xs: 12, sm: 12, md: 6 }}
-              sx={{ cursor: "pointer" }}
+              size={{ xs: 12, sm: 6, md: 6 }}
               key={service.title}
             >
               <Box
                 sx={{
                   position: "relative",
-                  curser: "pointer",
-                  "&:hover": { opacity: 0.8 },
+                  cursor: "pointer",
+                  "&:hover": { opacity: 0.9 },
                 }}
                 onClick={() => handleOpenModal(service)}
               >
@@ -136,7 +145,13 @@ const OurServices: React.FC = () => {
                 <Box
                   sx={{
                     position: "relative",
-                    height: { xs: "250px", sm: "350px", md: "400px" },
+                    height: {
+                      xs: "250px",
+                      sm: "280px",
+                      md: "350px",
+                      lg: "380px",
+                      xl: "400px",
+                    },
                     width: "100%",
                     // Add a light background color to see the "cutout" area if needed
                     // backgroundColor: "#f5f5f5",
@@ -149,14 +164,20 @@ const OurServices: React.FC = () => {
                     variant="h5"
                     sx={{
                       fontSize: {
-                        xs: typographyTokens.fontSizes.sm,
-                        md: typographyTokens.fontSizes.md,
                         sm: typographyTokens.fontSizes.sm,
-                        lg: typographyTokens.fontSizes.lg,
+                        md: typographyTokens.fontSizes.sm,
+                        lg: typographyTokens.fontSizes.md,
+                        xl: typographyTokens.fontSizes.lg,
                       },
                       position: "absolute",
-                      top: { xs: "2%", sm: "3%", md: "5%" },
-                      left: "10px",
+                      top: {
+                        xs: "1%",
+                        sm: "2%",
+                        md: "3%",
+                        lg: "3.5%",
+                        xl: "4%",
+                      },
+                      left: "1%",
                       fontWeight: "regular",
                       width: {
                         xs: "80px",
@@ -241,31 +262,19 @@ const OurServices: React.FC = () => {
           ) : (
             selectedService && (
               <motion.div
-                initial={{ scale: 0.25, opacity: 0, rotate: 0 }}
-                animate={{ scale: 1, opacity: 1, rotate: 0 }}
-                transition={{
-                  scale: {
-                    duration: 0.5,
-                    ease: [0.25, 0.46, 0.45, 0.94],
-                  },
-                  opacity: {
-                    duration: 0.4,
-                    ease: [0.25, 0.46, 0.45, 0.94],
-                  },
-                  rotate: {
-                    duration: 0,
-                  },
-                }}
+                initial={{ scale: 0.95, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ duration: 0.4, ease: "easeOut" }}
                 style={{
                   position: "relative",
-                  width: "90%",
-                  maxWidth: "900px",
-                  height: "80vh",
+                  width: "95%",
+                  maxWidth: "1000px",
+                  height: "85vh", // Slightly taller for more content
                   backgroundColor: "#000",
-                  borderRadius: "16px",
+                  borderRadius: "24px",
                   overflow: "hidden",
                   zIndex: 1,
-                  boxShadow: "0 8px 32px rgba(0, 0, 0, 0.4)",
+                  boxShadow: "0 20px 50px rgba(0, 0, 0, 0.5)",
                 }}
               >
                 {/* Background Image */}
@@ -275,28 +284,23 @@ const OurServices: React.FC = () => {
                   sx={{
                     position: "absolute",
                     inset: 0,
-                    width: "100%",
+                    width: "100%;",
                     height: "100%",
                     objectFit: "cover",
                     zIndex: 0,
                   }}
                 />
 
-                {/* Dark Gradient Overlay */}
+                {/* Combined Overlay: Gradient + Subtle Solid Backing for Text Area */}
                 <Box
                   sx={{
                     position: "absolute",
                     inset: 0,
                     zIndex: 1,
-                    background: `
-                      linear-gradient(
-                        to top,
-                        rgba(0,0,0,0.85) 0%,
-                        rgba(0,0,0,0.55) 40%,
-                        rgba(0,0,0,0.15) 70%,
-                        rgba(0,0,0,0) 100%
-                      )
-                    `,
+                    background: `linear-gradient(to top, 
+                rgba(0,0,0,0.9) 0%, 
+                rgba(0,0,0,0.6) 50%, 
+                rgba(0,0,0,0.2) 100%)`,
                   }}
                 />
 
@@ -307,52 +311,102 @@ const OurServices: React.FC = () => {
                     position: "absolute",
                     top: 16,
                     right: 16,
-                    zIndex: 3,
+                    zIndex: 10,
                     bgcolor: "rgba(0, 0, 0, 0.5)",
                     color: "#fff",
-                    "&:hover": { bgcolor: "rgba(0,0,0,0.7)" },
+                    "&:hover": { bgcolor: "rgba(0,0,0,0.8)" },
                   }}
                 >
                   <CloseIcon />
                 </IconButton>
 
-                {/* Bottom-Left Content */}
+                {/* Content Wrapper with Background Color for Text */}
                 <Box
                   sx={{
                     position: "absolute",
-                    left: { xs: 20, md: 40 },
-                    bottom: { xs: 20, md: 40 },
-                    zIndex: 2,
-                    maxWidth: "520px",
+                    left: 0,
+                    bottom: 0,
+                    width: "100%",
+                    height: "50%", // Adjust height as needed
+                    zIndex: 1,
+                    // The visual background
+                    background:
+                      "linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.4) 90%, transparent 100%)",
+                    backdropFilter: "blur(6px)",
+                    // The Mask ONLY affects this box and its blur
+                    WebkitMaskImage: `linear-gradient(to top, 
+                      black 0%, 
+                      black 90%, 
+                      transparent 100%
+                    )`,
+                    maskImage: `linear-gradient(to top, 
+                      black 0%, 
+                      black 90%, 
+                      transparent 100%
+                    )`,
+                  }}
+                />
+                <Box
+                  sx={{
+                    position: "absolute",
+                    left: 0,
+                    bottom: 0,
+                    width: "100%",
+                    zIndex: 2, // Higher Z-index than the plate
+                    p: { xs: 3, md: 6 },
                   }}
                 >
                   <motion.div
-                    initial={{ y: 20, opacity: 0 }}
+                    initial={{ y: 30, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
-                    transition={{
-                      duration: 0.4,
-                      delay: 0.2,
-                      ease: [0.25, 0.46, 0.45, 0.94],
-                    }}
+                    transition={{ duration: 0.5, delay: 0.1 }}
                   >
+                    {/* Automatic Font Sizing using Clamp */}
                     <Typography
                       variant="h2"
                       sx={{
-                        color: "#fff",
-                        mb: 2,
-                        fontWeight: typographyTokens.fontWeights.medium,
+                        color: theme.palette.primary.contrastText,
+                        // clamp(min, preferred, max)
+                        fontSize: {
+                          xs: "clamp(1.5rem, 8vw, 2.5rem)",
+                          md: "clamp(2.5rem, 5vw, 3rem)",
+                        },
+                        mb: 1,
+                        zIndex: 2,
+                        fontWeight: 700,
                         whiteSpace: "pre-line",
+                        lineHeight: 1.1,
                       }}
                     >
                       {selectedService.title}
                     </Typography>
 
+                    {/* Subtitle with distinct styling */}
+                    <Typography
+                      sx={{
+                        color: theme.palette.primary.main, // Or any highlight color
+                        fontSize: {
+                          xs: "clamp(0.9rem, 4vw, 1.1rem)",
+                          md: "clamp(1.1rem, 2vw, 1.5rem)",
+                        },
+                        fontWeight: typographyTokens.fontWeights.medium,
+                        lineHeight: 1.5,
+                        mb: 3,
+                      }}
+                    >
+                      {selectedService.subTitle || "Investment Opportunity"}
+                    </Typography>
+
                     <Typography
                       variant="body1"
                       sx={{
-                        color: "rgba(255,255,255,0.75)",
-                        lineHeight: 1.8,
-                        fontSize: { xs: "1rem", md: "1.125rem" },
+                        color: theme.palette.primary.contrastText,
+                        lineHeight: 1.5,
+                        fontSize: {
+                          xs: "clamp(0.875rem, 3vw, 0.6rem)",
+                          md: "clamp(1rem, 1.2vw, 1rem)",
+                        },
+                        maxWidth: "800px",
                       }}
                     >
                       {selectedService.description}

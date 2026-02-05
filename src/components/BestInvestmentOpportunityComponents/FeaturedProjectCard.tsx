@@ -1,10 +1,10 @@
-import { Box, Stack, Typography, useMediaQuery } from "@mui/material";
+import { Box, Stack, Typography } from "@mui/material";
 import LocationIcon from "../../assets/DesignElement/LocationIcon";
 import { useTheme } from "@mui/material/styles";
 import { typographyTokens } from "../../theme/MuiTheme";
 // import ArrowNortEastIcon from "../../assets/DesignElement/ArrowNortEastIcon";
 import { motion, AnimatePresence } from "framer-motion";
-// import ProjectProgress from "./ProjectProgress";
+import ProjectProgress from "./ProjectProgress";
 
 interface FeaturedProjectCardProps {
   projectName: string;
@@ -13,18 +13,20 @@ interface FeaturedProjectCardProps {
   progressImage: string;
   statusBadge: string;
   onSeeMoreClick?: () => void;
+  phases: any[];
 }
 
 const FeaturedProjectCard = ({
   projectName,
   location,
   image,
-  progressImage,
+  // progressImage,
   statusBadge,
+  phases,
   // onSeeMoreClick,
 }: FeaturedProjectCardProps) => {
   const theme = useTheme();
-  const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
+  // const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
 
   const clipPathData =
     "M 0,0.20 Q 0,0.15 0.05,0.15 H 0.20 Q 0.25,0.15 0.25,0.1 V 0.05 Q 0.25,0 0.30,0 H 0.95 Q 1,0 1,0.05 V 0.80 Q 1,0.85 0.95,0.85 H 0.80 Q 0.75,0.85 0.75,0.9 V 0.95 Q 0.75,1 0.70,1 H 0.05 Q 0,1 0,0.95 Z";
@@ -124,7 +126,7 @@ const FeaturedProjectCard = ({
             xs: "300px",
             sm: "400px",
             md: "600px",
-            lg: "700px",
+            lg: "780px",
             xl: "900px",
           },
           px: { xs: 3, sm: 5, md: 6, lg: 10 },
@@ -154,7 +156,7 @@ const FeaturedProjectCard = ({
               xs: "255px",
               sm: "340px",
               md: "510px",
-              lg: "595px",
+              lg: "662px",
               xl: "765px",
             },
             width: "40%",
@@ -199,10 +201,11 @@ const FeaturedProjectCard = ({
                 lineHeight={{ xs: 1.2, md: 1.4 }}
                 sx={{
                   fontSize: {
-                    xs: typographyTokens.fontSizes["sm"], // Mobile size
+                    xs: typographyTokens.fontSizes["xs"], // Mobile size
                     sm: typographyTokens.fontSizes["md"], // Tablet size
-                    md: typographyTokens.fontSizes["xl"],
-                    lg: typographyTokens.fontSizes["2xl"],
+                    md: typographyTokens.fontSizes["lg"],
+                    lg: typographyTokens.fontSizes["xl"],
+                    xl: typographyTokens.fontSizes["2xl"],
                   },
                   display: "flex",
                   alignItems: "center",
@@ -210,8 +213,16 @@ const FeaturedProjectCard = ({
                 }}
               >
                 <LocationIcon
-                  width={isSmallScreen ? 16 : 25}
-                  height={isSmallScreen ? 16 : 25}
+                  sx={{
+                    fontSize: {
+                      xs: "0.8rem",
+                      sm: "1rem",
+                      md: "1.4rem",
+                      lg: "1.6rem",
+                      xl: "1.8rem",
+                    },
+                    flexShrink: 0, 
+                  }}
                 />
                 {location}
               </Typography>
@@ -219,11 +230,7 @@ const FeaturedProjectCard = ({
             <Box
               sx={{
                 width: {
-                  xs: "100px",
-                  sm: "150px",
-                  md: "200px",
-                  lg: "330px",
-                  xl: "430px",
+                  xs: "clamp(100px, 25vw, 370px)",
                 },
               }}
             >
@@ -232,7 +239,7 @@ const FeaturedProjectCard = ({
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
               >
-                <Box
+                {/* <Box
                   component="img"
                   src={progressImage}
                   alt="Progress"
@@ -242,8 +249,8 @@ const FeaturedProjectCard = ({
                     objectFit: "contain",
                     borderRadius: 1,
                   }}
-                />
-                {/* <ProjectProgress /> */}
+                /> */}
+                <ProjectProgress phases={phases} />
               </motion.div>
             </Box>
           </Stack>
@@ -257,10 +264,10 @@ const FeaturedProjectCard = ({
               xs: "255px",
               sm: "340px",
               md: "510px",
-              lg: "595px",
+              lg: "662px",
               xl: "765px",
             },
-            width: { xs: "50%", sm: "50%", md: "50%", lg: "55%", xl: "60%" },
+            width: { xs: "50%", sm: "55%", md: "55%", lg: "60%", xl: "60%" },
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
@@ -281,7 +288,7 @@ const FeaturedProjectCard = ({
                 xs: "200px",
                 sm: "260px",
                 md: "420px",
-                lg: "490px",
+                lg: "550px",
                 xl: "660px",
               },
               width: { xs: "100%", md: "100%" },
