@@ -20,10 +20,10 @@ const AnimatedGradientBlob = () => {
       t.current += 0.003; // 🔥 Slow increment for smooth motion
 
       // 🌊 ZIGZAG WAVE MOTION
-      // Horizontal movement (left-right oscillation)
+      // Horizontal movement (left-right oscillation) - constrained to not go extreme right
       const horizontalWave = Math.sin(t.current * 0.8);
-      const waveAmplitude = window.innerWidth * 0.5;
-      const centerOffset = -window.innerWidth * 0.3;
+      const waveAmplitude = window.innerWidth * 0.4; // Reduced amplitude
+      const centerOffset = -window.innerWidth * 0.5; // Shifted more to the left
       const baseOffsetX = centerOffset + horizontalWave * waveAmplitude;
 
       // 🎯 VERTICAL ZIGZAG - creates the wave path
