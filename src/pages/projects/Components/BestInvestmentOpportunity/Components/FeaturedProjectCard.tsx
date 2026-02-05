@@ -10,6 +10,7 @@ interface FeaturedProjectCardProps {
   image: string;
   progressImage: string;
   projectNumber: string;
+  statusBadge: string;
 }
 
 const FeaturedProjectCard = ({
@@ -18,6 +19,7 @@ const FeaturedProjectCard = ({
   image,
   progressImage,
   projectNumber,
+  statusBadge,
 }: FeaturedProjectCardProps) => {
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
@@ -59,16 +61,17 @@ const FeaturedProjectCard = ({
               lg: typographyTokens.fontSizes["5xl"], // Desktop size
             },
             textAlign: { xs: "left", md: "left" },
+            whiteSpace: "pre-line",
           }}
         >
-          SOLD OUT IN <br /> 3 WEEKS
+          {/* SOLD OUT IN <br /> 3 WEEKS */}
+          {statusBadge}
         </Typography>
       </Box>
 
       <Box
         sx={{
           position: "absolute",
-          // Match the SVG 'V 0.95' and 'H 0.80' area
           bottom: "0%",
           right: "5%",
           zIndex: 20,
@@ -90,12 +93,6 @@ const FeaturedProjectCard = ({
             color={theme.palette.text.secondary}
             fontWeight={typographyTokens.fontWeights.medium}
             sx={{
-              fontSize: {
-                xs: typographyTokens.fontSizes["xs"], // Mobile size
-                sm: typographyTokens.fontSizes["xl"], // Tablet size
-                md: typographyTokens.fontSizes["3xl"],
-                lg: typographyTokens.fontSizes["5xl"], // Desktop size
-              },
               lineHeight: 1.2,
             }}
           >
@@ -111,7 +108,13 @@ const FeaturedProjectCard = ({
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
-          height: { xs: "300px", sm: "400px", md: "600px", lg: "900px" },
+          height: {
+            xs: "300px",
+            sm: "400px",
+            md: "600px",
+            lg: "700px",
+            xl: "900px",
+          },
           px: { xs: 3, sm: 5, md: 6, lg: 10 },
           clipPath: "url(#outerFrameClip)",
           background: theme.palette.primary.main,
@@ -135,7 +138,13 @@ const FeaturedProjectCard = ({
           sx={{
             zIndex: 1,
             alignSelf: "flex-end",
-            height: { xs: "255px", sm: "340px", md: "510px", lg: "765px" },
+            height: {
+              xs: "255px",
+              sm: "340px",
+              md: "510px",
+              lg: "595px",
+              xl: "765px",
+            },
             width: "40%",
             display: "flex",
             alignItems: "center",
@@ -196,7 +205,17 @@ const FeaturedProjectCard = ({
               </Typography>
             </motion.div>
 
-            <Box sx={{ width: { md: "200px", lg: "430px" } }}>
+            <Box
+              sx={{
+                width: {
+                  xs: "100px",
+                  sm: "150px",
+                  md: "200px",
+                  lg: "330px",
+                  xl: "430px",
+                },
+              }}
+            >
               <motion.div
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
@@ -222,8 +241,14 @@ const FeaturedProjectCard = ({
           sx={{
             zIndex: 1,
             alignSelf: "flex-start",
-            height: { xs: "255px", sm: "340px", md: "510px", lg: "765px" },
-            width: { xs: "50%", md: "60%" },
+            height: {
+              xs: "255px",
+              sm: "340px",
+              md: "510px",
+              lg: "595px",
+              xl: "765px",
+            },
+            width: { xs: "50%", sm: "50%", md: "50%", lg: "55%", xl: "60%" },
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
@@ -234,12 +259,19 @@ const FeaturedProjectCard = ({
             sx={{
               position: "relative",
               borderRadius: {
-                xs: "10px 50px 10px 10px",
+                xs: "20px 50px 20px 20px",
+                sm: "30px 80px 30px 30px",
                 md: "30px 100px 30px 30px",
                 lg: "70px 200px 70px 70px",
               },
               overflow: "hidden",
-              height: { xs: "200px", sm: "260px", md: "420px", lg: "660px" },
+              height: {
+                xs: "200px",
+                sm: "260px",
+                md: "420px",
+                lg: "490px",
+                xl: "660px",
+              },
               width: { xs: "100%", md: "100%" },
             }}
           >
