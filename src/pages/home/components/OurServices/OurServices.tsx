@@ -103,10 +103,7 @@ const OurServices: React.FC = () => {
         {/* GRID */}
         <Grid container spacing={4}>
           {services.map((service) => (
-            <Grid
-              size={{ xs: 12, sm: 6, md: 6 }}
-              key={service.title}
-            >
+            <Grid size={{ xs: 12, sm: 6, md: 6 }} key={service.title}>
               <Box
                 sx={{
                   position: "relative",
@@ -241,7 +238,6 @@ const OurServices: React.FC = () => {
 
           {isLoading ? (
             <motion.div
-              animate={{ rotate: 360 }}
               transition={{
                 duration: 0.8,
                 repeat: Infinity,
@@ -298,9 +294,9 @@ const OurServices: React.FC = () => {
                     inset: 0,
                     zIndex: 1,
                     background: `linear-gradient(to top, 
-                rgba(0,0,0,0.9) 0%, 
-                rgba(0,0,0,0.6) 50%, 
-                rgba(0,0,0,0.2) 100%)`,
+                  rgba(0,0,0,0.9) 0%, 
+                  rgba(0,0,0,0.6) 50%, 
+                  rgba(0,0,0,0.2) 100%)`,
                   }}
                 />
 
