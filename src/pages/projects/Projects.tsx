@@ -26,7 +26,19 @@ const Projects: React.FC = () => {
       }}
     >
       <Box sx={{ position: "relative", zIndex: 1 }}>
-        <Container maxWidth="xl" sx={{ overflow: "visible" }}>
+        <Container
+          maxWidth="xl"
+          sx={{
+            overflow: "visible",
+            px: {
+              xs: 2,
+              sm: 4,
+              md: 6,
+              lg: 10,
+              xl: 0,
+            },
+          }}
+        >
           <Navbar />
           <BestInvestmentOpportunity
             data={projectsData}

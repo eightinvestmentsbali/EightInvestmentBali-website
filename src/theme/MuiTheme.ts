@@ -220,80 +220,18 @@ const themeOptions: ThemeOptions = {
     heroTitle: {
       fontFamily: "Poppins, sans-serif",
       fontWeight: typographyTokens.fontWeights.medium,
-      fontSize: "7rem",
+      fontSize: "clamp(1.3rem, 5vw + 0.5rem, 6.5rem)",
       lineHeight: 1.1,
       letterSpacing: "-0.02em",
-      "@media (max-width:1600px)": {
-        fontSize: "7rem",
-      },
-      "@media (max-width:1500px)": {
-        fontSize: "6.5rem",
-      },
-      "@media (max-width:1400px)": {
-        fontSize: "6rem",
-      },
-      "@media (max-width:1300px)": {
-        fontSize: "5.5rem",
-      },
-      "@media (max-width:1200px)": {
-        fontSize: "5rem",
-      },
-      "@media (max-width:1100px)": {
-        fontSize: "4.5rem",
-      },
-      "@media (max-width:1000px)": {
-        fontSize: "4rem",
-      },
-      "@media (max-width:900px)": {
-        fontSize: "3.5rem",
-      },
-      "@media (max-width:800px)": {
-        fontSize: "3rem",
-      },
-      "@media (max-width:600px)": {
-        fontSize: "1.8rem",
-      },
-      "@media (max-width:500px)": {
-        fontSize: "1.5rem",
-      },
-      "@media (max-width:400px)": {
-        fontSize: "1.3rem",
-      },
     },
+
     heroSubTitle: {
       fontFamily: "Poppins, sans-serif",
       fontWeight: typographyTokens.fontWeights.regular,
-      fontSize: "3.1875rem",
+      fontSize: "clamp(0.8rem, 1.5vw + 0.8rem, 3.1875rem)",
       lineHeight: 1.7,
-
-      "@media (max-width:1600px)": {
-        fontSize: "3rem",
-      },
-      "@media (max-width:1500px)": {
-        fontSize: "2.8rem",
-      },
-      "@media (max-width:1400px)": {
-        fontSize: "2.5rem",
-      },
-      "@media (max-width:1300px)": {
-        fontSize: "2.2rem",
-      },
-      "@media (max-width:1200px)": {
-        fontSize: "2rem",
-      },
-      "@media (max-width:900px)": {
-        fontSize: "1.5rem",
-      },
-      "@media (max-width:600px)": {
-        fontSize: "1.2rem",
-      },
-      "@media (max-width:500px)": {
-        fontSize: "1rem",
-      },
-      "@media (max-width:400px)": {
-        fontSize: "0.8rem",
-      },
     },
+
 
     // Headings (RESPONSIVE)
     h1: createTypographyVariant(
@@ -346,7 +284,7 @@ const themeOptions: ThemeOptions = {
       "regular"
     ),
     body2: createTypographyVariant(
-      { mobile: "xs", tablet: "sm", desktop: "sm" },
+      { mobile: "xs", tablet: "xs", desktop: "xs" },
       "tight",
       "regular"
     ),

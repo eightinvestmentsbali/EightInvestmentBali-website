@@ -71,7 +71,19 @@ const Home: React.FC = () => {
         // filter: "saturate(115%) contrast(105%)",
         // }}
       >
-        <Container maxWidth="xl" sx={{ overflow: "visible" }}>
+        <Container
+          maxWidth="xl"
+          sx={{
+            overflow: "visible",
+            px: {
+              xs: 2,
+              sm: 4,
+              md: 6,
+              lg: 10,
+              xl: 0,
+            },
+          }}
+        >
           <Grid container justifyContent="center" alignItems="center">
             <ArchitectingProsperity />
             <UnifyYourVision />
