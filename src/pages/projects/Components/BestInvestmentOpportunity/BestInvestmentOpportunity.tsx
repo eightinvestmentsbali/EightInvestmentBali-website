@@ -121,6 +121,7 @@ const BestInvestmentOpportunity: React.FC<Props> = ({
                   progressImage={activeProject?.progressImage ?? ""}
                   projectNumber={`${activeIndex + 1}/${data.length}`}
                   statusBadge={activeProject?.statusBadge ?? ""}
+                  phases={activeProject?.phases ?? []}
                 />
               </Box>
 

@@ -1,8 +1,9 @@
-import { Box, Stack, Typography, useMediaQuery } from "@mui/material";
+import { Box, Stack, Typography } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import { typographyTokens } from "../../../../../theme/MuiTheme";
 import LocationIcon from "../../../../../assets/DesignElement/LocationIcon";
 import { motion, AnimatePresence } from "framer-motion";
+import ProjectProgress from "../../../../../components/BestInvestmentOpportunityComponents/ProjectProgress";
 
 interface FeaturedProjectCardProps {
   projectName: string;
@@ -11,18 +12,20 @@ interface FeaturedProjectCardProps {
   progressImage: string;
   projectNumber: string;
   statusBadge: string;
+  phases: any[];
 }
 
 const FeaturedProjectCard = ({
   projectName,
   location,
   image,
-  progressImage,
+  // progressImage,
   projectNumber,
   statusBadge,
+  phases,
 }: FeaturedProjectCardProps) => {
   const theme = useTheme();
-  const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
+  // const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
 
   const clipPathData =
     "M 0,0.20 Q 0,0.15 0.05,0.15 H 0.20 Q 0.25,0.15 0.25,0.1 V 0.05 Q 0.25,0 0.30,0 H 0.95 Q 1,0 1,0.05 V 0.80 Q 1,0.85 0.95,0.85 H 0.80 Q 0.75,0.85 0.75,0.9 V 0.95 Q 0.75,1 0.70,1 H 0.05 Q 0,1 0,0.95 Z";
@@ -112,7 +115,7 @@ const FeaturedProjectCard = ({
             xs: "300px",
             sm: "400px",
             md: "600px",
-            lg: "700px",
+            lg: "780px",
             xl: "900px",
           },
           px: { xs: 3, sm: 5, md: 6, lg: 10 },
@@ -142,7 +145,7 @@ const FeaturedProjectCard = ({
               xs: "255px",
               sm: "340px",
               md: "510px",
-              lg: "595px",
+              lg: "662px",
               xl: "765px",
             },
             width: "40%",
@@ -198,8 +201,16 @@ const FeaturedProjectCard = ({
                 }}
               >
                 <LocationIcon
-                  width={isSmallScreen ? 16 : 25}
-                  height={isSmallScreen ? 16 : 25}
+                  sx={{
+                    fontSize: {
+                      xs: "0.8rem",
+                      sm: "1rem",
+                      md: "1.4rem",
+                      lg: "1.6rem",
+                      xl: "1.8rem",
+                    },
+                    flexShrink: 0,
+                  }}
                 />
                 {location}
               </Typography>
@@ -221,7 +232,7 @@ const FeaturedProjectCard = ({
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
               >
-                <Box
+                {/* <Box
                   component="img"
                   src={progressImage}
                   alt="Progress"
@@ -231,7 +242,8 @@ const FeaturedProjectCard = ({
                     objectFit: "contain",
                     borderRadius: 1,
                   }}
-                />
+                /> */}
+                <ProjectProgress phases={phases} />
               </motion.div>
             </Box>
           </Stack>
@@ -245,10 +257,10 @@ const FeaturedProjectCard = ({
               xs: "255px",
               sm: "340px",
               md: "510px",
-              lg: "595px",
+              lg: "662px",
               xl: "765px",
             },
-            width: { xs: "50%", sm: "50%", md: "50%", lg: "55%", xl: "60%" },
+            width: { xs: "50%", sm: "55%", md: "55%", lg: "60%", xl: "60%" },
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
