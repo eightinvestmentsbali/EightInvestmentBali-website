@@ -17,23 +17,39 @@ const AnimatedGradientBlob = () => {
         return;
       }
 
-      t.current += 0.028;
+      t.current += 0.003; // 🔥 Slow increment for smooth motion
 
+      // 🌊 ZIGZAG WAVE MOTION
+      // Horizontal movement (left-right oscillation)
+      const horizontalWave = Math.sin(t.current * 0.8);
+      const waveAmplitude = window.innerWidth * 0.5;
+      const centerOffset = -window.innerWidth * 0.3;
+      const baseOffsetX = centerOffset + horizontalWave * waveAmplitude;
+
+      // 🎯 VERTICAL ZIGZAG - creates the wave path
+      // Uses a different frequency to create the zigzag pattern
+      const verticalZigzag = Math.sin(t.current * 2.5); // Higher frequency for zigzag
+      const verticalAmplitude = 150; // Controls height of zigzag
+      const baseOffsetY = verticalZigzag * verticalAmplitude;
+
+      // Add subtle organic variations
       const offsetX =
-        Math.sin(t.current * 0.9) * 80 +
-        Math.cos(t.current * 0.5) * 40;
+        baseOffsetX +
+        Math.sin(t.current * 1.5) * 20 +
+        Math.cos(t.current * 1.2) * 15;
 
       const offsetY =
-        Math.cos(t.current * 0.7) * 60 +
-        Math.sin(t.current * 0.4) * 30;
+        baseOffsetY +
+        Math.cos(t.current * 1.8) * 30 +
+        Math.sin(t.current * 0.9) * 20;
 
       blobRef.current.style.transform = `
         translate(${offsetX}px, ${offsetY}px)
       `;
 
       blobRef.current.style.borderRadius = `
-        ${60 + Math.sin(t.current) * 10}% 
-        ${70 + Math.cos(t.current) * 12}% 
+        ${60 + Math.sin(t.current * 1.1) * 10}% 
+        ${70 + Math.cos(t.current * 1.3) * 12}% 
         ${55 + Math.sin(t.current * 0.9) * 8}% 
         ${65 + Math.cos(t.current * 1.4) * 10}% /
         ${65}% ${55}% ${70}% ${60}%
@@ -56,40 +72,38 @@ const AnimatedGradientBlob = () => {
   }, []);
 
   return (
-  <Box
-  sx={{
-    position: "absolute",
-    top: 0,
-    right: 0,
-    height: HERO_HEIGHT, // 70vh
-    width: "100%",
-    overflow: "hidden",
-    pointerEvents: "none",
-    zIndex: 0,
-    opacity: visible ? 1 : 0,
-    transition: "opacity .4s ease",
+    <Box
+      sx={{
+        position: "absolute",
+        top: 0,
+        right: 0,
+        height: HERO_HEIGHT,
+        width: "100%",
+        overflow: "hidden",
+        pointerEvents: "none",
+        zIndex: 0,
+        opacity: visible ? 1 : 0,
+        transition: "opacity .4s ease",
 
-    // 👇 THIS IS THE KEY PART
-    maskImage:
-      "linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgb(121, 118, 118) 65%, rgba(0,0,0,0) 100%)",
-    WebkitMaskImage:
-      "linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 65%, rgba(0,0,0,0) 100%)",
-  }}
->
-
+        maskImage:
+          "linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 65%, rgba(0,0,0,0) 100%)",
+        WebkitMaskImage:
+          "linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 65%, rgba(0,0,0,0) 100%)",
+      }}
+    >
       <Box
         ref={blobRef}
         sx={{
           position: "absolute",
           top: "-20%",
-          right: "-20%",
+          right: "-20%", 
           width: "50vmax",
           height: "45vmax",
           background: `radial-gradient(
             60% 60% at 50% 50%,
             rgba(3, 91, 69, 0.95) 0%,
             rgba(10, 115, 77, 0.97) 40%,
-            rgba(9, 186, 202, 0.71) 70%,
+            rgba(76, 185, 229, 0.71) 70%,
             transparent 100%
           )`,
           filter: "blur(90px)",

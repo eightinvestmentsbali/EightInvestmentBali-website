@@ -245,39 +245,6 @@ const WhyDoInvestorschoose: React.FC = () => {
                     zIndex: 1,
                   }}
                 >
-                  <Box
-                    sx={{
-                      position: "absolute",
-                      bottom: { xs: "2%", md: "4%" },
-                      left: "4%",
-                      transform: "translateY(-50%)",
-                    display: { xs: "none", md: "flex" },
-                      flexDirection: "row",
-                      gap: 1.5,
-                    }}
-                  >
-                    {investmentReasons.map((_, index) => (
-                      <Box
-                        key={index}
-                        sx={{
-                          width: { xs: "8px", md: "8px", lg: "10px"},
-                          height: { xs: "8px", md: "8px", lg: "10px"},
-                          borderRadius: "50%",
-                          bgcolor:
-                            activeCardIndex === index
-                              ? theme.palette.primary.main
-                              : "thransparent",
-                          transition: "all 0.3s ease",
-                          cursor: "pointer",
-                          border: `1px solid ${theme.palette.primary.main}`,
-                          transform:
-                            activeCardIndex === index
-                              ? "scale(1.2)"
-                              : "scale(1)",
-                        }}
-                      />
-                    ))}
-                  </Box>
                   {/* Left Content */}
                   <Box
                     sx={{
@@ -303,41 +270,6 @@ const WhyDoInvestorschoose: React.FC = () => {
                       {reason.title}
                     </Typography>
 
-                    {/* Tags */}
-                    {/* <Box
-                      sx={{
-                        display: "flex",
-                        flexWrap: "wrap",
-                        gap: { xs: 0.5, md: 1, lg: 1.5 },
-                      }}
-                    >
-                      {reason.tags.map((tag, idx) => (
-                        <Box
-                          key={idx}
-                          sx={{
-                            px: { xs: 1, md: 2, lg: 2.5 },
-                            py: { xs: 0.5, md: 0.8, lg: 1 },
-                            borderRadius: 2,
-                            bgcolor:
-                              theme.palette.mode === "light"
-                                ? "rgba(0, 0, 0, 0.04)"
-                                : "rgba(255, 255, 255, 0.08)",
-                            border: `1px solid ${theme.palette.divider}`,
-                          }}
-                        >
-                          <Typography
-                            variant="body2"
-                            sx={{
-                              color: "#484848",
-                              fontWeight: typographyTokens.fontWeights.regular,
-                            }}
-                          >
-                            {tag}
-                          </Typography>
-                        </Box>
-                      ))}
-                    </Box> */}
-
                     {/* Description */}
                     <Typography
                       variant="h3"
@@ -351,6 +283,40 @@ const WhyDoInvestorschoose: React.FC = () => {
                     >
                       {reason.description}
                     </Typography>
+
+                    <Box
+                      sx={{
+                        position: "absolute",
+                        bottom: { xs: "2%", md: "20%" },
+                        left: "5%",
+                        transform: "translateY(-50%)",
+                        display: { xs: "none", md: "flex" },
+                        flexDirection: "row",
+                        gap: 1.5,
+                      }}
+                    >
+                      {investmentReasons.map((_, index) => (
+                        <Box
+                          key={index}
+                          sx={{
+                            width: { xs: "8px", md: "8px", lg: "10px" },
+                            height: { xs: "8px", md: "8px", lg: "10px" },
+                            borderRadius: "50%",
+                            bgcolor:
+                              activeCardIndex === index
+                                ? theme.palette.primary.main
+                                : "transparent",
+                            transition: "all 0.3s ease",
+                            cursor: "pointer",
+                            border: `1px solid ${theme.palette.primary.main}`,
+                            transform:
+                              activeCardIndex === index
+                                ? "scale(1.2)"
+                                : "scale(1)",
+                          }}
+                        />
+                      ))}
+                    </Box>
 
                     {/* Button */}
                     {/* <Box sx={{ mt: 2 }}>

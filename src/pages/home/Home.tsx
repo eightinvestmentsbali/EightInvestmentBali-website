@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import { Box, Container, Grid } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { Box, Container, Fab, Grid, Zoom } from "@mui/material";
 import Navbar from "../../components/navbar/Navbar";
 import ArchitectingProsperity from "./components/ArchitectingProsperity/ArchitectingProsperity";
 import UnifyYourVision from "./components/UnifyYourVision/UnifyYourVision";
@@ -22,11 +22,13 @@ import { useTheme } from "@mui/material/styles";
 import AnimatedGradientBlob from "../../components/background/AnimatedGradientBlob";
 import { useLocation } from "react-router-dom";
 // import AnimatedGradient from "../../components/background/AnimatedGradient";
+import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 
 const Home: React.FC = () => {
   const theme = useTheme();
 
   const location = useLocation();
+  const [showBackToTop, setShowBackToTop] = useState(false);
 
   useEffect(() => {
     const sectionId = location.state?.scrollTo;
@@ -44,6 +46,29 @@ const Home: React.FC = () => {
       }, 100);
     }
   }, [location]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      // Show button when scrolled past the hero section (e.g., more than 80vh)
+      const heroHeight = window.innerHeight * 0.8;
+      setShowBackToTop(window.scrollY > heroHeight);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    // Check initial scroll position
+    handleScroll();
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Scroll to top function
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
 
   return (
     <Box
@@ -98,6 +123,31 @@ const Home: React.FC = () => {
         <DiamondTeamSection />
         <ContactFooter />
       </Box>
+      <Zoom in={showBackToTop}>
+        <Fab
+          onClick={scrollToTop}
+          aria-label="scroll back to top"
+          sx={{
+            position: "fixed",
+            bottom: { xs: 16, md: 32 },
+            right: { xs: 16, md: 32 },
+            zIndex: 1000,
+            bgcolor: theme.palette.primary.main,
+            color: theme.palette.primary.contrastText,
+             "&:hover": {
+              bgcolor: theme.palette.primary.main, // Keep same color
+              transform: "scale(1.1)",
+            },
+            "&:active": {
+              bgcolor: theme.palette.primary.main, // Keep same color on tap
+            },
+            transition: "all 0.3s ease",
+            boxShadow: "0 4px 20px rgba(0, 0, 0, 0.20)",
+          }}
+        >
+          <KeyboardArrowUpIcon />
+        </Fab>
+      </Zoom>
     </Box>
   );
 };
