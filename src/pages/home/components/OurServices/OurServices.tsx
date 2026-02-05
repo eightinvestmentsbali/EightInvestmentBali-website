@@ -77,7 +77,7 @@ const OurServices: React.FC = () => {
     >
       <Container maxWidth="xl">
         {/* HEADER */}
-        <Stack spacing={{ xs: 2, md: 4, lg: 6 }} mb={{ xs: 3, md: 6 }}>
+        <Stack spacing={{ xs: 1, sm: 2, md: 4, lg: 6 }} mb={{ xs: 3, md: 6 }}>
           <Typography
             variant="heroTitle"
             component="h1"
@@ -94,7 +94,7 @@ const OurServices: React.FC = () => {
         <Grid container spacing={4}>
           {services.map((service) => (
             <Grid
-              size={{ xs: 12, sm: 12, md: 6 }}
+              size={{ xs: 12, sm: 6, md: 6 }}
               sx={{ cursor: "pointer" }}
               key={service.title}
             >
@@ -136,7 +136,7 @@ const OurServices: React.FC = () => {
                 <Box
                   sx={{
                     position: "relative",
-                    height: { xs: "250px", sm: "350px", md: "400px" },
+                    height: { xs: "250px", sm: "280px", md: "350px", lg: "380px", xl: "400px" },
                     width: "100%",
                     // Add a light background color to see the "cutout" area if needed
                     // backgroundColor: "#f5f5f5",
@@ -149,14 +149,14 @@ const OurServices: React.FC = () => {
                     variant="h5"
                     sx={{
                       fontSize: {
-                        xs: typographyTokens.fontSizes.sm,
-                        md: typographyTokens.fontSizes.md,
                         sm: typographyTokens.fontSizes.sm,
-                        lg: typographyTokens.fontSizes.lg,
+                        md: typographyTokens.fontSizes.sm,
+                        lg: typographyTokens.fontSizes.md,
+                        xl: typographyTokens.fontSizes.lg,
                       },
                       position: "absolute",
-                      top: { xs: "2%", sm: "3%", md: "5%" },
-                      left: "10px",
+                      top: { xs: "1%", sm: "2%", md: "3%", lg: "3.5%", xl: "4%" },
+                      left: "1%",
                       fontWeight: "regular",
                       width: {
                         xs: "80px",

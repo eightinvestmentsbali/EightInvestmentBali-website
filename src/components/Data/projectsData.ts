@@ -44,12 +44,38 @@ export const projectsData = [
         desc: "High rental yields driven by strategic growth and multi-developing infrastructure, making it ideal for reliable income.",
         icon: StrongRentalIcon,
       },
+    ],
+    phases: [
+      {
+        label: "Phase 1",
+        date: "Nov '24 – Jun '25",
+        progress: 25,
+        status: "25% project completion",
+      },
+      {
+        label: "Phase 2",
+        date: "Jun – Nov '25",
+        progress: 50,
+        status: "50% project completion",
+      },
+      {
+        label: "Phase 3",
+        date: "Nov '25 – Jun '26",
+        progress: 75,
+        status: "75% project completion",
+      },
+      {
+        label: "Phase 4",
+        date: "May – Oct '26",
+        progress: 100,
+        status: "Lili Village project handover",
+      },
     ]
   },
   {
     name: "The Hive",
     statusBadge: "SOLD OUT IN \n 3 DAYS",
-    location: "Abianbase–Mengwi, Bali",
+    location: "Northern Canggu — Bali",
     image: "https://backoffice.eightinvestmentsbali.com/images/gallery/large/1761998024_03354e41b9619df8f488.png",
     progressImage:
       "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=400&fit=crop",
@@ -86,12 +112,38 @@ export const projectsData = [
         desc: "Warm tones, soft neutrals, and golden hues create spacious elegance. Thoughtfully curated details evoke balance and sophistication, making each space feel expansive yet inviting.",
         icon: StrongRentalIcon,
       },
+    ],
+    phases: [
+      {
+        label: "Phase 1",
+        date: "Jun '25 - Jan '26",
+        progress: 10,
+        status: "Construction starts",
+      },
+      {
+        label: "Phase 2",
+        date: "Jan - Jun '26",
+        progress: 25,
+        status: "25% project and first demo unit completion",
+      },
+      {
+        label: "Phase 3",
+        date: "Jun '26 - Jan '27",
+        progress: 75,
+        status: "75% project completion",
+      },
+      {
+        label: "Phase 4",
+        date: "Jan - Jun '27",
+        progress: 100,
+        status: "The Hive project handover",
+      },
     ]
   },
   {
     name: "Little Soho",
     statusBadge: "SOLD OUT",
-    location: "Abianbase–Mengwi, Bali",
+    location: "Canggu, Bali",
     image: "https://backoffice.eightinvestmentsbali.com/images/gallery/large/1761999764_38b0c767b6072af9ea40.jpg",
     progressImage:
       "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=400&fit=crop",
@@ -128,12 +180,26 @@ export const projectsData = [
         desc: "Managed by Bali Hospitality Management, Little Soho offers investors a hands-free experience with expert operations ensuring high guest satisfaction, consistent profitability, and growth.",
         icon: StrongRentalIcon,
       },
+    ],
+    phases: [
+      {
+        label: "Phase 1",
+        date: "Jan - Jun '25",
+        progress: 95,
+        status: "Renovation starts",
+      },
+      {
+        label: "Phase 2",
+        date: "Jun - Dec '25",
+        progress: 100,
+        status: "Will fully run on December 2025 and managed by Bali Hospitality Management",
+      },
     ]
   },
   {
     name: "Dynasty 8",
     statusBadge: "NEW PROJECT",
-    location: "Abianbase–Mengwi, Bali",
+    location: "North Canggu, Bali",
     image: "https://backoffice.eightinvestmentsbali.com/images/gallery/large/1762002352_c6eafa1f85965ce00ced.jpg",
     progressImage:
       "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=400&fit=crop",
@@ -169,6 +235,32 @@ export const projectsData = [
         title: "Strong ROI",
         desc: "Dynasty 8 offers flexible investment terms with 20–48% ROI and 6–8 year payback, balancing capital appreciation and rental yield for steady, long-term profitability.",
         icon: StrongRentalIcon,
+      },
+    ],
+    phases: [
+      {
+        label: "Phase 1",
+        date: "Nov '25 - May '26",
+        progress: 1,
+        status: "Construction starts",
+      },
+      {
+        label: "Phase 2",
+        date: "May - Nov '26",
+        progress: 25,
+        status: "25% project completion",
+      },
+      {
+        label: "Phase 3",
+        date: "Nov '26 - May '27",
+        progress: 75,
+        status: "75% project completion",
+      },
+      {
+        label: "Phase 4",
+        date: "May - Nov '27",
+        progress: 100,
+        status: "Dynasty 8 project handover",
       },
     ]
   },
