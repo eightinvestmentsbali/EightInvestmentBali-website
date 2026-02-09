@@ -1,7 +1,16 @@
 import StrategicInvestmentIcon from './../../assets/DesignElement/StrategicInvestmentIcon';
-import PremierFacilitiesIcon from './../../assets/DesignElement/PremierFacilitiesIcon';
+import PremierFacilitiesIcon from '../../assets/DesignElement/MultipleRevenueStreamsIcon';
 import ArtfullyCraftedLivingIcon from './../../assets/DesignElement/ArtfullyCraftedLivingIcon';
 import StrongRentalIcon from './../../assets/DesignElement/StrongRentalIcon';
+import StrongROIIcon from '../../assets/DesignElement/StrongROIIcon';
+import DesignPhilosophyIcon from '../../assets/DesignElement/DesignPhilosophyIcon';
+import PrivatePoolAreaIcon from '../../assets/DesignElement/PrivatePoolAreaIcon';
+import HandsOnManagementsIcon from '../../assets/DesignElement/HandsOnManagementsIcon';
+import ExpansiveMarketPotentialIcon from '../../assets/DesignElement/ExpansiveMarketPotentialIcon';
+import MultipleRevenueStreamsIcon from '../../assets/DesignElement/MultipleRevenueStreamsIcon';
+import HighROIIcon from '../../assets/DesignElement/HighROIIcon';
+import ModernSleekDesignIcon from '../../assets/DesignElement/ModernSleekDesignIcon';
+import PremierLocationIcon from '../../assets/DesignElement/PremierLocationIcon';
 
 export const projectsData = [
   {
@@ -95,7 +104,7 @@ export const projectsData = [
       {
         title: "Premier Location",
         desc: "A premier Northern Canggu apartment complex offering modern living amid cafes and rice fields, perfectly blending coastal tranquillity with vibrant lifestyle access and international conveniences.",
-        icon: StrategicInvestmentIcon,
+        icon: PremierLocationIcon,
       },
       {
         title: "Premier Facilities",
@@ -105,12 +114,12 @@ export const projectsData = [
       {
         title: "High ROI",
         desc: "Offering up to 38% ROI and six-year payback, this profitable Northern Canggu investment ensures high occupancy, exceptional income potential, and long-term growth.",
-        icon: StrategicInvestmentIcon,
+        icon: HighROIIcon,
       },
       {
         title: "Modern, Sleek Design",
         desc: "Warm tones, soft neutrals, and golden hues create spacious elegance. Thoughtfully curated details evoke balance and sophistication, making each space feel expansive yet inviting.",
-        icon: StrongRentalIcon,
+        icon: ModernSleekDesignIcon,
       },
     ],
     phases: [
@@ -163,22 +172,22 @@ export const projectsData = [
       {
         title: "Premier Location",
         desc: "Pantai Lima’s development positions Little Soho at the growth forefront, meeting rising demand from digital nomads for flexible, long-term, high-quality residential accommodations.",
-        icon: StrategicInvestmentIcon,
+        icon: PremierLocationIcon,
       },
       {
         title: "Multiple Revenue Streams",
         desc: "Diversified dining, workspace, and room income drive 15–20% annual growth, ensuring stable performance, high resilience, strong ROI, and sustainable long-term profitability.",
-        icon: PremierFacilitiesIcon,
+        icon: MultipleRevenueStreamsIcon,
       },
       {
         title: "Expansive Market Potential",
         desc: "Little Soho’s design blends natural harmony with modern simplicity, balancing functionality and aesthetic warmth to create fluid, authentic spaces celebrating comfort and elegance.",
-        icon: StrategicInvestmentIcon,
+        icon: ExpansiveMarketPotentialIcon,
       },
       {
         title: "Hands-on Management",
         desc: "Managed by Bali Hospitality Management, Little Soho offers investors a hands-free experience with expert operations ensuring high guest satisfaction, consistent profitability, and growth.",
-        icon: StrongRentalIcon,
+        icon: HandsOnManagementsIcon,
       },
     ],
     phases: [
@@ -219,22 +228,22 @@ export const projectsData = [
       {
         title: "Premier Location",
         desc: "Located in North Canggu, Mengwi, Dynasty 8 balances tranquility and connectivity, offering quick access to creative hubs, healthcare, and Bali’s vibrant cultural heartland.",
-        icon: StrategicInvestmentIcon,
+        icon: PremierLocationIcon,
       },
       {
         title: "Design Philosophy",
         desc: "Minimalist geometries and tactile materials blend warm woods with stone. Curated furnishing packages follow this timeless ethos, ensuring durable, sophisticated, and tranquil living spaces.",
-        icon: PremierFacilitiesIcon,
+        icon: DesignPhilosophyIcon,
       },
       {
         title: "Private Pool Area",
         desc: "A narrow pool, tropical greenery, and a heritage-adorned stone wall create a tranquil villa retreat. Modern lounging and seamless glass interiors enhance luxury.",
-        icon: ArtfullyCraftedLivingIcon,
+        icon: PrivatePoolAreaIcon,
       },
       {
         title: "Strong ROI",
         desc: "Dynasty 8 offers flexible investment terms with 20–48% ROI and 6–8 year payback, balancing capital appreciation and rental yield for steady, long-term profitability.",
-        icon: StrongRentalIcon,
+        icon: StrongROIIcon,
       },
     ],
     phases: [

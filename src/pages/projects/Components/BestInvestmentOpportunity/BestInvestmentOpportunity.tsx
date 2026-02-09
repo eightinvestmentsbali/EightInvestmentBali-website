@@ -338,7 +338,7 @@ const BestInvestmentOpportunity: React.FC<Props> = ({
                             mb: { xs: 1, md: 1.5 },
                           }}
                         >
-                          {item.name}
+                          {item.title}
                         </Typography>
 
                         {/* DESCRIPTION */}
