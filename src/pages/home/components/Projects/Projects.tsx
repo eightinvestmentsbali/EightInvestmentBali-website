@@ -1,5 +1,5 @@
-import React from "react";
-import { Box, Grid, Typography } from "@mui/material";
+import React, { useState } from "react";
+import { Box, Grid, Skeleton, Typography } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import { typographyTokens } from "../../../../theme/MuiTheme";
 import { projectsData } from "../../../../components/Data/projectsData";
@@ -9,6 +9,7 @@ const projects = projectsData;
 const Projects: React.FC = () => {
   const theme = useTheme();
   const navigate = useNavigate();
+  const [loadedImages, setLoadedImages] = useState<Record<number, boolean>>({});
 
   return (
     <Box sx={{ bgcolor: "#232323" }}>
@@ -52,21 +53,47 @@ const Projects: React.FC = () => {
                 }}
               >
                 <Box
-                  component="img"
-                  src={project.image}
-                  loading={index === 0 ? "eager" : "lazy"}
-                  fetchPriority={index === 0 ? "high" : "auto"}
-                  decoding="async"
                   sx={{
+                    position: "relative",
                     borderRadius: { xs: 3, md: 4, lg: 5 },
                     width: "100%",
                     height: { xs: 200, md: 280, lg: 350, xl: 400 },
-                    objectFit: "cover",
-                    transition: "transform .5s ease",
-                    imageRendering: "-webkit-optimize-contrast",
+                    overflow: "hidden",
+                    bgcolor: "#111",
                   }}
-                />
-
+                >
+                  {!loadedImages[index] && (
+                    <Skeleton
+                      variant="rectangular"
+                      width="100%"
+                      height="100%"
+                      sx={{ bgcolor: "#2b2b2b" }}
+                    />
+                  )}
+                  <Box
+                    component="img"
+                    src={project.image}
+                    loading={index === 0 ? "eager" : "lazy"}
+                    fetchPriority={index === 0 ? "high" : "auto"}
+                    decoding="async"
+                    onLoad={() =>
+                      setLoadedImages((prev) => ({ ...prev, [index]: true }))
+                    }
+                    onError={() =>
+                      setLoadedImages((prev) => ({ ...prev, [index]: true }))
+                    }
+                    sx={{
+                      position: "absolute",
+                      inset: 0,
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                      opacity: loadedImages[index] ? 1 : 0,
+                      transition: "opacity .3s ease, transform .5s ease",
+                      imageRendering: "-webkit-optimize-contrast",
+                    }}
+                  />
+                </Box>
                 {/* TITLE */}
                 <Box sx={{ py: 1.5, bgcolor: "transparent" }}>
                   <Typography

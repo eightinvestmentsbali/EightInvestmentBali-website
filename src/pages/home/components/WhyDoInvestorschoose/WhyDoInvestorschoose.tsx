@@ -371,6 +371,9 @@ const WhyDoInvestorschoose: React.FC = () => {
                       component="img"
                       src={reason.image}
                       alt={reason.title}
+                      loading={index === 0 ? "eager" : "lazy"}
+                      fetchPriority={index === 0 ? "high" : "auto"}
+                      decoding="async"
                       sx={{
                         width: "100%",
                         height: "100%",
@@ -378,7 +381,6 @@ const WhyDoInvestorschoose: React.FC = () => {
                         objectPosition: "center 50%",
                         display: "block",
                       }}
-                      loading="lazy"
                     />
                   </Box>
                 </Box>
