@@ -11,70 +11,70 @@ import MultipleRevenueStreamsIcon from '../../assets/DesignElement/MultipleReven
 import HighROIIcon from '../../assets/DesignElement/HighROIIcon';
 import ModernSleekDesignIcon from '../../assets/DesignElement/ModernSleekDesignIcon';
 import PremierLocationIcon from '../../assets/DesignElement/PremierLocationIcon';
-import LiliHome from "../../assets/HomeImages/LiliHome.jpg";
-import LittleHome from "../../assets/HomeImages/LittleHome.jpg";
-import HiveHome from "../../assets/HomeImages/HiveHome.jpg";
-import Dynasty8Home from "../../assets/HomeImages/Dynasty8Home.jpg";
-import LilliVillageOne from "../../assets/LiliVillageImages/LiliVillageOne.jpg";
-import LilliVillageTwo from "../../assets/LiliVillageImages/LiliVillageTwo.jpg";
-import LilliVillageThree from "../../assets/LiliVillageImages/LiliVillageThree.jpg";
-import LilliVillageFour from "../../assets/LiliVillageImages/LiliVillageFour.jpg";
-import LilliVillageFive from "../../assets/LiliVillageImages/LiliVillageFive.jpg";
-import LilliVillageSix from "../../assets/LiliVillageImages/LiliVillageSix.jpg";
-import LilliVillageSeven from "../../assets/LiliVillageImages/LiliVillageSeven.jpg";
-import LilliVillageEight from "../../assets/LiliVillageImages/LiliVillageEight.png";
-import LilliVillageNine from "../../assets/LiliVillageImages/LiliVillageNine.jpg";
-import LilliVillageTen from "../../assets/LiliVillageImages/LiliVillageTen.jpg";
-import LilliVillageEleven from "../../assets/LiliVillageImages/LiliVillageEleven.jpg";
-import HiveOne from "../../assets/TheHiveImages/HiveOne.jpg";
-import HiveTwo from "../../assets/TheHiveImages/HiveTwo.jpg";
-import HiveThree from "../../assets/TheHiveImages/HiveThree.jpg";
-import HiveFour from "../../assets/TheHiveImages/HiveFour.jpg";
-import HiveFive from "../../assets/TheHiveImages/HiveFive.jpg";
-import HiveSix from "../../assets/TheHiveImages/HiveSix.jpg";
-import HiveSeven from "../../assets/TheHiveImages/HiveSeven.jpg";
-import HiveEight from "../../assets/TheHiveImages/HiveEight.jpg";
-import HiveNine from "../../assets/TheHiveImages/HiveNine.jpg";
-import HiveTen from "../../assets/TheHiveImages/HiveTen.jpg";
-import HiveEleven from "../../assets/TheHiveImages/HiveEleven.jpg";
-import HiveTwelve from "../../assets/TheHiveImages/HiveTwelve.jpg";
-import HiveThirteen from "../../assets/TheHiveImages/HiveThirteen.jpg";
-import HiveFourteen from "../../assets/TheHiveImages/HiveFourteen.jpg";
-import HiveFifteen from "../../assets/TheHiveImages/HiveFivteen.jpg";
-import HiveSixteen from "../../assets/TheHiveImages/HiveSixteen.jpg";
-import HiveSeventeen from "../../assets/TheHiveImages/HiveSeventeen.jpg";
-import HiveEighteen from "../../assets/TheHiveImages/HiveEighteen.jpg";
-import HiveNineteen from "../../assets/TheHiveImages/HiveNineteen.jpg";
-import LittleSohoOne from "../../assets/LittleSohoImages/LittleSohoOne.jpg";
-import LittleSohoTwo from "../../assets/LittleSohoImages/LittleSohoTwo.jpg";
-import LittleSohoThree from "../../assets/LittleSohoImages/LittleSohoThree.jpg";
-import LittleSohoFour from "../../assets/LittleSohoImages/LittleSohoFour.jpg";
-import LittleSohoFive from "../../assets/LittleSohoImages/LittleSohoFive.jpg";
-import LittleSohoSix from "../../assets/LittleSohoImages/LittleSohoSix.jpg";
-import LittleSohoSeven from "../../assets/LittleSohoImages/LittleSohoSeven.jpg";
-import LittleSohoEight from "../../assets/LittleSohoImages/LittleSohoEight.jpg";
-import LittleSohoNine from "../../assets/LittleSohoImages/LittleSohoNine.jpg";
-import LittleSohoTen from "../../assets/LittleSohoImages/LittleSohoTen.jpg";
-import LittleSohoEleven from "../../assets/LittleSohoImages/LittleSohoEleven.jpg";
-import LittleSohoTwelve from "../../assets/LittleSohoImages/LittleSohoTwelve.png";
-import DynastyOne from "../../assets/DynastyEightImages/DynastyOne.jpg";
-import DynastyTwo from "../../assets/DynastyEightImages/DynastyTwo.jpg";
-import DynastyThree from "../../assets/DynastyEightImages/DynastyThree.jpg";
-import DynastyFour from "../../assets/DynastyEightImages/DynastyFour.jpg";
-import DynastyFive from "../../assets/DynastyEightImages/DynastyFive.jpg";
-import DynastySix from "../../assets/DynastyEightImages/DynastySix.jpg";
-import DynastySeven from "../../assets/DynastyEightImages/DynastySeven.jpg";
-import DynastyEight from "../../assets/DynastyEightImages/DynastyEight.jpg";
-import DynastyNine from "../../assets/DynastyEightImages/DynastyNine.jpg";
-import DynastyTen from "../../assets/DynastyEightImages/DynastyTen.jpg";
-import DynastyEleven from "../../assets/DynastyEightImages/DynastyEleven.jpg";
-import DynastyTwelve from "../../assets/DynastyEightImages/DynastyTwelve.jpg";
-import DynastyThirteen from "../../assets/DynastyEightImages/DynastyThirteen.jpg";
-import DynastyFourteen from "../../assets/DynastyEightImages/DynastyFourteen.jpg";
-import DynastyFifteen from "../../assets/DynastyEightImages/DynastyFifteen.jpg";
-import HiveVideo from "../../assets/ProjectVideos/HiveVideo.mp4";
-import DynastyVideo from "../../assets/ProjectVideos/DynastyVideo.mp4";
-import LilliVillageVideo from "../../assets/ProjectVideos/LiliVideo.mp4";
+// import LiliHome from "../../assets/HomeImages/LiliHome.jpg";
+// import LittleHome from "../../assets/HomeImages/LittleHome.jpg";
+// import HiveHome from "../../assets/HomeImages/HiveHome.jpg";
+// import Dynasty8Home from "../../assets/HomeImages/Dynasty8Home.jpg";
+// import LilliVillageOne from "../../assets/LiliVillageImages/LiliVillageOne.jpg";
+// import LilliVillageTwo from "../../assets/LiliVillageImages/LiliVillageTwo.jpg";
+// import LilliVillageThree from "../../assets/LiliVillageImages/LiliVillageThree.jpg";
+// import LilliVillageFour from "../../assets/LiliVillageImages/LiliVillageFour.jpg";
+// import LilliVillageFive from "../../assets/LiliVillageImages/LiliVillageFive.jpg";
+// import LilliVillageSix from "../../assets/LiliVillageImages/LiliVillageSix.jpg";
+// import LilliVillageSeven from "../../assets/LiliVillageImages/LiliVillageSeven.jpg";
+// import LilliVillageEight from "../../assets/LiliVillageImages/LiliVillageEight.png";
+// import LilliVillageNine from "../../assets/LiliVillageImages/LiliVillageNine.jpg";
+// import LilliVillageTen from "../../assets/LiliVillageImages/LiliVillageTen.jpg";
+// import LilliVillageEleven from "../../assets/LiliVillageImages/LiliVillageEleven.jpg";
+// import HiveOne from "../../assets/TheHiveImages/HiveOne.jpg";
+// import HiveTwo from "../../assets/TheHiveImages/HiveTwo.jpg";
+// import HiveThree from "../../assets/TheHiveImages/HiveThree.jpg";
+// import HiveFour from "../../assets/TheHiveImages/HiveFour.jpg";
+// import HiveFive from "../../assets/TheHiveImages/HiveFive.jpg";
+// import HiveSix from "../../assets/TheHiveImages/HiveSix.jpg";
+// import HiveSeven from "../../assets/TheHiveImages/HiveSeven.jpg";
+// import HiveEight from "../../assets/TheHiveImages/HiveEight.jpg";
+// import HiveNine from "../../assets/TheHiveImages/HiveNine.jpg";
+// import HiveTen from "../../assets/TheHiveImages/HiveTen.jpg";
+// import HiveEleven from "../../assets/TheHiveImages/HiveEleven.jpg";
+// import HiveTwelve from "../../assets/TheHiveImages/HiveTwelve.jpg";
+// import HiveThirteen from "../../assets/TheHiveImages/HiveThirteen.jpg";
+// import HiveFourteen from "../../assets/TheHiveImages/HiveFourteen.jpg";
+// import HiveFifteen from "../../assets/TheHiveImages/HiveFivteen.jpg";
+// import HiveSixteen from "../../assets/TheHiveImages/HiveSixteen.jpg";
+// import HiveSeventeen from "../../assets/TheHiveImages/HiveSeventeen.jpg";
+// import HiveEighteen from "../../assets/TheHiveImages/HiveEighteen.jpg";
+// import HiveNineteen from "../../assets/TheHiveImages/HiveNineteen.jpg";
+// import LittleSohoOne from "../../assets/LittleSohoImages/LittleSohoOne.jpg";
+// import LittleSohoTwo from "../../assets/LittleSohoImages/LittleSohoTwo.jpg";
+// import LittleSohoThree from "../../assets/LittleSohoImages/LittleSohoThree.jpg";
+// import LittleSohoFour from "../../assets/LittleSohoImages/LittleSohoFour.jpg";
+// import LittleSohoFive from "../../assets/LittleSohoImages/LittleSohoFive.jpg";
+// import LittleSohoSix from "../../assets/LittleSohoImages/LittleSohoSix.jpg";
+// import LittleSohoSeven from "../../assets/LittleSohoImages/LittleSohoSeven.jpg";
+// import LittleSohoEight from "../../assets/LittleSohoImages/LittleSohoEight.jpg";
+// import LittleSohoNine from "../../assets/LittleSohoImages/LittleSohoNine.jpg";
+// import LittleSohoTen from "../../assets/LittleSohoImages/LittleSohoTen.jpg";
+// import LittleSohoEleven from "../../assets/LittleSohoImages/LittleSohoEleven.jpg";
+// import LittleSohoTwelve from "../../assets/LittleSohoImages/LittleSohoTwelve.png";
+// import DynastyOne from "../../assets/DynastyEightImages/DynastyOne.jpg";
+// import DynastyTwo from "../../assets/DynastyEightImages/DynastyTwo.jpg";
+// import DynastyThree from "../../assets/DynastyEightImages/DynastyThree.jpg";
+// import DynastyFour from "../../assets/DynastyEightImages/DynastyFour.jpg";
+// import DynastyFive from "../../assets/DynastyEightImages/DynastyFive.jpg";
+// import DynastySix from "../../assets/DynastyEightImages/DynastySix.jpg";
+// import DynastySeven from "../../assets/DynastyEightImages/DynastySeven.jpg";
+// import DynastyEight from "../../assets/DynastyEightImages/DynastyEight.jpg";
+// import DynastyNine from "../../assets/DynastyEightImages/DynastyNine.jpg";
+// import DynastyTen from "../../assets/DynastyEightImages/DynastyTen.jpg";
+// import DynastyEleven from "../../assets/DynastyEightImages/DynastyEleven.jpg";
+// import DynastyTwelve from "../../assets/DynastyEightImages/DynastyTwelve.jpg";
+// import DynastyThirteen from "../../assets/DynastyEightImages/DynastyThirteen.jpg";
+// import DynastyFourteen from "../../assets/DynastyEightImages/DynastyFourteen.jpg";
+// import DynastyFifteen from "../../assets/DynastyEightImages/DynastyFifteen.jpg";
+// import HiveVideo from "../../assets/ProjectVideos/HiveVideo.mp4";
+// import DynastyVideo from "../../assets/ProjectVideos/DynastyVideo.mp4";
+// import LilliVillageVideo from "../../assets/ProjectVideos/LiliVideo.mp4";
 
 
 export const projectsData = [
@@ -82,21 +82,21 @@ export const projectsData = [
     name: "Lili Village",
     statusBadge: "SOLD OUT IN \n 3 WEEKS",
     location: "Abianbase–Mengwi, Bali",
-    image: LiliHome,
+    image: "https://eightinvestment.s3.us-east-1.amazonaws.com/files/HomeImages/LiliHome.jpg",
     description: "Lili Village spans 2,960 sqm of artfully designed space in Abianbase, Mengwi, offering 18 townhouses in 2-bedroom (155 sqm) and 3-bedroom (235 sqm) layouts. At its heart is a social clubhouse that brings the community together with a gym, pool bar, serene swimming pool, and communal restaurant.",
-    video: LilliVillageVideo,
+    video: "https://eightinvestment.s3.us-east-1.amazonaws.com/files/ProjectVideos/LiliVideo.mp4",
     featuresImages: [
-      LilliVillageOne,
-      LilliVillageTwo,
-      LilliVillageThree,
-      LilliVillageFour,
-      LilliVillageFive,
-      LilliVillageSix,
-      LilliVillageSeven,
-      LilliVillageEight,
-      LilliVillageNine,
-      LilliVillageTen,
-      LilliVillageEleven
+      "https://eightinvestment.s3.us-east-1.amazonaws.com/files/LiliVillageImages/LiliVillageOne.jpg",
+      "https://eightinvestment.s3.us-east-1.amazonaws.com/files/LiliVillageImages/LiliVillageTwo.jpg",
+      "https://eightinvestment.s3.us-east-1.amazonaws.com/files/LiliVillageImages/LiliVillageThree.jpg",
+      "https://eightinvestment.s3.us-east-1.amazonaws.com/files/LiliVillageImages/LiliVillageFour.jpg",
+      "https://eightinvestment.s3.us-east-1.amazonaws.com/files/LiliVillageImages/LiliVillageFive.jpg",
+      // "https://eightinvestment.s3.us-east-1.amazonaws.com/files/LiliVillageImages/LiliVillageSix.jpg",
+      "https://eightinvestment.s3.us-east-1.amazonaws.com/files/LiliVillageImages/LiliVillageSeven.jpg",
+      "https://eightinvestment.s3.us-east-1.amazonaws.com/files/LiliVillageImages/LiliVillageEight.png",
+      "https://eightinvestment.s3.us-east-1.amazonaws.com/files/LiliVillageImages/LiliVillageNine.jpg",
+      "https://eightinvestment.s3.us-east-1.amazonaws.com/files/LiliVillageImages/LiliVillageTen.jpg",
+      "https://eightinvestment.s3.us-east-1.amazonaws.com/files/LiliVillageImages/LiliVillageEleven.jpg"
     ],
     features: [
       {
@@ -156,30 +156,30 @@ export const projectsData = [
     name: "The Hive",
     statusBadge: "SOLD OUT IN \n 3 DAYS",
     location: "Northern Canggu, Bali",
-    image: HiveHome,
+    image: "https://eightinvestment.s3.us-east-1.amazonaws.com/files/HomeImages/HiveHome.jpg",
     description:
       "The Hive is a 4,400 sqm gated community in Northern Canggu, designed around light, space, and shared energy. It features 78 studio and one bedroom apartments, anchored by lifestyle amenities and strong connectivity to Bali's most in-demand rental corridors.",
-    video: HiveVideo,
+    video: "https://eightinvestment.s3.us-east-1.amazonaws.com/files/ProjectVideos/HiveVideo.mp4",
     featuresImages: [
-      HiveOne,
-      HiveTwo,
-      HiveThree,
-      HiveFour,
-      HiveFive,
-      HiveSix,
-      HiveSeven,
-      HiveEight,
-      HiveNine,
-      HiveTen,
-      HiveEleven,
-      HiveTwelve,
-      HiveThirteen,
-      HiveFourteen,
-      HiveFifteen,
-      HiveSixteen,
-      HiveSeventeen,
-      HiveEighteen,
-      HiveNineteen
+      "https://eightinvestment.s3.us-east-1.amazonaws.com/files/TheHiveImages/HiveOne.jpg",
+      "https://eightinvestment.s3.us-east-1.amazonaws.com/files/TheHiveImages/HiveTwo.jpg",
+      "https://eightinvestment.s3.us-east-1.amazonaws.com/files/TheHiveImages/HiveThree.jpg",
+      // "https://eightinvestment.s3.us-east-1.amazonaws.com/files/TheHiveImages/HiveFour.jpg",
+      "https://eightinvestment.s3.us-east-1.amazonaws.com/files/TheHiveImages/HiveFive.jpg",
+      "https://eightinvestment.s3.us-east-1.amazonaws.com/files/TheHiveImages/HiveSix.jpg",
+      "https://eightinvestment.s3.us-east-1.amazonaws.com/files/TheHiveImages/HiveSeven.jpg",
+      "https://eightinvestment.s3.us-east-1.amazonaws.com/files/TheHiveImages/HiveEight.jpg",
+      "https://eightinvestment.s3.us-east-1.amazonaws.com/files/TheHiveImages/HiveNine.jpg",
+      "https://eightinvestment.s3.us-east-1.amazonaws.com/files/TheHiveImages/HiveTen.jpg",
+      "https://eightinvestment.s3.us-east-1.amazonaws.com/files/TheHiveImages/HiveEleven.jpg",
+      "https://eightinvestment.s3.us-east-1.amazonaws.com/files/TheHiveImages/HiveTwelve.jpg",
+      "https://eightinvestment.s3.us-east-1.amazonaws.com/files/TheHiveImages/HiveThirteen.jpg",
+      "https://eightinvestment.s3.us-east-1.amazonaws.com/files/TheHiveImages/HiveFourteen.jpg",
+      // "https://eightinvestment.s3.us-east-1.amazonaws.com/files/TheHiveImages/HiveFivteen.jpg",
+      "https://eightinvestment.s3.us-east-1.amazonaws.com/files/TheHiveImages/HiveSixteen.jpg",
+      "https://eightinvestment.s3.us-east-1.amazonaws.com/files/TheHiveImages/HiveSeventeen.jpg",
+      "https://eightinvestment.s3.us-east-1.amazonaws.com/files/TheHiveImages/HiveEighteen.jpg",
+      "https://eightinvestment.s3.us-east-1.amazonaws.com/files/TheHiveImages/HiveNineteen.jpg"
     ],
     features: [
       {
@@ -239,24 +239,24 @@ export const projectsData = [
     name: "Little Soho",
     statusBadge: "HOSPITALITY \n PROJECT",
     location: "Canggu, Bali",
-    image: LittleHome,
+    image: "https://eightinvestment.s3.us-east-1.amazonaws.com/files/HomeImages/LittleHome.jpg",
     description:
       "Little Soho is a boutique hospitality house in Canggu, pairing Little Brew on the ground floor with 10 rooms above. Since opening in December, the rooms have held around 90 percent average occupancy, supported by strong guest feedback and a café that has become a local favourite.",
     video:
       "https://backoffice.eightinvestmentsbali.com/videos/projects/1762140229_da263c8dfe17a7c93270.mp4",
     featuresImages: [
-      LittleSohoOne,
-      LittleSohoTwo,
-      LittleSohoThree,
-      LittleSohoFour,
-      LittleSohoFive,
-      LittleSohoSix,
-      LittleSohoSeven,
-      LittleSohoEight,
-      LittleSohoNine,
-      LittleSohoTen,
-      LittleSohoEleven,
-      LittleSohoTwelve,
+      "https://eightinvestment.s3.us-east-1.amazonaws.com/files/LittleSohoImages/LittleSohoOne.jpg",
+      "https://eightinvestment.s3.us-east-1.amazonaws.com/files/LittleSohoImages/LittleSohoTwo.jpg",
+      "https://eightinvestment.s3.us-east-1.amazonaws.com/files/LittleSohoImages/LittleSohoThree.jpg",
+      "https://eightinvestment.s3.us-east-1.amazonaws.com/files/LittleSohoImages/LittleSohoFour.jpg",
+      "https://eightinvestment.s3.us-east-1.amazonaws.com/files/LittleSohoImages/LittleSohoFive.jpg",
+      "https://eightinvestment.s3.us-east-1.amazonaws.com/files/LittleSohoImages/LittleSohoSix.jpg",
+      "https://eightinvestment.s3.us-east-1.amazonaws.com/files/LittleSohoImages/LittleSohoSeven.jpg",
+      "https://eightinvestment.s3.us-east-1.amazonaws.com/files/LittleSohoImages/LittleSohoEight.jpg",
+      "https://eightinvestment.s3.us-east-1.amazonaws.com/files/LittleSohoImages/LittleSohoNine.jpg",
+      "https://eightinvestment.s3.us-east-1.amazonaws.com/files/LittleSohoImages/LittleSohoTen.jpg",
+      "https://eightinvestment.s3.us-east-1.amazonaws.com/files/LittleSohoImages/LittleSohoEleven.jpg",
+      "https://eightinvestment.s3.us-east-1.amazonaws.com/files/LittleSohoImages/LittleSohoTwelve.png",
     ],
     features: [
       {
@@ -304,26 +304,26 @@ export const projectsData = [
     name: "Dynasty 8",
     statusBadge: "NEW PROJECT \n 50% SOLD",
     location: "North Canggu, Bali",
-    image: Dynasty8Home,
+    image: "https://eightinvestment.s3.us-east-1.amazonaws.com/files/HomeImages/Dynasty8Home.jpg",
     description:
       "Dynasty 8 is a private enclave of eight villas in North Canggu, designed with a quiet luxury approach that blends Japanese restraint with Balinese warmth. Construction is in early delivery at 5 percent progress, with 50 percent already sold, reflecting strong early market response.",
-    video: DynastyVideo,
+    video: "https://eightinvestment.s3.us-east-1.amazonaws.com/files/ProjectVideos/DynastyVideo.mp4",
     featuresImages: [
-      DynastyOne,
-      DynastyTwo,
-      DynastyThree,
-      DynastyFour,
-      DynastyFive,
-      DynastySix,
-      DynastySeven,
-      DynastyEight,
-      DynastyNine,
-      DynastyTen,
-      DynastyEleven,
-      DynastyTwelve,
-      DynastyThirteen,
-      DynastyFourteen,
-      DynastyFifteen,
+      "https://eightinvestment.s3.us-east-1.amazonaws.com/files/DynastyEightImages/DynastyOne.jpg",
+      "https://eightinvestment.s3.us-east-1.amazonaws.com/files/DynastyEightImages/DynastyTwo.jpg",
+      "https://eightinvestment.s3.us-east-1.amazonaws.com/files/DynastyEightImages/DynastyThree.jpg",
+      "https://eightinvestment.s3.us-east-1.amazonaws.com/files/DynastyEightImages/DynastyFour.jpg",
+      "https://eightinvestment.s3.us-east-1.amazonaws.com/files/DynastyEightImages/DynastyFive.jpg",
+      "https://eightinvestment.s3.us-east-1.amazonaws.com/files/DynastyEightImages/DynastySix.jpg",
+      "https://eightinvestment.s3.us-east-1.amazonaws.com/files/DynastyEightImages/DynastySeven.jpg",
+      "https://eightinvestment.s3.us-east-1.amazonaws.com/files/DynastyEightImages/DynastyEight.jpg",
+      "https://eightinvestment.s3.us-east-1.amazonaws.com/files/DynastyEightImages/DynastyNine.jpg",
+      "https://eightinvestment.s3.us-east-1.amazonaws.com/files/DynastyEightImages/DynastyTen.jpg",
+      "https://eightinvestment.s3.us-east-1.amazonaws.com/files/DynastyEightImages/DynastyEleven.jpg",
+      "https://eightinvestment.s3.us-east-1.amazonaws.com/files/DynastyEightImages/DynastyTwelve.jpg",
+      "https://eightinvestment.s3.us-east-1.amazonaws.com/files/DynastyEightImages/DynastyThirteen.jpg",
+      "https://eightinvestment.s3.us-east-1.amazonaws.com/files/DynastyEightImages/DynastyFourteen.jpg",
+      "https://eightinvestment.s3.us-east-1.amazonaws.com/files/DynastyEightImages/DynastyFifteen.jpg",
     ],
     features: [
       {

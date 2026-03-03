@@ -13,16 +13,15 @@ import {
 import { motion } from "framer-motion";
 import CloseIcon from "@mui/icons-material/Close";
 import { typographyTokens } from "../../../../theme/MuiTheme";
-import RealEstateDevelopemntImage from "../../../../assets/OurServicesImages/RealEstateDevelopment.jpg";
-import FacilityManagementImage from "../../../../assets/OurServicesImages/FacilityManagement.jpg";
-import PropertyAssetsManagementImage from "../../../../assets/OurServicesImages/PropertyAssetManagement.jpg";
-import StrategicInvestmentConsultancyImage from "../../../../assets/OurServicesImages/StrategicInvestmentConsultancy.jpg";
+// import RealEstateDevelopemntImage from "../../../../assets/OurServicesImages/RealEstateDevelopment.jpg";
+// import FacilityManagementImage from "../../../../assets/OurServicesImages/FacilityManagement.jpg";
+// import PropertyAssetsManagementImage from "../../../../assets/OurServicesImages/PropertyAssetManagement.jpg";
+// import StrategicInvestmentConsultancyImage from "../../../../assets/OurServicesImages/StrategicInvestmentConsultancy.jpg";
 
 const services = [
   {
     title: "Real Estate\nDevelopment",
-    image: RealEstateDevelopemntImage,
-
+    image: "https://eightinvestment.s3.us-east-1.amazonaws.com/files/OurServicesImages/RealEstateDevelopment.jpg",
     subTitle:
       "Eight Investments Bali unlocks a world of bespoke Real Estate Development opportunities, allowing you to transform your vision into a reality that transcends exceptional property.",
     description:
@@ -30,7 +29,7 @@ const services = [
   },
   {
     title: "Facility\nManagement",
-    image: FacilityManagementImage,
+    image: "https://eightinvestment.s3.us-east-1.amazonaws.com/files/OurServicesImages/FacilityManagement.jpg",
     subTitle:
       "Eight Investments Bali provides seamless integrated facility services, ensuring invested property operates flawlessly behind the scenes.",
     description:
@@ -38,7 +37,7 @@ const services = [
   },
   {
     title: "Property Assets\nManagement",
-    image: PropertyAssetsManagementImage,
+    image: "https://eightinvestment.s3.us-east-1.amazonaws.com/files/OurServicesImages/PropertyAssetManagement.jpg",
     subTitle:
       "Investing in Bali's thriving real estate market unlocks a world of potential. But navigating day-to-day operations shouldn't disrupt investor's vision.",
     description: `Eight Investments Bali offers discerning asset management, ensuring owner's property thrives while investor seamlessly enjoy the rewards. Our dedicated team handles everything - from meticulous tenant selection to maximizing rental yields.
@@ -47,7 +46,7 @@ const services = [
   },
   {
     title: "Strategic Investment\nConsultancy",
-    image: StrategicInvestmentConsultancyImage,
+    image: "https://eightinvestment.s3.us-east-1.amazonaws.com/files/OurServicesImages/StrategicInvestmentConsultancy.jpg",
     subTitle:
       "Navigate with Confidence. Eight Investments Bali provides strategic investment counsel, guiding you towards maximizing your returns with astute precision.",
     description: `Our team of experts acts as investor's trusted advisor, meticulously analyzing market trends and identifying the most unique opportunities. We craft personalized investment strategies that align with investor's financial goals, ensuring every decision is informed and empowering.
