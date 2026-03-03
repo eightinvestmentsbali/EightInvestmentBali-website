@@ -26,35 +26,9 @@ import {
   useScroll,
   useTransform,
 } from "framer-motion";
-// import StrategicInvestmentIcon from "../../../../assets/DesignElement/StrategicInvestmentIcon";
-// import PremierFacilitiesIcon from "../../../../assets/DesignElement/PremierFacilitiesIcon";
-// import ArtfullyCraftedLivingIcon from "../../../../assets/DesignElement/ArtfullyCraftedLivingIcon";
-// import StrongRentalIcon from "../../../../assets/DesignElement/StrongRentalIcon";
 import { useNavigate } from "react-router-dom";
 import { projectsData } from "../../../../components/Data/projectsData";
 
-// const features = [
-//   {
-//     title: "Strategic Investment",
-//     desc: "A 30+ year investment strategy commitment designed to align with your financial goals, whether short, medium, or long-term.",
-//     icon: <StrategicInvestmentIcon />,
-//   },
-//   {
-//     title: "Premier Facilities",
-//     desc: "Lili Village offers balanced living with spacious layouts, high-end finishes, and modern conveniences, including gym, pool bar, and swimming pool.",
-//     icon: <PremierFacilitiesIcon />,
-//   },
-//   {
-//     title: "Artfully Crafted Living",
-//     desc: "Thoughtfully designed spaces where open layouts seamlessly connect living areas, fostering harmony with nature and community.",
-//     icon: <ArtfullyCraftedLivingIcon />,
-//   },
-//   {
-//     title: "Strong Rental Returns",
-//     desc: "High rental yields driven by strategic growth and multi-developing infrastructure, making it ideal for reliable income.",
-//     icon: <StrongRentalIcon />,
-//   },
-// ];
 
 const BestInvestmentOpportunity = () => {
   const theme = useTheme();
@@ -65,7 +39,6 @@ const BestInvestmentOpportunity = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const descriptionRef = useRef<HTMLDivElement>(null);
-  // const isInitialMount = useRef(true);
   const cardRef = useRef<HTMLDivElement>(null);
   const [loadedImages, setLoadedImages] = useState<Record<number, boolean>>({});
   const [direction, setDirection] = useState(0);
@@ -86,22 +59,6 @@ const BestInvestmentOpportunity = () => {
     [0, 1],
     ["blur(0px)", "blur(4px)"],
   );
-
-  // useEffect(() => {
-  //   if (isInitialMount.current) {
-  //     isInitialMount.current = false;
-  //     return;
-  //   }
-
-  //   if (descriptionRef.current) {
-  //     setTimeout(() => {
-  //       descriptionRef.current?.scrollIntoView({
-  //         behavior: "smooth",
-  //         block: "start",
-  //       });
-  //     }, 100);
-  //   }
-  // }, [activeIndex]);
 
   useEffect(() => {
     setActiveImageIndex(0);
@@ -296,10 +253,12 @@ const BestInvestmentOpportunity = () => {
               projectName={projectsData[activeProjectIndex].name}
               location={projectsData[activeProjectIndex].location}
               image={projectsData[activeProjectIndex].image}
-              progressImage={projectsData[activeProjectIndex].progressImage}
-              onSeeMoreClick={() => setIsModalOpen(true)}
+              onSeeMoreClick={() =>  navigate("/project-details", {
+                    state: { projectIndex: activeProjectIndex },
+                  })}
               statusBadge={projectsData[activeProjectIndex].statusBadge}
               phases={projectsData[activeProjectIndex].phases}
+              currentPhase={projectsData[activeProjectIndex].currentPhase}
             />
           </Box>
           {/* CAROUSEL ITEMS */}
@@ -589,8 +548,6 @@ const BestInvestmentOpportunity = () => {
 
       <Box
         sx={{
-          // bgcolor: "#232323",
-          // px: { xs: 2, md: 4, lg: 6 },
           minHeight: { xs: "auto", md: "800px", lg: "100vh" },
           pb: { xs: 2, md: 3, lg: 4 },
           display: "flex",
@@ -640,8 +597,9 @@ const BestInvestmentOpportunity = () => {
               <Box
                 component="img"
                 src={images[activeImageIndex] || images[0]}
-                loading="eager"
-                fetchPriority="high"
+                loading={activeImageIndex === 0 ? "eager" : "lazy"}
+                fetchPriority={activeImageIndex === 0 ? "high" : "auto"}
+                decoding="async"
                 sx={{
                   width: "100%",
                   height: "100%",
@@ -705,10 +663,10 @@ const BestInvestmentOpportunity = () => {
           sx={{
             display: "flex",
             gap: { xs: 1, md: 2 },
-            justifyContent: "center",
+            justifyContent: "flex-start",
             flexShrink: 0,
             height: { xs: "auto", md: "180px" },
-            overflowX: { xs: "auto", md: "visible" },
+            overflowX: "auto",
             overflowY: "hidden",
             pb: { xs: 1, md: 0 },
             "&::-webkit-scrollbar": {
@@ -726,9 +684,9 @@ const BestInvestmentOpportunity = () => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               sx={{
-                flex: { xs: "0 0 auto", md: 1 },
-                minWidth: { xs: "80px", md: 0 },
-                width: { xs: "80px", md: "auto" },
+                flex: { xs: "0 0 80px", md: "0 0 calc((100% - 64px) / 5)" },
+                minWidth: { xs: "80px", md: "calc((100% - 64px) / 5)" },
+                width: { xs: "80px", md: "calc((100% - 64px) / 5)" },
                 height: { xs: 80, md: 180 },
                 overflow: "hidden",
                 cursor: "pointer",
@@ -758,7 +716,8 @@ const BestInvestmentOpportunity = () => {
               <Box
                 component="img"
                 src={img}
-                loading={index <= 2 ? "eager" : "lazy"}
+                loading={index === activeImageIndex ? "eager" : "lazy"}
+                decoding="async"
                 sx={{
                   width: "100%",
                   height: "100%",
@@ -798,7 +757,6 @@ const BestInvestmentOpportunity = () => {
           />
           {isLoading ? (
             <motion.div
-              animate={{ rotate: 360 }}
               transition={{
                 duration: 0.8,
                 repeat: Infinity,
@@ -818,160 +776,137 @@ const BestInvestmentOpportunity = () => {
             />
           ) : (
             <motion.div
-              initial={{ scale: 0.25, opacity: 0, rotate: 0 }}
-              animate={{ scale: 1, opacity: 1, rotate: 0 }}
-              transition={{
-                scale: {
-                  duration: 0.5,
-                  ease: [0.25, 0.46, 0.45, 0.94],
-                },
-                opacity: {
-                  duration: 0.4,
-                  ease: [0.25, 0.46, 0.45, 0.94],
-                },
-                rotate: {
-                  duration: 0,
-                },
-              }}
+              initial={{ scale: 0.95, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ duration: 0.4, ease: "easeOut" }}
               onClick={(e) => e.stopPropagation()}
               style={{
                 position: "relative",
-                width: "90%",
-                maxWidth: "900px",
-                maxHeight: "90vh",
+                width: "95%",
+                maxWidth: "1000px",
+                height: "85vh",
                 backgroundColor: "#000",
-                borderRadius: "16px",
+                borderRadius: "24px",
                 overflow: "hidden",
-                display: "flex",
-                flexDirection: "column",
                 zIndex: 1,
-                boxShadow: "0 8px 32px rgba(0, 0, 0, 0.4)",
-                transformOrigin: "center center",
+                boxShadow: "0 20px 50px rgba(0, 0, 0, 0.5)",
               }}
             >
               <Box
+                component="img"
+                src={projectsData[activeProjectIndex].image}
+                alt={projectsData[activeProjectIndex].name}
                 sx={{
-                  position: "relative",
+                  position: "absolute",
+                  inset: 0,
                   width: "100%",
-                  height: { xs: "250px", md: "400px" },
-                  overflow: "hidden",
+                  height: "100%",
+                  objectFit: "cover",
+                  zIndex: 0,
                 }}
-              >
-                <IconButton
-                  onClick={() => setIsModalOpen(false)}
-                  sx={{
-                    position: "absolute",
-                    top: 16,
-                    right: 16,
-                    zIndex: 10,
-                    bgcolor: "rgba(0, 0, 0, 0.5)",
-                    color: "#fff",
-                    "&:hover": {
-                      bgcolor: "rgba(0, 0, 0, 0.7)",
-                    },
-                  }}
-                >
-                  <CloseIcon />
-                </IconButton>
-                <motion.div
-                  initial={{ scale: 1.05, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1 }}
-                  transition={{
-                    duration: 0.35,
-                    delay: 0.2,
-                    ease: [0.25, 0.46, 0.45, 0.94],
-                  }}
-                >
-                  <Box
-                    component="img"
-                    src={projectsData[activeProjectIndex].image}
-                    alt={projectsData[activeProjectIndex].name}
-                    sx={{
-                      width: "100%",
-                      height: "100%",
-                      objectFit: "cover",
-                    }}
-                  />
-                </motion.div>
-                {/* Progress Image - Bottom Right over the image */}
-                <Box
-                  sx={{
-                    position: "absolute",
-                    bottom: { xs: 16, md: 24 },
-                    right: { xs: 16, md: 24 },
-                    zIndex: 5,
-                    width: { xs: "120px", md: "180px", lg: "250px" },
-                  }}
-                >
-                  <motion.div
-                    initial={{ scale: 0.8, opacity: 0 }}
-                    animate={{ scale: 1, opacity: 1 }}
-                    transition={{
-                      duration: 0.4,
-                      delay: 0.4,
-                      ease: [0.25, 0.46, 0.45, 0.94],
-                    }}
-                  >
-                    <Box
-                      component="img"
-                      src={projectsData[activeProjectIndex].progressImage}
-                      alt="Progress"
-                      sx={{
-                        width: "100%",
-                        height: "auto",
-                        objectFit: "contain",
-                        borderRadius: 1,
-                      }}
-                    />
-                  </motion.div>
-                </Box>
-              </Box>
+              />
+
               <Box
                 sx={{
-                  p: { xs: 3, md: 5 },
-                  overflowY: "auto",
-                  flex: 1,
+                  position: "absolute",
+                  inset: 0,
+                  zIndex: 1,
+                  background:
+                    "linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.6) 50%, rgba(0,0,0,0.2) 100%)",
+                }}
+              />
+
+              <Box
+                sx={{
+                  position: "absolute",
+                  width: "100%",
+                  height: "30%",
+                  left: 0,
+                  bottom: 0,
+                  zIndex: 1,
+                  background:
+                    "linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.4) 90%, transparent 100%)",
+                  backdropFilter: "blur(6px)",
+                  WebkitMaskImage:
+                    "linear-gradient(to top, black 0%, black 90%, transparent 100%)",
+                  maskImage:
+                    "linear-gradient(to top, black 0%, black 90%, transparent 100%)",
+                }}
+              />
+
+              <IconButton
+                onClick={() => setIsModalOpen(false)}
+                sx={{
+                  position: "absolute",
+                  top: 16,
+                  right: 16,
+                  zIndex: 10,
+                  bgcolor: "rgba(0, 0, 0, 0.5)",
+                  color: "#fff",
+                  "&:hover": { bgcolor: "rgba(0,0,0,0.8)" },
+                }}
+              >
+                <CloseIcon />
+              </IconButton>
+
+              <Box
+                sx={{
+                  position: "absolute",
+                  left: 0,
+                  bottom: 0,
+                  width: "100%",
+                  zIndex: 2,
+                  p: { xs: 3, md: 6 },
                 }}
               >
                 <motion.div
-                  initial={{ y: 15, opacity: 0 }}
+                  initial={{ y: 30, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
-                  transition={{
-                    duration: 0.35,
-                    delay: 0.3,
-                    ease: [0.25, 0.46, 0.45, 0.94],
-                  }}
+                  transition={{ duration: 0.5, delay: 0.1 }}
                 >
                   <Typography
-                    variant="heroTitle"
+                    variant="h2"
                     component="h2"
                     sx={{
                       color: theme.palette.primary.contrastText,
-                      mb: 2,
-                      fontWeight: typographyTokens.fontWeights.medium,
+                      fontSize: {
+                        xs: "clamp(1.5rem, 8vw, 2.5rem)",
+                        md: "clamp(2.5rem, 5vw, 3rem)",
+                      },
+                      mb: 1,
+                      fontWeight: typographyTokens.fontWeights.bold,
+                      lineHeight: 1.1,
                     }}
                   >
                     {projectsData[activeProjectIndex].name}
                   </Typography>
                   <Typography
-                    variant="h3"
                     sx={{
-                      color: theme.palette.text.secondary,
+                      color: theme.palette.primary.main,
+                      fontSize: {
+                        xs: "clamp(0.9rem, 4vw, 1.1rem)",
+                        md: "clamp(1.1rem, 2vw, 1.5rem)",
+                      },
+                      fontWeight: typographyTokens.fontWeights.medium,
+                      lineHeight: 1.5,
                       mb: 3,
-                      fontWeight: typographyTokens.fontWeights.regular,
                     }}
                   >
                     {projectsData[activeProjectIndex].location}
                   </Typography>
                   <Typography
-                    variant="heroSubTitle"
+                    variant="body1"
                     sx={{
                       color: theme.palette.text.secondary,
-                      lineHeight: 1.8,
-                      fontSize: { xs: "1rem", md: "1.125rem" },
+                      lineHeight: 1.5,
+                      fontSize: {
+                        xs: "clamp(0.875rem, 3vw, 1rem)",
+                        md: "clamp(1rem, 1.2vw, 1rem)",
+                      },
+                      maxWidth: "800px",
                     }}
                   >
-                    {projectsData[activeProjectIndex].description}
+                    {projectsData[activeProjectIndex].expandedDescription}
                   </Typography>
                 </motion.div>
               </Box>

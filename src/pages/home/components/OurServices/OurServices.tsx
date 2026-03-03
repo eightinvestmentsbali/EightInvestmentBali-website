@@ -325,11 +325,9 @@ const OurServices: React.FC = () => {
                     width: "100%",
                     height: "50%", // Adjust height as needed
                     zIndex: 1,
-                    // The visual background
                     background:
                       "linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.4) 90%, transparent 100%)",
                     backdropFilter: "blur(6px)",
-                    // The Mask ONLY affects this box and its blur
                     WebkitMaskImage: `linear-gradient(to top, 
                       black 0%, 
                       black 90%, 

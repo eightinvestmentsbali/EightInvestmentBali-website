@@ -1,32 +1,33 @@
-import { Box, Stack, Typography } from "@mui/material";
+import { Box, Stack, Typography, useMediaQuery } from "@mui/material";
 import LocationIcon from "../../assets/DesignElement/LocationIcon";
 import { useTheme } from "@mui/material/styles";
 import { typographyTokens } from "../../theme/MuiTheme";
 // import ArrowNortEastIcon from "../../assets/DesignElement/ArrowNortEastIcon";
 import { motion, AnimatePresence } from "framer-motion";
 import ProjectProgress from "./ProjectProgress";
+import ArrowNortEastIcon from "../../assets/DesignElement/ArrowNortEastIcon";
 
 interface FeaturedProjectCardProps {
   projectName: string;
   location: string;
   image: string;
-  progressImage: string;
   statusBadge: string;
   onSeeMoreClick?: () => void;
   phases: any[];
+  currentPhase: number;
 }
 
 const FeaturedProjectCard = ({
   projectName,
   location,
   image,
-  // progressImage,
   statusBadge,
   phases,
-  // onSeeMoreClick,
+  currentPhase,
+  onSeeMoreClick,
 }: FeaturedProjectCardProps) => {
   const theme = useTheme();
-  // const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
 
   const clipPathData =
     "M 0,0.20 Q 0,0.15 0.05,0.15 H 0.20 Q 0.25,0.15 0.25,0.1 V 0.05 Q 0.25,0 0.30,0 H 0.95 Q 1,0 1,0.05 V 0.80 Q 1,0.85 0.95,0.85 H 0.80 Q 0.75,0.85 0.75,0.9 V 0.95 Q 0.75,1 0.70,1 H 0.05 Q 0,1 0,0.95 Z";
@@ -73,7 +74,7 @@ const FeaturedProjectCard = ({
         </Typography>
       </Box>
 
-      {/* <Box
+      <Box
         onClick={onSeeMoreClick}
         sx={{
           position: "absolute",
@@ -107,13 +108,13 @@ const FeaturedProjectCard = ({
             lineHeight: 1.2,
           }}
         >
-          See more
+          See More
         </Typography>
         <ArrowNortEastIcon
           width={isSmallScreen ? 15 : 25}
           height={isSmallScreen ? 15 : 25}
         />
-      </Box> */}
+      </Box>
 
       {/* Main Container with Curve Clip */}
       <Box
@@ -250,7 +251,7 @@ const FeaturedProjectCard = ({
                     borderRadius: 1,
                   }}
                 /> */}
-                <ProjectProgress phases={phases} />
+                <ProjectProgress phases={phases} currentPhase={currentPhase} />
               </motion.div>
             </Box>
           </Stack>
