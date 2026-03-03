@@ -180,7 +180,8 @@ const BestInvestmentOpportunity: React.FC<Props> = ({
                             </Box>
                           )}
                           <Box
-                            loading="eager"
+                            loading={index === activeIndex ? "eager" : "lazy"}
+                            fetchPriority={index === activeIndex ? "high" : "auto"}
                             decoding="async"
                             component="img"
                             src={project.image}
