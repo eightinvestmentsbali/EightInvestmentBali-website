@@ -7,45 +7,50 @@ import { motion, useInView } from "framer-motion";
 const UnifyYourVision: React.FC = () => {
   const theme = useTheme();
 
-const Counter: React.FC<{ value: string; duration?: number }> = ({ value, duration = 2000 }) => {
-  const [count, setCount] = React.useState(0);
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-50px" });
+  const Counter: React.FC<{ value: string; duration?: number }> = ({
+    value,
+    duration = 2000,
+  }) => {
+    const [count, setCount] = React.useState(0);
+    const ref = useRef(null);
+    const isInView = useInView(ref, { once: true, margin: "-50px" });
 
-  // Parsing logic
-  const target = parseInt(value.replace(/\D/g, ""), 10);
-  const prefix = value.startsWith("$") ? "$" : "";
-  const suffix = value.replace(/[0-9$.]/g, "");
+    // Parsing logic
+    const target = parseInt(value.replace(/\D/g, ""), 10);
+    const prefix = value.startsWith("$") ? "$" : "";
+    const suffix = value.replace(/[0-9$.]/g, "");
 
-  React.useEffect(() => {
-    // Only run the logic if the component is in view
-    if (!isInView) return;
+    React.useEffect(() => {
+      // Only run the logic if the component is in view
+      if (!isInView) return;
 
-    let startTimestamp: number | null = null;
-    const step = (timestamp: number) => {
-      if (!startTimestamp) startTimestamp = timestamp;
-      const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-      
-      // Optional: Add an easing function for a smoother finish
-      // const easeOutQuad = (t: number) => t * (2 - t);
-      // const easedProgress = easeOutQuad(progress);
-      
-      setCount(Math.floor(progress * target));
-      
-      if (progress < 1) {
-        window.requestAnimationFrame(step);
-      }
-    };
-    
-    window.requestAnimationFrame(step);
-  }, [isInView, target, duration]);
+      let startTimestamp: number | null = null;
+      const step = (timestamp: number) => {
+        if (!startTimestamp) startTimestamp = timestamp;
+        const progress = Math.min((timestamp - startTimestamp) / duration, 1);
 
-  return (
-    <span ref={ref}>
-      {prefix}{count}{suffix}
-    </span>
-  );
-};
+        // Optional: Add an easing function for a smoother finish
+        // const easeOutQuad = (t: number) => t * (2 - t);
+        // const easedProgress = easeOutQuad(progress);
+
+        setCount(Math.floor(progress * target));
+
+        if (progress < 1) {
+          window.requestAnimationFrame(step);
+        }
+      };
+
+      window.requestAnimationFrame(step);
+    }, [isInView, target, duration]);
+
+    return (
+      <span ref={ref}>
+        {prefix}
+        {count}
+        {suffix}
+      </span>
+    );
+  };
 
   return (
     <Grid size={{ xs: 12 }} id="about-us">
@@ -117,7 +122,7 @@ const Counter: React.FC<{ value: string; duration?: number }> = ({ value, durati
         <Grid container spacing={4} alignItems="center">
           {[
             { value: "4", label: "Ongoing Projects" },
-            { value: "$16M+", label: "Total Projects Investments" },
+            { value: "$16M+", label: "Total Project Investments" },
             { value: "$40M+", label: "Total Managed Investments" },
           ].map((item, index) => (
             <Grid size={{ xs: 12, sm: 4 }} key={item.label}>
@@ -143,6 +148,7 @@ const Counter: React.FC<{ value: string; duration?: number }> = ({ value, durati
                       textAlign: "center",
                     }}
                   >
+                    {/* 1. Big stat number */}
                     <Typography
                       variant="heroSubTitle"
                       component="h1"
@@ -153,16 +159,35 @@ const Counter: React.FC<{ value: string; duration?: number }> = ({ value, durati
                     >
                       <Counter value={item.value} />
                     </Typography>
+
+                    {/* 2. Label — now directly below the number */}
                     <Typography
                       variant="heroSubTitle"
-                      component="h1"
+                      component="h2"
                       sx={{
                         color: "#484848",
-                        mt: 1,
                         lineHeight: 1.5,
                       }}
                     >
                       {item.label}
+                    </Typography>
+
+                    {/* 3. Disclaimer — smallest, at the bottom */}
+                    <Typography
+                      variant="body2"
+                      sx={{
+                        color: theme.palette.text.disabled,
+                        fontSize: {
+                          xs: "0.45rem",
+                          sm: "0.7rem",
+                          md: "0.75rem",
+                        },
+                        lineHeight: 1.4,
+                        textAlign: "center",
+                        mt: 0.5,
+                      }}
+                    >
+                      Figures shown are indicative & updated periodically.
                     </Typography>
                   </Box>
 

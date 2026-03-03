@@ -1,24 +1,38 @@
 import { Box, Typography } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useTheme } from "@mui/material/styles";
 import { typographyTokens } from "../../theme/MuiTheme";
 
 interface ProjectProgressProps {
   phases: any[];
+  currentPhase?: number;
 }
 
-const ProjectProgress: React.FC<ProjectProgressProps> = ({ phases }) => {
+const ProjectProgress: React.FC<ProjectProgressProps> = ({
+  phases,
+  currentPhase = 0,
+}) => {
   const theme = useTheme();
-  const [activePhase, setActivePhase] = useState(0);
 
   // Safety check: return null if phases is empty or undefined
   if (!phases || phases.length === 0) {
     return null;
   }
 
+  const getSafePhaseIndex = (index: number) => {
+    if (!Number.isFinite(index)) return 0;
+    return Math.max(0, Math.min(index, phases.length - 1));
+  };
+
+  const [activePhase, setActivePhase] = useState(getSafePhaseIndex(currentPhase));
+
+  useEffect(() => {
+    setActivePhase(getSafePhaseIndex(currentPhase));
+  }, [currentPhase, phases.length]);
+
   // Ensure activePhase is within bounds
-  const safeActivePhase = Math.min(activePhase, phases.length - 1);
-  const currentPhase = phases[safeActivePhase];
+  const safeActivePhase = getSafePhaseIndex(activePhase);
+  const selectedPhase = phases[safeActivePhase] ?? phases[0];
 
   return (
     <Box
@@ -68,7 +82,7 @@ const ProjectProgress: React.FC<ProjectProgressProps> = ({ phases }) => {
             },
           }}
         >
-          {currentPhase.progress}%
+          {selectedPhase.progress}%
         </Typography>
 
         {/* TIMELINE */}
@@ -245,7 +259,7 @@ const ProjectProgress: React.FC<ProjectProgressProps> = ({ phases }) => {
             lineHeight: 1.2,
           }}
         >
-          {currentPhase.status}
+          {selectedPhase.status}
         </Typography>
       </Box>
     </Box>

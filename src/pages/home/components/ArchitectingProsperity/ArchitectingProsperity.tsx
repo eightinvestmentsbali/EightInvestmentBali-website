@@ -1,8 +1,9 @@
 import { Box, Grid, Typography } from "@mui/material";
 import React from "react";
-import ArchitectureSVG from "../../../../assets/DesignElement/ArchitectureSVG";
+// import ArchitectureSVG from "../../../../assets/DesignElement/ArchitectureSVG";
 import { useTheme } from "@mui/material/styles";
 import { motion } from "framer-motion";
+import HeroCarousel from "../../../../components/Carousal/HeroCarousal";
 
 const ArchitectingProsperity: React.FC = () => {
   const theme = useTheme();
@@ -11,7 +12,7 @@ const ArchitectingProsperity: React.FC = () => {
     <>
       {/* Title: Bottom to Top */}
       <Grid size={{ xs: 12 }}>
-        <Box id="hero" sx={{ mt: { xs: 2, md: 4, lg: 5, xl: 8}, mb: { xs: 1.5, md: 2.5, lg: 3.75, xl: 7.5 } }}>
+        <Box id="hero" sx={{ mt: { xs: 2, md: 4, lg: 5, xl: 8}, mb: { xs: 8, md: 10, lg: 15, xl: 20 } }}>
           <motion.div
             initial={{ y: 60, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
@@ -25,7 +26,7 @@ const ArchitectingProsperity: React.FC = () => {
               component="h1"
               sx={{
                 color: theme.palette.text.primary,
-                mb: { xs: 2, md: 4, lg: 4, xl: 8 },
+                mb: { xs: 4, md: 6, lg: 10, xl: 14 },
               }}
             >
               Architecting Prosperity,
@@ -45,7 +46,8 @@ const ArchitectingProsperity: React.FC = () => {
             }}
           >
             <Box>
-              <ArchitectureSVG width="100%" height="100%" />
+              {/* <ArchitectureSVG width="100%" height="100%" /> */}
+          <HeroCarousel />
             </Box>
           </motion.div>
         </Box>
