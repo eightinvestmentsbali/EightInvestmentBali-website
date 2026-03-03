@@ -13,11 +13,16 @@ import {
 import { motion } from "framer-motion";
 import CloseIcon from "@mui/icons-material/Close";
 import { typographyTokens } from "../../../../theme/MuiTheme";
+import RealEstateDevelopemntImage from "../../../../assets/OurServicesImages/RealEstateDevelopment.jpg";
+import FacilityManagementImage from "../../../../assets/OurServicesImages/FacilityManagement.jpg";
+import PropertyAssetsManagementImage from "../../../../assets/OurServicesImages/PropertyAssetManagement.jpg";
+import StrategicInvestmentConsultancyImage from "../../../../assets/OurServicesImages/StrategicInvestmentConsultancy.jpg";
 
 const services = [
   {
     title: "Real Estate\nDevelopment",
-    image: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c",
+    image: RealEstateDevelopemntImage,
+
     subTitle:
       "Eight Investments Bali unlocks a world of bespoke Real Estate Development opportunities, allowing you to transform your vision into a reality that transcends exceptional property.",
     description:
@@ -25,7 +30,7 @@ const services = [
   },
   {
     title: "Facility\nManagement",
-    image: "https://images.unsplash.com/photo-1580587771525-78b9dba3b914",
+    image: FacilityManagementImage,
     subTitle:
       "Eight Investments Bali provides seamless integrated facility services, ensuring invested property operates flawlessly behind the scenes.",
     description:
@@ -33,7 +38,7 @@ const services = [
   },
   {
     title: "Property Assets\nManagement",
-    image: "https://images.unsplash.com/photo-1580587771525-78b9dba3b914",
+    image: PropertyAssetsManagementImage,
     subTitle:
       "Investing in Bali's thriving real estate market unlocks a world of potential. But navigating day-to-day operations shouldn't disrupt investor's vision.",
     description: `Eight Investments Bali offers discerning asset management, ensuring owner's property thrives while investor seamlessly enjoy the rewards. Our dedicated team handles everything - from meticulous tenant selection to maximizing rental yields.
@@ -42,7 +47,7 @@ const services = [
   },
   {
     title: "Strategic Investment\nConsultancy",
-    image: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d",
+    image: StrategicInvestmentConsultancyImage,
     subTitle:
       "Navigate with Confidence. Eight Investments Bali provides strategic investment counsel, guiding you towards maximizing your returns with astute precision.",
     description: `Our team of experts acts as investor's trusted advisor, meticulously analyzing market trends and identifying the most unique opportunities. We craft personalized investment strategies that align with investor's financial goals, ensuring every decision is informed and empowering.
@@ -102,7 +107,7 @@ const OurServices: React.FC = () => {
         </Stack>
         {/* GRID */}
         <Grid container spacing={4}>
-          {services.map((service) => (
+          {services.map((service, index) => (
             <Grid size={{ xs: 12, sm: 6, md: 6 }} key={service.title}>
               <Box
                 sx={{
@@ -196,6 +201,9 @@ const OurServices: React.FC = () => {
                     component="img"
                     src={service.image} // Replace with your image source
                     alt="Facility Management"
+                    loading={index === 0 ? "eager" : "lazy"}
+                    fetchPriority={index === 0 ? "high" : "auto"}
+                    decoding="async"
                     sx={{
                       width: "100%",
                       height: "100%",
@@ -277,6 +285,8 @@ const OurServices: React.FC = () => {
                 <Box
                   component="img"
                   src={selectedService.image}
+                  loading="lazy"
+                  decoding="async"
                   sx={{
                     position: "absolute",
                     inset: 0,

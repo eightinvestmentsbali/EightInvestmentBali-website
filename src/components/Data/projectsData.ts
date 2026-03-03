@@ -57,6 +57,22 @@ import LittleSohoNine from "../../assets/LittleSohoImages/LittleSohoNine.jpg";
 import LittleSohoTen from "../../assets/LittleSohoImages/LittleSohoTen.jpg";
 import LittleSohoEleven from "../../assets/LittleSohoImages/LittleSohoEleven.jpg";
 import LittleSohoTwelve from "../../assets/LittleSohoImages/LittleSohoTwelve.png";
+import DynastyOne from "../../assets/DynastyEightImages/DynastyOne.jpg";
+import DynastyTwo from "../../assets/DynastyEightImages/DynastyTwo.jpg";
+import DynastyThree from "../../assets/DynastyEightImages/DynastyThree.jpg";
+import DynastyFour from "../../assets/DynastyEightImages/DynastyFour.jpg";
+import DynastyFive from "../../assets/DynastyEightImages/DynastyFive.jpg";
+import DynastySix from "../../assets/DynastyEightImages/DynastySix.jpg";
+import DynastySeven from "../../assets/DynastyEightImages/DynastySeven.jpg";
+import DynastyEight from "../../assets/DynastyEightImages/DynastyEight.jpg";
+import DynastyNine from "../../assets/DynastyEightImages/DynastyNine.jpg";
+import DynastyTen from "../../assets/DynastyEightImages/DynastyTen.jpg";
+import DynastyEleven from "../../assets/DynastyEightImages/DynastyEleven.jpg";
+import DynastyTwelve from "../../assets/DynastyEightImages/DynastyTwelve.jpg";
+import DynastyThirteen from "../../assets/DynastyEightImages/DynastyThirteen.jpg";
+import DynastyFourteen from "../../assets/DynastyEightImages/DynastyFourteen.jpg";
+import DynastyFifteen from "../../assets/DynastyEightImages/DynastyFifteen.jpg";
+
 
 export const projectsData = [
   {
@@ -290,12 +306,21 @@ export const projectsData = [
     video:
       "https://backoffice.eightinvestmentsbali.com/videos/projects/1762140623_c29716697056e26147b7.mp4",
     featuresImages: [
-      "https://backoffice.eightinvestmentsbali.com/images/gallery/large/1762002352_c6eafa1f85965ce00ced.jpg",
-      "https://backoffice.eightinvestmentsbali.com/images/gallery/large/1762002362_e26582c6166844a06556.jpg",
-      "https://backoffice.eightinvestmentsbali.com/images/gallery/large/1762002377_96861cf7ca092381d493.jpg",
-      "https://backoffice.eightinvestmentsbali.com/images/gallery/large/1762002386_1d00143224c1670b6c45.jpg",
-      "https://backoffice.eightinvestmentsbali.com/images/gallery/large/1762002394_f67b677465978316fc87.jpg",
-      "https://backoffice.eightinvestmentsbali.com/images/gallery/large/1762002402_706b9af0f4099f5709b5.jpg"
+      DynastyOne,
+      DynastyTwo,
+      DynastyThree,
+      DynastyFour,
+      DynastyFive,
+      DynastySix,
+      DynastySeven,
+      DynastyEight,
+      DynastyNine,
+      DynastyTen,
+      DynastyEleven,
+      DynastyTwelve,
+      DynastyThirteen,
+      DynastyFourteen,
+      DynastyFifteen,
     ],
     features: [
       {
