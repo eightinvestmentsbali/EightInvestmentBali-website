@@ -88,6 +88,29 @@ const UnifyYourVision: React.FC = () => {
             ease: "easeOut",
           }}
         >
+          <Typography
+            variant="heroSubTitle"
+            component="h1"
+            sx={{
+              color: "#484848",
+              mb: { xs: 2, md: 6, lg: 8 },
+            }}
+          >
+            From land acquisition to design, delivery, and ongoing operations,
+            Eight Investments Bali turns investor goals into thoughtfully
+            curated assets - supported by rigorous market insight, transparent
+            governance, and on-the-ground execution.{" "}
+          </Typography>
+        </motion.div>
+
+        <motion.div
+          initial={{ y: 60, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{
+            duration: 0.6,
+            ease: "easeOut",
+          }}
+        >
           <Divider
             sx={{
               height: "2px",
