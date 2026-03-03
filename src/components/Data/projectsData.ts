@@ -72,6 +72,9 @@ import DynastyTwelve from "../../assets/DynastyEightImages/DynastyTwelve.jpg";
 import DynastyThirteen from "../../assets/DynastyEightImages/DynastyThirteen.jpg";
 import DynastyFourteen from "../../assets/DynastyEightImages/DynastyFourteen.jpg";
 import DynastyFifteen from "../../assets/DynastyEightImages/DynastyFifteen.jpg";
+import HiveVideo from "../../assets/ProjectVideos/HiveVideo.mp4";
+import DynastyVideo from "../../assets/ProjectVideos/DynastyVideo.mp4";
+import LilliVillageVideo from "../../assets/ProjectVideos/LiliVideo.mp4";
 
 
 export const projectsData = [
@@ -81,8 +84,7 @@ export const projectsData = [
     location: "Abianbase–Mengwi, Bali",
     image: LiliHome,
     description: "Lili Village spans 2,960 sqm of artfully designed space in Abianbase, Mengwi, offering 18 townhouses in 2-bedroom (155 sqm) and 3-bedroom (235 sqm) layouts. At its heart is a social clubhouse that brings the community together with a gym, pool bar, serene swimming pool, and communal restaurant.",
-    video:
-      "https://backoffice.eightinvestmentsbali.com/videos/projects/1762137413_5611a55bde6c34cdc6c3.mp4",
+    video: LilliVillageVideo,
     featuresImages: [
       LilliVillageOne,
       LilliVillageTwo,
@@ -156,8 +158,7 @@ export const projectsData = [
     image: HiveHome,
     description:
       "The Hive is a 4,400 sqm gated community in Northern Canggu, designed around light, space, and shared energy. It features 78 studio and one bedroom apartments, anchored by lifestyle amenities and strong connectivity to Bali's most in-demand rental corridors.",
-    video:
-      "https://backoffice.eightinvestmentsbali.com/videos/projects/1762229862_1cab7595970b82fba1cf.mp4",
+    video: HiveVideo,
     featuresImages: [
       HiveOne,
       HiveTwo,
@@ -303,8 +304,7 @@ export const projectsData = [
     image: Dynasty8Home,
     description:
       "Dynasty 8 is a private enclave of eight villas in North Canggu, designed with a quiet luxury approach that blends Japanese restraint with Balinese warmth. Construction is in early delivery at 5 percent progress, with 50 percent already sold, reflecting strong early market response.",
-    video:
-      "https://backoffice.eightinvestmentsbali.com/videos/projects/1762140623_c29716697056e26147b7.mp4",
+    video: DynastyVideo,
     featuresImages: [
       DynastyOne,
       DynastyTwo,
