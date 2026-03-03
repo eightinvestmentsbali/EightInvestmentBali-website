@@ -259,6 +259,7 @@ const BestInvestmentOpportunity = () => {
               statusBadge={projectsData[activeProjectIndex].statusBadge}
               phases={projectsData[activeProjectIndex].phases}
               currentPhase={projectsData[activeProjectIndex].currentPhase}
+              progressCardHeader={projectsData[activeProjectIndex].progressCardHeader}
             />
           </Box>
           {/* CAROUSEL ITEMS */}

@@ -14,6 +14,7 @@ interface FeaturedProjectCardProps {
   statusBadge: string;
   phases: any[];
   currentPhase?: number;
+  progressCardHeader?: string;
 }
 
 const FeaturedProjectCard = ({
@@ -25,6 +26,7 @@ const FeaturedProjectCard = ({
   statusBadge,
   phases,
   currentPhase = 0,
+  progressCardHeader = "Current Progress",
 }: FeaturedProjectCardProps) => {
   const theme = useTheme();
   // const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
@@ -245,7 +247,11 @@ const FeaturedProjectCard = ({
                     borderRadius: 1,
                   }}
                 /> */}
-                <ProjectProgress phases={phases} currentPhase={currentPhase} />
+                <ProjectProgress
+                  phases={phases}
+                  currentPhase={currentPhase}
+                  progressCardHeader={progressCardHeader}
+                />
               </motion.div>
             </Box>
           </Stack>
