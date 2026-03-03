@@ -28,7 +28,7 @@ const slides = projectsData.map((project) => {
   };
 });
 
-const INTERVAL = 4000;
+const INTERVAL = 3000;
 
 // motion() wraps MUI Box so we get both MUI sx and Framer props
 const MotionBox = motion(Box);
