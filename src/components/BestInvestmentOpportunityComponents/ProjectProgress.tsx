@@ -6,11 +6,13 @@ import { typographyTokens } from "../../theme/MuiTheme";
 interface ProjectProgressProps {
   phases: any[];
   currentPhase?: number;
+  progressCardHeader?: string;
 }
 
 const ProjectProgress: React.FC<ProjectProgressProps> = ({
   phases,
   currentPhase = 0,
+  progressCardHeader = "Current Progress",
 }) => {
   const theme = useTheme();
 
@@ -24,7 +26,9 @@ const ProjectProgress: React.FC<ProjectProgressProps> = ({
     return Math.max(0, Math.min(index, phases.length - 1));
   };
 
-  const [activePhase, setActivePhase] = useState(getSafePhaseIndex(currentPhase));
+  const [activePhase, setActivePhase] = useState(
+    getSafePhaseIndex(currentPhase),
+  );
 
   useEffect(() => {
     setActivePhase(getSafePhaseIndex(currentPhase));
@@ -61,29 +65,50 @@ const ProjectProgress: React.FC<ProjectProgressProps> = ({
             },
           }}
         >
-          Current Progress
+          {progressCardHeader}
         </Typography>
 
         {/* PERCENTAGE */}
-        <Typography
-          variant="heroSubTitle"
-          component="h1"
-          fontWeight={typographyTokens.fontWeights.bold}
-          color={theme.palette.primary.main}
-          lineHeight={{ xs: 1.2, md: 1.4 }}
-          mb={{ xs: 0.2, sm: 0.5, md: 0.8, lg: 1, xl: 1 }}
-          sx={{
-            fontSize: {
-              xs: typographyTokens.fontSizes["xl"],
-              sm: typographyTokens.fontSizes["2xl"],
-              md: typographyTokens.fontSizes["3xl"],
-              lg: typographyTokens.fontSizes["4xl"],
-              xl: typographyTokens.fontSizes["5xl"],
-            },
-          }}
-        >
-          {selectedPhase.progress}%
-        </Typography>
+        {progressCardHeader !== "Renovation" ? (
+          <Typography
+            variant="heroSubTitle"
+            component="h1"
+            fontWeight={typographyTokens.fontWeights.bold}
+            color={theme.palette.primary.main}
+            lineHeight={{ xs: 1.2, md: 1.4 }}
+            mb={{ xs: 0.2, sm: 0.5, md: 0.8, lg: 1, xl: 1 }}
+            sx={{
+              fontSize: {
+                xs: typographyTokens.fontSizes["xl"],
+                sm: typographyTokens.fontSizes["2xl"],
+                md: typographyTokens.fontSizes["3xl"],
+                lg: typographyTokens.fontSizes["4xl"],
+                xl: typographyTokens.fontSizes["5xl"],
+              },
+            }}
+          >
+            {selectedPhase.progress}%
+          </Typography>
+        ) : (
+          <Box sx={{ pb: { xs: 0.4, sm: 0.8, md: 0.12, lg: 2, xl: 2 } }}>
+            <Typography
+              sx={{
+                fontSize: {
+                  xs: "4px",
+                  sm: "4px",
+                  md: "6px",
+                  lg: "8px",
+                  xl: typographyTokens.fontSizes.xs,
+                },
+                lineHeight: {xs: 1.2, md: 1.4 },
+              }}
+            >
+              Rooms: 10 keys (Level 1 and Level 2) <br />
+              Occupancy: ~90% average since Dec opening <br />
+              Cafe: Little Brew active on the ground floor; great guest reviews
+            </Typography>
+          </Box>
+        )}
 
         {/* TIMELINE */}
         <Box
@@ -238,7 +263,7 @@ const ProjectProgress: React.FC<ProjectProgressProps> = ({
         sx={{
           bgcolor: theme.palette.primary.main,
           color: theme.palette.primary.contrastText,
-          py: { xs: 0.50, sm: 0.75, md: 1.5, lg: 2, xl: 2.5 },
+          py: { xs: 0.5, sm: 0.75, md: 1.5, lg: 2, xl: 2.5 },
           textAlign: "center",
           transition: "all .3s ease",
         }}

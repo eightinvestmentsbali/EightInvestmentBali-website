@@ -15,6 +15,7 @@ interface FeaturedProjectCardProps {
   onSeeMoreClick?: () => void;
   phases: any[];
   currentPhase: number;
+  progressCardHeader: string;
 }
 
 const FeaturedProjectCard = ({
@@ -25,6 +26,7 @@ const FeaturedProjectCard = ({
   phases,
   currentPhase,
   onSeeMoreClick,
+  progressCardHeader,
 }: FeaturedProjectCardProps) => {
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
@@ -222,7 +224,7 @@ const FeaturedProjectCard = ({
                       lg: "1.6rem",
                       xl: "1.8rem",
                     },
-                    flexShrink: 0, 
+                    flexShrink: 0,
                   }}
                 />
                 {location}
@@ -251,7 +253,11 @@ const FeaturedProjectCard = ({
                     borderRadius: 1,
                   }}
                 /> */}
-                <ProjectProgress phases={phases} currentPhase={currentPhase} />
+                <ProjectProgress
+                  phases={phases}
+                  currentPhase={currentPhase}
+                  progressCardHeader={progressCardHeader}
+                />
               </motion.div>
             </Box>
           </Stack>

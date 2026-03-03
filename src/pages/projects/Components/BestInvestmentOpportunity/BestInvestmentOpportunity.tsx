@@ -123,6 +123,9 @@ const BestInvestmentOpportunity: React.FC<Props> = ({
                   statusBadge={activeProject?.statusBadge ?? ""}
                   phases={activeProject?.phases ?? []}
                   currentPhase={activeProject?.currentPhase ?? 0}
+                  progressCardHeader={
+                    activeProject?.progressCardHeader ?? "Current Progress"
+                  }
                 />
               </Box>
 
