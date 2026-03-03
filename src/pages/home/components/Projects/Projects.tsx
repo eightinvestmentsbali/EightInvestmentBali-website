@@ -54,7 +54,9 @@ const Projects: React.FC = () => {
                 <Box
                   component="img"
                   src={project.image}
-                  loading="lazy"
+                  loading={index === 0 ? "eager" : "lazy"}
+                  fetchPriority={index === 0 ? "high" : "auto"}
+                  decoding="async"
                   sx={{
                     borderRadius: { xs: 3, md: 4, lg: 5 },
                     width: "100%",

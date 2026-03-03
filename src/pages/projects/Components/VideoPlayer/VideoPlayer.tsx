@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { Box, Typography, IconButton, Tooltip } from "@mui/material";
+import { Box, Typography, IconButton, Tooltip, CircularProgress } from "@mui/material";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import { typographyTokens } from "../../../../theme/MuiTheme";
 import { useTheme } from "@mui/material/styles";
@@ -12,11 +12,39 @@ interface Props {
 const VideoPlayer: React.FC<Props> = ({ data }) => {
   const theme = useTheme();
   const videoRef = useRef<HTMLVideoElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(true); // Default to muted for autoplay
+  const [shouldLoadVideo, setShouldLoadVideo] = useState(false);
+  const [isVideoLoading, setIsVideoLoading] = useState(true);
+
+  React.useEffect(() => {
+    const node = containerRef.current;
+    if (!node || shouldLoadVideo) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const [entry] = entries;
+        if (entry?.isIntersecting) {
+          setShouldLoadVideo(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "200px 0px" },
+    );
+
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, [shouldLoadVideo]);
+
+  React.useEffect(() => {
+    setIsVideoLoading(true);
+    setIsPlaying(false);
+  }, [data?.video]);
 
   // Attempt to autoplay muted on mount (browsers require muted autoplay)
   React.useEffect(() => {
+    if (!shouldLoadVideo) return;
     const v = videoRef.current;
     if (!v) return;
 
@@ -35,7 +63,7 @@ const VideoPlayer: React.FC<Props> = ({ data }) => {
     };
 
     tryAutoplay();
-  }, []);
+  }, [shouldLoadVideo, data?.video]);
 
   const togglePlay = () => {
     if (videoRef.current) {
@@ -101,7 +129,7 @@ const VideoPlayer: React.FC<Props> = ({ data }) => {
         </defs>
       </svg>
 
-      <Box sx={{ position: "relative", overflow: "visible" }}>
+      <Box ref={containerRef} sx={{ position: "relative", overflow: "visible" }}>
         {/* Video Container */}
         <Box
           sx={{
@@ -117,14 +145,37 @@ const VideoPlayer: React.FC<Props> = ({ data }) => {
           <video
             ref={videoRef}
             style={{ width: "100%", height: "100%", objectFit: "cover" }}
-            src={data.video}
+            src={shouldLoadVideo ? data.video : undefined}
             onClick={togglePlay}
+            onLoadedData={() => setIsVideoLoading(false)}
+            onPlaying={() => setIsVideoLoading(false)}
+            onWaiting={() => setIsVideoLoading(true)}
             playsInline
             muted
             autoPlay
             loop
-            preload="auto"
+            preload="metadata"
           />
+
+          {(isVideoLoading || !shouldLoadVideo) && (
+            <Box
+              sx={{
+                position: "absolute",
+                inset: 0,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                bgcolor: "rgba(0, 0, 0, 0.25)",
+                zIndex: 5,
+              }}
+            >
+              <CircularProgress
+                size={48}
+                thickness={4}
+                sx={{ color: theme.palette.primary.contrastText }}
+              />
+            </Box>
+          )}
 
           <Tooltip title={isMuted ? "Unmute" : "Mute"}>
             <IconButton

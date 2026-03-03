@@ -113,17 +113,18 @@ const BestInvestmentOpportunity: React.FC<Props> = ({
               />
             </motion.div>
             <Box ref={cardRef}>
-              <FeaturedProjectCard
-                key={activeIndex}
-                projectName={activeProject?.name ?? ""}
-                location={activeProject?.location ?? ""}
-                image={activeProject?.image ?? ""}
-                progressImage={activeProject?.progressImage ?? ""}
-                projectNumber={`${activeIndex + 1}/${data.length}`}
-                statusBadge={activeProject?.statusBadge ?? ""}
-                phases={activeProject?.phases ?? []}
-              />
-            </Box>
+                <FeaturedProjectCard
+                  key={activeIndex}
+                  projectName={activeProject?.name ?? ""}
+                  location={activeProject?.location ?? ""}
+                  image={activeProject?.image ?? ""}
+                  progressImage={activeProject?.progressImage ?? ""}
+                  projectNumber={`${activeIndex + 1}/${data.length}`}
+                  statusBadge={activeProject?.statusBadge ?? ""}
+                  phases={activeProject?.phases ?? []}
+                  currentPhase={activeProject?.currentPhase ?? 0}
+                />
+              </Box>
 
             {/* Image slider */}
             <Box mt={{ xs: 2, md: 4, lg: 6 }}>
@@ -267,6 +268,31 @@ const BestInvestmentOpportunity: React.FC<Props> = ({
                 </Box>
               </Box>
 
+              {/* Text */}
+              <Box mt={{ xs: 4, md: 6, lg: 8 }}>
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={activeIndex}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -20 }}
+                    transition={{ duration: 0.4, ease: "easeOut" }}
+                  >
+                    <Typography
+                      variant="h1"
+                      component="h1"
+                      sx={{
+                        color: "#484848",
+                        fontWeight: typographyTokens.fontWeights.regular,
+                        mb: { xs: 4, md: 5, lg: 6 },
+                        lineHeight: 2.2,
+                      }}
+                    >
+                      {activeProject.expandedDescription ?? ""}
+                    </Typography>
+                  </motion.div>
+                </AnimatePresence>
+              </Box>
               {/* Text */}
               <Box mt={{ xs: 4, md: 6, lg: 8 }}>
                 <AnimatePresence mode="wait">

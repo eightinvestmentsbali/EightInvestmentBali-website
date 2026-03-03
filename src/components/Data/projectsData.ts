@@ -57,6 +57,25 @@ import LittleSohoNine from "../../assets/LittleSohoImages/LittleSohoNine.jpg";
 import LittleSohoTen from "../../assets/LittleSohoImages/LittleSohoTen.jpg";
 import LittleSohoEleven from "../../assets/LittleSohoImages/LittleSohoEleven.jpg";
 import LittleSohoTwelve from "../../assets/LittleSohoImages/LittleSohoTwelve.png";
+import DynastyOne from "../../assets/DynastyEightImages/DynastyOne.jpg";
+import DynastyTwo from "../../assets/DynastyEightImages/DynastyTwo.jpg";
+import DynastyThree from "../../assets/DynastyEightImages/DynastyThree.jpg";
+import DynastyFour from "../../assets/DynastyEightImages/DynastyFour.jpg";
+import DynastyFive from "../../assets/DynastyEightImages/DynastyFive.jpg";
+import DynastySix from "../../assets/DynastyEightImages/DynastySix.jpg";
+import DynastySeven from "../../assets/DynastyEightImages/DynastySeven.jpg";
+import DynastyEight from "../../assets/DynastyEightImages/DynastyEight.jpg";
+import DynastyNine from "../../assets/DynastyEightImages/DynastyNine.jpg";
+import DynastyTen from "../../assets/DynastyEightImages/DynastyTen.jpg";
+import DynastyEleven from "../../assets/DynastyEightImages/DynastyEleven.jpg";
+import DynastyTwelve from "../../assets/DynastyEightImages/DynastyTwelve.jpg";
+import DynastyThirteen from "../../assets/DynastyEightImages/DynastyThirteen.jpg";
+import DynastyFourteen from "../../assets/DynastyEightImages/DynastyFourteen.jpg";
+import DynastyFifteen from "../../assets/DynastyEightImages/DynastyFifteen.jpg";
+import HiveVideo from "../../assets/ProjectVideos/HiveVideo.mp4";
+import DynastyVideo from "../../assets/ProjectVideos/DynastyVideo.mp4";
+import LilliVillageVideo from "../../assets/ProjectVideos/LiliVideo.mp4";
+
 
 export const projectsData = [
   {
@@ -65,8 +84,7 @@ export const projectsData = [
     location: "Abianbase–Mengwi, Bali",
     image: LiliHome,
     description: "Lili Village spans 2,960 sqm of artfully designed space in Abianbase, Mengwi, offering 18 townhouses in 2-bedroom (155 sqm) and 3-bedroom (235 sqm) layouts. At its heart is a social clubhouse that brings the community together with a gym, pool bar, serene swimming pool, and communal restaurant.",
-    video:
-      "https://backoffice.eightinvestmentsbali.com/videos/projects/1762137413_5611a55bde6c34cdc6c3.mp4",
+    video: LilliVillageVideo,
     featuresImages: [
       LilliVillageOne,
       LilliVillageTwo,
@@ -140,8 +158,7 @@ export const projectsData = [
     image: HiveHome,
     description:
       "The Hive is a 4,400 sqm gated community in Northern Canggu, designed around light, space, and shared energy. It features 78 studio and one bedroom apartments, anchored by lifestyle amenities and strong connectivity to Bali's most in-demand rental corridors.",
-    video:
-      "https://backoffice.eightinvestmentsbali.com/videos/projects/1762229862_1cab7595970b82fba1cf.mp4",
+    video: HiveVideo,
     featuresImages: [
       HiveOne,
       HiveTwo,
@@ -287,15 +304,23 @@ export const projectsData = [
     image: Dynasty8Home,
     description:
       "Dynasty 8 is a private enclave of eight villas in North Canggu, designed with a quiet luxury approach that blends Japanese restraint with Balinese warmth. Construction is in early delivery at 5 percent progress, with 50 percent already sold, reflecting strong early market response.",
-    video:
-      "https://backoffice.eightinvestmentsbali.com/videos/projects/1762140623_c29716697056e26147b7.mp4",
+    video: DynastyVideo,
     featuresImages: [
-      "https://backoffice.eightinvestmentsbali.com/images/gallery/large/1762002352_c6eafa1f85965ce00ced.jpg",
-      "https://backoffice.eightinvestmentsbali.com/images/gallery/large/1762002362_e26582c6166844a06556.jpg",
-      "https://backoffice.eightinvestmentsbali.com/images/gallery/large/1762002377_96861cf7ca092381d493.jpg",
-      "https://backoffice.eightinvestmentsbali.com/images/gallery/large/1762002386_1d00143224c1670b6c45.jpg",
-      "https://backoffice.eightinvestmentsbali.com/images/gallery/large/1762002394_f67b677465978316fc87.jpg",
-      "https://backoffice.eightinvestmentsbali.com/images/gallery/large/1762002402_706b9af0f4099f5709b5.jpg"
+      DynastyOne,
+      DynastyTwo,
+      DynastyThree,
+      DynastyFour,
+      DynastyFive,
+      DynastySix,
+      DynastySeven,
+      DynastyEight,
+      DynastyNine,
+      DynastyTen,
+      DynastyEleven,
+      DynastyTwelve,
+      DynastyThirteen,
+      DynastyFourteen,
+      DynastyFifteen,
     ],
     features: [
       {
