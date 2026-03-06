@@ -15,7 +15,7 @@ import LocationOnIcon from "@mui/icons-material/LocationOn";
 import EmailIcon from "@mui/icons-material/Email";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { useTheme } from "@mui/material/styles";
 import { typographyTokens } from "../../../../theme/MuiTheme";
 
@@ -36,6 +36,8 @@ const PROJECT_OPTIONS = [
 
 const ContactFooter = () => {
   const theme = useTheme();
+  const location = useLocation();
+  const navigate = useNavigate();
   const [formData, setFormData] = useState<FormData>({
     name: "",
     email: "",
@@ -61,11 +63,45 @@ const ContactFooter = () => {
 
   const navigationLinks = [
     { label: "Home", path: "/" },
-    { label: "About Us", path: "/", state: { scrollTo: "about-us" } },
-    { label: "Projects", path: "/", state: { scrollTo: "our-projects" } },
-    { label: "Services", path: "/", state: { scrollTo: "our-services" } },
-    { label: "Our Team", path: "/", state: { scrollTo: "our-team" } },
+    { label: "About Us", path: "/#about-us" },
+    { label: "Projects", path: "/#our-projects" },
+    { label: "Services", path: "/#our-services" },
+    { label: "Our Team", path: "/#our-team" },
   ];
+
+  const handleVisitLinkClick = (
+    e: React.MouseEvent,
+    path: string,
+    label: string,
+  ) => {
+    e.preventDefault();
+    const isHomePage = location.pathname === "/";
+
+    if (label === "Home") {
+      if (isHomePage) {
+        window.history.pushState(null, "", "/");
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      } else {
+        navigate("/");
+      }
+      return;
+    }
+
+    if (path.startsWith("/#")) {
+      const sectionId = path.replace("/#", "");
+
+      if (isHomePage) {
+        const section = document.getElementById(sectionId);
+        if (section) {
+          window.history.pushState(null, "", path);
+          section.scrollIntoView({ behavior: "smooth", block: "start" });
+          return;
+        }
+      }
+    }
+
+    navigate(path);
+  };
 
   useEffect(() => {
     const getDummyMessage = (action: string, projectName: string) => {
@@ -472,7 +508,7 @@ const ContactFooter = () => {
                     key={link.label}
                     component={NavLink}
                     to={link.path}
-                    state={link.state}
+                    onClick={(e) => handleVisitLinkClick(e, link.path, link.label)}
                     sx={{
                       fontFamily: "Poppins, sans-serif",
                       fontWeight: 400,

@@ -31,7 +31,9 @@ const Home: React.FC = () => {
   const [showBackToTop, setShowBackToTop] = useState(false);
 
   useEffect(() => {
-    const sectionId = location.state?.scrollTo;
+    const stateSectionId = location.state?.scrollTo;
+    const hashSectionId = location.hash?.replace("#", "");
+    const sectionId = stateSectionId || hashSectionId;
 
     if (!sectionId) return;
 
