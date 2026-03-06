@@ -61,10 +61,10 @@ const ContactFooter = () => {
 
   const navigationLinks = [
     { label: "Home", path: "/" },
-    { label: "About Us", path: "/about" },
-    { label: "Projects", path: "/projects" },
-    { label: "Services", path: "/services" },
-    { label: "Our Team", path: "/team" },
+    { label: "About Us", path: "/", state: { scrollTo: "about-us" } },
+    { label: "Projects", path: "/", state: { scrollTo: "our-projects" } },
+    { label: "Services", path: "/", state: { scrollTo: "our-services" } },
+    { label: "Our Team", path: "/", state: { scrollTo: "our-team" } },
   ];
 
   useEffect(() => {
@@ -91,12 +91,14 @@ const ContactFooter = () => {
           projectName?: string;
         };
 
-        if (!parsed.action || !parsed.projectName) return;
+        const action = parsed.action ?? "";
+        const projectName = parsed.projectName ?? "";
+        if (!action || !projectName) return;
 
         setFormData((prev) => ({
           ...prev,
-          interestedProject: parsed.projectName,
-          message: getDummyMessage(parsed.action, parsed.projectName),
+          interestedProject: projectName,
+          message: getDummyMessage(action, projectName),
         }));
       } catch (error) {
         console.error("Invalid contact intent payload", error);
@@ -467,9 +469,10 @@ const ContactFooter = () => {
               <Stack spacing={1.5}>
                 {navigationLinks.map((link) => (
                   <Typography
-                    key={link.path}
+                    key={link.label}
                     component={NavLink}
                     to={link.path}
+                    state={link.state}
                     sx={{
                       fontFamily: "Poppins, sans-serif",
                       fontWeight: 400,

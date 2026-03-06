@@ -30,7 +30,7 @@ import {
   useScroll,
 } from "framer-motion";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
-import BrochurePdf from "../../../../assets/Brochure.pdf";
+import BrochurePdf from "../../../../assets/LilyResidence-Brochure.pdf";
 
 interface Props {
   data: any[];
