@@ -19,10 +19,10 @@ import { typographyTokens } from "../../theme/MuiTheme";
 
 const menuItems = [
   { label: "Home", path: "/" },
-  { label: "About Us", path: "/about" },
-  { label: "Projects", path: "/projects" },
-  { label: "Services", path: "/services" },
-  { label: "Our Team", path: "/team" },
+  { label: "About Us", path: "/#about-us" },
+  { label: "Projects", path: "/#our-projects" },
+  { label: "Services", path: "/#our-services" },
+  { label: "Our Team", path: "/#our-team" },
   // { label: "Contact Us", path: "/contact-us" },
 ];
 
@@ -102,6 +102,7 @@ const Navbar: React.FC = () => {
     if (label === "Home") {
       if (isHomePage) {
         window.scrollTo({ top: 0, behavior: "smooth" });
+        window.history.pushState(null, "", "/");
       } else {
         navigate("/");
         window.scrollTo(0, 0);
@@ -124,14 +125,13 @@ const Navbar: React.FC = () => {
       if (isHomePage) {
         const section = document.getElementById(sectionId);
         if (section) {
+          window.history.pushState(null, "", `/#${sectionId}`);
           section.scrollIntoView({ behavior: "smooth", block: "start" });
           setOpen(false);
           return;
         }
       } else {
-        navigate("/", {
-          state: { scrollTo: sectionId },
-        });
+        navigate(`/#${sectionId}`);
         setOpen(false);
         return;
       }
@@ -324,9 +324,9 @@ const Navbar: React.FC = () => {
               disableElevation
               disableRipple
               variant="contained"
-              onClick={(e) => {
-                handleNavClick("/", "Contact Us", e);
-              }}
+                  onClick={(e) => {
+                    handleNavClick("/#contact-us", "Contact Us", e);
+                  }}
               sx={{
                 "&:hover": {
                   backgroundColor: "primary.main",

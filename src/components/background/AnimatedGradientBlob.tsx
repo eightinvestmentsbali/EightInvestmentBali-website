@@ -9,6 +9,8 @@ const AnimatedGradientBlob = () => {
   const [visible, setVisible] = useState(true);
 
   useEffect(() => {
+    if (!visible) return;
+
     let rafId: number;
 
     const animate = () => {
@@ -47,20 +49,12 @@ const AnimatedGradientBlob = () => {
         translate(${offsetX}px, ${offsetY}px)
       `;
 
-      blobRef.current.style.borderRadius = `
-        ${60 + Math.sin(t.current * 1.1) * 10}% 
-        ${70 + Math.cos(t.current * 1.3) * 12}% 
-        ${55 + Math.sin(t.current * 0.9) * 8}% 
-        ${65 + Math.cos(t.current * 1.4) * 10}% /
-        ${65}% ${55}% ${70}% ${60}%
-      `;
-
       rafId = requestAnimationFrame(animate);
     };
 
     rafId = requestAnimationFrame(animate);
     return () => cancelAnimationFrame(rafId);
-  }, []);
+  }, [visible]);
 
   useEffect(() => {
     const onScroll = () => {
@@ -106,8 +100,9 @@ const AnimatedGradientBlob = () => {
             rgba(76, 185, 229, 0.71) 70%,
             transparent 100%
           )`,
+          borderRadius: "62% 70% 58% 66% / 64% 56% 70% 60%",
           filter: "blur(90px)",
-          willChange: "transform, border-radius",
+          willChange: "transform",
         }}
       />
     </Box>

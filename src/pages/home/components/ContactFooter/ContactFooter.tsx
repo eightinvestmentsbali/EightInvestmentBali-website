@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Box,
   Container,
@@ -9,12 +9,13 @@ import {
   Stack,
   IconButton,
   Divider,
+  MenuItem,
 } from "@mui/material";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import EmailIcon from "@mui/icons-material/Email";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { useTheme } from "@mui/material/styles";
 import { typographyTokens } from "../../../../theme/MuiTheme";
 
@@ -26,8 +27,17 @@ interface FormData {
   message: string;
 }
 
+const PROJECT_OPTIONS = [
+  "Lili Village",
+  "The Hive",
+  "Little Soho",
+  "Dynasty 8",
+];
+
 const ContactFooter = () => {
   const theme = useTheme();
+  const location = useLocation();
+  const navigate = useNavigate();
   const [formData, setFormData] = useState<FormData>({
     name: "",
     email: "",
@@ -53,11 +63,90 @@ const ContactFooter = () => {
 
   const navigationLinks = [
     { label: "Home", path: "/" },
-    { label: "About Us", path: "/about" },
-    { label: "Projects", path: "/projects" },
-    { label: "Services", path: "/services" },
-    { label: "Our Team", path: "/team" },
+    { label: "About Us", path: "/#about-us" },
+    { label: "Projects", path: "/#our-projects" },
+    { label: "Services", path: "/#our-services" },
+    { label: "Our Team", path: "/#our-team" },
   ];
+
+  const handleVisitLinkClick = (
+    e: React.MouseEvent,
+    path: string,
+    label: string,
+  ) => {
+    e.preventDefault();
+    const isHomePage = location.pathname === "/";
+
+    if (label === "Home") {
+      if (isHomePage) {
+        window.history.pushState(null, "", "/");
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      } else {
+        navigate("/");
+      }
+      return;
+    }
+
+    if (path.startsWith("/#")) {
+      const sectionId = path.replace("/#", "");
+
+      if (isHomePage) {
+        const section = document.getElementById(sectionId);
+        if (section) {
+          window.history.pushState(null, "", path);
+          section.scrollIntoView({ behavior: "smooth", block: "start" });
+          return;
+        }
+      }
+    }
+
+    navigate(path);
+  };
+
+  useEffect(() => {
+    const getDummyMessage = (action: string, projectName: string) => {
+      if (action === "register") {
+        return `Hi, I would like to register my interest in ${projectName}. Please share the next steps.`;
+      }
+      if (action === "request") {
+        return `Hi, I would like to request availability details for ${projectName}. Please share available options.`;
+      }
+      if (action === "schedule") {
+        return `Hi, I would like to schedule a site visit for ${projectName}. Please let me know available time slots.`;
+      }
+      return "";
+    };
+
+    const syncIntentToForm = () => {
+      const rawIntent = sessionStorage.getItem("contactIntent");
+      if (!rawIntent) return;
+
+      try {
+        const parsed = JSON.parse(rawIntent) as {
+          action?: string;
+          projectName?: string;
+        };
+
+        const action = parsed.action ?? "";
+        const projectName = parsed.projectName ?? "";
+        if (!action || !projectName) return;
+
+        setFormData((prev) => ({
+          ...prev,
+          interestedProject: projectName,
+          message: getDummyMessage(action, projectName),
+        }));
+      } catch (error) {
+        console.error("Invalid contact intent payload", error);
+      }
+    };
+
+    syncIntentToForm();
+    window.addEventListener("contact-intent-updated", syncIntentToForm);
+    return () => {
+      window.removeEventListener("contact-intent-updated", syncIntentToForm);
+    };
+  }, []);
 
   return (
     <Box
@@ -230,9 +319,9 @@ const ContactFooter = () => {
             <TextField
               required
               fullWidth
+              select
               name="interestedProject"
               label="Interested Project*"
-              placeholder="Enter your interested Project"
               value={formData.interestedProject}
               onChange={handleChange}
               sx={{
@@ -248,6 +337,9 @@ const ContactFooter = () => {
                   "&.Mui-focused fieldset": {
                     borderColor: "#4E9E70",
                   },
+                  "& .MuiSvgIcon-root": {
+                    color: "#FFFFFF",
+                  },
                 },
                 "& .MuiInputLabel-root": {
                   color: "#FFFFFF",
@@ -260,8 +352,13 @@ const ContactFooter = () => {
                   opacity: 1,
                 },
               }}
-            />
-
+            >
+              {PROJECT_OPTIONS.map((project) => (
+                <MenuItem key={project} value={project}>
+                  {project}
+                </MenuItem>
+              ))}
+            </TextField>
             {/* Message Field */}
             <TextField
               required
@@ -408,9 +505,10 @@ const ContactFooter = () => {
               <Stack spacing={1.5}>
                 {navigationLinks.map((link) => (
                   <Typography
-                    key={link.path}
+                    key={link.label}
                     component={NavLink}
                     to={link.path}
+                    onClick={(e) => handleVisitLinkClick(e, link.path, link.label)}
                     sx={{
                       fontFamily: "Poppins, sans-serif",
                       fontWeight: 400,

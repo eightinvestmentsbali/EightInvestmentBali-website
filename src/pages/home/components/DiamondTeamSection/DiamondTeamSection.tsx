@@ -12,8 +12,18 @@ import { useTheme } from "@mui/material/styles";
 import { shadowTokens, typographyTokens } from "../../../../theme/MuiTheme";
 import HassanBallout from "../../../../assets/HassanBallout.png";
 import RamyHachem from "../../../../assets/RamyHachem.png";
-import JubinDaniel from "../../../../assets/JubinDaniel.png";
-import FeraSanti from "../../../../assets/FeraSanti.png";
+import JubinDaniel from "../../../../assets/Edited/Jubin.png";
+// import FeraSanti from "../../../../assets/FeraSanti.png";
+import FeraSanti from "../../../../assets/Edited/Fera.png";
+import EbieSam from "../../../../assets/Edited/Ebie.png";
+import Rakesh from "../../../../assets/Edited/Rakesh.png";
+import Jacob from "../../../../assets/Edited/Jacob.png";
+import Widia from "../../../../assets/Edited/Widia.png";
+import Aliey from "../../../../assets/Edited/Aliey.png";
+import Rani from "../../../../assets/Edited/Rani.png";
+import Vito from "../../../../assets/Edited/VitoG.png";
+import Demar from "../../../../assets/Edited/Demar.png";
+import Agus from "../../../../assets/Edited/Agus.png";
 import { useState } from "react";
 import CloseIcon from "@mui/icons-material/Close";
 import { motion, AnimatePresence } from "framer-motion";
@@ -48,7 +58,61 @@ const teamMembers: TeamMember[] = [
     name: "Fera Santi",
     role: "Head of Human Resources",
     image: FeraSanti,
-    bio: "Fera Santi leads Eight Investments’ HR function, bringing experience across HR &amp; General Affairs within Bali’s hospitality sector. She supports recruitment, onboarding, employee relations, and compliance, building a people-first culture that scales with the group.",
+    bio: "Fera Santi leads Eight Investments’ HR function, bringing experience across HR & General Affairs within Bali’s hospitality sector. She supports recruitment, onboarding, employee relations, and compliance, building a people-first culture that scales with the group.",
+  },
+  {
+    name: "Ebie Sam",
+    role: "Consulting CTO",
+    image: EbieSam,
+    bio: "Ebie Sam serves as Consulting CTO for Eight Investments and CTO of Plumfin, the group’s aquatech venture. He drives technology strategy, product development, systems architecture, and data-led execution, enabling scalable operations and platforms across businesses.",
+  },
+  {
+    name: "Rakesh V K",
+    role: "Consulting Sales & Marketing Manager",
+    image: Rakesh,
+    bio: "Rakesh V K serves as Consulting Sales & Marketing Manager for Eight Investments and leads Sales & Marketing for Plumfin. He drives go-to-market strategy, partnerships, lead generation, and client relationships, helping build demand and accelerate growth across the group.",
+  },
+  {
+    name: "Jacob Kurian",
+    role: "Chief Operating Officer",
+    image: Jacob,
+    bio: "Jacob Kurian supports sales and marketing initiatives while leading operations as COO at Plumfin. He drives day-to-day execution, process discipline, and cross-team coordination, ensuring operational delivery stays aligned with commercial priorities and growth targets.",
+  },
+  {
+    name: "Widia Ningsih",
+    role: "Accounting Head",
+    image: Widia,
+    bio: "Widia Ningsih is Accounting Head at Eight Investments, leading bookkeeping, taxation, and day-to-day financial management. She ensures accurate reporting, clean reconciliations, and compliant filings, supporting disciplined controls and reliable financial visibility across the group.",
+  },
+  {
+    name: "Aliey Dewati",
+    role: "Marketing and Community Relations Manager",
+    image: Aliey,
+    bio: "Aliey Dewati is Marketing and Community Relations Manager at Eight Investments, bringing Bali-based marketing leadership experience. She drives brand storytelling, partnerships, events, and community engagement, strengthening visibility and trust across developments, hospitality concepts, and networks.",
+  },
+  {
+    name: "Rani Rahmadani",
+    role: "Procurement Manager",
+    image: Rani,
+    bio: "Rani Rahmadani is Procurement Manager at Eight Investments, with a civil engineering and EPC procurement background. She oversees sourcing, tenders, vendor negotiations, and cost control across construction and hospitality projects, securing materials, services, and timelines.",
+  },
+  {
+    name: "Vito Santa Rahmadany",
+    role: "Operations Lead",
+    image: Vito,
+    bio: "Vito Santa Rahmadany is a versatile operations lead at Eight Investments, trusted across functions. He supports daily operations, procurement coordination, and on-ground project management, stepping in wherever needed to keep teams aligned and standards high.",
+  },
+  {
+    name: "Demar Jaya",
+    role: "Manager, Little Brew",
+    image: Demar,
+    bio: "Demar Jaya is Manager of Little Brew, part of the Little Soho hospitality concept under Eight Investments. He leads day-to-day hospitality operations, team performance, service standards, and guest experience, helping deliver consistent quality and a strong brand presence.",
+  },
+  {
+    name: "Agus Puji",
+    role: "Office Administrator",
+    image: Agus,
+    bio: "Agus Puji is the Office Administrator at Eight Investments, keeping the office running smoothly end to end. He manages front desk and guest welcome, coordinates day-to-day logistics, and supports employee comfort, ensuring a well-organized and positive workplace.",
   },
 ];
 
@@ -73,7 +137,22 @@ const DiamondTeamSection = () => {
           <Box
             sx={{
               position: "absolute",
-              top: "70%",
+              top: "25%",
+              left: "50%",
+              transform: "translate(-50%, -50%) rotate(45deg)",
+              width: { xs: 0, md: 500, lg: 700 },
+              height: { xs: 0, md: 500, lg: 700 },
+              border: "1px solid #D1D1D1",
+              bgcolor: theme.palette.background.default,
+              opacity: 1,
+              pointerEvents: "none",
+              zIndex: 0,
+            }}
+          />
+          <Box
+            sx={{
+              position: "absolute",
+              top: "80%",
               left: "50%",
               transform: "translate(-50%, -50%) rotate(45deg)",
               width: { xs: 0, md: 500, lg: 700 },
@@ -248,7 +327,7 @@ const DiamondTeamSection = () => {
                             color: "#666",
                             fontWeight: 400,
                             letterSpacing: 1,
-                            mt: 1,
+                            mt: 2,
                           }}
                         >
                           {selectedMember.role}
@@ -314,6 +393,7 @@ const TeamMemberCard = ({ member }: TeamMemberCardProps) => {
               width: "100%",
               height: "100%",
               objectFit: "contain",
+              bgcolor: "#fff",
               transform: "rotate(-45deg) scale(1.15) translateY(15%)",
             }}
           />
