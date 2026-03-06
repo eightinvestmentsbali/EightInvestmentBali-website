@@ -64,6 +64,60 @@ const Home: React.FC = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    const sectionIds = [
+      "about-us",
+      "our-projects",
+      "our-process",
+      "our-services",
+      "our-team",
+      "contact-us",
+    ];
+
+    let ticking = false;
+    const headerOffset = 120;
+
+    const updateHashByScroll = () => {
+      if (window.scrollY < 80) {
+        if (window.location.hash) {
+          window.history.replaceState(null, "", "/");
+        }
+        return;
+      }
+
+      let activeSectionId = "";
+
+      for (const id of sectionIds) {
+        const element = document.getElementById(id);
+        if (!element) continue;
+        const rect = element.getBoundingClientRect();
+        if (rect.top - headerOffset <= 0) {
+          activeSectionId = id;
+        }
+      }
+
+      if (!activeSectionId) return;
+
+      const nextHash = `#${activeSectionId}`;
+      if (window.location.hash !== nextHash) {
+        window.history.replaceState(null, "", `/${nextHash}`);
+      }
+    };
+
+    const onScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      window.requestAnimationFrame(() => {
+        updateHashByScroll();
+        ticking = false;
+      });
+    };
+
+    updateHashByScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   // Scroll to top function
   const scrollToTop = () => {
     window.scrollTo({

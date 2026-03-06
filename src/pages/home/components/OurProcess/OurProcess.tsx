@@ -227,6 +227,7 @@ const OurProcess: React.FC = () => {
   return (
     <Box
       ref={ref}
+      id="our-process"
       data-section="our-process"
       sx={{
         bgcolor: theme.palette.background.paper,
@@ -288,7 +289,10 @@ const OurProcess: React.FC = () => {
           spacing={{ xs: 4, sm: 4, md: 8 }}
           mt={{ xs: 2, md: 6 }}
           alignItems="center"
-          sx={{ flexWrap: "wrap" }}
+          sx={{
+            flexWrap: "wrap",
+            minHeight: { xs: "auto", md: 620, lg: 700 },
+          }}
         >
           {/* -------------------- LEFT CARD -------------------- */}
           <Grid
@@ -390,8 +394,8 @@ const OurProcess: React.FC = () => {
                         },
                         px: { xs: 3, sm: 4, md: 6 },
                         py: { xs: 4, sm: 5, md: 7 },
-                        height: "auto",
-                        minHeight: { xs: 350, sm: 450, md: 500 },
+                        height: { xs: "auto", sm: 450, md: 520, lg: 560 },
+                        minHeight: { xs: 350, sm: 450, md: 520, lg: 560 },
                         overflow: "hidden",
                         boxShadow: {
                           xs: "0 10px 30px rgba(0,0,0,0.2)",
@@ -446,6 +450,7 @@ const OurProcess: React.FC = () => {
             <Stack
               spacing={{ xs: 2, sm: 3, md: 4, lg: 5 }}
               mt={{ xs: 4, md: 0 }}
+              sx={{ minHeight: { xs: "auto", md: 520, lg: 560 } }}
             >
               {steps.map((step, index) => {
                 const isActive = index === 0;
@@ -453,23 +458,19 @@ const OurProcess: React.FC = () => {
                 return (
                   <motion.div
                     key={step.id}
-                    layout
                     initial={false}
                     onClick={() => handleStepClick(index)}
                     onMouseEnter={pauseAutoRotation}
                     style={{
                       cursor: index === 0 ? "default" : "pointer",
                       width: "100%",
+                      minHeight: "84px",
                     }}
                     transition={{
                       type: "spring",
                       stiffness: 400,
                       damping: 35,
                       mass: 0.8,
-                      layout: {
-                        duration: 0.5,
-                        ease: [0.25, 0.46, 0.45, 0.94] as const,
-                      },
                     }}
                   >
                     <Stack
@@ -507,6 +508,8 @@ const OurProcess: React.FC = () => {
                           color: isActive
                             ? theme.palette.text.primary
                             : "#727272",
+                          whiteSpace: "nowrap",
+                          lineHeight: 1,
                           wordBreak: "break-word",
                           overflowWrap: "break-word",
                           flex: 1,
