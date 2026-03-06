@@ -1,5 +1,6 @@
 import {
   Box,
+  Button,
   CircularProgress,
   Divider,
   Grid,
@@ -15,6 +16,13 @@ import FeaturedProjectCard from "./Components/FeaturedProjectCard";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { typographyTokens } from "../../../../theme/MuiTheme";
+import DownloadOutlinedIcon from "@mui/icons-material/DownloadOutlined";
+import HowToRegOutlinedIcon from "@mui/icons-material/HowToRegOutlined";
+import HotelOutlinedIcon from "@mui/icons-material/HotelOutlined";
+import EventAvailableOutlinedIcon from "@mui/icons-material/EventAvailableOutlined";
+import EventNoteOutlinedIcon from "@mui/icons-material/EventNoteOutlined";
+import OpenInNewOutlinedIcon from "@mui/icons-material/OpenInNewOutlined";
+import LocalCafeOutlinedIcon from "@mui/icons-material/LocalCafeOutlined";
 import {
   motion,
   AnimatePresence,
@@ -22,6 +30,7 @@ import {
   useScroll,
 } from "framer-motion";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
+import BrochurePdf from "../../../../assets/Brochure.pdf";
 
 interface Props {
   data: any[];
@@ -62,6 +71,60 @@ const BestInvestmentOpportunity: React.FC<Props> = ({
 
   const activeProject = data[activeIndex];
   const images = activeProject.featuresImages ?? [];
+  const primaryCTA = activeProject?.primaryCTA;
+  const secondaryCTA = activeProject?.secondaryCTA;
+
+  const getCtaIcon = (cta?: string) => {
+    const value = (cta ?? "").toLowerCase();
+    if (value.includes("download")) return <DownloadOutlinedIcon />;
+    if (value.includes("register")) return <HowToRegOutlinedIcon />;
+    if (value.includes("book")) return <HotelOutlinedIcon />;
+    if (value.includes("request")) return <EventAvailableOutlinedIcon />;
+    if (value.includes("schedule")) return <EventNoteOutlinedIcon />;
+    if (value.includes("brew")) return <LocalCafeOutlinedIcon />;
+    return <OpenInNewOutlinedIcon />;
+  };
+
+  const handleCtaClick = (cta?: string) => {
+    const value = (cta ?? "").toLowerCase();
+    if (!value) return;
+
+    if (value.includes("download")) {
+      const link = document.createElement("a");
+      link.href = BrochurePdf;
+      link.download = "Lilli-Village-Brochure.pdf";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      return;
+    }
+
+    if (
+      value.includes("register") ||
+      value.includes("request") ||
+      value.includes("schedule")
+    ) {
+      const action = value.includes("register")
+        ? "register"
+        : value.includes("request")
+          ? "request"
+          : "schedule";
+
+      sessionStorage.setItem(
+        "contactIntent",
+        JSON.stringify({
+          action,
+          projectName: activeProject?.name ?? "",
+        }),
+      );
+      window.dispatchEvent(new Event("contact-intent-updated"));
+
+      const contactSection = document.getElementById("contact-us");
+      if (contactSection) {
+        contactSection.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    }
+  };
 
   const handlePrev = () => {
     setActiveIndex((prev) => (prev === 0 ? data.length - 1 : prev - 1));
@@ -87,16 +150,80 @@ const BestInvestmentOpportunity: React.FC<Props> = ({
                 zIndex: 0,
               }}
             >
-              <Typography
-                variant="heroTitle"
-                component="h1"
+              <Box
                 sx={{
-                  color: theme.palette.text.primary,
+                  display: "flex",
+                  alignItems: { xs: "flex-start", md: "center" },
+                  justifyContent: "space-between",
+                  flexDirection: { xs: "column", md: "row" },
+                  gap: { xs: 2, md: 4, lg: 6 },
                   mb: { xs: 4, md: 6, lg: 10 },
                 }}
               >
-                Best investment <br /> opportunity
-              </Typography>
+                <Typography
+                  variant="heroTitle"
+                  component="h1"
+                  sx={{
+                    color: theme.palette.text.primary,
+                    mb: 0,
+                  }}
+                >
+                  Best investment <br /> opportunity
+                </Typography>
+
+                {(primaryCTA || secondaryCTA) && (
+                  <Stack
+                    spacing={2}
+                    sx={{
+                      width: { xs: "100%", md: "auto" },
+                      minWidth: { md: 260 },
+                    }}
+                  >
+                    {primaryCTA && (
+                      <Button
+                        variant="contained"
+                        startIcon={getCtaIcon(primaryCTA)}
+                        onClick={() => handleCtaClick(primaryCTA)}
+                        sx={{
+                          textTransform: "none",
+                          borderRadius: 2,
+                          py: 1.4,
+                          px: 2.5,
+                          fontWeight: typographyTokens.fontWeights.medium,
+                          bgcolor: theme.palette.primary.main,
+                          "&:hover": {
+                            bgcolor: theme.palette.primary.main,
+                          },
+                        }}
+                      >
+                        {primaryCTA}
+                      </Button>
+                    )}
+                    {secondaryCTA && (
+                      <Button
+                        variant="outlined"
+                        startIcon={getCtaIcon(secondaryCTA)}
+                        onClick={() => handleCtaClick(secondaryCTA)}
+                        sx={{
+                          textTransform: "none",
+                          borderRadius: 2,
+                          py: 1.4,
+                          px: 2.5,
+                          fontWeight: typographyTokens.fontWeights.medium,
+                          borderColor: theme.palette.primary.main,
+                          color: theme.palette.primary.main,
+                          "&:hover": {
+                            borderColor: theme.palette.primary.main,
+                            color: theme.palette.primary.main,
+                          },
+                        }}
+                      >
+                        {secondaryCTA}
+                      </Button>
+                    )}
+                  </Stack>
+                )}
+              </Box>
 
               <Divider
                 sx={{

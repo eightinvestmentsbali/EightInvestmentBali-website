@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Box,
   Container,
@@ -9,6 +9,7 @@ import {
   Stack,
   IconButton,
   Divider,
+  MenuItem,
 } from "@mui/material";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import EmailIcon from "@mui/icons-material/Email";
@@ -25,6 +26,13 @@ interface FormData {
   interestedProject: string;
   message: string;
 }
+
+const PROJECT_OPTIONS = [
+  "Lili Village",
+  "The Hive",
+  "Little Soho",
+  "Dynasty 8",
+];
 
 const ContactFooter = () => {
   const theme = useTheme();
@@ -58,6 +66,49 @@ const ContactFooter = () => {
     { label: "Services", path: "/services" },
     { label: "Our Team", path: "/team" },
   ];
+
+  useEffect(() => {
+    const getDummyMessage = (action: string, projectName: string) => {
+      if (action === "register") {
+        return `Hi, I would like to register my interest in ${projectName}. Please share the next steps.`;
+      }
+      if (action === "request") {
+        return `Hi, I would like to request availability details for ${projectName}. Please share available options.`;
+      }
+      if (action === "schedule") {
+        return `Hi, I would like to schedule a site visit for ${projectName}. Please let me know available time slots.`;
+      }
+      return "";
+    };
+
+    const syncIntentToForm = () => {
+      const rawIntent = sessionStorage.getItem("contactIntent");
+      if (!rawIntent) return;
+
+      try {
+        const parsed = JSON.parse(rawIntent) as {
+          action?: string;
+          projectName?: string;
+        };
+
+        if (!parsed.action || !parsed.projectName) return;
+
+        setFormData((prev) => ({
+          ...prev,
+          interestedProject: parsed.projectName,
+          message: getDummyMessage(parsed.action, parsed.projectName),
+        }));
+      } catch (error) {
+        console.error("Invalid contact intent payload", error);
+      }
+    };
+
+    syncIntentToForm();
+    window.addEventListener("contact-intent-updated", syncIntentToForm);
+    return () => {
+      window.removeEventListener("contact-intent-updated", syncIntentToForm);
+    };
+  }, []);
 
   return (
     <Box
@@ -230,9 +281,9 @@ const ContactFooter = () => {
             <TextField
               required
               fullWidth
+              select
               name="interestedProject"
               label="Interested Project*"
-              placeholder="Enter your interested Project"
               value={formData.interestedProject}
               onChange={handleChange}
               sx={{
@@ -248,6 +299,9 @@ const ContactFooter = () => {
                   "&.Mui-focused fieldset": {
                     borderColor: "#4E9E70",
                   },
+                  "& .MuiSvgIcon-root": {
+                    color: "#FFFFFF",
+                  },
                 },
                 "& .MuiInputLabel-root": {
                   color: "#FFFFFF",
@@ -260,8 +314,13 @@ const ContactFooter = () => {
                   opacity: 1,
                 },
               }}
-            />
-
+            >
+              {PROJECT_OPTIONS.map((project) => (
+                <MenuItem key={project} value={project}>
+                  {project}
+                </MenuItem>
+              ))}
+            </TextField>
             {/* Message Field */}
             <TextField
               required
