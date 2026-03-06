@@ -30,7 +30,6 @@ import {
   useScroll,
 } from "framer-motion";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
-import BrochurePdf from "../../../../assets/LilyResidence-Brochure.pdf";
 
 interface Props {
   data: any[];
@@ -73,6 +72,7 @@ const BestInvestmentOpportunity: React.FC<Props> = ({
   const images = activeProject.featuresImages ?? [];
   const primaryCTA = activeProject?.primaryCTA;
   const secondaryCTA = activeProject?.secondaryCTA;
+  const brochure = activeProject?.brochure;
 
   const getCtaIcon = (cta?: string) => {
     const value = (cta ?? "").toLowerCase();
@@ -90,9 +90,10 @@ const BestInvestmentOpportunity: React.FC<Props> = ({
     if (!value) return;
 
     if (value.includes("download")) {
+      if (!brochure) return;
       const link = document.createElement("a");
-      link.href = BrochurePdf;
-      link.download = "Lilli-Village-Brochure.pdf";
+      link.href = brochure;
+      link.download = `${(activeProject?.name ?? "Project").replace(/\s+/g, "-")}-Brochure.pdf`;
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
@@ -156,7 +157,7 @@ const BestInvestmentOpportunity: React.FC<Props> = ({
                   alignItems: { xs: "flex-start", md: "center" },
                   justifyContent: "space-between",
                   flexDirection: { xs: "column", md: "row" },
-                  gap: { xs: 2, md: 4, lg: 6 },
+                  gap: { xs: 4, md: 4, lg: 6 },
                   mb: { xs: 4, md: 6, lg: 10 },
                 }}
               >
@@ -171,7 +172,7 @@ const BestInvestmentOpportunity: React.FC<Props> = ({
                   Best investment <br /> opportunity
                 </Typography>
 
-                {(primaryCTA || secondaryCTA) && (
+                {(primaryCTA || secondaryCTA || brochure) && (
                   <Stack
                     spacing={2}
                     sx={{
@@ -193,6 +194,18 @@ const BestInvestmentOpportunity: React.FC<Props> = ({
                           bgcolor: theme.palette.primary.main,
                           "&:hover": {
                             bgcolor: theme.palette.primary.main,
+                          },
+                          "&:focus": {
+                            outline: "none",
+                            boxShadow: "none",
+                          },
+                          "&:focus-visible": {
+                            outline: "none",
+                            boxShadow: "none",
+                          },
+                          "&:active": {
+                            outline: "none",
+                            boxShadow: "none",
                           },
                         }}
                       >
@@ -216,11 +229,59 @@ const BestInvestmentOpportunity: React.FC<Props> = ({
                             borderColor: theme.palette.primary.main,
                             color: theme.palette.primary.main,
                           },
+                          "&:focus": {
+                            outline: "none",
+                            boxShadow: "none",
+                          },
+                          "&:focus-visible": {
+                            outline: "none",
+                            boxShadow: "none",
+                          },
+                          "&:active": {
+                            outline: "none",
+                            boxShadow: "none",
+                          },
                         }}
                       >
                         {secondaryCTA}
                       </Button>
                     )}
+                    {brochure &&
+                      !(primaryCTA ?? "").toLowerCase().includes("download") &&
+                      !(secondaryCTA ?? "").toLowerCase().includes("download") && (
+                        <Button
+                          variant="outlined"
+                          startIcon={<DownloadOutlinedIcon />}
+                          onClick={() => handleCtaClick("Download Brochure")}
+                          sx={{
+                            textTransform: "none",
+                            borderRadius: 2,
+                            py: 1.4,
+                            px: 2.5,
+                            fontWeight: typographyTokens.fontWeights.medium,
+                            borderColor: theme.palette.primary.main,
+                            color: theme.palette.primary.main,
+                            "&:hover": {
+                              borderColor: theme.palette.primary.main,
+                              color: theme.palette.primary.main,
+                            },
+                            "&:focus": {
+                              outline: "none",
+                              boxShadow: "none",
+                            },
+                            "&:focus-visible": {
+                              outline: "none",
+                              boxShadow: "none",
+                            },
+                            "&:active": {
+                              outline: "none",
+                              boxShadow: "none",
+                            },
+                          }}
+                        >
+                          Download Brochure
+                        </Button>
+                      )}
                   </Stack>
                 )}
               </Box>

@@ -11,6 +11,10 @@ import MultipleRevenueStreamsIcon from '../../assets/DesignElement/MultipleReven
 import HighROIIcon from '../../assets/DesignElement/HighROIIcon';
 import ModernSleekDesignIcon from '../../assets/DesignElement/ModernSleekDesignIcon';
 import PremierLocationIcon from '../../assets/DesignElement/PremierLocationIcon';
+import LiliBrochure from '../../assets/LilyResidence-Brochure.pdf';
+import HiveBrochure from '../../assets/Hive-Brochure.pdf';
+import LittleSohoBrochure from '../../assets/Little-Soho-Brocher.pdf';
+import DynastyBrochure from '../../assets/Dynasty8-Brocher.pdf';
 // import LiliHome from "../../assets/HomeImages/LiliHome.jpg";
 // import LittleHome from "../../assets/HomeImages/LittleHome.jpg";
 // import HiveHome from "../../assets/HomeImages/HiveHome.jpg";
@@ -149,6 +153,7 @@ export const projectsData = [
     currentPhase: 2,
     shortDescription: "A lighthearted townhouse community in Abianbase, Mengwi - shaped by elegant arches and a calm, resort-like rhythm. Designed for balanced living, open movement, and easy connection, with layouts suited to long-stay rental demand.",
     expandedDescription: "A lighthearted townhouse community in Abianbase, Mengwi, with 18 homes and a social clubhouse at its heart. Elegant arches, calm terraces, and shared spaces invite slow mornings and easy connection. Residents have access to a gym, pool bar, a serene swimming pool, and a communal restaurant, all within a 2,960 sqm masterplan.",
+    brochure: LiliBrochure,
     primaryCTA: "Download Brochure",
     secondaryCTA: "",
     progressCardHeader: "Current Progress",
@@ -233,8 +238,9 @@ export const projectsData = [
     currentPhase: 1,
     shortDescription: "A gated apartment community that breathes light, space, and harmony - where golden hues and greenery invite creativity and connection. Like a beehive, it’s built for flexible living that blurs work and rest in Northern Canggu.",
     expandedDescription: "A gated community of 78 studio and one-bedroom apartments in Northern Canggu, designed around light, greenery, and shared energy. The Hive brings lifestyle amenities into one address, including a lagoon-style day club, curated kiosks, and concierge-style services, with strong connectivity for work and play. A modern home base, close to Canggu and Pererenan.",
+    brochure: HiveBrochure,
     primaryCTA: "Register Interest",
-    secondaryCTA: "",
+    secondaryCTA: "Download Brochure",
     progressCardHeader: "Current Progress",
   },
   {
@@ -299,7 +305,8 @@ export const projectsData = [
     currentPhase: 1,
     shortDescription: "A lived-in hospitality house in Canggu: Little Brew on the ground floor, with 10 boutique rooms above. Built for easy mornings and unhurried stays, it’s been running ~90% average occupancy since December, alongside strong cafe reviews.",
     expandedDescription: "Little Soho is a boutique stay and café house in Canggu. On the ground floor, Little Brew serves specialty coffee and comfort breakfasts, with a workspace-friendly vibe. Upstairs, ten rooms offer calm, hotel-style service and have been running at around 90% average occupancy since launch in December. A small address with strong everyday energy.",
-    primaryCTA: "",
+    brochure: LittleSohoBrochure,
+    primaryCTA: "Download Brochure",
     secondaryCTA: "",
     progressCardHeader: "Renovation",
   },
@@ -379,6 +386,7 @@ export const projectsData = [
     currentPhase: 0,
     shortDescription: "A private, gated enclave of eight villas in North Canggu - where Japanese minimalism meets Balinese harmony. Designed for light, airflow, and seclusion, Dynasty 8 protects serenity and build quality from day one - prestige felt, not declared.",
     expandedDescription: "A private enclave of eight villas in North Canggu, where Japanese restraint meets Balinese warmth. Designed for airflow, privacy, and quiet luxury, each home is crafted with premium materials and clean, timeless lines. With construction underway and 50% already reserved, Dynasty 8 is built for owners who value serenity, design integrity, and long-term value.",
+    brochure: DynastyBrochure,
     primaryCTA: "Request Availability",
     secondaryCTA: "Schedule a Site Visit",
     progressCardHeader: "Current Progress",

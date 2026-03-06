@@ -10,6 +10,8 @@ import {
   IconButton,
   Divider,
   MenuItem,
+  Checkbox,
+  ListItemText,
 } from "@mui/material";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import EmailIcon from "@mui/icons-material/Email";
@@ -18,12 +20,14 @@ import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { useTheme } from "@mui/material/styles";
 import { typographyTokens } from "../../../../theme/MuiTheme";
+import { contactUs } from "../../../../api/contactServices";
+import axios from "axios";
 
 interface FormData {
   name: string;
   email: string;
   mobileNumber: string;
-  interestedProject: string;
+  interestedProject: string[];
   message: string;
 }
 
@@ -32,17 +36,21 @@ const PROJECT_OPTIONS = [
   "The Hive",
   "Little Soho",
   "Dynasty 8",
+  "Other",
 ];
 
 const ContactFooter = () => {
   const theme = useTheme();
   const location = useLocation();
   const navigate = useNavigate();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitMessage, setSubmitMessage] = useState("");
+  const [submitError, setSubmitError] = useState("");
   const [formData, setFormData] = useState<FormData>({
     name: "",
     email: "",
     mobileNumber: "",
-    interestedProject: "",
+    interestedProject: [],
     message: "",
   });
 
@@ -56,9 +64,48 @@ const ContactFooter = () => {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
+    setIsSubmitting(true);
+    setSubmitError("");
+    setSubmitMessage("");
+
+    try {
+      await contactUs.create({
+        name: formData.name,
+        email: formData.email,
+        mobileNumber: formData.mobileNumber,
+        interestedProject: formData.interestedProject,
+        message: formData.message,
+      });
+
+      setSubmitMessage("Thanks. Your message has been submitted successfully.");
+      setFormData({
+        name: "",
+        email: "",
+        mobileNumber: "",
+        interestedProject: [],
+        message: "",
+      });
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        console.error("Contact form submit failed (Axios)", {
+          message: error.message,
+          code: error.code,
+          status: error.response?.status,
+          statusText: error.response?.statusText,
+          data: error.response?.data,
+          headers: error.response?.headers,
+          requestUrl: error.config?.url,
+          method: error.config?.method,
+        });
+      } else {
+        console.error("Contact form submit failed", error);
+      }
+      setSubmitError("Failed to submit. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const navigationLinks = [
@@ -133,7 +180,7 @@ const ContactFooter = () => {
 
         setFormData((prev) => ({
           ...prev,
-          interestedProject: projectName,
+          interestedProject: [projectName],
           message: getDummyMessage(action, projectName),
         }));
       } catch (error) {
@@ -207,7 +254,7 @@ const ContactFooter = () => {
               required
               fullWidth
               name="name"
-              label="Name*"
+              label="Name"
               placeholder="Enter your name"
               value={formData.name}
               onChange={handleChange}
@@ -224,6 +271,13 @@ const ContactFooter = () => {
                   "&.Mui-focused fieldset": {
                     borderColor: "#4E9E70",
                   },
+                  "& input:-webkit-autofill, & input:-webkit-autofill:hover, & input:-webkit-autofill:focus":
+                    {
+                      WebkitTextFillColor: "#FFFFFF",
+                      WebkitBoxShadow: "0 0 0 1000px #1A1A1A inset",
+                      boxShadow: "0 0 0 1000px #1A1A1A inset",
+                      caretColor: "#FFFFFF",
+                    },
                 },
                 "& .MuiInputLabel-root": {
                   color: "#FFFFFF",
@@ -246,7 +300,7 @@ const ContactFooter = () => {
                   fullWidth
                   name="email"
                   type="email"
-                  label="Email*"
+                  label="Email"
                   placeholder="Enter your Email address"
                   value={formData.email}
                   onChange={handleChange}
@@ -263,6 +317,13 @@ const ContactFooter = () => {
                       "&.Mui-focused fieldset": {
                         borderColor: "#4E9E70",
                       },
+                      "& input:-webkit-autofill, & input:-webkit-autofill:hover, & input:-webkit-autofill:focus":
+                        {
+                          WebkitTextFillColor: "#FFFFFF",
+                          WebkitBoxShadow: "0 0 0 1000px #1A1A1A inset",
+                          boxShadow: "0 0 0 1000px #1A1A1A inset",
+                          caretColor: "#FFFFFF",
+                        },
                     },
                     "& .MuiInputLabel-root": {
                       color: "#FFFFFF",
@@ -279,10 +340,9 @@ const ContactFooter = () => {
               </Grid>
               <Grid size={{ xs: 12, sm: 6 }}>
                 <TextField
-                  required
                   fullWidth
                   name="mobileNumber"
-                  label="Mobile Number*"
+                  label="Mobile Number"
                   placeholder="Enter your Mobile Number"
                   value={formData.mobileNumber}
                   onChange={handleChange}
@@ -299,6 +359,13 @@ const ContactFooter = () => {
                       "&.Mui-focused fieldset": {
                         borderColor: "#4E9E70",
                       },
+                      "& input:-webkit-autofill, & input:-webkit-autofill:hover, & input:-webkit-autofill:focus":
+                        {
+                          WebkitTextFillColor: "#FFFFFF",
+                          WebkitBoxShadow: "0 0 0 1000px #1A1A1A inset",
+                          boxShadow: "0 0 0 1000px #1A1A1A inset",
+                          caretColor: "#FFFFFF",
+                        },
                     },
                     "& .MuiInputLabel-root": {
                       color: "#FFFFFF",
@@ -321,9 +388,21 @@ const ContactFooter = () => {
               fullWidth
               select
               name="interestedProject"
-              label="Interested Project*"
+              label="Interested Project"
               value={formData.interestedProject}
-              onChange={handleChange}
+              onChange={(e) => {
+                const value = e.target.value;
+                setFormData((prev) => ({
+                  ...prev,
+                  interestedProject:
+                    typeof value === "string" ? value.split(",") : value,
+                }));
+              }}
+              SelectProps={{
+                multiple: true,
+                renderValue: (selected) =>
+                  (selected as string[]).join(", "),
+              }}
               sx={{
                 "& .MuiOutlinedInput-root": {
                   bgcolor: "#1A1A1A",
@@ -338,8 +417,15 @@ const ContactFooter = () => {
                     borderColor: "#4E9E70",
                   },
                   "& .MuiSvgIcon-root": {
-                    color: "#FFFFFF",
+                    color: theme.palette.primary.main,
                   },
+                  "& input:-webkit-autofill, & input:-webkit-autofill:hover, & input:-webkit-autofill:focus":
+                    {
+                      WebkitTextFillColor: theme.palette.primary.main,
+                      WebkitBoxShadow: "0 0 0 1000px #1A1A1A inset",
+                      boxShadow: "0 0 0 1000px #1A1A1A inset",
+                      caretColor: "#FFFFFF",
+                    },
                 },
                 "& .MuiInputLabel-root": {
                   color: "#FFFFFF",
@@ -355,7 +441,16 @@ const ContactFooter = () => {
             >
               {PROJECT_OPTIONS.map((project) => (
                 <MenuItem key={project} value={project}>
-                  {project}
+                  <Checkbox
+                    checked={formData.interestedProject.includes(project)}
+                    size="small"
+                    sx={{
+                      color: "#7D8780",
+                      "&.Mui-checked": { color: "#4E9E70" },
+                      "&:hover": { bgcolor: "rgba(78, 158, 112, 0.12)" },
+                    }}
+                  />
+                  <ListItemText primary={project} />
                 </MenuItem>
               ))}
             </TextField>
@@ -366,7 +461,7 @@ const ContactFooter = () => {
               multiline
               rows={4}
               name="message"
-              label="Message*"
+              label="Message"
               placeholder="Enter your Message"
               value={formData.message}
               onChange={handleChange}
@@ -383,6 +478,13 @@ const ContactFooter = () => {
                   "&.Mui-focused fieldset": {
                     borderColor: "#4E9E70",
                   },
+                  "& textarea:-webkit-autofill, & textarea:-webkit-autofill:hover, & textarea:-webkit-autofill:focus":
+                    {
+                      WebkitTextFillColor: "#FFFFFF",
+                      WebkitBoxShadow: "0 0 0 1000px #1A1A1A inset",
+                      boxShadow: "0 0 0 1000px #1A1A1A inset",
+                      caretColor: "#FFFFFF",
+                    },
                 },
                 "& .MuiInputLabel-root": {
                   color: "#FFFFFF",
@@ -401,6 +503,7 @@ const ContactFooter = () => {
             <Button
               type="submit"
               variant="contained"
+              disabled={isSubmitting}
               sx={{
                 bgcolor: "#4E9E70",
                 color: "#FFFFFF",
@@ -415,8 +518,19 @@ const ContactFooter = () => {
                 },
               }}
             >
-              Submit
+              {isSubmitting ? "Submitting..." : "Submit"}
             </Button>
+
+            {submitMessage && (
+              <Typography sx={{ color: "#9CE3B8", textAlign: "center" }}>
+                {submitMessage}
+              </Typography>
+            )}
+            {submitError && (
+              <Typography sx={{ color: "#FF8F8F", textAlign: "center" }}>
+                {submitError}
+              </Typography>
+            )}
           </Stack>
         </Box>
 
