@@ -284,12 +284,13 @@ const OurServices: React.FC = () => {
                 <Box
                   component="img"
                   src={selectedService.image}
+                  alt={selectedService.title}
                   loading="lazy"
                   decoding="async"
                   sx={{
                     position: "absolute",
                     inset: 0,
-                    width: "100%;",
+                    width: "100%",
                     height: "100%",
                     objectFit: "cover",
                     zIndex: 0,

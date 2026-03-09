@@ -67,6 +67,8 @@ const CardSectionExample = () => {
         <img
           src="https://images.unsplash.com/photo-1503387762-592deb58ef4e"
           alt="card section example"
+          loading="lazy"
+          decoding="async"
           style={{
             width: "100%",
             height: "100%",

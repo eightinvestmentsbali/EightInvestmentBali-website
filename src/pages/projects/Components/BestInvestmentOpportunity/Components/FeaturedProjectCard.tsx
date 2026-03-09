@@ -311,6 +311,9 @@ const FeaturedProjectCard = ({
                 <Box
                   component="img"
                   src={image}
+                  alt={projectName}
+                  loading="lazy"
+                  decoding="async"
                   sx={{
                     width: "100%",
                     height: "100%",

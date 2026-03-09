@@ -394,6 +394,8 @@ const BestInvestmentOpportunity: React.FC<Props> = ({
                             decoding="async"
                             component="img"
                             src={project.image}
+                            alt={project.name}
+                            sizes="(max-width: 900px) 25vw, 280px"
                             onLoad={() =>
                               setLoadedImages((prev) => ({
                                 ...prev,
@@ -611,9 +613,11 @@ const BestInvestmentOpportunity: React.FC<Props> = ({
         <Box
           component="img"
           src={images[featuredImageIndex]}
+          alt={`${activeProject?.name ?? "Project"} preview ${featuredImageIndex + 1}`}
           loading={featuredImageIndex === 0 ? "eager" : "lazy"}
           fetchPriority={featuredImageIndex === 0 ? "high" : "auto"}
           decoding="async"
+          sizes="100vw"
           sx={{
             width: "100%",
             height: "100%",
@@ -693,8 +697,11 @@ const BestInvestmentOpportunity: React.FC<Props> = ({
             <Box
               component="img"
               src={img}
+              alt={`${activeProject?.name ?? "Project"} thumbnail ${index + 1}`}
               loading={index === featuredImageIndex ? "eager" : "lazy"}
+              fetchPriority={index === featuredImageIndex ? "high" : "auto"}
               decoding="async"
+              sizes="(max-width: 900px) 80px, 20vw"
               sx={{
                 width: "100%",
                 height: "100%",

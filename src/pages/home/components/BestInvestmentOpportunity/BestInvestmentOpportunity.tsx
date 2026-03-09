@@ -324,8 +324,15 @@ const BestInvestmentOpportunity = () => {
                         <Box
                           component="img"
                           src={project.image}
-                          loading="eager"
+                          alt={project.name}
+                          loading={
+                            index === activeProjectIndex ? "eager" : "lazy"
+                          }
+                          fetchPriority={
+                            index === activeProjectIndex ? "high" : "auto"
+                          }
                           decoding="async"
+                          sizes="(max-width: 900px) 25vw, 280px"
                           onLoad={() =>
                             setLoadedImages((prev) => ({
                               ...prev,
@@ -598,9 +605,11 @@ const BestInvestmentOpportunity = () => {
               <Box
                 component="img"
                 src={images[activeImageIndex] || images[0]}
+                alt={`${projectsData[activeProjectIndex]?.name ?? "Project"} preview ${activeImageIndex + 1}`}
                 loading={activeImageIndex === 0 ? "eager" : "lazy"}
                 fetchPriority={activeImageIndex === 0 ? "high" : "auto"}
                 decoding="async"
+                sizes="100vw"
                 sx={{
                   width: "100%",
                   height: "100%",
@@ -717,8 +726,11 @@ const BestInvestmentOpportunity = () => {
               <Box
                 component="img"
                 src={img}
+                alt={`${projectsData[activeProjectIndex]?.name ?? "Project"} thumbnail ${index + 1}`}
                 loading={index === activeImageIndex ? "eager" : "lazy"}
+                fetchPriority={index === activeImageIndex ? "high" : "auto"}
                 decoding="async"
+                sizes="(max-width: 900px) 80px, 20vw"
                 sx={{
                   width: "100%",
                   height: "100%",
@@ -797,6 +809,8 @@ const BestInvestmentOpportunity = () => {
                 component="img"
                 src={projectsData[activeProjectIndex].image}
                 alt={projectsData[activeProjectIndex].name}
+                loading="lazy"
+                decoding="async"
                 sx={{
                   position: "absolute",
                   inset: 0,

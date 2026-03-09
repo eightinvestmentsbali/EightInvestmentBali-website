@@ -297,6 +297,9 @@ const DiamondTeamSection = () => {
                         component="img"
                         src={selectedMember.image}
                         alt={selectedMember.name}
+                        loading="eager"
+                        fetchPriority="high"
+                        decoding="async"
                         sx={{
                           width: "100%",
                           height: "100%",
@@ -389,6 +392,8 @@ const TeamMemberCard = ({ member }: TeamMemberCardProps) => {
             component="img"
             src={member.image}
             alt={member.name}
+            loading="lazy"
+            decoding="async"
             sx={{
               width: "100%",
               height: "100%",

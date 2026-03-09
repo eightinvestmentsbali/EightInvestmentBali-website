@@ -158,7 +158,15 @@ const clipPathData = `
                   </Box>
                   {/* RIGHT IMAGE */}
                   <Box sx={imageWrapper}>
-                    <Box component="img" src={item.image} sx={image} />
+                    <Box
+                      component="img"
+                      src={item.image}
+                      alt={item.title}
+                      loading={i === 0 ? "eager" : "lazy"}
+                      fetchPriority={i === 0 ? "high" : "auto"}
+                      decoding="async"
+                      sx={image}
+                    />
                   </Box>
                 </Box>
                 <Box sx={dotsAndArrowWrapper}>
@@ -204,7 +212,14 @@ const clipPathData = `
               opacity: activeIndex === i ? 1 : 0.4,
             }}
           >
-            <Box component="img" src={s.image} sx={thumbImg} />
+            <Box
+              component="img"
+              src={s.image}
+              alt={s.label}
+              loading="lazy"
+              decoding="async"
+              sx={thumbImg}
+            />
             <Typography
               variant="h6"
               color={
