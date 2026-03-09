@@ -73,6 +73,25 @@ const BestInvestmentOpportunity: React.FC<Props> = ({
   const primaryCTA = activeProject?.primaryCTA;
   const secondaryCTA = activeProject?.secondaryCTA;
   const brochure = activeProject?.brochure;
+  const isLittleSohoProject =
+    (activeProject?.name ?? "").toLowerCase() === "little soho";
+  const shouldHideDownloadCtaForProject = isLittleSohoProject;
+  const isPrimaryDownloadCta = (primaryCTA ?? "").toLowerCase().includes("download");
+  const isSecondaryDownloadCta = (secondaryCTA ?? "")
+    .toLowerCase()
+    .includes("download");
+  const showPrimaryCTA = Boolean(
+    primaryCTA && !(shouldHideDownloadCtaForProject && isPrimaryDownloadCta),
+  );
+  const showSecondaryCTA = Boolean(
+    secondaryCTA && !(shouldHideDownloadCtaForProject && isSecondaryDownloadCta),
+  );
+  const showFallbackBrochureCta = Boolean(
+    brochure &&
+      !shouldHideDownloadCtaForProject &&
+      !isPrimaryDownloadCta &&
+      !isSecondaryDownloadCta,
+  );
 
   const getCtaIcon = (cta?: string) => {
     const value = (cta ?? "").toLowerCase();
@@ -90,6 +109,7 @@ const BestInvestmentOpportunity: React.FC<Props> = ({
     if (!value) return;
 
     if (value.includes("download")) {
+      if (shouldHideDownloadCtaForProject) return;
       if (!brochure) return;
       const link = document.createElement("a");
       link.href = brochure;
@@ -172,7 +192,7 @@ const BestInvestmentOpportunity: React.FC<Props> = ({
                   Best investment <br /> opportunity
                 </Typography>
 
-                {(primaryCTA || secondaryCTA || brochure) && (
+                {(showPrimaryCTA || showSecondaryCTA || showFallbackBrochureCta) && (
                   <Stack
                     spacing={2}
                     sx={{
@@ -180,7 +200,7 @@ const BestInvestmentOpportunity: React.FC<Props> = ({
                       minWidth: { md: 260 },
                     }}
                   >
-                    {primaryCTA && (
+                    {showPrimaryCTA && (
                       <Button
                         variant="contained"
                         startIcon={getCtaIcon(primaryCTA)}
@@ -212,7 +232,7 @@ const BestInvestmentOpportunity: React.FC<Props> = ({
                         {primaryCTA}
                       </Button>
                     )}
-                    {secondaryCTA && (
+                    {showSecondaryCTA && (
                       <Button
                         variant="outlined"
                         startIcon={getCtaIcon(secondaryCTA)}
@@ -246,9 +266,7 @@ const BestInvestmentOpportunity: React.FC<Props> = ({
                         {secondaryCTA}
                       </Button>
                     )}
-                    {brochure &&
-                      !(primaryCTA ?? "").toLowerCase().includes("download") &&
-                      !(secondaryCTA ?? "").toLowerCase().includes("download") && (
+                    {showFallbackBrochureCta && (
                         <Button
                           variant="outlined"
                           startIcon={<DownloadOutlinedIcon />}
