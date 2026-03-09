@@ -250,8 +250,7 @@ export const projectsData = [
     image: "https://eightinvestment.s3.us-east-1.amazonaws.com/files/HomeImages/LittleHome.jpg",
     description:
       "Little Soho is a boutique hospitality house in Canggu, pairing Little Brew on the ground floor with 10 rooms above. Since opening in December, the rooms have held around 90 percent average occupancy, supported by strong guest feedback and a café that has become a local favourite.",
-    video:
-      "https://backoffice.eightinvestmentsbali.com/videos/projects/1762140229_da263c8dfe17a7c93270.mp4",
+    video: "https://eightinvestment.s3.us-east-1.amazonaws.com/files/ProjectVideos/little-soho-video.mp4",
     featuresImages: [
       "https://eightinvestment.s3.us-east-1.amazonaws.com/files/LittleSohoImages/LittleSohoOne.jpg",
       "https://eightinvestment.s3.us-east-1.amazonaws.com/files/LittleSohoImages/LittleSohoTwo.jpg",
