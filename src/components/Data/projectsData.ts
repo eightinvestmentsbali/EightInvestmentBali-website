@@ -80,27 +80,38 @@ import DynastyBrochure from '../../assets/Dynasty8-Brocher.pdf';
 // import DynastyVideo from "../../assets/ProjectVideos/DynastyVideo.mp4";
 // import LilliVillageVideo from "../../assets/ProjectVideos/LiliVideo.mp4";
 
+const BASE_URL = (import.meta.env.VITE_BASE_URL ?? "").replace(/\/?$/, "/");
+
+function asset(relativePath: string): string {
+  return `${BASE_URL}${relativePath.replace(/^\//, "")}`;
+}
+
+if (import.meta.env.DEV && !import.meta.env.VITE_BASE_URL) {
+  console.warn(
+    "[projectsData] VITE_BASE_URL is not set. Remote images and videos will load from invalid URLs. Set it in .env (e.g. VITE_BASE_URL=https://example.com/files/)."
+  );
+}
 
 export const projectsData = [
   {
     name: "Lili Village",
     statusBadge: "SOLD OUT IN \n 3 WEEKS",
     location: "Abianbase–Mengwi, Bali",
-    image: "https://eightinvestment.s3.us-east-1.amazonaws.com/files/HomeImages/LiliHome.jpg",
+    image: asset('HomeImages/LiliHome.jpg'),
     description: "Lili Village spans 2,960 sqm of artfully designed space in Abianbase, Mengwi, offering 18 townhouses in 2-bedroom (155 sqm) and 3-bedroom (235 sqm) layouts. At its heart is a social clubhouse that brings the community together with a gym, pool bar, serene swimming pool, and communal restaurant.",
-    video: "https://eightinvestment.s3.us-east-1.amazonaws.com/files/ProjectVideos/LiliVideo.mp4",
+    video: asset('ProjectVideos/LiliVideo.mp4'),
     featuresImages: [
-      "https://eightinvestment.s3.us-east-1.amazonaws.com/files/LiliVillageImages/LiliVillageOne.jpg",
-      "https://eightinvestment.s3.us-east-1.amazonaws.com/files/LiliVillageImages/LiliVillageTwo.jpg",
-      "https://eightinvestment.s3.us-east-1.amazonaws.com/files/LiliVillageImages/LiliVillageThree.jpg",
-      "https://eightinvestment.s3.us-east-1.amazonaws.com/files/LiliVillageImages/LiliVillageFour.jpg",
-      "https://eightinvestment.s3.us-east-1.amazonaws.com/files/LiliVillageImages/LiliVillageFive.jpg",
-      // "https://eightinvestment.s3.us-east-1.amazonaws.com/files/LiliVillageImages/LiliVillageSix.jpg",
-      "https://eightinvestment.s3.us-east-1.amazonaws.com/files/LiliVillageImages/LiliVillageSeven.jpg",
-      "https://eightinvestment.s3.us-east-1.amazonaws.com/files/LiliVillageImages/LiliVillageEight.png",
-      "https://eightinvestment.s3.us-east-1.amazonaws.com/files/LiliVillageImages/LiliVillageNine.jpg",
-      "https://eightinvestment.s3.us-east-1.amazonaws.com/files/LiliVillageImages/LiliVillageTen.jpg",
-      "https://eightinvestment.s3.us-east-1.amazonaws.com/files/LiliVillageImages/LiliVillageEleven.jpg"
+      asset('LiliVillageImages/LiliVillageOne.jpg'),
+      asset('LiliVillageImages/LiliVillageTwo.jpg'),
+      asset('LiliVillageImages/LiliVillageThree.jpg'),
+      asset('LiliVillageImages/LiliVillageFour.jpg'),
+      asset('LiliVillageImages/LiliVillageFive.jpg'),
+      // asset('LiliVillageImages/LiliVillageSix.jpg'),
+      asset('LiliVillageImages/LiliVillageSeven.jpg'),
+      asset('LiliVillageImages/LiliVillageEight.png'),
+      asset('LiliVillageImages/LiliVillageNine.jpg'),
+      asset('LiliVillageImages/LiliVillageTen.jpg'),
+      asset('LiliVillageImages/LiliVillageEleven.jpg')
     ],
     features: [
       {
@@ -162,30 +173,30 @@ export const projectsData = [
     name: "The Hive",
     statusBadge: "SOLD OUT IN \n 3 DAYS",
     location: "Northern Canggu, Bali",
-    image: "https://eightinvestment.s3.us-east-1.amazonaws.com/files/HomeImages/HiveHome.jpg",
+    image: asset('HomeImages/HiveHome.jpg'),
     description:
       "The Hive is a 4,400 sqm gated community in Northern Canggu, designed around light, space, and shared energy. It features 78 studio and one bedroom apartments, anchored by lifestyle amenities and strong connectivity to Bali's most in-demand rental corridors.",
-    video: "https://eightinvestment.s3.us-east-1.amazonaws.com/files/ProjectVideos/HiveVideo.mp4",
+    video: asset('ProjectVideos/HiveVideo.mp4'),
     featuresImages: [
-      "https://eightinvestment.s3.us-east-1.amazonaws.com/files/TheHiveImages/HiveOne.jpg",
-      "https://eightinvestment.s3.us-east-1.amazonaws.com/files/TheHiveImages/HiveTwo.jpg",
-      "https://eightinvestment.s3.us-east-1.amazonaws.com/files/TheHiveImages/HiveThree.jpg",
-      // "https://eightinvestment.s3.us-east-1.amazonaws.com/files/TheHiveImages/HiveFour.jpg",
-      "https://eightinvestment.s3.us-east-1.amazonaws.com/files/TheHiveImages/HiveFive.jpg",
-      "https://eightinvestment.s3.us-east-1.amazonaws.com/files/TheHiveImages/HiveSix.jpg",
-      "https://eightinvestment.s3.us-east-1.amazonaws.com/files/TheHiveImages/HiveSeven.jpg",
-      "https://eightinvestment.s3.us-east-1.amazonaws.com/files/TheHiveImages/HiveEight.jpg",
-      "https://eightinvestment.s3.us-east-1.amazonaws.com/files/TheHiveImages/HiveNine.jpg",
-      "https://eightinvestment.s3.us-east-1.amazonaws.com/files/TheHiveImages/HiveTen.jpg",
-      "https://eightinvestment.s3.us-east-1.amazonaws.com/files/TheHiveImages/HiveEleven.jpg",
-      "https://eightinvestment.s3.us-east-1.amazonaws.com/files/TheHiveImages/HiveTwelve.jpg",
-      "https://eightinvestment.s3.us-east-1.amazonaws.com/files/TheHiveImages/HiveThirteen.jpg",
-      "https://eightinvestment.s3.us-east-1.amazonaws.com/files/TheHiveImages/HiveFourteen.jpg",
-      // "https://eightinvestment.s3.us-east-1.amazonaws.com/files/TheHiveImages/HiveFivteen.jpg",
-      "https://eightinvestment.s3.us-east-1.amazonaws.com/files/TheHiveImages/HiveSixteen.jpg",
-      "https://eightinvestment.s3.us-east-1.amazonaws.com/files/TheHiveImages/HiveSeventeen.jpg",
-      "https://eightinvestment.s3.us-east-1.amazonaws.com/files/TheHiveImages/HiveEighteen.jpg",
-      "https://eightinvestment.s3.us-east-1.amazonaws.com/files/TheHiveImages/HiveNineteen.jpg"
+      asset('TheHiveImages/HiveOne.jpg'),
+      asset('TheHiveImages/HiveTwo.jpg'),
+      asset('TheHiveImages/HiveThree.jpg'),
+      // asset('TheHiveImages/HiveFour.jpg'),
+      asset('TheHiveImages/HiveFive.jpg'),
+      asset('TheHiveImages/HiveSix.jpg'),
+      asset('TheHiveImages/HiveSeven.jpg'),
+      asset('TheHiveImages/HiveEight.jpg'),
+      asset('TheHiveImages/HiveNine.jpg'),
+      asset('TheHiveImages/HiveTen.jpg'),
+      asset('TheHiveImages/HiveEleven.jpg'),
+      asset('TheHiveImages/HiveTwelve.jpg'),
+      asset('TheHiveImages/HiveThirteen.jpg'),
+      asset('TheHiveImages/HiveFourteen.jpg'),
+      // asset('TheHiveImages/HiveFivteen.jpg'),
+      asset('TheHiveImages/HiveSixteen.jpg'),
+      asset('TheHiveImages/HiveSeventeen.jpg'),
+      asset('TheHiveImages/HiveEighteen.jpg'),
+      asset('TheHiveImages/HiveNineteen.jpg')
     ],
     features: [
       {
@@ -247,23 +258,23 @@ export const projectsData = [
     name: "Little Soho",
     statusBadge: "HOSPITALITY \n PROJECT",
     location: "Canggu, Bali",
-    image: "https://eightinvestment.s3.us-east-1.amazonaws.com/files/HomeImages/LittleHome.jpg",
+    image: asset('HomeImages/LittleHome.jpg'),
     description:
       "Little Soho is a boutique hospitality house in Canggu, pairing Little Brew on the ground floor with 10 rooms above. Since opening in December, the rooms have held around 90 percent average occupancy, supported by strong guest feedback and a café that has become a local favourite.",
-    video: "https://eightinvestment.s3.us-east-1.amazonaws.com/files/ProjectVideos/little-soho-video.mp4",
+    video: asset('ProjectVideos/little-soho-video.mp4'),
     featuresImages: [
-      "https://eightinvestment.s3.us-east-1.amazonaws.com/files/LittleSohoImages/LittleSohoOne.jpg",
-      "https://eightinvestment.s3.us-east-1.amazonaws.com/files/LittleSohoImages/LittleSohoTwo.jpg",
-      "https://eightinvestment.s3.us-east-1.amazonaws.com/files/LittleSohoImages/LittleSohoThree.jpg",
-      "https://eightinvestment.s3.us-east-1.amazonaws.com/files/LittleSohoImages/LittleSohoFour.jpg",
-      "https://eightinvestment.s3.us-east-1.amazonaws.com/files/LittleSohoImages/LittleSohoFive.jpg",
-      "https://eightinvestment.s3.us-east-1.amazonaws.com/files/LittleSohoImages/LittleSohoSix.jpg",
-      "https://eightinvestment.s3.us-east-1.amazonaws.com/files/LittleSohoImages/LittleSohoSeven.jpg",
-      "https://eightinvestment.s3.us-east-1.amazonaws.com/files/LittleSohoImages/LittleSohoEight.jpg",
-      "https://eightinvestment.s3.us-east-1.amazonaws.com/files/LittleSohoImages/LittleSohoNine.jpg",
-      "https://eightinvestment.s3.us-east-1.amazonaws.com/files/LittleSohoImages/LittleSohoTen.jpg",
-      "https://eightinvestment.s3.us-east-1.amazonaws.com/files/LittleSohoImages/LittleSohoEleven.jpg",
-      "https://eightinvestment.s3.us-east-1.amazonaws.com/files/LittleSohoImages/LittleSohoTwelve.png",
+      asset('LittleSohoImages/LittleSohoOne.jpg'),
+      asset('LittleSohoImages/LittleSohoTwo.jpg'),
+      asset('LittleSohoImages/LittleSohoThree.jpg'),
+      asset('LittleSohoImages/LittleSohoFour.jpg'),
+      asset('LittleSohoImages/LittleSohoFive.jpg'),
+      asset('LittleSohoImages/LittleSohoSix.jpg'),
+      asset('LittleSohoImages/LittleSohoSeven.jpg'),
+      asset('LittleSohoImages/LittleSohoEight.jpg'),
+      asset('LittleSohoImages/LittleSohoNine.jpg'),
+      asset('LittleSohoImages/LittleSohoTen.jpg'),
+      asset('LittleSohoImages/LittleSohoEleven.jpg'),
+      asset('LittleSohoImages/LittleSohoTwelve.png'),
     ],
     features: [
       {
@@ -313,26 +324,26 @@ export const projectsData = [
     name: "Dynasty 8",
     statusBadge: "NEW PROJECT \n 50% SOLD",
     location: "North Canggu, Bali",
-    image: "https://eightinvestment.s3.us-east-1.amazonaws.com/files/HomeImages/Dynasty8Home.jpg",
+    image: asset('HomeImages/Dynasty8Home.jpg'),
     description:
       "Dynasty 8 is a private enclave of eight villas in North Canggu, designed with a quiet luxury approach that blends Japanese restraint with Balinese warmth. Construction is in early delivery at 5 percent progress, with 50 percent already sold, reflecting strong early market response.",
-    video: "https://eightinvestment.s3.us-east-1.amazonaws.com/files/ProjectVideos/DynastyVideo.mp4",
+    video: asset('ProjectVideos/DynastyVideo.mp4'),
     featuresImages: [
-      "https://eightinvestment.s3.us-east-1.amazonaws.com/files/DynastyEightImages/DynastyOne.jpg",
-      "https://eightinvestment.s3.us-east-1.amazonaws.com/files/DynastyEightImages/DynastyTwo.jpg",
-      "https://eightinvestment.s3.us-east-1.amazonaws.com/files/DynastyEightImages/DynastyThree.jpg",
-      "https://eightinvestment.s3.us-east-1.amazonaws.com/files/DynastyEightImages/DynastyFour.jpg",
-      "https://eightinvestment.s3.us-east-1.amazonaws.com/files/DynastyEightImages/DynastyFive.jpg",
-      "https://eightinvestment.s3.us-east-1.amazonaws.com/files/DynastyEightImages/DynastySix.jpg",
-      "https://eightinvestment.s3.us-east-1.amazonaws.com/files/DynastyEightImages/DynastySeven.jpg",
-      "https://eightinvestment.s3.us-east-1.amazonaws.com/files/DynastyEightImages/DynastyEight.jpg",
-      "https://eightinvestment.s3.us-east-1.amazonaws.com/files/DynastyEightImages/DynastyNine.jpg",
-      "https://eightinvestment.s3.us-east-1.amazonaws.com/files/DynastyEightImages/DynastyTen.jpg",
-      "https://eightinvestment.s3.us-east-1.amazonaws.com/files/DynastyEightImages/DynastyEleven.jpg",
-      "https://eightinvestment.s3.us-east-1.amazonaws.com/files/DynastyEightImages/DynastyTwelve.jpg",
-      "https://eightinvestment.s3.us-east-1.amazonaws.com/files/DynastyEightImages/DynastyThirteen.jpg",
-      "https://eightinvestment.s3.us-east-1.amazonaws.com/files/DynastyEightImages/DynastyFourteen.jpg",
-      "https://eightinvestment.s3.us-east-1.amazonaws.com/files/DynastyEightImages/DynastyFifteen.jpg",
+      asset('DynastyEightImages/DynastyOne.jpg'),
+      asset('DynastyEightImages/DynastyTwo.jpg'),
+      asset('DynastyEightImages/DynastyThree.jpg'),
+      asset('DynastyEightImages/DynastyFour.jpg'),
+      asset('DynastyEightImages/DynastyFive.jpg'),
+      asset('DynastyEightImages/DynastySix.jpg'),
+      asset('DynastyEightImages/DynastySeven.jpg'),
+      asset('DynastyEightImages/DynastyEight.jpg'),
+      asset('DynastyEightImages/DynastyNine.jpg'),
+      asset('DynastyEightImages/DynastyTen.jpg'),
+      asset('DynastyEightImages/DynastyEleven.jpg'),
+      asset('DynastyEightImages/DynastyTwelve.jpg'),
+      asset('DynastyEightImages/DynastyThirteen.jpg'),
+      asset('DynastyEightImages/DynastyFourteen.jpg'),
+      asset('DynastyEightImages/DynastyFifteen.jpg'),
     ],
     features: [
       {

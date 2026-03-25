@@ -575,9 +575,8 @@ const ContactFooter = () => {
                       color: "#FFFFFF",
                     }}
                   >
-                    Pertokoan Sunset Road Permai JL. Boulevard Sunset Road,
-                    Simpang Dewa Ruci, Kuta, Kec. Kuta, Kabupaten Badung, Bali
-                    80361
+                    Jalan Sang Hyang Nomor 88, Desa/Kelurahan Abianbase, Kec. Mengwi,
+                    Kab. Badung, Provinsi Bali, Kode Pos: 80351
                   </Typography>
                 </Stack>
                 <Stack direction="row" spacing={1.5} alignItems="center">

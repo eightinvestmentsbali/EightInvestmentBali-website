@@ -17,9 +17,7 @@ import JubinDaniel from "../../../../assets/Edited/Jubin.png";
 import FeraSanti from "../../../../assets/Edited/Fera.png";
 import EbieSam from "../../../../assets/Edited/Ebie.png";
 import Rakesh from "../../../../assets/Edited/Rakesh.png";
-import Jacob from "../../../../assets/Edited/Jacob.png";
 import Widia from "../../../../assets/Edited/Widia.png";
-import Aliey from "../../../../assets/Edited/Aliey.png";
 import Rani from "../../../../assets/Edited/Rani.png";
 import Vito from "../../../../assets/Edited/VitoG.png";
 import Demar from "../../../../assets/Edited/Demar.png";
@@ -73,23 +71,12 @@ const teamMembers: TeamMember[] = [
     bio: "Rakesh V K serves as Consulting Sales & Marketing Manager for Eight Investments and leads Sales & Marketing for Plumfin. He drives go-to-market strategy, partnerships, lead generation, and client relationships, helping build demand and accelerate growth across the group.",
   },
   {
-    name: "Jacob Kurian",
-    role: "Chief Operating Officer",
-    image: Jacob,
-    bio: "Jacob Kurian supports sales and marketing initiatives while leading operations as COO at Plumfin. He drives day-to-day execution, process discipline, and cross-team coordination, ensuring operational delivery stays aligned with commercial priorities and growth targets.",
-  },
-  {
     name: "Widia Ningsih",
     role: "Accounting Head",
     image: Widia,
     bio: "Widia Ningsih is Accounting Head at Eight Investments, leading bookkeeping, taxation, and day-to-day financial management. She ensures accurate reporting, clean reconciliations, and compliant filings, supporting disciplined controls and reliable financial visibility across the group.",
   },
-  {
-    name: "Aliey Dewati",
-    role: "Marketing and Community Relations Manager",
-    image: Aliey,
-    bio: "Aliey Dewati is Marketing and Community Relations Manager at Eight Investments, bringing Bali-based marketing leadership experience. She drives brand storytelling, partnerships, events, and community engagement, strengthening visibility and trust across developments, hospitality concepts, and networks.",
-  },
+
   {
     name: "Rani Rahmadani",
     role: "Procurement Manager",
