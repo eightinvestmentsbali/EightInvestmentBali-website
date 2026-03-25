@@ -75,8 +75,8 @@ const WhyDoInvestorschoose: React.FC = () => {
   });
 
   // Calculate opacity for the title - fades out as you scroll
-  const titleOpacity = useTransform(scrollYProgress, [0, 0.05], [1, 0]);
-  const titleY = useTransform(scrollYProgress, [0, 0.15], [0, -50]);
+  // const titleOpacity = useTransform(scrollYProgress, [0, 0.05], [1, 0]);
+  // const titleY = useTransform(scrollYProgress, [0, 0.15], [0, -50]);
 
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
     const cardThresholds = investmentReasons.map((_, index) => {
@@ -123,7 +123,7 @@ const WhyDoInvestorschoose: React.FC = () => {
         }}
       >
         {/* Title Section - Fades out on scroll */}
-        <motion.div
+        {/* <motion.div
           style={{
             opacity: titleOpacity,
             y: titleY,
@@ -135,7 +135,7 @@ const WhyDoInvestorschoose: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: false, margin: "-80px 0px 0px 0px" }}
           transition={{ duration: 0.4, ease: "easeOut" }}
-        >
+        > */}
           <Box sx={{ mb: { xs: 4, md: 10 } }}>
             <Typography
               variant="heroTitle"
@@ -156,7 +156,7 @@ const WhyDoInvestorschoose: React.FC = () => {
               }}
             />
           </Box>
-        </motion.div>
+        {/* </motion.div> */}
 
         {/* Cards Section - Stacked and revealed on scroll */}
         {investmentReasons.map((reason, index) => {
