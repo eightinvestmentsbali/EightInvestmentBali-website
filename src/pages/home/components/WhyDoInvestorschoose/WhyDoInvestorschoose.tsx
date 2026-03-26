@@ -145,7 +145,7 @@ const WhyDoInvestorschoose: React.FC = () => {
                 mb: { xs: 4, md: 6 },
               }}
             >
-              Why do investors choose <br /> Eight Investments Bali
+              Why do investors choose Eight Investments Bali
             </Typography>
 
             <Divider

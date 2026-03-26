@@ -16,6 +16,7 @@ interface FeaturedProjectCardProps {
   phases: any[];
   currentPhase: number;
   progressCardHeader: string;
+  projectLogo: string;
 }
 
 const FeaturedProjectCard = ({
@@ -23,6 +24,7 @@ const FeaturedProjectCard = ({
   location,
   image,
   statusBadge,
+  projectLogo,
   phases,
   currentPhase,
   onSeeMoreClick,
@@ -175,22 +177,49 @@ const FeaturedProjectCard = ({
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, ease: "easeOut" }}
             >
-              <Typography
-                variant="heroSubTitle"
-                component="h1"
-                color={theme.palette.primary.contrastText}
-                fontWeight={typographyTokens.fontWeights.medium}
-                sx={{
-                  fontSize: {
-                    xs: typographyTokens.fontSizes["2xl"],
-                    sm: typographyTokens.fontSizes["3xl"],
-                    md: typographyTokens.fontSizes["4xl"],
-                    lg: "3.1875rem",
-                  },
-                }}
+              <Stack
+                direction={{ xs: "column", md: "row" }}
+                spacing={{ xs: 0.2, md: 1, lg: 2 }}
+                alignItems="center"
               >
-                {projectName}
-              </Typography>
+                <Box
+                  component={"img"}
+                  src={projectLogo}
+                  alt={projectName}
+                  sx={{
+                    width: {
+                      xs: "28px",
+                      sm: "40px",
+                      md: "56px",
+                      lg: "72px",
+                    },
+                    height: {
+                      xs: "28px",
+                      sm: "40px",
+                      md: "56px",
+                      lg: "72px",
+                    },
+                    objectFit: "contain",
+                    flexShrink: 0,
+                  }}
+                />
+                <Typography
+                  variant="heroSubTitle"
+                  component="h1"
+                  color={theme.palette.primary.contrastText}
+                  fontWeight={typographyTokens.fontWeights.medium}
+                  sx={{
+                    fontSize: {
+                      xs: typographyTokens.fontSizes["2xl"],
+                      sm: typographyTokens.fontSizes["3xl"],
+                      md: typographyTokens.fontSizes["4xl"],
+                      lg: "3.1875rem",
+                    },
+                  }}
+                >
+                  {projectName}
+                </Typography>
+              </Stack>
             </motion.div>
             <motion.div
               initial={{ opacity: 0, y: 10 }}

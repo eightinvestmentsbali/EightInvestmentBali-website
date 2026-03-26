@@ -12,7 +12,13 @@ const ArchitectingProsperity: React.FC = () => {
     <>
       {/* Title: Bottom to Top */}
       <Grid size={{ xs: 12 }}>
-        <Box id="hero" sx={{ mt: { xs: 2, md: 4, lg: 5, xl: 8}, mb: { xs: 8, md: 10, lg: 15, xl: 20 } }}>
+        <Box
+          id="hero"
+          sx={{
+            mt: { xs: 2, md: 4, lg: 5, xl: 8 },
+            mb: { xs: 3.75, sm: 6.5, md: 7.5, lg: 13 },
+          }}
+        >
           <motion.div
             initial={{ y: 60, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
@@ -26,12 +32,10 @@ const ArchitectingProsperity: React.FC = () => {
               component="h1"
               sx={{
                 color: theme.palette.text.primary,
-                mb: { xs: 4, md: 6, lg: 10, xl: 14 },
+                mb: { xs: 1, md: 2, lg: 4, },
               }}
             >
-              Architecting Prosperity,
-              <br />
-              Beyond Investment
+              Architecting Prosperity, Beyond Investment
             </Typography>
           </motion.div>
 
@@ -47,7 +51,7 @@ const ArchitectingProsperity: React.FC = () => {
           >
             <Box>
               {/* <ArchitectureSVG width="100%" height="100%" /> */}
-          <HeroCarousel />
+              <HeroCarousel />
             </Box>
           </motion.div>
         </Box>

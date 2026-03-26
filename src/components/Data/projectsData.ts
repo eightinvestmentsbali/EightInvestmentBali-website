@@ -15,70 +15,11 @@ import LiliBrochure from '../../assets/LilyResidence-Brochure.pdf';
 import HiveBrochure from '../../assets/Hive-Brochure.pdf';
 import LittleSohoBrochure from '../../assets/Little-Soho-Brocher.pdf';
 import DynastyBrochure from '../../assets/Dynasty8-Brocher.pdf';
-// import LiliHome from "../../assets/HomeImages/LiliHome.jpg";
-// import LittleHome from "../../assets/HomeImages/LittleHome.jpg";
-// import HiveHome from "../../assets/HomeImages/HiveHome.jpg";
-// import Dynasty8Home from "../../assets/HomeImages/Dynasty8Home.jpg";
-// import LilliVillageOne from "../../assets/LiliVillageImages/LiliVillageOne.jpg";
-// import LilliVillageTwo from "../../assets/LiliVillageImages/LiliVillageTwo.jpg";
-// import LilliVillageThree from "../../assets/LiliVillageImages/LiliVillageThree.jpg";
-// import LilliVillageFour from "../../assets/LiliVillageImages/LiliVillageFour.jpg";
-// import LilliVillageFive from "../../assets/LiliVillageImages/LiliVillageFive.jpg";
-// import LilliVillageSix from "../../assets/LiliVillageImages/LiliVillageSix.jpg";
-// import LilliVillageSeven from "../../assets/LiliVillageImages/LiliVillageSeven.jpg";
-// import LilliVillageEight from "../../assets/LiliVillageImages/LiliVillageEight.png";
-// import LilliVillageNine from "../../assets/LiliVillageImages/LiliVillageNine.jpg";
-// import LilliVillageTen from "../../assets/LiliVillageImages/LiliVillageTen.jpg";
-// import LilliVillageEleven from "../../assets/LiliVillageImages/LiliVillageEleven.jpg";
-// import HiveOne from "../../assets/TheHiveImages/HiveOne.jpg";
-// import HiveTwo from "../../assets/TheHiveImages/HiveTwo.jpg";
-// import HiveThree from "../../assets/TheHiveImages/HiveThree.jpg";
-// import HiveFour from "../../assets/TheHiveImages/HiveFour.jpg";
-// import HiveFive from "../../assets/TheHiveImages/HiveFive.jpg";
-// import HiveSix from "../../assets/TheHiveImages/HiveSix.jpg";
-// import HiveSeven from "../../assets/TheHiveImages/HiveSeven.jpg";
-// import HiveEight from "../../assets/TheHiveImages/HiveEight.jpg";
-// import HiveNine from "../../assets/TheHiveImages/HiveNine.jpg";
-// import HiveTen from "../../assets/TheHiveImages/HiveTen.jpg";
-// import HiveEleven from "../../assets/TheHiveImages/HiveEleven.jpg";
-// import HiveTwelve from "../../assets/TheHiveImages/HiveTwelve.jpg";
-// import HiveThirteen from "../../assets/TheHiveImages/HiveThirteen.jpg";
-// import HiveFourteen from "../../assets/TheHiveImages/HiveFourteen.jpg";
-// import HiveFifteen from "../../assets/TheHiveImages/HiveFivteen.jpg";
-// import HiveSixteen from "../../assets/TheHiveImages/HiveSixteen.jpg";
-// import HiveSeventeen from "../../assets/TheHiveImages/HiveSeventeen.jpg";
-// import HiveEighteen from "../../assets/TheHiveImages/HiveEighteen.jpg";
-// import HiveNineteen from "../../assets/TheHiveImages/HiveNineteen.jpg";
-// import LittleSohoOne from "../../assets/LittleSohoImages/LittleSohoOne.jpg";
-// import LittleSohoTwo from "../../assets/LittleSohoImages/LittleSohoTwo.jpg";
-// import LittleSohoThree from "../../assets/LittleSohoImages/LittleSohoThree.jpg";
-// import LittleSohoFour from "../../assets/LittleSohoImages/LittleSohoFour.jpg";
-// import LittleSohoFive from "../../assets/LittleSohoImages/LittleSohoFive.jpg";
-// import LittleSohoSix from "../../assets/LittleSohoImages/LittleSohoSix.jpg";
-// import LittleSohoSeven from "../../assets/LittleSohoImages/LittleSohoSeven.jpg";
-// import LittleSohoEight from "../../assets/LittleSohoImages/LittleSohoEight.jpg";
-// import LittleSohoNine from "../../assets/LittleSohoImages/LittleSohoNine.jpg";
-// import LittleSohoTen from "../../assets/LittleSohoImages/LittleSohoTen.jpg";
-// import LittleSohoEleven from "../../assets/LittleSohoImages/LittleSohoEleven.jpg";
-// import LittleSohoTwelve from "../../assets/LittleSohoImages/LittleSohoTwelve.png";
-// import DynastyOne from "../../assets/DynastyEightImages/DynastyOne.jpg";
-// import DynastyTwo from "../../assets/DynastyEightImages/DynastyTwo.jpg";
-// import DynastyThree from "../../assets/DynastyEightImages/DynastyThree.jpg";
-// import DynastyFour from "../../assets/DynastyEightImages/DynastyFour.jpg";
-// import DynastyFive from "../../assets/DynastyEightImages/DynastyFive.jpg";
-// import DynastySix from "../../assets/DynastyEightImages/DynastySix.jpg";
-// import DynastySeven from "../../assets/DynastyEightImages/DynastySeven.jpg";
-// import DynastyEight from "../../assets/DynastyEightImages/DynastyEight.jpg";
-// import DynastyNine from "../../assets/DynastyEightImages/DynastyNine.jpg";
-// import DynastyTen from "../../assets/DynastyEightImages/DynastyTen.jpg";
-// import DynastyEleven from "../../assets/DynastyEightImages/DynastyEleven.jpg";
-// import DynastyTwelve from "../../assets/DynastyEightImages/DynastyTwelve.jpg";
-// import DynastyThirteen from "../../assets/DynastyEightImages/DynastyThirteen.jpg";
-// import DynastyFourteen from "../../assets/DynastyEightImages/DynastyFourteen.jpg";
-// import DynastyFifteen from "../../assets/DynastyEightImages/DynastyFifteen.jpg";
-// import HiveVideo from "../../assets/ProjectVideos/HiveVideo.mp4";
-// import DynastyVideo from "../../assets/ProjectVideos/DynastyVideo.mp4";
-// import LilliVillageVideo from "../../assets/ProjectVideos/LiliVideo.mp4";
+import LogoLiliVillage from '../../assets/ProjectsLogo/LogoLiliVillage.png';
+import LogoTheHive from '../../assets/ProjectsLogo/LogoTheHive.png';
+import LogoDynasty8 from '../../assets/ProjectsLogo/LogoDynasty8.png';
+import LogoLittleSoho from '../../assets/ProjectsLogo/LogoLittleSoho.png';
+
 
 const BASE_URL = (import.meta.env.VITE_BASE_URL ?? "").replace(/\/?$/, "/");
 
@@ -95,6 +36,7 @@ if (import.meta.env.DEV && !import.meta.env.VITE_BASE_URL) {
 export const projectsData = [
   {
     name: "Lili Village",
+    projectLogo: LogoLiliVillage,
     statusBadge: "SOLD OUT IN \n 3 WEEKS",
     location: "Abianbase–Mengwi, Bali",
     image: asset('HomeImages/LiliHome.jpg'),
@@ -106,7 +48,6 @@ export const projectsData = [
       asset('LiliVillageImages/LiliVillageThree.jpg'),
       asset('LiliVillageImages/LiliVillageFour.jpg'),
       asset('LiliVillageImages/LiliVillageFive.jpg'),
-      // asset('LiliVillageImages/LiliVillageSix.jpg'),
       asset('LiliVillageImages/LiliVillageSeven.jpg'),
       asset('LiliVillageImages/LiliVillageEight.png'),
       asset('LiliVillageImages/LiliVillageNine.jpg'),
@@ -171,6 +112,7 @@ export const projectsData = [
   },
   {
     name: "The Hive",
+    projectLogo: LogoTheHive,
     statusBadge: "SOLD OUT IN \n 3 DAYS",
     location: "Northern Canggu, Bali",
     image: asset('HomeImages/HiveHome.jpg'),
@@ -181,7 +123,6 @@ export const projectsData = [
       asset('TheHiveImages/HiveOne.jpg'),
       asset('TheHiveImages/HiveTwo.jpg'),
       asset('TheHiveImages/HiveThree.jpg'),
-      // asset('TheHiveImages/HiveFour.jpg'),
       asset('TheHiveImages/HiveFive.jpg'),
       asset('TheHiveImages/HiveSix.jpg'),
       asset('TheHiveImages/HiveSeven.jpg'),
@@ -192,7 +133,6 @@ export const projectsData = [
       asset('TheHiveImages/HiveTwelve.jpg'),
       asset('TheHiveImages/HiveThirteen.jpg'),
       asset('TheHiveImages/HiveFourteen.jpg'),
-      // asset('TheHiveImages/HiveFivteen.jpg'),
       asset('TheHiveImages/HiveSixteen.jpg'),
       asset('TheHiveImages/HiveSeventeen.jpg'),
       asset('TheHiveImages/HiveEighteen.jpg'),
@@ -256,6 +196,7 @@ export const projectsData = [
   },
   {
     name: "Little Soho",
+    projectLogo: LogoLittleSoho,
     statusBadge: "HOSPITALITY \n PROJECT",
     location: "Canggu, Bali",
     image: asset('HomeImages/LittleHome.jpg'),
@@ -318,10 +259,11 @@ export const projectsData = [
     brochure: LittleSohoBrochure,
     primaryCTA: "Download Brochure",
     secondaryCTA: "",
-    progressCardHeader: "Renovation",
+    progressCardHeader: "Premium Guesthouse and Cafe",
   },
   {
     name: "Dynasty 8",
+    projectLogo: LogoDynasty8,
     statusBadge: "NEW PROJECT \n 50% SOLD",
     location: "North Canggu, Bali",
     image: asset('HomeImages/Dynasty8Home.jpg'),

@@ -167,7 +167,7 @@ const DiamondTeamSection = () => {
               component="h1"
               sx={{
                 color: theme.palette.text.primary,
-                fontWeight: typographyTokens.fontWeights.medium,
+                // fontWeight: typographyTokens.fontWeights.medium,
                 mb: 4,
                 pb: 4,
                 borderBottom: "2px solid #D1D1D1",

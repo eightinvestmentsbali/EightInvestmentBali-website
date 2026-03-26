@@ -54,17 +54,18 @@ const OurCoreValues: React.FC = () => {
             component="h1"
             sx={{
               color: theme.palette.text.primary,
-              fontWeight: typographyTokens.fontWeights.medium,
             }}
           >
             Our Core Values
           </Typography>
           <Divider sx={{ width: "100%", height: "2px", bgcolor: "#67697C" }} />
           <Typography
-            variant="heroSubTitle"
+            variant="h3"
             component="h1"
             sx={{
+              fontWeight: typographyTokens.fontWeights.regular,
               color: "#484848",
+              lineHeight: 1.7,
             }}
           >
             Our core values shape every project we undertake. They drive our

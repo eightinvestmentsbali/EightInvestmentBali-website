@@ -6,10 +6,25 @@ import { projectsData } from "../../../../components/Data/projectsData";
 import { useNavigate } from "react-router-dom";
 
 const projects = projectsData;
+const cachedProjectImages = new Set<string>();
+
 const Projects: React.FC = () => {
   const theme = useTheme();
   const navigate = useNavigate();
-  const [loadedImages, setLoadedImages] = useState<Record<number, boolean>>({});
+  const [loadedImages, setLoadedImages] = useState<Record<number, boolean>>(() =>
+    projects.reduce<Record<number, boolean>>((acc, project, index) => {
+      acc[index] = cachedProjectImages.has(project.image);
+      return acc;
+    }, {})
+  );
+
+  const markImageLoaded = (index: number, imageSrc: string) => {
+    cachedProjectImages.add(imageSrc);
+    setLoadedImages((prev) => {
+      if (prev[index]) return prev;
+      return { ...prev, [index]: true };
+    });
+  };
 
   return (
     <Box sx={{ bgcolor: "#232323" }}>
@@ -27,7 +42,7 @@ const Projects: React.FC = () => {
           sx={{
             color: theme.palette.primary.contrastText,
             mb: { xs: 2, md: 4 },
-            fontWeight: typographyTokens.fontWeights.medium,
+            // fontWeight: typographyTokens.fontWeights.medium,
           }}
         >
           Projects
@@ -76,12 +91,8 @@ const Projects: React.FC = () => {
                     loading={index === 0 ? "eager" : "lazy"}
                     fetchPriority={index === 0 ? "high" : "auto"}
                     decoding="async"
-                    onLoad={() =>
-                      setLoadedImages((prev) => ({ ...prev, [index]: true }))
-                    }
-                    onError={() =>
-                      setLoadedImages((prev) => ({ ...prev, [index]: true }))
-                    }
+                    onLoad={() => markImageLoaded(index, project.image)}
+                    onError={() => markImageLoaded(index, project.image)}
                     sx={{
                       position: "absolute",
                       inset: 0,

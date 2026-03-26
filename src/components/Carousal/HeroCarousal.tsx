@@ -18,6 +18,7 @@ const slides = projectsData.map((project) => {
   const isNew = project.statusBadge.toUpperCase().includes("NEW PROJECT");
   return {
     name: project.name,
+    projectLogo: project.projectLogo,
     statusBadge: project.statusBadge,
     location: project.location,
     image: project.image,
@@ -133,24 +134,37 @@ const HeroCarousel: React.FC = () => {
         }}
       >
         {/* ── Slides ── */}
-        <AnimatePresence initial={false}>
+        <AnimatePresence initial={false} mode="sync">
           <MotionBox
             key={current}
-            initial={{ opacity: 0, scale: 1.05 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.97 }}
-            transition={{ duration: 1.1, ease: [0.25, 0.1, 0.25, 1] }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.8, ease: "easeInOut" }}
             sx={{ position: "absolute", inset: 0 }}
             role="img"
             aria-label={slide.alt}
           >
             <Box
-              component="img"
+              key={`image-${current}`}
               src={slide.image}
               alt={slide.alt}
               loading={current === 0 ? "eager" : "lazy"}
               decoding="async"
               fetchPriority={current === 0 ? "high" : "auto"}
+              initial={{
+                scale: 1.08,
+                x: current % 2 === 0 ? "-2%" : "2%",
+              }}
+              animate={{
+                scale: 1,
+                x: "0%",
+              }}
+              transition={{
+                duration: 1.6,
+                ease: [0.22, 1, 0.36, 1],
+              }}
+              component={motion.img}
               sizes="100vw"
               sx={{
                 width: "100%",
@@ -303,7 +317,7 @@ const HeroCarousel: React.FC = () => {
         <Box
           sx={{
             position: "absolute",
-            bottom: { xs: 72, sm: 80, md: 88, lg: 110 },
+            bottom: { xs: 40, sm: 80, md: 88, lg: 110 },
             left: { xs: 16, sm: 24, md: 32, lg: 64 },
             right: { xs: 16, sm: 24, md: 32, lg: "38%" },
             zIndex: 10,
@@ -350,24 +364,55 @@ const HeroCarousel: React.FC = () => {
               </Box>
 
               {/* Project name */}
-              <Typography
-                component="h2"
+              <Box
                 sx={{
-                  fontSize: {
-                    xs: "1.9rem",
-                    sm: "2.2rem",
-                    md: "2.8rem",
-                    lg: "4.5rem",
-                  },
-                  fontWeight: 300,
-                  lineHeight: 1.0,
-                  letterSpacing: "-0.02em",
-                  color: "#fff",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: { xs: 1, sm: 1.25, md: 1.5, lg: 2 },
                   mb: { xs: 0.5, md: 1 },
                 }}
               >
-                {slide.name}
-              </Typography>
+                {slide.projectLogo && (
+                  <Box
+                    component="img"
+                    src={slide.projectLogo}
+                    alt={slide.name}
+                    sx={{
+                      width: {
+                        xs: "26px",
+                        sm: "34px",
+                        md: "44px",
+                        lg: "64px",
+                      },
+                      height: {
+                        xs: "26px",
+                        sm: "34px",
+                        md: "44px",
+                        lg: "64px",
+                      },
+                      objectFit: "contain",
+                      flexShrink: 0,
+                    }}
+                  />
+                )}
+                <Typography
+                  component="h2"
+                  sx={{
+                    fontSize: {
+                      xs: "1.9rem",
+                      sm: "2.2rem",
+                      md: "2.8rem",
+                      lg: "4.5rem",
+                    },
+                    fontWeight: 300,
+                    lineHeight: 1.0,
+                    letterSpacing: "-0.02em",
+                    color: "#fff",
+                  }}
+                >
+                  {slide.name}
+                </Typography>
+              </Box>
 
               {/* Location */}
               <Box sx={{ display: "flex", alignItems: "center", gap: 0.75 }}>

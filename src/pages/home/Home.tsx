@@ -23,6 +23,7 @@ import AnimatedGradientBlob from "../../components/background/AnimatedGradientBl
 import { useLocation } from "react-router-dom";
 // import AnimatedGradient from "../../components/background/AnimatedGradient";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
+import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 
 const Home: React.FC = () => {
   const theme = useTheme();
@@ -66,10 +67,14 @@ const Home: React.FC = () => {
 
   useEffect(() => {
     const sectionIds = [
+      "hero",
       "about-us",
+      "why-invest",
+      "best-investment-opportunity",
       "our-projects",
       "our-process",
       "our-services",
+      "our-core-values",
       "our-team",
       "contact-us",
     ];
@@ -118,7 +123,6 @@ const Home: React.FC = () => {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Scroll to top function
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -135,23 +139,9 @@ const Home: React.FC = () => {
         bgcolor: theme.palette.background.paper,
       }}
     >
-      {/* <AnimatedGradient /> */}
       <AnimatedGradientBlob />
-
-      {/* Your content */}
-      {/* <MuiGradientBackground /> */}
-      {/* <BackgroundParticles /> */}
-
-      {/* <GLSLBackground /> */}
-      {/* <ShaderBackground /> */}
-      {/* <MeshBackground /> */}
       <Navbar />
-      <Box
-        sx={{ position: "relative", zIndex: 1 }}
-        // style={{
-        // filter: "saturate(115%) contrast(105%)",
-        // }}
-      >
+      <Box sx={{ position: "relative", zIndex: 1 }}>
         <Container
           maxWidth="xl"
           sx={{
@@ -166,18 +156,38 @@ const Home: React.FC = () => {
           }}
         >
           <Grid container justifyContent="center" alignItems="center">
-            <ArchitectingProsperity />
-            <UnifyYourVision />
-            <WhyDoInvestorschoose />
+            <Box component="section" id="hero" sx={{ width: "100%" }}>
+              <ArchitectingProsperity />
+            </Box>
+            <Box component="section" id="about-us" sx={{ width: "100%" }}>
+              <UnifyYourVision />
+            </Box>
+            <Box component="section" id="why-invest" sx={{ width: "100%" }}>
+              <WhyDoInvestorschoose />
+            </Box>
           </Grid>
         </Container>
-        <BestInvestmentOpportunity />
-        <Projects />
-        <OurProcess />
-        <OurServices />
-        <OurCoreValues />
-        <DiamondTeamSection />
-        <ContactFooter />
+        <Box component="section" id="best-investment-opportunity">
+          <BestInvestmentOpportunity />
+        </Box>
+        <Box component="section" id="our-projects">
+          <Projects />
+        </Box>
+        <Box component="section" id="our-process">
+          <OurProcess />
+        </Box>
+        <Box component="section" id="our-services">
+          <OurServices />
+        </Box>
+        <Box component="section" id="our-core-values">
+          <OurCoreValues />
+        </Box>
+        <Box component="section" id="our-team">
+          <DiamondTeamSection />
+        </Box>
+        <Box component="section" id="contact-us">
+          <ContactFooter />
+        </Box>
       </Box>
       <Zoom in={showBackToTop}>
         <Fab
@@ -185,12 +195,12 @@ const Home: React.FC = () => {
           aria-label="scroll back to top"
           sx={{
             position: "fixed",
-            bottom: { xs: 16, md: 32 },
+            bottom: { xs: 80, md: 104 },
             right: { xs: 16, md: 32 },
             zIndex: 1000,
             bgcolor: theme.palette.primary.main,
             color: theme.palette.primary.contrastText,
-             "&:hover": {
+            "&:hover": {
               bgcolor: theme.palette.primary.main, // Keep same color
               transform: "scale(1.1)",
             },
@@ -204,6 +214,34 @@ const Home: React.FC = () => {
           <KeyboardArrowUpIcon />
         </Fab>
       </Zoom>
+      <Fab
+        component="a"
+        href="https://api.whatsapp.com/send/?phone=6282230845987&text&type=phone_number&app_absent=0"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Contact on WhatsApp"
+        sx={{
+          position: "fixed",
+
+          bottom: { xs: 16, md: 32 },
+          right: { xs: 16, md: 32 },
+          zIndex: 1000,
+          bgcolor: "#25D366",
+          color: "#FFFFFF",
+          "&:hover": {
+            bgcolor: "#25D366",
+            color: "#FFFFFF",
+            transform: "scale(1.1)",
+          },
+          "&:active": {
+            bgcolor: "#25D366",
+          },
+          transition: "all 0.3s ease",
+          boxShadow: "0 4px 20px rgba(0, 0, 0, 0.20)",
+        }}
+      >
+        <WhatsAppIcon />
+      </Fab>
     </Box>
   );
 };

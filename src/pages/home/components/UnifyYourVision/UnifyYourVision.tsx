@@ -56,7 +56,7 @@ const UnifyYourVision: React.FC = () => {
     <Grid size={{ xs: 12 }} id="about-us">
       <Box
         sx={{
-          mb: { xs: 3.75, sm: 6.5, md: 7.5, lg: 13, xl: 20 },
+          mb: { xs: 3.75, sm: 6.5, md: 7.5, lg: 18},
           mt: { xs: 1.5, md: 2.5, lg: 6, xl: 7.5 },
         }}
       >
@@ -73,10 +73,10 @@ const UnifyYourVision: React.FC = () => {
             component="h1"
             sx={{
               color: theme.palette.text.primary,
-              mb: { xs: 2, md: 4, lg: 6, xl: 8 },
+              mb: theme.customSpacing.sectionMarginBottom,
             }}
           >
-            Unify your vision with <br /> limitless possibilities
+            Unify your vision with limitless possibilities
           </Typography>
         </motion.div>
 
@@ -89,11 +89,13 @@ const UnifyYourVision: React.FC = () => {
           }}
         >
           <Typography
-            variant="heroSubTitle"
+            variant="h3"
             component="h1"
             sx={{
               color: "#484848",
-              mb: { xs: 2, md: 6, lg: 8 },
+              fontWeight: typographyTokens.fontWeights.regular,
+              mb: theme.customSpacing.sectionMarginBottom,
+              lineHeight: 1.7
             }}
           >
             From land acquisition to design, delivery, and ongoing operations,
@@ -115,7 +117,7 @@ const UnifyYourVision: React.FC = () => {
             sx={{
               height: "2px",
               backgroundColor: theme.palette.divider,
-              mb: { xs: 2, md: 4, lg: 6, xl: 8 },
+              mb: theme.customSpacing.sectionMarginBottom,
             }}
           />
         </motion.div>
@@ -129,11 +131,12 @@ const UnifyYourVision: React.FC = () => {
           }}
         >
           <Typography
-            variant="heroSubTitle"
+            variant="h3"
             component="h1"
             sx={{
               color: "#484848",
-              mb: { xs: 2, md: 6, lg: 8 },
+              fontWeight: typographyTokens.fontWeights.regular,
+              mb: theme.customSpacing.sectionMarginBottom,
             }}
           >
             We connect global investors with a haven of exclusive investment

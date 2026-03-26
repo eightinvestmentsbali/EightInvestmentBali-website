@@ -19,6 +19,28 @@ declare module "@mui/material/styles" {
     heroTitle?: React.CSSProperties & Record<string, any>;
     heroSubTitle?: React.CSSProperties & Record<string, any>;
   }
+
+  interface Theme {
+    customSpacing: {
+      sectionMarginBottom: {
+        xs: number;
+        md: number;
+        lg: number;
+        xl: number;
+      };
+    };
+  }
+
+  interface ThemeOptions {
+    customSpacing?: {
+      sectionMarginBottom?: {
+        xs?: number;
+        md?: number;
+        lg?: number;
+        xl?: number;
+      };
+    };
+  }
 }
 
 declare module "@mui/material/Typography" {
@@ -189,6 +211,14 @@ const createTypographyVariant = (
 /* ===================== MUI THEME ===================== */
 
 const themeOptions: ThemeOptions = {
+  customSpacing: {
+    sectionMarginBottom: {
+      xs: 2,
+      md: 3,
+      lg: 4,
+      xl: 6,
+    },
+  },
   palette: {
     primary: {
       main: colorTokens.primary[50],
@@ -219,8 +249,8 @@ const themeOptions: ThemeOptions = {
     /* ✅ HERO TITLE (ADDED) */
     heroTitle: {
       fontFamily: "Poppins, sans-serif",
-      fontWeight: typographyTokens.fontWeights.medium,
-      fontSize: "clamp(1.3rem, 5vw + 0.5rem, 6.5rem)",
+      fontWeight: typographyTokens.fontWeights.bold,
+      fontSize: "clamp(1.3rem, calc(5vw + 0.5rem), 3.5rem)",
       lineHeight: 1.1,
       letterSpacing: "-0.02em",
     },

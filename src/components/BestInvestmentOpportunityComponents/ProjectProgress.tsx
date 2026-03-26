@@ -37,6 +37,7 @@ const ProjectProgress: React.FC<ProjectProgressProps> = ({
   // Ensure activePhase is within bounds
   const safeActivePhase = getSafePhaseIndex(activePhase);
   const selectedPhase = phases[safeActivePhase] ?? phases[0];
+  const showPhases = progressCardHeader !== "Premium Guesthouse and Cafe";
 
   return (
     <Box
@@ -69,7 +70,7 @@ const ProjectProgress: React.FC<ProjectProgressProps> = ({
         </Typography>
 
         {/* PERCENTAGE */}
-        {progressCardHeader !== "Renovation" ? (
+        {progressCardHeader !== "Premium Guesthouse and Cafe" ? (
           <Typography
             variant="heroSubTitle"
             component="h1"
@@ -90,7 +91,20 @@ const ProjectProgress: React.FC<ProjectProgressProps> = ({
             {selectedPhase.progress}%
           </Typography>
         ) : (
-          <Box sx={{ pb: { xs: 0.4, sm: 0.8, md: 0.12, lg: 2, xl: 2 } }}>
+          <Box
+            sx={{
+              minHeight: {
+                xs: "40px",
+                sm: "62px",
+                md: "88px",
+                lg: "92px",
+                xl: "176px",
+              },
+              pb: { xs: 1.5, sm: 2, md: 3, lg: 4, xl: 5 },
+              display: "flex",
+              alignItems: "flex-start",
+            }}
+          >
             <Typography
               sx={{
                 fontSize: {
@@ -98,7 +112,7 @@ const ProjectProgress: React.FC<ProjectProgressProps> = ({
                   sm: "4px",
                   md: "6px",
                   lg: "8px",
-                  xl: typographyTokens.fontSizes.xs,
+                  xl: typographyTokens.fontSizes.md,
                 },
                 lineHeight: {xs: 1.2, md: 1.4 },
               }}
@@ -111,151 +125,149 @@ const ProjectProgress: React.FC<ProjectProgressProps> = ({
         )}
 
         {/* TIMELINE */}
-        <Box
-          sx={{
-            position: "relative",
-            mb: { xs: 0.5, sm: 0.8, md: 1, lg: 1.5, xl: 2 },
-          }}
-        >
-          {/* DOTTED LINE */}
+        {showPhases && (
           <Box
             sx={{
-              position: "absolute",
-              top: { xs: "8%", sm: "9%", md: "10%", lg: "10%", xl: "10%" },
-              left: 0,
-              right: 0,
-              borderTop: `1px dashed ${theme.palette.primary.main}`,
+              position: "relative",
+              mb: { xs: 0.5, sm: 0.8, md: 1, lg: 1.5, xl: 2 },
             }}
-          />
+          >
+            {/* DOTTED LINE */}
+            <Box
+              sx={{
+                position: "absolute",
+                top: { xs: "8%", sm: "9%", md: "10%", lg: "10%", xl: "10%" },
+                left: 0,
+                right: 0,
+                borderTop: `1px dashed ${theme.palette.primary.main}`,
+              }}
+            />
 
-          {/* PHASES */}
-          <Box display="flex" justifyContent="space-between">
-            {phases.map((phase, index) => {
-              const isActive = index === safeActivePhase;
+            {/* PHASES */}
+            <Box display="flex" justifyContent="space-between">
+              {phases.map((phase, index) => {
+                const isActive = index === safeActivePhase;
 
-              return (
-                <Box
-                  key={phase.label}
-                  textAlign="center"
-                  sx={{ width: `${100 / phases.length}%`, cursor: "pointer" }}
-                  onClick={() => setActivePhase(index)}
-                >
-                  {/* DIAMOND */}
+                return (
                   <Box
-                    sx={{
-                      width: {
-                        xs: "3px",
-                        sm: "4px",
-                        md: "5px",
-                        lg: "7px",
-                        xl: "10px",
-                      },
-                      height: {
-                        xs: "3px",
-                        sm: "4px",
-                        md: "5px",
-                        lg: "7px",
-                        xl: "10px",
-                      },
-                      mx: "auto",
-                      mb: { xs: 0.3, sm: 0.5, md: 0.7, lg: 0.8, xl: 1 },
-                      transform: "rotate(45deg)",
-                      bgcolor: isActive
-                        ? "#BFC6B8"
-                        : theme.palette.primary.main,
-                      transition: "all .25s ease",
-                    }}
-                  />
-
-                  {/* PHASE TEXT */}
-                  <Typography
-                    variant="body2"
-                    fontWeight={typographyTokens.fontWeights["semi-bold"]}
-                    color={theme.palette.primary.main}
-                    lineHeight={{ xs: 2 }}
-                    sx={{
-                      fontSize: {
-                        xs: "0.3rem",
-                        sm: "0.4rem",
-                        md: "0.5rem",
-                        lg: "0.6rem",
-                        xl: "0.8rem",
-                      },
-                    }}
+                    key={phase.label}
+                    textAlign="center"
+                    sx={{ width: `${100 / phases.length}%`, cursor: "pointer" }}
+                    onClick={() => setActivePhase(index)}
                   >
-                    {phase.label}
-                  </Typography>
-
-                  <Typography
-                    variant="body2"
-                    fontWeight={typographyTokens.fontWeights.regular}
-                    color={theme.palette.primary.main}
-                    lineHeight={{ xs: 1.2 }}
-                    sx={{
-                      fontSize: {
-                        xs: "0.3rem",
-                        sm: "0.4rem",
-                        md: "0.5rem",
-                        lg: "0.6rem",
-                        xl: "0.8rem",
-                      },
-                      // bgcolor: "#ccc",
-                      transition: "all .25s ease",
-                      // FIX: Set a consistent min-height so all boxes match
-                      minHeight: {
-                        xs: "1rem",
-                        sm: "1.4rem",
-                        md: "1.8rem",
-                        lg: "2rem",
-                      },
-                      // Ensure the text is centered vertically within that fixed height
-                      display: "flex",
-                      // alignItems: "center",
-                      justifyContent: "center",
-                      textAlign: "center",
-                    }}
-                  >
-                    {phase.date}
-                  </Typography>
-
-                  {/* ACTIVE INDICATOR */}
-                  {isActive && (
+                    {/* DIAMOND */}
                     <Box
                       sx={{
-                        mt: { xs: 0.5, sm: 0.7, md: 0.9, lg: 1, xl: 1.2 },
-                        width: 0,
-                        height: 0,
+                        width: {
+                          xs: "3px",
+                          sm: "4px",
+                          md: "5px",
+                          lg: "7px",
+                          xl: "10px",
+                        },
+                        height: {
+                          xs: "3px",
+                          sm: "4px",
+                          md: "5px",
+                          lg: "7px",
+                          xl: "10px",
+                        },
                         mx: "auto",
-                        borderLeft: {
-                          xs: "3px solid transparent",
-                          sm: "4px solid transparent",
-                          md: "5px solid transparent",
-                          lg: "6px solid transparent",
-                          xl: "7px solid transparent",
-                        },
-                        borderRight: {
-                          xs: "3px solid transparent",
-                          sm: "4px solid transparent",
-                          md: "5px solid transparent",
-                          lg: "6px solid transparent",
-                          xl: "7px solid transparent",
-                        },
-                        borderTop: {
-                          xs: `4px solid ${theme.palette.primary.main}`,
-                          sm: `5px solid ${theme.palette.primary.main}`,
-                          md: `6px solid ${theme.palette.primary.main}`,
-                          lg: `7px solid ${theme.palette.primary.main}`,
-                          xl: `8px solid ${theme.palette.primary.main}`,
-                        },
+                        mb: { xs: 0.3, sm: 0.5, md: 0.7, lg: 0.8, xl: 1 },
+                        transform: "rotate(45deg)",
+                        bgcolor: isActive
+                          ? "#BFC6B8"
+                          : theme.palette.primary.main,
                         transition: "all .25s ease",
                       }}
                     />
-                  )}
-                </Box>
-              );
-            })}
+
+                    {/* PHASE TEXT */}
+                    <Typography
+                      variant="body2"
+                      fontWeight={typographyTokens.fontWeights["semi-bold"]}
+                      color={theme.palette.primary.main}
+                      lineHeight={{ xs: 2 }}
+                      sx={{
+                        fontSize: {
+                          xs: "0.3rem",
+                          sm: "0.4rem",
+                          md: "0.5rem",
+                          lg: "0.6rem",
+                          xl: "0.8rem",
+                        },
+                      }}
+                    >
+                      {phase.label}
+                    </Typography>
+
+                    <Typography
+                      variant="body2"
+                      fontWeight={typographyTokens.fontWeights.regular}
+                      color={theme.palette.primary.main}
+                      lineHeight={{ xs: 1.2 }}
+                      sx={{
+                        fontSize: {
+                          xs: "0.3rem",
+                          sm: "0.4rem",
+                          md: "0.5rem",
+                          lg: "0.6rem",
+                          xl: "0.8rem",
+                        },
+                        transition: "all .25s ease",
+                        minHeight: {
+                          xs: "1rem",
+                          sm: "1.4rem",
+                          md: "1.8rem",
+                          lg: "2rem",
+                        },
+                        display: "flex",
+                        justifyContent: "center",
+                        textAlign: "center",
+                      }}
+                    >
+                      {phase.date}
+                    </Typography>
+
+                    {/* ACTIVE INDICATOR */}
+                    {isActive && (
+                      <Box
+                        sx={{
+                          mt: { xs: 0.5, sm: 0.7, md: 0.9, lg: 1, xl: 1.2 },
+                          width: 0,
+                          height: 0,
+                          mx: "auto",
+                          borderLeft: {
+                            xs: "3px solid transparent",
+                            sm: "4px solid transparent",
+                            md: "5px solid transparent",
+                            lg: "6px solid transparent",
+                            xl: "7px solid transparent",
+                          },
+                          borderRight: {
+                            xs: "3px solid transparent",
+                            sm: "4px solid transparent",
+                            md: "5px solid transparent",
+                            lg: "6px solid transparent",
+                            xl: "7px solid transparent",
+                          },
+                          borderTop: {
+                            xs: `4px solid ${theme.palette.primary.main}`,
+                            sm: `5px solid ${theme.palette.primary.main}`,
+                            md: `6px solid ${theme.palette.primary.main}`,
+                            lg: `7px solid ${theme.palette.primary.main}`,
+                            xl: `8px solid ${theme.palette.primary.main}`,
+                          },
+                          transition: "all .25s ease",
+                        }}
+                      />
+                    )}
+                  </Box>
+                );
+              })}
+            </Box>
           </Box>
-        </Box>
+        )}
       </Box>
 
       {/* STATUS CARD */}

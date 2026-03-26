@@ -14,7 +14,6 @@ import { useTheme } from "@mui/material/styles";
 import FeaturedProjectCard from "../../../../components/BestInvestmentOpportunityComponents/FeaturedProjectCard";
 import { typographyTokens } from "../../../../theme/MuiTheme";
 import PlayCircleOutlineIcon from "@mui/icons-material/PlayCircleOutline";
-import EastIcon from "@mui/icons-material/East";
 import { useState, useEffect, useRef } from "react";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
@@ -41,11 +40,16 @@ const BestInvestmentOpportunity = () => {
   const descriptionRef = useRef<HTMLDivElement>(null);
   const cardRef = useRef<HTMLDivElement>(null);
   const [loadedImages, setLoadedImages] = useState<Record<number, boolean>>({});
+  const [loadedFeatureImages, setLoadedFeatureImages] = useState<
+    Record<string, boolean>
+  >({});
+  const [isGalleryImageLoading, setIsGalleryImageLoading] = useState(true);
   const [direction, setDirection] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const intervalRef = useRef<number | undefined>(undefined);
   const pauseTimeoutRef = useRef<number | undefined>(undefined);
   const images = projectsData[activeProjectIndex]?.featuresImages ?? [];
+  const activeGalleryImage = images[activeImageIndex] || images[0] || "";
 
   const { scrollYProgress: cardProgress } = useScroll({
     target: cardRef,
@@ -61,8 +65,36 @@ const BestInvestmentOpportunity = () => {
   );
 
   useEffect(() => {
+    setDirection(0);
     setActiveImageIndex(0);
   }, [activeProjectIndex]);
+
+  useEffect(() => {
+    if (!images.length) {
+      setIsGalleryImageLoading(false);
+      return;
+    }
+
+    images.forEach((img) => {
+      if (loadedFeatureImages[img]) return;
+      const preloadImage = new Image();
+      preloadImage.src = img;
+      preloadImage.onload = () => {
+        setLoadedFeatureImages((prev) =>
+          prev[img] ? prev : { ...prev, [img]: true },
+        );
+      };
+    });
+  }, [activeProjectIndex, images, loadedFeatureImages]);
+
+  useEffect(() => {
+    if (!activeGalleryImage) {
+      setIsGalleryImageLoading(false);
+      return;
+    }
+
+    setIsGalleryImageLoading(!loadedFeatureImages[activeGalleryImage]);
+  }, [activeGalleryImage, loadedFeatureImages]);
 
   useEffect(() => {
     if (isModalOpen) {
@@ -116,6 +148,13 @@ const BestInvestmentOpportunity = () => {
     setDirection(index > activeImageIndex ? 1 : -1);
     setActiveImageIndex(index);
     pauseAutoRotation();
+  };
+
+  const handleProjectChange = (index: number) => {
+    setDirection(0);
+    setActiveImageIndex(0);
+    setIsGalleryImageLoading(true);
+    setActiveProjectIndex(index);
   };
 
   const pauseAutoRotation = () => {
@@ -188,56 +227,36 @@ const BestInvestmentOpportunity = () => {
                 component="h1"
                 color={theme.palette.primary.contrastText}
               >
-                Best investment <br /> opportunity
+                Best investment opportunity
               </Typography>
 
-              <Button
+              <IconButton
+                aria-label="Open construction update"
                 onClick={() => {
                   navigate("/project-details", {
                     state: { projectIndex: activeProjectIndex },
                   });
                 }}
-                variant="outlined"
                 sx={{
                   color: theme.palette.primary.contrastText,
-                  borderColor: theme.palette.primary.contrastText,
-                  borderRadius: 50,
-                  display: { xs: "none", sm: "inline-flex" },
-                  px: { xs: 2, sm: 2, md: 3 },
-                  py: { xs: 0.5, sm: 0.8, md: 1, lg: 1.5, xl: 2 },
+                  // border: `1px solid ${theme.palette.primary.contrastText}`,
+                  borderRadius: "50%",
+                  display: { xs: "none", sm: "flex" },
+                  // width: { sm: 38, md: 44, lg: 50 },
+                  // height: { sm: 38, md: 44, lg: 50 },
                   flexShrink: 0,
-                  fontWeight: typographyTokens.fontWeights.regular,
-                  fontSize: {
-                    xs: "8px",
-                    sm: "10px",
-                    md: "12px",
-                    lg: "16px",
-                    xl: "32px",
-                  },
-                  "& .MuiButton-startIcon svg": {
-                    fontSize: {
-                      xs: "8px",
-                      sm: "10px",
-                      md: "12px",
-                      lg: "16px",
-                      xl: "32px",
-                    },
-                  },
-                  "& .MuiButton-endIcon svg": {
-                    fontSize: {
-                      xs: "8px",
-                      sm: "10px",
-                      md: "12px",
-                      lg: "16px",
-                      xl: "32px",
-                    },
+                  "&:hover": {
+                    bgcolor: "rgba(255,255,255,0.08)",
+                    borderColor: theme.palette.primary.contrastText,
                   },
                 }}
-                startIcon={<PlayCircleOutlineIcon />}
-                endIcon={<EastIcon />}
               >
-                CONSTRUCTION UPDATE
-              </Button>
+                <PlayCircleOutlineIcon
+                  sx={{
+                    fontSize: "clamp(4rem, 0.9rem + 0.45vw, 10.4rem)",
+                  }}
+                />
+              </IconButton>
             </Stack>
             <Divider
               sx={{
@@ -257,6 +276,7 @@ const BestInvestmentOpportunity = () => {
                     state: { projectIndex: activeProjectIndex },
                   })}
               statusBadge={projectsData[activeProjectIndex].statusBadge}
+              projectLogo={projectsData[activeProjectIndex].projectLogo}
               phases={projectsData[activeProjectIndex].phases}
               currentPhase={projectsData[activeProjectIndex].currentPhase}
               progressCardHeader={projectsData[activeProjectIndex].progressCardHeader}
@@ -271,7 +291,7 @@ const BestInvestmentOpportunity = () => {
                 return (
                   <Grid size={{ xs: 3 }} key={project.name}>
                     <Box
-                      onClick={() => setActiveProjectIndex(index)}
+                      onClick={() => handleProjectChange(index)}
                       sx={{
                         borderRadius: 3,
                         p: { xs: 0.5, md: 1, lg: 1.5 },
@@ -378,7 +398,7 @@ const BestInvestmentOpportunity = () => {
               {items.map((_, index) => (
                 <Box
                   key={index}
-                  onClick={() => setActiveProjectIndex(index)}
+                  onClick={() => handleProjectChange(index)}
                   sx={{
                     width: { xs: "10px", md: "12px", lg: "15px" },
                     height: { xs: "10px", md: "12px", lg: "15px" },
@@ -398,8 +418,10 @@ const BestInvestmentOpportunity = () => {
               {/* PREV */}
               <Box
                 onClick={() =>
-                  setActiveProjectIndex((prev) =>
-                    prev === 0 ? items.length - 1 : prev - 1,
+                  handleProjectChange(
+                    activeProjectIndex === 0
+                      ? items.length - 1
+                      : activeProjectIndex - 1,
                   )
                 }
                 sx={{
@@ -435,8 +457,10 @@ const BestInvestmentOpportunity = () => {
               {/* NEXT */}
               <Box
                 onClick={() =>
-                  setActiveProjectIndex((prev) =>
-                    prev === items.length - 1 ? 0 : prev + 1,
+                  handleProjectChange(
+                    activeProjectIndex === items.length - 1
+                      ? 0
+                      : activeProjectIndex + 1,
                   )
                 }
                 sx={{
@@ -473,11 +497,12 @@ const BestInvestmentOpportunity = () => {
           {/* PROJECT DESCRIPTION */}
           <Box ref={descriptionRef} mt={8} width="100%">
             <Typography
-              variant="heroSubTitle"
+              variant="h3"
               component="h1"
               sx={{
                 color: theme.palette.text.secondary,
-                mb: { xs: 2, md: 4, lg: 6 },
+                fontWeight: typographyTokens.fontWeights.regular,
+                mb: { xs: 2, md: 3, lg: 4 },
                 lineHeight: 1.6,
               }}
             >
@@ -587,7 +612,7 @@ const BestInvestmentOpportunity = () => {
         >
           <AnimatePresence initial={false} custom={direction}>
             <motion.div
-              key={activeImageIndex}
+              key={`${activeProjectIndex}-${activeImageIndex}`}
               custom={direction}
               variants={slideVariants}
               initial="enter"
@@ -602,19 +627,42 @@ const BestInvestmentOpportunity = () => {
                 height: "100%",
               }}
             >
+              {isGalleryImageLoading && (
+                <Skeleton
+                  variant="rectangular"
+                  width="100%"
+                  height="100%"
+                  sx={{
+                    position: "absolute",
+                    inset: 0,
+                    zIndex: 1,
+                    bgcolor: "#1a1a1a",
+                  }}
+                />
+              )}
               <Box
                 component="img"
-                src={images[activeImageIndex] || images[0]}
+                src={activeGalleryImage}
                 alt={`${projectsData[activeProjectIndex]?.name ?? "Project"} preview ${activeImageIndex + 1}`}
                 loading={activeImageIndex === 0 ? "eager" : "lazy"}
                 fetchPriority={activeImageIndex === 0 ? "high" : "auto"}
                 decoding="async"
-                sizes="100vw"
+                sizes="(max-width: 600px) 100vw, (max-width: 1200px) 92vw, 1400px"
+                onLoad={() => {
+                  if (!activeGalleryImage) return;
+                  setLoadedFeatureImages((prev) => ({
+                    ...prev,
+                    [activeGalleryImage]: true,
+                  }));
+                  setIsGalleryImageLoading(false);
+                }}
                 sx={{
                   width: "100%",
                   height: "100%",
                   objectFit: "cover",
                   imageRendering: "-webkit-optimize-contrast",
+                  opacity: isGalleryImageLoading ? 0 : 1,
+                  transition: "opacity .25s ease",
                 }}
               />
             </motion.div>
@@ -670,6 +718,7 @@ const BestInvestmentOpportunity = () => {
         </Box>
 
         <Box
+          key={`thumbnails-${activeProjectIndex}`}
           sx={{
             display: "flex",
             gap: { xs: 1, md: 2 },
@@ -688,7 +737,7 @@ const BestInvestmentOpportunity = () => {
         >
           {images.map((img, index) => (
             <Box
-              key={index}
+              key={`${activeProjectIndex}-${index}`}
               component={motion.div}
               onClick={() => handleThumbnailClick(index)}
               whileHover={{ scale: 1.05 }}
@@ -730,7 +779,7 @@ const BestInvestmentOpportunity = () => {
                 loading={index === activeImageIndex ? "eager" : "lazy"}
                 fetchPriority={index === activeImageIndex ? "high" : "auto"}
                 decoding="async"
-                sizes="(max-width: 900px) 80px, 20vw"
+                sizes="(max-width: 900px) 80px, 240px"
                 sx={{
                   width: "100%",
                   height: "100%",

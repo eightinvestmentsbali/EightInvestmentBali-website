@@ -246,23 +246,36 @@ const VideoPlayer: React.FC<Props> = ({ data }) => {
             position: "absolute",
             bottom: 0,
             left: { xs: 2, sm: 3, md: 5, lg: 10 },
-            // pr: 6,
-            // bgcolor:"#ccc",
-            pb: { xs: 0, sm: 1, md: 2 },
+            pb: { xs: 0 },
             zIndex: 10,
-            
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "flex-start",
+            gap: { xs: 0.5, sm: 1, md: 1.25 },
           }}
         >
+          {data?.projectLogo && (
+            <Box
+              component="img"
+              src={data.projectLogo}
+              alt={data.name}
+              sx={{
+                width: "clamp(30px, 8vw, 88px)",
+                height: "clamp(30px, 8vw, 88px)",
+                objectFit: "contain",
+                flexShrink: 0,
+              }}
+            />
+          )}
           <Typography
-            variant="heroSubTitle"
             component="h1"
             sx={{
-              fontSize: { xs: "1.2rem", sm: "2rem", md: "3rem", lg: "4.1rem", xl: "5rem"},
+              fontSize: "clamp(2.2rem, 4.5vw, 4rem)",
               fontWeight: typographyTokens.fontWeights["semi-bold"],
               lineHeight: 1,
               color: theme.palette.text.primary,
               fontFamily: "inherit",
-              maxWidth: "80%",
+              // maxWidth: "80%",
             }}
           >
             {data.name}

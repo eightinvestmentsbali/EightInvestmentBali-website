@@ -41,11 +41,21 @@ const initialSteps = [
   },
 ];
 
+let persistedStepOrder = initialSteps.map((step) => step.id);
+
+const getPersistedSteps = () => {
+  const orderedSteps = persistedStepOrder
+    .map((id) => initialSteps.find((step) => step.id === id))
+    .filter((step): step is (typeof initialSteps)[number] => Boolean(step));
+
+  return orderedSteps.length === initialSteps.length ? orderedSteps : initialSteps;
+};
+
 /* -------------------- COMPONENT -------------------- */
 
 const OurProcess: React.FC = () => {
   const theme = useTheme();
-  const [steps, setSteps] = useState(initialSteps);
+  const [steps, setSteps] = useState(getPersistedSteps);
   const [isFlipping, setIsFlipping] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
@@ -72,6 +82,16 @@ const OurProcess: React.FC = () => {
   const stackedMiddleColor = isMainGreen ? greenColor : blueColor;
   const stackedTopColor = isMainGreen ? blueColor : greenColor;
 
+  const updateSteps = (
+    updater: (prev: typeof initialSteps) => typeof initialSteps
+  ) => {
+    setSteps((prev) => {
+      const next = updater(prev);
+      persistedStepOrder = next.map((step) => step.id);
+      return next;
+    });
+  };
+
   /* -------------------- AUTO ROTATION -------------------- */
   useEffect(() => {
     if (!isPaused && !isFlipping) {
@@ -80,7 +100,7 @@ const OurProcess: React.FC = () => {
           setIsFlipping(true);
 
           setTimeout(() => {
-            setSteps((prev) => {
+            updateSteps((prev) => {
               // const currentFirstStepId = prev[0].id; // Step before rotation
               const updated = [...prev];
               const [first] = updated.splice(0, 1);
@@ -148,7 +168,7 @@ const OurProcess: React.FC = () => {
 
     // Delay the actual state change to sync with animation
     setTimeout(() => {
-      setSteps((prev) => {
+      updateSteps((prev) => {
         // const currentFirstStepId = prev[0].id; // Step before click
         const updated = [...prev];
         const [clicked] = updated.splice(index, 1);
@@ -248,14 +268,14 @@ const OurProcess: React.FC = () => {
         }}
       >
         {/* -------------------- HEADER -------------------- */}
-        <Stack spacing={{ xs: 2, md: 4, lg: 6 }} mb={{ xs: 3, md: 6 }}>
+        <Stack spacing={{ xs: 2, md: 3, lg: 4 }} mb={{ xs: 3, md: 4 }}>
           <Typography
             variant="heroTitle"
             component="h1"
             sx={{
               color: theme.palette.text.primary,
-              fontWeight: typographyTokens.fontWeights.medium,
-              mb: { xs: 2, md: 6 },
+              // fontWeight: typographyTokens.fontWeights.medium,
+              mb: { xs: 2, md: 4 },
             }}
           >
             Our Process
@@ -264,17 +284,11 @@ const OurProcess: React.FC = () => {
           <Divider sx={{ width: "100%", height: "2px", bgcolor: "#67697C" }} />
 
           <Typography
-            variant="h4"
+            variant="h3"
             sx={{
               color: "#484848",
               fontWeight: typographyTokens.fontWeights.regular,
-              lineHeight: 1.3,
-              fontSize: {
-                xs: "1rem",
-                sm: "1.125rem",
-                lg: "2rem",
-                xl: "2.5rem",
-              },
+              lineHeight: 1.7,
             }}
           >
             Our thought process is deeply rooted in our core values. These
@@ -490,11 +504,11 @@ const OurProcess: React.FC = () => {
                         sx={{
                           fontSize: isActive
                             ? {
-                                xs: "3.2rem", // Your active mobile size
-                                sm: "3.2rem",
-                                md: "4.5rem",
-                                lg: "6rem",
-                                xl: "7rem",
+                                xs: "2.5rem", // Your active mobile size
+                                sm: "3rem",
+                                md: "5.5rem",
+                                lg: "5rem",
+                                xl: "6rem",
                               }
                             : {
                                 xs: "2rem", // Balanced inactive mobile size
@@ -504,7 +518,7 @@ const OurProcess: React.FC = () => {
                                 xl: "4.5rem",
                               },
                           transition: "all 0.5s ease-in-out", // Smooth scaling during rotation
-                          fontWeight: isActive ? 600 : 500,
+                          fontWeight: isActive ? 500 : 450,
                           color: isActive
                             ? theme.palette.text.primary
                             : "#727272",

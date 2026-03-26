@@ -189,7 +189,7 @@ const BestInvestmentOpportunity: React.FC<Props> = ({
                     mb: 0,
                   }}
                 >
-                  Best investment <br /> opportunity
+                  Best investment opportunity
                 </Typography>
 
                 {(showPrimaryCTA || showSecondaryCTA || showFallbackBrochureCta) && (
@@ -324,6 +324,7 @@ const BestInvestmentOpportunity: React.FC<Props> = ({
                   projectName={activeProject?.name ?? ""}
                   location={activeProject?.location ?? ""}
                   image={activeProject?.image ?? ""}
+                  projectLogo={activeProject?.projectLogo ?? ""}
                   progressImage={activeProject?.progressImage ?? ""}
                   projectNumber={`${activeIndex + 1}/${data.length}`}
                   statusBadge={activeProject?.statusBadge ?? ""}
@@ -491,7 +492,7 @@ const BestInvestmentOpportunity: React.FC<Props> = ({
                     transition={{ duration: 0.4, ease: "easeOut" }}
                   >
                     <Typography
-                      variant="h1"
+                      variant="h3"
                       component="h1"
                       sx={{
                         color: "#484848",
@@ -516,7 +517,7 @@ const BestInvestmentOpportunity: React.FC<Props> = ({
                     transition={{ duration: 0.4, ease: "easeOut" }}
                   >
                     <Typography
-                      variant="h1"
+                      variant="h3"
                       component="h1"
                       sx={{
                         color: "#484848",
@@ -569,7 +570,7 @@ const BestInvestmentOpportunity: React.FC<Props> = ({
 
                       {/* TITLE */}
                       <Typography
-                        variant="h2"
+                        variant="h3"
                         sx={{
                           color: theme.palette.text.primary,
                           fontWeight: typographyTokens.fontWeights.medium,
@@ -581,7 +582,7 @@ const BestInvestmentOpportunity: React.FC<Props> = ({
 
                       {/* DESCRIPTION */}
                       <Typography
-                        variant="h3"
+                        variant="h5"
                         sx={{
                           fontWeight: typographyTokens.fontWeights.regular,
                           color: theme.palette.text.primary,

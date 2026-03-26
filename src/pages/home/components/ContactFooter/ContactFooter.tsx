@@ -656,6 +656,11 @@ const ContactFooter = () => {
               </Typography>
               <Stack direction="row" spacing={2}>
                 <IconButton
+                  component="a"
+                  href="https://www.instagram.com/eightinvestmentsbali/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Follow Eight Investments Bali on Instagram"
                   sx={{
                     color: "#FFFFFF",
                     border: "1px solid #FFFFFF",
@@ -672,6 +677,11 @@ const ContactFooter = () => {
                   <InstagramIcon sx={{ fontSize: "1.25rem" }} />
                 </IconButton>
                 <IconButton
+                  component="a"
+                  href="https://www.linkedin.com/company/eight-investments-bali/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Follow Eight Investments Bali on LinkedIn"
                   sx={{
                     color: "#FFFFFF",
                     border: "1px solid #FFFFFF",

@@ -97,7 +97,7 @@ const OurServices: React.FC = () => {
             component="h1"
             sx={{
               color: theme.palette.text.primary,
-              fontWeight: typographyTokens.fontWeights.medium,
+              // fontWeight: typographyTokens.fontWeights.medium,
             }}
           >
             Our Services
