@@ -249,8 +249,8 @@ const themeOptions: ThemeOptions = {
     /* ✅ HERO TITLE (ADDED) */
     heroTitle: {
       fontFamily: "Poppins, sans-serif",
-      fontWeight: typographyTokens.fontWeights.bold,
-      fontSize: "clamp(1.3rem, calc(5vw + 0.5rem), 3.5rem)",
+      fontWeight: typographyTokens.fontWeights.medium,
+      fontSize: "clamp(1.3rem, calc(5vw + 0.5rem), 2.8rem)",
       lineHeight: 1.1,
       letterSpacing: "-0.02em",
     },
